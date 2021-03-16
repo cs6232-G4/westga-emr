@@ -50,6 +50,7 @@
     <Compile Include="DAL\AppointmentDAL.cs" />
     <Compile Include="DAL\Clinical_AdministratorDAL.cs" />
     <Compile Include="DAL\DoctorDAL.cs" />
+    <Compile Include="DAL\Doctor_has_SpecialtiesDAL.cs" />
     <Compile Include="DAL\GetSQLConnection.cs" />
     <Compile Include="DAL\NurseDAL.cs" />
     <Compile Include="DAL\PatientDAL.cs" />
