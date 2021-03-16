@@ -48,7 +48,11 @@
   <ItemGroup>
     <Compile Include="DAL\AddressDAL.cs" />
     <Compile Include="DAL\AppointmentDAL.cs" />
+    <Compile Include="DAL\Clinical_AdministratorDAL.cs" />
+    <Compile Include="DAL\DoctorDAL.cs" />
     <Compile Include="DAL\GetSQLConnection.cs" />
+    <Compile Include="DAL\NurseDAL.cs" />
+    <Compile Include="DAL\PatientDAL.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
