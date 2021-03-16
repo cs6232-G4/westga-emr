@@ -21,6 +21,18 @@ namespace westga_emr.Model
 		/// <param name="results_">The results of the lab tests</param>
 		public Lab_Orders_have_Lab_Tests(long labOrderID_, int labTestCode_, DateTime testPerformed_, string results_)
 		{
+			if (labOrderID_ < 1 || labTestCode_ < 1)
+            {
+				throw new ArgumentException("labOrderID and labTestCode must be greater than zero");
+            }
+			if (testPerformed_ == null)
+            {
+				throw new ArgumentNullException("testPerformed cannot be null");
+            }
+			if (string.IsNullOrWhiteSpace(results_))
+            {
+				throw new ArgumentException("results cannot be null, empty, or consist only of white space");
+            }
 			this.LabOrderID = labOrderID_;
 			this.LabTestCode = labTestCode_;
 			this.TestPerformed = testPerformed_;
