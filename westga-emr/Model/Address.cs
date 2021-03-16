@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace westga_emr.Model
 {
@@ -32,6 +33,14 @@ namespace westga_emr.Model
             {
                 throw new ArgumentException("street, city, state, and zip cannot be null, empty, or " +
                     "consist only of white space");
+            }
+            if (zip.Length != 5 || !zip.All(char.IsDigit))
+            {
+                throw new ArgumentException("zip must be 5 characters in length and consist only of numbers");
+            }
+            if (state.Length != 2 || !state.All(char.IsLetter))
+            {
+                throw new ArgumentException("state must be 2 characters in length and consist only of letters");
             }
             this.ID = id;
             this.Street = street;
