@@ -13,8 +13,8 @@ namespace westga_emr.Model
 		/// <summary>
 		/// Constructs an instance of this relation according to the given data
 		/// </summary>
-		/// <param name="doctorID_"></param>
-		/// <param name="specialtyName_"></param>
+		/// <param name="doctorID_">Sql Server's id for the doctor in this relation</param>
+		/// <param name="specialtyName_">The name of the specialty in this relation</param>
 		public Doctor_has_Specialties(int doctorID_, string specialtyName_)
 		{
 			if (doctorID_ < 1)
