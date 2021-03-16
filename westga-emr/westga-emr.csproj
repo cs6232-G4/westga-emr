@@ -58,6 +58,7 @@
     <Compile Include="Model\Clinical_Administrator.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Doctor_has_Specialties.cs" />
+    <Compile Include="Model\Lab_Order.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
