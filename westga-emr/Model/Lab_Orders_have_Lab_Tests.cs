@@ -29,10 +29,6 @@ namespace westga_emr.Model
             {
 				throw new ArgumentNullException("testPerformed cannot be null");
             }
-			if (string.IsNullOrWhiteSpace(results_))
-            {
-				throw new ArgumentException("results cannot be null, empty, or consist only of white space");
-            }
 			this.LabOrderID = labOrderID_;
 			this.LabTestCode = labTestCode_;
 			this.TestPerformed = testPerformed_;
