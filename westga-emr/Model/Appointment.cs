@@ -2,6 +2,9 @@
 
 namespace westga_emr.Model
 {
+	/// <summary>
+	/// Models an Appointment in the WestGA-EMR
+	/// </summary>
 	public class Appointment
 	{
 		public long ID { get; }
@@ -10,6 +13,14 @@ namespace westga_emr.Model
 		public DateTime AppointmentDateTime { get; }
 		public string ReasonForVisit { get; }
 
+		/// <summary>
+		/// Constructs an Appointment according to the given data
+		/// </summary>
+		/// <param name="id_">Sql Server's id for the Appointment</param>
+		/// <param name="patientID_">Sql Server's id for the patient associated with the Appointment</param>
+		/// <param name="doctorID_">Sql Server's id for the doctor associated with the Appointment</param>
+		/// <param name="appointmentDateTime_">The date and time of the Appointment</param>
+		/// <param name="reasonForVisit_">The reason for the Appointment's visit</param>
 		public Appointment(long id_, int patientID_, int doctorID_, DateTime appointmentDateTime_, string reasonForVisit_)
 		{
 			if (id_ < 1 || patientID_ < 1 || doctorID_ < 1)
