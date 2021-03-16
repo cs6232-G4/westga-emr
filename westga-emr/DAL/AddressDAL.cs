@@ -8,7 +8,7 @@ namespace westga_emr.DAL
     /// <summary>
     /// Manages SQL queries to the Address table of the WestGA-EMR db
     /// </summary>
-    class AddressDAL
+    public class AddressDAL
     {
         /// <summary>
         /// Gets a list of all addresses in the db
