@@ -46,6 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\AddressController.cs" />
+    <Compile Include="Controller\AppointmentController.cs" />
+    <Compile Include="Controller\Clinical_AdministratorController.cs" />
+    <Compile Include="Controller\DoctorController.cs" />
+    <Compile Include="Controller\Doctor_has_SpecialtiesController.cs" />
+    <Compile Include="Controller\Lab_OrderController.cs" />
+    <Compile Include="Controller\Lab_Orders_have_Lab_TestsController.cs" />
+    <Compile Include="Controller\Lab_TestController.cs" />
+    <Compile Include="Controller\NurseController.cs" />
+    <Compile Include="Controller\PatientController.cs" />
+    <Compile Include="Controller\PersonController.cs" />
+    <Compile Include="Controller\SpecialtyController.cs" />
+    <Compile Include="Controller\VisitController.cs" />
     <Compile Include="DAL\AddressDAL.cs" />
     <Compile Include="DAL\AppointmentDAL.cs" />
     <Compile Include="DAL\Clinical_AdministratorDAL.cs" />
@@ -104,7 +117,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
     <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>
