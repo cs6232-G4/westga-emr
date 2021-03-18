@@ -14,7 +14,7 @@ namespace westga_emr.DAL
         /// Gets a list of all lab orders in the db
         /// </summary>
         /// <returns>List of all Lab_Orders in db</returns>
-        public static List<Lab_Order> GetLab_Order()
+        public static List<Lab_Order> GetLab_Orders()
         {
             List<Lab_Order> orders = new List<Lab_Order>();
             String selectStatement = @"SELECT id, visitID, dateOrdered
