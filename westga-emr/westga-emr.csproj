@@ -54,6 +54,7 @@
     <Compile Include="DAL\GetSQLConnection.cs" />
     <Compile Include="DAL\Lab_OrderDAL.cs" />
     <Compile Include="DAL\Lab_Orders_have_Lab_TestsDAL.cs" />
+    <Compile Include="DAL\Lab_TestDAL.cs" />
     <Compile Include="DAL\NurseDAL.cs" />
     <Compile Include="DAL\PatientDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
