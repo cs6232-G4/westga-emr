@@ -94,6 +94,18 @@
     <Compile Include="Model\Visit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainTabbedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MainTabbedForm.Designer.cs">
+      <DependentUpon>MainTabbedForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -103,6 +115,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainTabbedForm.resx">
+      <DependentUpon>MainTabbedForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\" />
+    <Folder Include="Controller\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DB\cs6232-g4-sql-server.sql" />
