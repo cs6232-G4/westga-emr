@@ -9,10 +9,11 @@ namespace westga_emr.Controller
     /// </summary>
     public class PatientController
     {
-        /// <see cref="PatientDAL.GetPatients"/>
-        public List<Patient> GetPatients()
+
+        /// <see cref="PatientDAL.GetAllActivePatients"/>
+        public List<Person> GetAllActivePatients()
         {
-            return PatientDAL.GetPatients();
+            return PatientDAL.GetAllActivePatients();
         }
     }
 }
