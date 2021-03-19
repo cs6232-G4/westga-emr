@@ -37,6 +37,18 @@ namespace westga_emr.View
 
         private void MainTabbedForm_Load(object sender, EventArgs e)
         {
+            if(this.currentUser.AdminId <= 0 || !this.currentUser.IsActiveAdmin)
+            {
+                this.nurseListTabPage.Hide();
+                this.addNurseTabPage.Hide();
+                this.reportsTabPage.Hide();
+            }
+            if (this.currentUser.NurseId <= 0 || !this.currentUser.IsActiveNurse)
+            {
+                this.newAppointmentTabPage.Hide();
+                this.saerchPatientTabPage.Hide();
+                this.upcomingAppointmentsTabPage.Hide();
+            }
             this.currentTimeLabel.Text = DateTime.Now.ToShortTimeString();
             this.userGreeting.Text = String.Concat("Hello ", this.currentUser.FirstName, " ", this.currentUser.LastName);
             this.currentUserName.Text = this.currentUser.Username;

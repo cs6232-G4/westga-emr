@@ -24,5 +24,10 @@ namespace westga_emr.Model.DTO
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
+        public bool IsActiveNurse { get; set; }
+
+        public bool IsActiveAdmin { get; set; }
+        public bool IsActiveDoctor { get; set; }
+        public bool IsActivePatient { get; set; }
     }
 }

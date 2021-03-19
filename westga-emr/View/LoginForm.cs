@@ -27,7 +27,7 @@ namespace westga_emr.View
             {
                 ShowMainForm(personController.SignIn(this.usernameTextBox.Text, this.passwordTextBox.Text));
        
-            }catch(Exception)
+            }catch(Exception ex)
             {
                 MessageBox.Show("The email and password you entered did not match our records." + Environment.NewLine + "Please double-check and try again.",
                   "Login Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -40,8 +40,18 @@ namespace westga_emr.View
         /// </summary>
         public void ShowMainForm(UserDTO authenticatedUser)
         {
+            if (authenticatedUser.NurseId > 0 && !authenticatedUser.IsActiveNurse)
+            {
+                MessageBox.Show("Your account is not activate " + Environment.NewLine + "Please activate your account.",
+                 "Account Inactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if (authenticatedUser.AdminId > 0 && !authenticatedUser.IsActiveAdmin)
+            {
+                MessageBox.Show("Your account is not activate " + Environment.NewLine + "Please activate your account.",
+                 "Account Inactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             this.Hide();
-            if(mainTabbedForm == null)
+            if (mainTabbedForm == null)
             {
                 mainTabbedForm = new MainTabbedForm(this, authenticatedUser);
             }
