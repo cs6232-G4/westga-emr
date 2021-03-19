@@ -11,6 +11,7 @@ namespace westga_emr.Controller
     /// </summary>
     public class PersonController
     {
+        private UserDTO currentUser;
         private PersonDAL personDBSource;
         public PersonController()
         {
@@ -34,7 +35,8 @@ namespace westga_emr.Controller
             {
                 throw new Exception();
             }
-            return personDBSource.SignIn(username, password);
+            currentUser =  personDBSource.SignIn(username, password);
+            return currentUser;
         }
 
         /// <see cref="PersonDAL.GetPersonByUsernameAndPassword(string, string)"/>
@@ -45,6 +47,23 @@ namespace westga_emr.Controller
                 throw new ArgumentException("username and password cannot be null, empty, or consist only of white spaces");
             }
             return PersonDAL.GetPersonByUsernameAndPassword(username, password);
+        }
+
+        /// <summary>
+        /// Method to get current user of the application
+        /// </summary>
+        /// <returns></returns>
+        public UserDTO GetCurrentUser()
+        {
+            return this.currentUser;
+        }
+
+        /// <summary>
+        /// Signs out the current user from the aspplication
+        /// </summary>
+        public void SignOutUser()
+        {
+            this.currentUser = new UserDTO();
         }
     }
 }

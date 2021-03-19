@@ -164,7 +164,8 @@ namespace westga_emr.DAL
             string selectUserStatement = @"
                 SELECT P.id as personId, username,firstName, 
                         lastName, dateOfBirth, ssn, gender,
-                        addressID, contactPhone, N.id as NurseId, C.id as AdminId, 
+                        addressID, contactPhone, N.id as NurseId, C.id as AdminId,
+                        N.active as IsActiveNurse, C.active as IsActiveAdmin,
                         street, city, state, zip
                 FROM Person P 
                 FULL OUTER JOIN Nurse N ON P.id = N.personID
@@ -198,6 +199,8 @@ namespace westga_emr.DAL
                             currentUser.AdminId = reader["AdminId"] != DBNull.Value ? (int)reader["AdminId"] : 0;
                             currentUser.NurseId = reader["NurseId"] != DBNull.Value ? (int)reader["NurseId"] : 0;
                             currentUser.DateOfBirth = reader["dateOfBirth"] != DBNull.Value ? (DateTime)reader["dateOfBirth"] : (DateTime?)null;
+                            currentUser.IsActiveNurse = reader["IsActiveNurse"] != DBNull.Value ? (bool)reader["IsActiveNurse"] : false;
+                            currentUser.IsActiveAdmin = reader["IsActiveAdmin"] != DBNull.Value ? (bool)reader["IsActiveAdmin"] : false;
 
                         } else
                         {
