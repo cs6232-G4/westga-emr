@@ -57,13 +57,14 @@ namespace westga_emr.View
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(183, 86);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(244, 106);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(453, 255);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(604, 314);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -73,9 +74,10 @@ namespace westga_emr.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(4, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 85);
+            this.label1.Size = new System.Drawing.Size(173, 104);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username";
             // 
@@ -86,9 +88,10 @@ namespace westga_emr.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 85);
+            this.label2.Location = new System.Drawing.Point(4, 104);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 85);
+            this.label2.Size = new System.Drawing.Size(173, 104);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password";
             // 
@@ -96,15 +99,16 @@ namespace westga_emr.View
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel2.Controls.Add(this.usernameTextBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.usernameErrorLabel, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(138, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(185, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(312, 79);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(415, 96);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // usernameTextBox
@@ -112,9 +116,10 @@ namespace westga_emr.View
             this.usernameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.usernameTextBox.Location = new System.Drawing.Point(3, 3);
+            this.usernameTextBox.Location = new System.Drawing.Point(4, 4);
+            this.usernameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(306, 20);
+            this.usernameTextBox.Size = new System.Drawing.Size(407, 22);
             this.usernameTextBox.TabIndex = 1;
             this.usernameTextBox.TextChanged += new System.EventHandler(this.usernameTextBox_TextChanged);
             // 
@@ -125,9 +130,10 @@ namespace westga_emr.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.usernameErrorLabel.AutoSize = true;
             this.usernameErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.usernameErrorLabel.Location = new System.Drawing.Point(3, 39);
+            this.usernameErrorLabel.Location = new System.Drawing.Point(4, 48);
+            this.usernameErrorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.usernameErrorLabel.Name = "usernameErrorLabel";
-            this.usernameErrorLabel.Size = new System.Drawing.Size(306, 40);
+            this.usernameErrorLabel.Size = new System.Drawing.Size(407, 48);
             this.usernameErrorLabel.TabIndex = 1;
             // 
             // tableLayoutPanel3
@@ -137,15 +143,16 @@ namespace westga_emr.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel3.Controls.Add(this.passwordErrorLabel, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.passwordTextBox, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(138, 88);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(185, 108);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(312, 79);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(415, 96);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // passwordErrorLabel
@@ -155,9 +162,10 @@ namespace westga_emr.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.passwordErrorLabel.AutoSize = true;
             this.passwordErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.passwordErrorLabel.Location = new System.Drawing.Point(3, 39);
+            this.passwordErrorLabel.Location = new System.Drawing.Point(4, 48);
+            this.passwordErrorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.passwordErrorLabel.Name = "passwordErrorLabel";
-            this.passwordErrorLabel.Size = new System.Drawing.Size(306, 40);
+            this.passwordErrorLabel.Size = new System.Drawing.Size(407, 48);
             this.passwordErrorLabel.TabIndex = 1;
             // 
             // passwordTextBox
@@ -165,10 +173,11 @@ namespace westga_emr.View
             this.passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.passwordTextBox.Location = new System.Drawing.Point(3, 3);
+            this.passwordTextBox.Location = new System.Drawing.Point(4, 4);
+            this.passwordTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
-            this.passwordTextBox.Size = new System.Drawing.Size(306, 20);
+            this.passwordTextBox.Size = new System.Drawing.Size(407, 22);
             this.passwordTextBox.TabIndex = 2;
             this.passwordTextBox.TextChanged += new System.EventHandler(this.passwordTextBox_TextChanged);
             // 
@@ -181,12 +190,13 @@ namespace westga_emr.View
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this.clearButton, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.loginButton, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(138, 173);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(185, 212);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(312, 62);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(415, 76);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
             // clearButton
@@ -194,9 +204,10 @@ namespace westga_emr.View
             this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(3, 3);
+            this.clearButton.Location = new System.Drawing.Point(4, 4);
+            this.clearButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(150, 40);
+            this.clearButton.Size = new System.Drawing.Size(199, 49);
             this.clearButton.TabIndex = 3;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -209,9 +220,10 @@ namespace westga_emr.View
             this.loginButton.BackColor = System.Drawing.Color.Green;
             this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.loginButton.Location = new System.Drawing.Point(159, 3);
+            this.loginButton.Location = new System.Drawing.Point(211, 4);
+            this.loginButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(150, 40);
+            this.loginButton.Size = new System.Drawing.Size(200, 49);
             this.loginButton.TabIndex = 4;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = false;
@@ -219,10 +231,11 @@ namespace westga_emr.View
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";

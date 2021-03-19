@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using westga_emr.Controller;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.View
 {
     public partial class LoginForm : Form
     {
+        private PersonController personController;
         private MainTabbedForm mainTabbedForm;
         public LoginForm()
         {
             InitializeComponent();
+            personController = new PersonController();
         }
 
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -25,25 +23,37 @@ namespace westga_emr.View
 
         private void Login()
         {
-            ShowMainForm();
+            try
+            {
+                ShowMainForm(personController.SignIn(this.usernameTextBox.Text, this.passwordTextBox.Text));
+       
+            }catch(Exception)
+            {
+                MessageBox.Show("The email and password you entered did not match our records." + Environment.NewLine + "Please double-check and try again.",
+                  "Login Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         /// <summary>
         /// Method to show main form and hide login form
         /// </summary>
-        public void ShowMainForm()
+        public void ShowMainForm(UserDTO authenticatedUser)
         {
             this.Hide();
             if(mainTabbedForm == null)
             {
-                mainTabbedForm = new MainTabbedForm(this);
+                mainTabbedForm = new MainTabbedForm(this, authenticatedUser);
             }
             mainTabbedForm.Show();
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            Login();
+            if (this.ValidateUsernameInput() && this.ValidatePasswordInput())
+            {
+                Login();
+            } 
         }
 
         private void ClearForm()
@@ -63,15 +73,7 @@ namespace westga_emr.View
 
         private void usernameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(this.usernameTextBox.Text))
-            {
-                this.usernameErrorLabel.Text = "Username is required";
-                this.usernameTextBox.BackColor = Color.Red;
-            } else
-            {
-                this.usernameErrorLabel.Text = "";
-                this.usernameTextBox.BackColor = Color.White;
-            }
+            this.ValidateUsernameInput();
         }
 
         /// <summary>
@@ -94,15 +96,37 @@ namespace westga_emr.View
 
         private void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(this.passwordTextBox.Text))
+            this.ValidatePasswordInput();
+        }
+
+        private bool ValidateUsernameInput()
+        {
+            if (String.IsNullOrWhiteSpace(this.usernameTextBox.Text))
+            {
+                this.usernameErrorLabel.Text = "Username is required";
+                this.usernameTextBox.BackColor = Color.Red;
+                return false;
+            }
+            else
+            {
+                this.usernameErrorLabel.Text = "";
+                this.usernameTextBox.BackColor = Color.White;
+                return true;
+            }
+        }
+        private bool ValidatePasswordInput()
+        {
+            if (String.IsNullOrWhiteSpace(this.passwordTextBox.Text))
             {
                 this.passwordErrorLabel.Text = "Password is required";
                 this.passwordTextBox.BackColor = Color.Red;
+                return false;
             }
             else
             {
                 this.passwordErrorLabel.Text = "";
                 this.passwordTextBox.BackColor = Color.White;
+                return true;
             }
         }
     }
