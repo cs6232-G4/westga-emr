@@ -2,6 +2,7 @@
 using westga_emr.Model;
 using westga_emr.DAL;
 using System;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.Controller
 {
@@ -10,10 +11,30 @@ namespace westga_emr.Controller
     /// </summary>
     public class PersonController
     {
+        private PersonDAL personDBSource;
+        public PersonController()
+        {
+            this.personDBSource = new PersonDAL();
+        }
         /// <see cref="PersonDAL.GetPersons"/>
         public List<Person> GetPersons()
         {
             return PersonDAL.GetPersons();
+        }
+
+        /// <summary>
+        /// Sign In method to authenticate User
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns>The signed in user</returns>
+        public UserDTO SignIn(string username, string password)
+        {
+            if (!personDBSource.UserExist(username))
+            {
+                throw new Exception();
+            }
+            return personDBSource.SignIn(username, password);
         }
 
         /// <see cref="PersonDAL.GetPersonByUsernameAndPassword(string, string)"/>

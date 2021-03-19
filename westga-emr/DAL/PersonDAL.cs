@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using westga_emr.Model;
 using System.Data.SqlClient;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.DAL
 {
@@ -122,5 +123,91 @@ namespace westga_emr.DAL
             }
             return person;
         }
+
+        /// <summary>
+        /// Method to check if User exists
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns>true if username exists and false if user does not exist</returns>
+        public bool UserExist(string username)
+        {
+            bool userExist = false;
+            string selectStatement = "SELECT id FROM Person WHERE username = @Username";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@Username", username);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Console.WriteLine(reader);
+                            userExist = true;
+                        }
+                    }
+                }
+            }
+            return userExist;
+        }
+
+        /// <summary>
+        /// Method to Sign In User
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns>The current user</returns>
+        public UserDTO SignIn( string username, string password)
+        {
+            UserDTO currentUser = new UserDTO();
+            string selectUserStatement = @"
+                SELECT P.id as personId, username,firstName, 
+                        lastName, dateOfBirth, ssn, gender,
+                        addressID, contactPhone, N.id as NurseId, C.id as AdminId, 
+                        street, city, state, zip
+                FROM Person P 
+                FULL OUTER JOIN Nurse N ON P.id = N.personID
+	            FULL OUTER JOIN Clinical_Administrator C ON P.id = C.personID
+	            FULL OUTER JOIN Address A ON P.addressID = A.id
+                WHERE P.username = @Username AND P.password = @Password";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@Username", username);
+                    selectCommand.Parameters.AddWithValue("@Password", password);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            currentUser = new UserDTO();
+                            currentUser.Id = (int)reader["personId"];
+                            currentUser.Username = reader["username"].ToString();
+                            currentUser.FirstName = reader["firstName"].ToString();
+                            currentUser.LastName = reader["lastName"].ToString();
+                            currentUser.SSN = reader["ssn"].ToString();
+                            currentUser.Gender = reader["gender"].ToString();
+                            currentUser.ContactPhone = reader["contactPhone"].ToString();
+                            currentUser.Street = reader["street"].ToString();
+                            currentUser.State = reader["city"].ToString();
+                            currentUser.City = reader["state"].ToString();
+                            currentUser.Zip = reader["zip"].ToString();
+                            currentUser.AddressId = reader["addressID"] != DBNull.Value ? (int)reader["addressID"] : 0;
+                            currentUser.AdminId = reader["AdminId"] != DBNull.Value ? (int)reader["AdminId"] : 0;
+                            currentUser.NurseId = reader["NurseId"] != DBNull.Value ? (int)reader["NurseId"] : 0;
+                            currentUser.DateOfBirth = reader["dateOfBirth"] != DBNull.Value ? (DateTime)reader["dateOfBirth"] : (DateTime?)null;
+
+                        } else
+                        {
+                            throw new Exception("Incorrect username or password");
+                        }
+                    }
+                }
+            }
+            return currentUser;
+        }
+
     }
 }
