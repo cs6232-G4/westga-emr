@@ -36,10 +36,10 @@ namespace westga_emr.User_Controls
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.lblDateOfBirth = new System.Windows.Forms.Label();
-            this.txtDateOfBirth = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblSearchBy = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.pickerDateOfBirth = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.gridPatients)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -60,12 +60,13 @@ namespace westga_emr.User_Controls
             this.comboSearchBy.FormattingEnabled = true;
             this.comboSearchBy.Items.AddRange(new object[] {
             "First Name, Last Name",
-            "Date of Birth,",
+            "Date of Birth",
             "Last Name, Date of Birth"});
-            this.comboSearchBy.Location = new System.Drawing.Point(319, 11);
+            this.comboSearchBy.Location = new System.Drawing.Point(320, 11);
             this.comboSearchBy.Name = "comboSearchBy";
-            this.comboSearchBy.Size = new System.Drawing.Size(754, 39);
+            this.comboSearchBy.Size = new System.Drawing.Size(753, 39);
             this.comboSearchBy.TabIndex = 1;
+            this.comboSearchBy.SelectedIndexChanged += new System.EventHandler(this.SearchBy_GrayOut);
             // 
             // lblFirstName
             // 
@@ -92,17 +93,17 @@ namespace westga_emr.User_Controls
             // txtFirstName
             // 
             this.txtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFirstName.Location = new System.Drawing.Point(319, 90);
+            this.txtFirstName.Location = new System.Drawing.Point(320, 90);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(754, 38);
+            this.txtFirstName.Size = new System.Drawing.Size(753, 38);
             this.txtFirstName.TabIndex = 2;
             // 
             // txtLastName
             // 
             this.txtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLastName.Location = new System.Drawing.Point(319, 168);
+            this.txtLastName.Location = new System.Drawing.Point(320, 168);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(754, 38);
+            this.txtLastName.Size = new System.Drawing.Size(753, 38);
             this.txtLastName.TabIndex = 3;
             // 
             // lblDateOfBirth
@@ -116,27 +117,19 @@ namespace westga_emr.User_Controls
             this.lblDateOfBirth.TabIndex = 2;
             this.lblDateOfBirth.Text = "Date Of Birth";
             // 
-            // txtDateOfBirth
-            // 
-            this.txtDateOfBirth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDateOfBirth.Location = new System.Drawing.Point(319, 248);
-            this.txtDateOfBirth.Name = "txtDateOfBirth";
-            this.txtDateOfBirth.Size = new System.Drawing.Size(754, 38);
-            this.txtDateOfBirth.TabIndex = 4;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.46097F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.53903F));
             this.tableLayoutPanel1.Controls.Add(this.lblSearchBy, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtDateOfBirth, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblLastName, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.comboSearchBy, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtLastName, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblFirstName, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtFirstName, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblDateOfBirth, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.pickerDateOfBirth, 1, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -167,6 +160,15 @@ namespace westga_emr.User_Controls
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.SearchButton_Search);
+            // 
+            // pickerDateOfBirth
+            // 
+            this.pickerDateOfBirth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pickerDateOfBirth.Location = new System.Drawing.Point(320, 248);
+            this.pickerDateOfBirth.Name = "pickerDateOfBirth";
+            this.pickerDateOfBirth.Size = new System.Drawing.Size(753, 38);
+            this.pickerDateOfBirth.TabIndex = 6;
             // 
             // SearchPatient
             // 
@@ -192,10 +194,10 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtFirstName;
-        private System.Windows.Forms.TextBox txtDateOfBirth;
         private System.Windows.Forms.Label lblDateOfBirth;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label lblSearchBy;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.DateTimePicker pickerDateOfBirth;
     }
 }
