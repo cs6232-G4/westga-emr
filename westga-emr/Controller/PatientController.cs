@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using westga_emr.Model;
 using westga_emr.DAL;
 
@@ -14,6 +15,24 @@ namespace westga_emr.Controller
         public List<Person> GetAllActivePatients()
         {
             return PatientDAL.GetAllActivePatients();
+        }
+
+        /// <see cref="PatientDAL.GetActivePatientsByFirstAndLastName(string, string)"/>
+        public List<Person> GetActivePatientsByFirstAndLastName(string firstName, string lastName)
+        {
+            return PatientDAL.GetActivePatientsByFirstAndLastName(firstName, lastName);
+        }
+
+        /// <see cref="PatientDAL.GetActivePatientsByDoB(DateTime)"/>
+        public List<Person> GetActivePatientsByDoB(DateTime dateOfBirth)
+        {
+            return PatientDAL.GetActivePatientsByDoB(dateOfBirth);
+        }
+
+        /// <see cref="PatientDAL.GetActivePatientsByDoBAndLastName(string, DateTime)"/>
+        public List<Person> GetActivePatientsByDoBAndLastName(string lastName, DateTime dateOfBirth)
+        {
+            return PatientDAL.GetActivePatientsByDoBAndLastName(lastName, dateOfBirth);
         }
     }
 }
