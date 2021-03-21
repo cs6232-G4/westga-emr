@@ -79,5 +79,10 @@ namespace westga_emr.User_Controls
                     break;
             }
         }
+
+        private void loadPatientDemographics(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
