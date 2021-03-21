@@ -53,7 +53,7 @@ namespace westga_emr.User_Controls
             this.gridPatients.RowTemplate.Height = 40;
             this.gridPatients.Size = new System.Drawing.Size(1694, 625);
             this.gridPatients.TabIndex = 0;
-            this.gridPatients.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.loadPatientDemographics);
+            this.gridPatients.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LoadPatientDemographics);
             // 
             // comboSearchBy
             // 
