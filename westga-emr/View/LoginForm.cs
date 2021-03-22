@@ -27,7 +27,7 @@ namespace westga_emr.View
             {
                 ShowMainForm(personController.SignIn(this.usernameTextBox.Text, this.passwordTextBox.Text));
        
-            }catch(Exception ex)
+            }catch(Exception)
             {
                 MessageBox.Show("The email and password you entered did not match our records." + Environment.NewLine + "Please double-check and try again.",
                   "Login Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -40,22 +40,36 @@ namespace westga_emr.View
         /// </summary>
         public void ShowMainForm(UserDTO authenticatedUser)
         {
-            if (authenticatedUser.NurseId > 0 && !authenticatedUser.IsActiveNurse)
+           if(authenticatedUser.NurseId > 0 || authenticatedUser.AdminId > 0)
             {
-                MessageBox.Show("Your account is not activate " + Environment.NewLine + "Please activate your account.",
-                 "Account Inactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            if (authenticatedUser.AdminId > 0 && !authenticatedUser.IsActiveAdmin)
+                if (authenticatedUser.IsActiveNurse || authenticatedUser.IsActiveAdmin)
+                {
+                    this.Hide();
+                    if (mainTabbedForm == null)
+                    {
+                        mainTabbedForm = new MainTabbedForm(this, authenticatedUser);
+                    }
+                    else
+                    {
+                        mainTabbedForm.SetCurrentUser(authenticatedUser);
+                        mainTabbedForm.MainTabbedForm_Load("LOGIN", EventArgs.Empty);
+                    }
+                    mainTabbedForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Your account is not activate " + Environment.NewLine + "Please activate your account.",
+                     "Account Inactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            } 
+            else
             {
-                MessageBox.Show("Your account is not activate " + Environment.NewLine + "Please activate your account.",
-                 "Account Inactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Access denied" + Environment.NewLine + "You do not have permission to use this system.",
+                     "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
-            this.Hide();
-            if (mainTabbedForm == null)
-            {
-                mainTabbedForm = new MainTabbedForm(this, authenticatedUser);
-            }
-            mainTabbedForm.Show();
+            
+           
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -91,6 +105,7 @@ namespace westga_emr.View
         /// </summary>
         public void Logout()
         {
+            this.personController.SignOutUser();
             ClearForm();
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using westga_emr.Controller;
 using westga_emr.Model.DTO;
 
 namespace westga_emr.View
@@ -8,6 +9,8 @@ namespace westga_emr.View
     {
         private LoginForm loginForm;
         private UserDTO currentUser;
+        private PersonController personController;
+
         public MainTabbedForm()
         {
             InitializeComponent();
@@ -18,14 +21,16 @@ namespace westga_emr.View
             InitializeComponent();
             this.loginForm = _loginForm;
             this.currentUser = _currentUser;
+            
         }
 
         private void signOutLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
             this.Hide();
-            this.currentUser = new UserDTO();
+            this.ReloadTabPages();
             this.loginForm.Logout();
+            this.currentUser = new UserDTO();
             this.loginForm.Show();
             this.loginForm.SetMainTabbedForm(this);
         }
@@ -35,23 +40,70 @@ namespace westga_emr.View
             Application.Exit();
         }
 
-        private void MainTabbedForm_Load(object sender, EventArgs e)
+        public void MainTabbedForm_Load(object sender, EventArgs e)
         {
+            personController = new PersonController();
+            
             if(this.currentUser.AdminId <= 0 || !this.currentUser.IsActiveAdmin)
             {
-                this.nurseListTabPage.Hide();
-                this.addNurseTabPage.Hide();
-                this.reportsTabPage.Hide();
+                
+                this.mainTabControl.TabPages.Remove(this.nurseListTabPage);
+                this.mainTabControl.TabPages.Remove(this.addNurseTabPage);
+                this.mainTabControl.TabPages.Remove(this.reportsTabPage);
             }
             if (this.currentUser.NurseId <= 0 || !this.currentUser.IsActiveNurse)
             {
-                this.newAppointmentTabPage.Hide();
-                this.saerchPatientTabPage.Hide();
-                this.upcomingAppointmentsTabPage.Hide();
+                
+                this.mainTabControl.TabPages.Remove(this.newAppointmentTabPage);
+                this.mainTabControl.TabPages.Remove(this.saerchPatientTabPage);
+                this.mainTabControl.TabPages.Remove(this.upcomingAppointmentsTabPage);
+
             }
             this.currentTimeLabel.Text = DateTime.Now.ToShortTimeString();
             this.userGreeting.Text = String.Concat("Hello ", this.currentUser.FirstName, " ", this.currentUser.LastName);
             this.currentUserName.Text = this.currentUser.Username;
         }
+
+
+        /// <summary>
+        /// Sets the new current user when current user is changed
+        /// </summary>
+        /// <param name="user"></param>
+        public void SetCurrentUser(UserDTO user)
+        {
+            this.currentUser = user;
+        }
+
+        /// <summary>
+        /// Reloads the tab pages to default tabs
+        /// </summary>
+        public void ReloadTabPages()
+        {
+            if (!this.mainTabControl.TabPages.Contains(this.nurseListTabPage))
+            {
+                this.mainTabControl.TabPages.Add(this.nurseListTabPage);
+            }
+            if (!this.mainTabControl.TabPages.Contains(this.addNurseTabPage))
+            {
+                this.mainTabControl.TabPages.Add(this.addNurseTabPage);
+            }
+            if (!this.mainTabControl.TabPages.Contains(this.reportsTabPage))
+            {
+                this.mainTabControl.TabPages.Add(this.reportsTabPage);
+            }
+            if (!this.mainTabControl.TabPages.Contains(this.newAppointmentTabPage))
+            {
+                this.mainTabControl.TabPages.Add(this.newAppointmentTabPage);
+            }
+            if (!this.mainTabControl.TabPages.Contains(this.saerchPatientTabPage))
+            {
+                this.mainTabControl.TabPages.Add(this.saerchPatientTabPage);
+            }
+            if (!this.mainTabControl.TabPages.Contains(this.upcomingAppointmentsTabPage))
+            {
+                this.mainTabControl.TabPages.Add(this.upcomingAppointmentsTabPage);
+            }
+        }
+
     }
 }
