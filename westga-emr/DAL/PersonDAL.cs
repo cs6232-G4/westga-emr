@@ -192,8 +192,8 @@ namespace westga_emr.DAL
                             currentUser.Gender = reader["gender"].ToString();
                             currentUser.ContactPhone = reader["contactPhone"].ToString();
                             currentUser.Street = reader["street"].ToString();
-                            currentUser.State = reader["city"].ToString();
-                            currentUser.City = reader["state"].ToString();
+                            currentUser.State = reader["state"].ToString();
+                            currentUser.City = reader["city"].ToString();
                             currentUser.Zip = reader["zip"].ToString();
                             currentUser.AddressId = reader["addressID"] != DBNull.Value ? (int)reader["addressID"] : 0;
                             currentUser.AdminId = reader["AdminId"] != DBNull.Value ? (int)reader["AdminId"] : 0;
@@ -222,7 +222,7 @@ namespace westga_emr.DAL
         public UserDTO SearchPatient(string firstName, string lastName, DateTime dateOfBirth)
         {
             var patients = new List<UserDTO>();
-            
+            UserDTO patient = null;
             string selectUserStatement = @"
                 SELECT P.id as personId, username,firstName, 
                         lastName, dateOfBirth, ssn, gender,
@@ -267,7 +267,6 @@ namespace westga_emr.DAL
                     {
                         while (reader.Read())
                         {
-                            UserDTO patient = new UserDTO();
                             patient = new UserDTO();
                             patient.Id = (int)reader["personId"];
                             patient.Username = reader["username"].ToString();
@@ -277,24 +276,26 @@ namespace westga_emr.DAL
                             patient.Gender = reader["gender"].ToString();
                             patient.ContactPhone = reader["contactPhone"].ToString();
                             patient.Street = reader["street"].ToString();
-                            patient.State = reader["city"].ToString();
-                            patient.City = reader["state"].ToString();
+                            patient.State = reader["state"].ToString();
+                            patient.City = reader["city"].ToString();
                             patient.Zip = reader["zip"].ToString();
                             patient.AddressId = reader["addressID"] != DBNull.Value ? (int)reader["addressID"] : 0;
                             patient.PatientId = reader["PatientId"] != DBNull.Value ? (int)reader["PatientId"] : 0;
                             patient.DateOfBirth = reader["dateOfBirth"] != DBNull.Value ? (DateTime)reader["dateOfBirth"] : (DateTime?)null;
                             patients.Add(patient);
                         }
-                        if (patients.Count <= 0)
-                        {
-                            throw new Exception("No patient found matching the search criteria");
-
-                        } else if(patients.Count > 1)
-                        {
-                            throw new Exception("The search result returned multiple patients.Please search again");
-                        }
+                        
                     }
                 }
+            }
+            if (patients.Count <= 0)
+            {
+                return patient;
+
+            }
+            else if (patients.Count > 1)
+            {
+                throw new Exception("The search result returned multiple patients.Please search again");
             }
             return patients[0];
         }

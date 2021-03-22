@@ -33,9 +33,6 @@ namespace westga_emr.User_Controls
             System.Windows.Forms.Label firstNameLabel;
             System.Windows.Forms.Label lastNameLabel;
             System.Windows.Forms.Label dateOfBirthLabel;
-            System.Windows.Forms.Label dateOfBirthSearchLabel;
-            System.Windows.Forms.Label lastNameSearchLabel1;
-            System.Windows.Forms.Label firstNameSearchLabel1;
             System.Windows.Forms.Label contactPhoneLabel;
             System.Windows.Forms.Label genderLabel;
             System.Windows.Forms.Label streetLabel;
@@ -44,8 +41,14 @@ namespace westga_emr.User_Controls
             System.Windows.Forms.Label zipLabel;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label4;
-            this.label1 = new System.Windows.Forms.Label();
+            this.dobSearchLabel = new System.Windows.Forms.Label();
+            this.lnameSearchLabel = new System.Windows.Forms.Label();
+            this.fnameSearchLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.searchCriteria = new System.Windows.Forms.ComboBox();
+            this.searchCriteriaError = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.firstNameTextBoxSearchInput = new System.Windows.Forms.TextBox();
             this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -98,9 +101,6 @@ namespace westga_emr.User_Controls
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
-            dateOfBirthSearchLabel = new System.Windows.Forms.Label();
-            lastNameSearchLabel1 = new System.Windows.Forms.Label();
-            firstNameSearchLabel1 = new System.Windows.Forms.Label();
             contactPhoneLabel = new System.Windows.Forms.Label();
             genderLabel = new System.Windows.Forms.Label();
             streetLabel = new System.Windows.Forms.Label();
@@ -110,9 +110,9 @@ namespace westga_emr.User_Controls
             label2 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
-            this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).BeginInit();
@@ -161,45 +161,6 @@ namespace westga_emr.User_Controls
             dateOfBirthLabel.Size = new System.Drawing.Size(344, 17);
             dateOfBirthLabel.TabIndex = 5;
             dateOfBirthLabel.Text = "Date Of Birth*";
-            // 
-            // dateOfBirthSearchLabel
-            // 
-            dateOfBirthSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dateOfBirthSearchLabel.AutoSize = true;
-            dateOfBirthSearchLabel.Location = new System.Drawing.Point(566, 0);
-            dateOfBirthSearchLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            dateOfBirthSearchLabel.Name = "dateOfBirthSearchLabel";
-            dateOfBirthSearchLabel.Size = new System.Drawing.Size(273, 24);
-            dateOfBirthSearchLabel.TabIndex = 5;
-            dateOfBirthSearchLabel.Text = "Date Of Birth:";
-            // 
-            // lastNameSearchLabel1
-            // 
-            lastNameSearchLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            lastNameSearchLabel1.AutoSize = true;
-            lastNameSearchLabel1.Location = new System.Drawing.Point(285, 0);
-            lastNameSearchLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            lastNameSearchLabel1.Name = "lastNameSearchLabel1";
-            lastNameSearchLabel1.Size = new System.Drawing.Size(273, 24);
-            lastNameSearchLabel1.TabIndex = 5;
-            lastNameSearchLabel1.Text = "Last Name:";
-            // 
-            // firstNameSearchLabel1
-            // 
-            firstNameSearchLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            firstNameSearchLabel1.AutoSize = true;
-            firstNameSearchLabel1.Location = new System.Drawing.Point(4, 0);
-            firstNameSearchLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            firstNameSearchLabel1.Name = "firstNameSearchLabel1";
-            firstNameSearchLabel1.Size = new System.Drawing.Size(273, 24);
-            firstNameSearchLabel1.TabIndex = 5;
-            firstNameSearchLabel1.Text = "First Name:";
             // 
             // contactPhoneLabel
             // 
@@ -297,39 +258,122 @@ namespace westga_emr.User_Controls
             label4.TabIndex = 7;
             label4.Text = "Reason for visit*";
             // 
-            // label1
+            // dobSearchLabel
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dobSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.GhostWhite;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1125, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Search Patient";
+            this.dobSearchLabel.AutoSize = true;
+            this.dobSearchLabel.Location = new System.Drawing.Point(566, 0);
+            this.dobSearchLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.dobSearchLabel.Name = "dobSearchLabel";
+            this.dobSearchLabel.Size = new System.Drawing.Size(273, 21);
+            this.dobSearchLabel.TabIndex = 5;
+            this.dobSearchLabel.Text = "Date Of Birth:";
+            // 
+            // lnameSearchLabel
+            // 
+            this.lnameSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lnameSearchLabel.AutoSize = true;
+            this.lnameSearchLabel.Location = new System.Drawing.Point(285, 0);
+            this.lnameSearchLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lnameSearchLabel.Name = "lnameSearchLabel";
+            this.lnameSearchLabel.Size = new System.Drawing.Size(273, 21);
+            this.lnameSearchLabel.TabIndex = 5;
+            this.lnameSearchLabel.Text = "Last Name:";
+            // 
+            // fnameSearchLabel
+            // 
+            this.fnameSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fnameSearchLabel.AutoSize = true;
+            this.fnameSearchLabel.Location = new System.Drawing.Point(4, 0);
+            this.fnameSearchLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.fnameSearchLabel.Name = "fnameSearchLabel";
+            this.fnameSearchLabel.Size = new System.Drawing.Size(273, 21);
+            this.fnameSearchLabel.TabIndex = 5;
+            this.fnameSearchLabel.Text = "First Name:";
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.AliceBlue;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel14, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel13, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.1134F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.8866F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1133, 123);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // tableLayoutPanel14
+            // 
+            this.tableLayoutPanel14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel14.ColumnCount = 3;
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel14.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel14.Controls.Add(this.searchCriteria, 1, 0);
+            this.tableLayoutPanel14.Controls.Add(this.searchCriteriaError, 2, 0);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel14.Name = "tableLayoutPanel14";
+            this.tableLayoutPanel14.RowCount = 1;
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(1127, 30);
+            this.tableLayoutPanel14.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(73, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(149, 30);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Search Patient By:";
+            // 
+            // searchCriteria
+            // 
+            this.searchCriteria.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.searchCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchCriteria.FormattingEnabled = true;
+            this.searchCriteria.Items.AddRange(new object[] {
+            "Date of Birth",
+            "Last name and first name",
+            "Date of birth and last name"});
+            this.searchCriteria.Location = new System.Drawing.Point(228, 3);
+            this.searchCriteria.Name = "searchCriteria";
+            this.searchCriteria.Size = new System.Drawing.Size(415, 24);
+            this.searchCriteria.TabIndex = 1;
+            this.searchCriteria.SelectedIndexChanged += new System.EventHandler(this.SearchCriteria_SelectedIndexChanged);
+            // 
+            // searchCriteriaError
+            // 
+            this.searchCriteriaError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchCriteriaError.AutoSize = true;
+            this.searchCriteriaError.ForeColor = System.Drawing.Color.Red;
+            this.searchCriteriaError.Location = new System.Drawing.Point(791, 0);
+            this.searchCriteriaError.Name = "searchCriteriaError";
+            this.searchCriteriaError.Size = new System.Drawing.Size(333, 30);
+            this.searchCriteriaError.TabIndex = 2;
             // 
             // tableLayoutPanel2
             // 
@@ -343,31 +387,31 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.Controls.Add(this.firstNameTextBoxSearchInput, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(firstNameSearchLabel1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.fnameSearchLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lastNameTextBoxSearchInput, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(lastNameSearchLabel1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(dateOfBirthSearchLabel, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lnameSearchLabel, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.dobSearchLabel, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.dateOfBirthDateTimePickerSearchInput, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.searchButton, 3, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 33);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 40);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1125, 60);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1125, 53);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // firstNameTextBoxSearchInput
             // 
             this.firstNameTextBoxSearchInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.firstNameTextBoxSearchInput.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDTOBindingSource, "FirstName", true));
-            this.firstNameTextBoxSearchInput.Location = new System.Drawing.Point(4, 31);
-            this.firstNameTextBoxSearchInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.firstNameTextBoxSearchInput.Location = new System.Drawing.Point(4, 26);
+            this.firstNameTextBoxSearchInput.Margin = new System.Windows.Forms.Padding(4);
             this.firstNameTextBoxSearchInput.Name = "firstNameTextBoxSearchInput";
             this.firstNameTextBoxSearchInput.Size = new System.Drawing.Size(273, 22);
-            this.firstNameTextBoxSearchInput.TabIndex = 6;
+            this.firstNameTextBoxSearchInput.TabIndex = 1;
             // 
             // userDTOBindingSource
             // 
@@ -377,22 +421,22 @@ namespace westga_emr.User_Controls
             // 
             this.lastNameTextBoxSearchInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lastNameTextBoxSearchInput.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDTOBindingSource, "LastName", true));
-            this.lastNameTextBoxSearchInput.Location = new System.Drawing.Point(285, 31);
-            this.lastNameTextBoxSearchInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lastNameTextBoxSearchInput.Location = new System.Drawing.Point(285, 26);
+            this.lastNameTextBoxSearchInput.Margin = new System.Windows.Forms.Padding(4);
             this.lastNameTextBoxSearchInput.Name = "lastNameTextBoxSearchInput";
             this.lastNameTextBoxSearchInput.Size = new System.Drawing.Size(273, 22);
-            this.lastNameTextBoxSearchInput.TabIndex = 6;
+            this.lastNameTextBoxSearchInput.TabIndex = 2;
             // 
             // dateOfBirthDateTimePickerSearchInput
             // 
             this.dateOfBirthDateTimePickerSearchInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dateOfBirthDateTimePickerSearchInput.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.userDTOBindingSource, "DateOfBirth", true));
-            this.dateOfBirthDateTimePickerSearchInput.Location = new System.Drawing.Point(566, 31);
-            this.dateOfBirthDateTimePickerSearchInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateOfBirthDateTimePickerSearchInput.Location = new System.Drawing.Point(566, 26);
+            this.dateOfBirthDateTimePickerSearchInput.Margin = new System.Windows.Forms.Padding(4);
             this.dateOfBirthDateTimePickerSearchInput.MaxDate = new System.DateTime(2021, 3, 22, 0, 0, 0, 0);
             this.dateOfBirthDateTimePickerSearchInput.Name = "dateOfBirthDateTimePickerSearchInput";
             this.dateOfBirthDateTimePickerSearchInput.Size = new System.Drawing.Size(273, 22);
-            this.dateOfBirthDateTimePickerSearchInput.TabIndex = 6;
+            this.dateOfBirthDateTimePickerSearchInput.TabIndex = 3;
             this.dateOfBirthDateTimePickerSearchInput.Value = new System.DateTime(2021, 3, 22, 0, 0, 0, 0);
             // 
             // searchButton
@@ -400,11 +444,11 @@ namespace westga_emr.User_Controls
             this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.searchButton.BackColor = System.Drawing.Color.SeaGreen;
             this.searchButton.ForeColor = System.Drawing.Color.White;
-            this.searchButton.Location = new System.Drawing.Point(892, 28);
-            this.searchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchButton.Location = new System.Drawing.Point(892, 25);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(4);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(183, 28);
-            this.searchButton.TabIndex = 6;
+            this.searchButton.Size = new System.Drawing.Size(183, 24);
+            this.searchButton.TabIndex = 4;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = false;
             this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
@@ -414,16 +458,16 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel13.BackColor = System.Drawing.Color.AliceBlue;
             this.tableLayoutPanel13.ColumnCount = 1;
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel13.Controls.Add(this.searchErrorLabel, 0, 0);
             this.tableLayoutPanel13.Location = new System.Drawing.Point(4, 101);
-            this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel13.Size = new System.Drawing.Size(1125, 18);
             this.tableLayoutPanel13.TabIndex = 2;
             // 
@@ -434,10 +478,10 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchErrorLabel.AutoSize = true;
             this.searchErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.searchErrorLabel.Location = new System.Drawing.Point(4, 0);
+            this.searchErrorLabel.Location = new System.Drawing.Point(8, 105);
             this.searchErrorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.searchErrorLabel.Name = "searchErrorLabel";
-            this.searchErrorLabel.Size = new System.Drawing.Size(1117, 18);
+            this.searchErrorLabel.Size = new System.Drawing.Size(0, 17);
             this.searchErrorLabel.TabIndex = 0;
             // 
             // tableLayoutPanel5
@@ -456,7 +500,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel5.Controls.Add(this.lastNameError, 1, 2);
             this.tableLayoutPanel5.Controls.Add(this.dobError, 2, 2);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(35, 150);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -469,20 +513,22 @@ namespace westga_emr.User_Controls
             // 
             this.dateOfBirthDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dateOfBirthDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.userDTOBindingSource, "DateOfBirth", true));
+            this.dateOfBirthDateTimePicker.Enabled = false;
             this.dateOfBirthDateTimePicker.Location = new System.Drawing.Point(705, 49);
-            this.dateOfBirthDateTimePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateOfBirthDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
             this.dateOfBirthDateTimePicker.MaxDate = new System.DateTime(2021, 3, 21, 7, 5, 30, 0);
             this.dateOfBirthDateTimePicker.Name = "dateOfBirthDateTimePicker";
             this.dateOfBirthDateTimePicker.Size = new System.Drawing.Size(344, 22);
-            this.dateOfBirthDateTimePicker.TabIndex = 6;
+            this.dateOfBirthDateTimePicker.TabIndex = 7;
             this.dateOfBirthDateTimePicker.Value = new System.DateTime(2021, 3, 21, 0, 0, 0, 0);
             // 
             // lastNameTextBox
             // 
             this.lastNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lastNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDTOBindingSource, "LastName", true));
+            this.lastNameTextBox.Enabled = false;
             this.lastNameTextBox.Location = new System.Drawing.Point(354, 49);
-            this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(343, 22);
             this.lastNameTextBox.TabIndex = 6;
@@ -491,11 +537,12 @@ namespace westga_emr.User_Controls
             // 
             this.firstNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.firstNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDTOBindingSource, "FirstName", true));
+            this.firstNameTextBox.Enabled = false;
             this.firstNameTextBox.Location = new System.Drawing.Point(4, 49);
-            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(342, 22);
-            this.firstNameTextBox.TabIndex = 6;
+            this.firstNameTextBox.TabIndex = 5;
             // 
             // firstnameError
             // 
@@ -552,7 +599,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel3.Controls.Add(this.genderError, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.streetError, 2, 2);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(35, 281);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -565,11 +612,12 @@ namespace westga_emr.User_Controls
             // 
             this.streetTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.streetTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDTOBindingSource, "Street", true));
+            this.streetTextBox.Enabled = false;
             this.streetTextBox.Location = new System.Drawing.Point(705, 49);
-            this.streetTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.streetTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.streetTextBox.Name = "streetTextBox";
             this.streetTextBox.Size = new System.Drawing.Size(344, 22);
-            this.streetTextBox.TabIndex = 7;
+            this.streetTextBox.TabIndex = 10;
             // 
             // genderComboBox
             // 
@@ -578,12 +626,13 @@ namespace westga_emr.User_Controls
             this.genderComboBox.DataSource = this.appointmentHelperBindingSource;
             this.genderComboBox.DisplayMember = "Title";
             this.genderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.genderComboBox.Enabled = false;
             this.genderComboBox.FormattingEnabled = true;
             this.genderComboBox.Location = new System.Drawing.Point(354, 48);
-            this.genderComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.genderComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.genderComboBox.Name = "genderComboBox";
             this.genderComboBox.Size = new System.Drawing.Size(343, 24);
-            this.genderComboBox.TabIndex = 7;
+            this.genderComboBox.TabIndex = 9;
             this.genderComboBox.ValueMember = "Value";
             // 
             // appointmentHelperBindingSource
@@ -594,11 +643,12 @@ namespace westga_emr.User_Controls
             // 
             this.contactPhoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.contactPhoneTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDTOBindingSource, "ContactPhone", true));
+            this.contactPhoneTextBox.Enabled = false;
             this.contactPhoneTextBox.Location = new System.Drawing.Point(4, 49);
-            this.contactPhoneTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.contactPhoneTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.contactPhoneTextBox.Name = "contactPhoneTextBox";
             this.contactPhoneTextBox.Size = new System.Drawing.Size(342, 22);
-            this.contactPhoneTextBox.TabIndex = 7;
+            this.contactPhoneTextBox.TabIndex = 8;
             // 
             // contactPhoneError
             // 
@@ -655,7 +705,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel4.Controls.Add(this.stateError, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.zipCodeError, 2, 2);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(35, 411);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -671,33 +721,36 @@ namespace westga_emr.User_Controls
             this.stateComboBox.DataSource = this.appointmentHelperBindingSource;
             this.stateComboBox.DisplayMember = "Title";
             this.stateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stateComboBox.Enabled = false;
             this.stateComboBox.FormattingEnabled = true;
             this.stateComboBox.Location = new System.Drawing.Point(354, 48);
-            this.stateComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.stateComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.stateComboBox.Name = "stateComboBox";
             this.stateComboBox.Size = new System.Drawing.Size(343, 24);
-            this.stateComboBox.TabIndex = 8;
+            this.stateComboBox.TabIndex = 12;
             this.stateComboBox.ValueMember = "Value";
             // 
             // zipTextBox
             // 
             this.zipTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.zipTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDTOBindingSource, "Zip", true));
+            this.zipTextBox.Enabled = false;
             this.zipTextBox.Location = new System.Drawing.Point(705, 49);
-            this.zipTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zipTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.zipTextBox.Name = "zipTextBox";
             this.zipTextBox.Size = new System.Drawing.Size(344, 22);
-            this.zipTextBox.TabIndex = 8;
+            this.zipTextBox.TabIndex = 13;
             // 
             // cityTextBox
             // 
             this.cityTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cityTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDTOBindingSource, "City", true));
+            this.cityTextBox.Enabled = false;
             this.cityTextBox.Location = new System.Drawing.Point(4, 49);
-            this.cityTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cityTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(342, 22);
-            this.cityTextBox.TabIndex = 8;
+            this.cityTextBox.TabIndex = 11;
             // 
             // cityError
             // 
@@ -750,7 +803,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel6.Controls.Add(this.appointmentDateError, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel10, 0, 1);
             this.tableLayoutPanel6.Location = new System.Drawing.Point(35, 542);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 3;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -778,10 +831,10 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.appointmentVisitReason.Location = new System.Drawing.Point(319, 28);
-            this.appointmentVisitReason.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.appointmentVisitReason.Margin = new System.Windows.Forms.Padding(4);
             this.appointmentVisitReason.Name = "appointmentVisitReason";
             this.appointmentVisitReason.Size = new System.Drawing.Size(730, 78);
-            this.appointmentVisitReason.TabIndex = 12;
+            this.appointmentVisitReason.TabIndex = 16;
             this.appointmentVisitReason.Text = "";
             // 
             // appointmentDateError
@@ -805,7 +858,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel10.Controls.Add(this.appointmentDate, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.appointmentTime, 0, 1);
             this.tableLayoutPanel10.Location = new System.Drawing.Point(4, 28);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 2;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -819,11 +872,11 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.appointmentDate.Location = new System.Drawing.Point(4, 4);
-            this.appointmentDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.appointmentDate.Margin = new System.Windows.Forms.Padding(4);
             this.appointmentDate.MinDate = new System.DateTime(2021, 3, 21, 0, 0, 0, 0);
             this.appointmentDate.Name = "appointmentDate";
             this.appointmentDate.Size = new System.Drawing.Size(297, 22);
-            this.appointmentDate.TabIndex = 11;
+            this.appointmentDate.TabIndex = 14;
             this.appointmentDate.Value = new System.DateTime(2021, 3, 21, 0, 0, 0, 0);
             // 
             // appointmentTime
@@ -846,10 +899,10 @@ namespace westga_emr.User_Controls
             "04:00:00 PM",
             "05:00:00 PM"});
             this.appointmentTime.Location = new System.Drawing.Point(4, 43);
-            this.appointmentTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.appointmentTime.Margin = new System.Windows.Forms.Padding(4);
             this.appointmentTime.Name = "appointmentTime";
             this.appointmentTime.Size = new System.Drawing.Size(297, 24);
-            this.appointmentTime.TabIndex = 12;
+            this.appointmentTime.TabIndex = 15;
             // 
             // tableLayoutPanel7
             // 
@@ -859,7 +912,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel9, 0, 1);
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 0, 0);
             this.tableLayoutPanel7.Location = new System.Drawing.Point(35, 672);
-            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -906,7 +959,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel9.Controls.Add(this.clearButton, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.submitButton, 1, 0);
             this.tableLayoutPanel9.Location = new System.Drawing.Point(4, 65);
-            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -919,10 +972,10 @@ namespace westga_emr.User_Controls
             this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.clearButton.Location = new System.Drawing.Point(418, 4);
-            this.clearButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(100, 46);
-            this.clearButton.TabIndex = 0;
+            this.clearButton.TabIndex = 19;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             // 
@@ -933,10 +986,10 @@ namespace westga_emr.User_Controls
             this.submitButton.BackColor = System.Drawing.Color.Green;
             this.submitButton.ForeColor = System.Drawing.Color.White;
             this.submitButton.Location = new System.Drawing.Point(526, 4);
-            this.submitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.submitButton.Margin = new System.Windows.Forms.Padding(4);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(100, 46);
-            this.submitButton.TabIndex = 1;
+            this.submitButton.TabIndex = 20;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = false;
             // 
@@ -951,7 +1004,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel11, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel12, 1, 0);
             this.tableLayoutPanel8.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -970,7 +1023,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel11.Controls.Add(this.doctorListComboBox, 0, 1);
             this.tableLayoutPanel11.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel11.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 2;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -988,10 +1041,10 @@ namespace westga_emr.User_Controls
             this.doctorListComboBox.Enabled = false;
             this.doctorListComboBox.FormattingEnabled = true;
             this.doctorListComboBox.Location = new System.Drawing.Point(4, 26);
-            this.doctorListComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.doctorListComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.doctorListComboBox.Name = "doctorListComboBox";
             this.doctorListComboBox.Size = new System.Drawing.Size(293, 24);
-            this.doctorListComboBox.TabIndex = 1;
+            this.doctorListComboBox.TabIndex = 17;
             // 
             // label3
             // 
@@ -1018,7 +1071,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel12.Controls.Add(this.ssnError, 1, 1);
             this.tableLayoutPanel12.Controls.Add(this.ssnTextBox, 0, 1);
             this.tableLayoutPanel12.Location = new System.Drawing.Point(313, 4);
-            this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1056,11 +1109,12 @@ namespace westga_emr.User_Controls
             this.ssnTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ssnTextBox.Enabled = false;
             this.ssnTextBox.Location = new System.Drawing.Point(4, 26);
-            this.ssnTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ssnTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ssnTextBox.Name = "ssnTextBox";
             this.ssnTextBox.Size = new System.Drawing.Size(356, 22);
-            this.ssnTextBox.TabIndex = 3;
+            this.ssnTextBox.TabIndex = 18;
             this.ssnTextBox.Click += new System.EventHandler(this.SsnTextBox_TextChanged);
             // 
             // NewAppointment
@@ -1069,24 +1123,24 @@ namespace westga_emr.User_Controls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.SkyBlue;
+            this.Controls.Add(this.searchErrorLabel);
             this.Controls.Add(this.tableLayoutPanel7);
             this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1187, 812);
             this.Name = "NewAppointment";
             this.Size = new System.Drawing.Size(1133, 812);
             this.Load += new System.EventHandler(this.NewAppointment_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel14.ResumeLayout(false);
+            this.tableLayoutPanel14.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
-            this.tableLayoutPanel13.ResumeLayout(false);
-            this.tableLayoutPanel13.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -1105,12 +1159,11 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel12.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button searchButton;
@@ -1161,5 +1214,12 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.TextBox ssnTextBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.Windows.Forms.Label searchErrorLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox searchCriteria;
+        private System.Windows.Forms.Label searchCriteriaError;
+        private System.Windows.Forms.Label dobSearchLabel;
+        private System.Windows.Forms.Label lnameSearchLabel;
+        private System.Windows.Forms.Label fnameSearchLabel;
     }
 }
