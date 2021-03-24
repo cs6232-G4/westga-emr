@@ -114,6 +114,12 @@
     <Compile Include="User Controls\Report.Designer.cs">
       <DependentUpon>Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientDemographics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientDemographics.Designer.cs">
+      <DependentUpon>PatientDemographics.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Controls\SearchPatient.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainTabbedForm.resx">
       <DependentUpon>MainTabbedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientDemographics.resx">
+      <DependentUpon>PatientDemographics.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\westga_emr.Helpers.AppointmentHelper.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.UserDTO.datasource" />
