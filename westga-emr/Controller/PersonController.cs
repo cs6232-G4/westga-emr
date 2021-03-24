@@ -63,7 +63,19 @@ namespace westga_emr.Controller
         /// </summary>
         public void SignOutUser()
         {
-            this.currentUser = new UserDTO();
+            this.currentUser = null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="dateOfBirth"></param>
+        /// <returns></returns>
+        public UserDTO SearchPatient(string firstName, string lastName, DateTime dateOfBirth)
+        {
+            return personDBSource.SearchPatient(firstName, lastName, dateOfBirth);
         }
     }
 }

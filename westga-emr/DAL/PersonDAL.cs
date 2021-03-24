@@ -192,8 +192,8 @@ namespace westga_emr.DAL
                             currentUser.Gender = reader["gender"].ToString();
                             currentUser.ContactPhone = reader["contactPhone"].ToString();
                             currentUser.Street = reader["street"].ToString();
-                            currentUser.State = reader["city"].ToString();
-                            currentUser.City = reader["state"].ToString();
+                            currentUser.State = reader["state"].ToString();
+                            currentUser.City = reader["city"].ToString();
                             currentUser.Zip = reader["zip"].ToString();
                             currentUser.AddressId = reader["addressID"] != DBNull.Value ? (int)reader["addressID"] : 0;
                             currentUser.AdminId = reader["AdminId"] != DBNull.Value ? (int)reader["AdminId"] : 0;
@@ -212,5 +212,92 @@ namespace westga_emr.DAL
             return currentUser;
         }
 
+        /// <summary>
+        /// Search for a user in the database
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="dateOfBirth"></param>
+        /// <returns>A user that matches the search criteria</returns>
+        public UserDTO SearchPatient(string firstName, string lastName, DateTime dateOfBirth)
+        {
+            var patients = new List<UserDTO>();
+            UserDTO patient = null;
+            string selectUserStatement = @"
+                SELECT P.id as personId, username,firstName, 
+                        lastName, dateOfBirth, ssn, gender,
+                        addressID, contactPhone, U.id as PatientId,
+                        street, city, state, zip
+                FROM Person P 
+                INNER JOIN Patient U ON P.id = U.personID
+	            INNER JOIN Address A ON P.addressID = A.id
+                WHERE (P.firstName = @FirstName AND P.lastname = @LastName) OR 
+                    (CAST(P.dateOfBirth AS date) = @DateOfBirth) OR
+                    (CAST(P.dateOfBirth AS date) = @DateOfBirth and P.lastName = @LastName) ";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
+                {
+                    if (String.IsNullOrWhiteSpace(firstName))
+                    {
+                        selectCommand.Parameters.AddWithValue("@FirstName", DBNull.Value);
+                    }
+                    else
+                    {
+                        selectCommand.Parameters.AddWithValue("@FirstName", firstName);
+                    }
+                    if (String.IsNullOrWhiteSpace(lastName))
+                    {
+                        selectCommand.Parameters.AddWithValue("@LastName", DBNull.Value);
+                    }
+                    else
+                    {
+                        selectCommand.Parameters.AddWithValue("@LastName", lastName);
+                    }
+                    if (dateOfBirth == null)
+                    {
+                        selectCommand.Parameters.AddWithValue("@DateOfBirth", DBNull.Value);
+                    }
+                    else
+                    {
+                        selectCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth.Date);
+                    }
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            patient = new UserDTO();
+                            patient.Id = (int)reader["personId"];
+                            patient.Username = reader["username"].ToString();
+                            patient.FirstName = reader["firstName"].ToString();
+                            patient.LastName = reader["lastName"].ToString();
+                            patient.SSN = reader["ssn"].ToString();
+                            patient.Gender = reader["gender"].ToString();
+                            patient.ContactPhone = reader["contactPhone"].ToString();
+                            patient.Street = reader["street"].ToString();
+                            patient.State = reader["state"].ToString();
+                            patient.City = reader["city"].ToString();
+                            patient.Zip = reader["zip"].ToString();
+                            patient.AddressId = reader["addressID"] != DBNull.Value ? (int)reader["addressID"] : 0;
+                            patient.PatientId = reader["PatientId"] != DBNull.Value ? (int)reader["PatientId"] : 0;
+                            patient.DateOfBirth = reader["dateOfBirth"] != DBNull.Value ? (DateTime)reader["dateOfBirth"] : (DateTime?)null;
+                            patients.Add(patient);
+                        }
+                        
+                    }
+                }
+            }
+            if (patients.Count <= 0)
+            {
+                return patient;
+
+            }
+            else if (patients.Count > 1)
+            {
+                throw new Exception("The search result returned multiple patients.Please search again");
+            }
+            return patients[0];
+        }
     }
 }
