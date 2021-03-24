@@ -84,7 +84,24 @@ namespace westga_emr.Helpers
             };
             return genders;
         }
-    }
 
-   
+        public static List<AppointmentHelper> GetAppointmentTimeslots()
+        {
+            var timeSlots = new List<AppointmentHelper>()
+            {
+                new AppointmentHelper(){Title = "08:00:00 AM", Value = "08:00:00"},
+                new AppointmentHelper(){Title = "09:00:00 AM", Value = "09:00:00"},
+                new AppointmentHelper(){Title = "10:00:00 AM", Value = "10:00:00"},
+                new AppointmentHelper(){Title = "11:00:00 AM", Value = "11:00:00"},
+                new AppointmentHelper(){Title = "12:00:00 PM", Value = "12:00:00"},
+                new AppointmentHelper(){Title = "01:00:00 PM", Value = "13:00:00"},
+                new AppointmentHelper(){Title = "02:00:00 PM", Value = "14:00:00"},
+                new AppointmentHelper(){Title = "03:00:00 PM", Value = "15:00:00"},
+                new AppointmentHelper(){Title = "04:00:00 PM", Value = "16:00:00"},
+                new AppointmentHelper(){Title = "05:00:00 PM", Value = "17:00:00"}
+
+            };
+            return timeSlots;
+        }
+    }
 }

@@ -18,6 +18,8 @@ namespace westga_emr.User_Controls
         private PersonController personController;
         private UserDTO patient;
         private bool addingNewPatient;
+        private TimeSpan selectedAppointmentTime;
+        private DateTime selectedAppointmentDateTime;
         public NewAppointment()
         {
             InitializeComponent();
@@ -36,20 +38,18 @@ namespace westga_emr.User_Controls
             this.searchButton.Hide();
             this.stateComboBox.DataSource = AppointmentHelper.GetStates().ToList();
             this.genderComboBox.DataSource = AppointmentHelper.GetGenders().ToList();
+            this.appointmentTime.DataSource = AppointmentHelper.GetAppointmentTimeslots();
             this.stateComboBox.SelectedIndex = 0;
             this.genderComboBox.SelectedIndex = 0;
             this.dateOfBirthDateTimePickerSearchInput.MaxDate = DateTime.Now;
             this.dateOfBirthDateTimePicker.MaxDate = DateTime.Now;
+            this.dateOfBirthDateTimePicker.Value = this.dateOfBirthDateTimePicker.MaxDate;
+            this.dateOfBirthDateTimePickerSearchInput.Value = this.dateOfBirthDateTimePickerSearchInput.MaxDate;
             this.appointmentDate.MinDate = DateTime.Now.AddDays(1.0);
-            this.appointmentTime.SelectedIndex = 0;
-           
-
+            this.appointmentTime.Enabled = false;
         }
 
-        private void SsnTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
@@ -169,6 +169,170 @@ namespace westga_emr.User_Controls
                 this.firstNameTextBoxSearchInput.Hide();
                 this.lastNameTextBoxSearchInput.Hide();
                 this.searchButton.Hide();
+            }
+        }
+
+        private void FirstNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if(firstNameTextBox.Text.Length > 45)
+            {
+                firstnameError.Text = "Character limit exceeded. Maximum allowed: 45";
+            } else if (String.IsNullOrWhiteSpace(firstNameTextBox.Text))
+            {
+                firstnameError.Text = "First name is required";
+            }
+            else
+            {
+                firstnameError.Text = "";
+            }
+        }
+
+        private void LastNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (lastNameTextBox.Text.Length > 45)
+            {
+                lastNameError.Text = "Character limit exceeded. Maximum allowed: 45";
+            }
+            else if (String.IsNullOrWhiteSpace(lastNameTextBox.Text))
+            {
+                lastNameError.Text = "Last name is required";
+            }
+            else
+            {
+                lastNameError.Text = "";
+            }
+        }
+
+        private void DateOfBirthDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ContactPhoneTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (contactPhoneTextBox.Text.Length > 10)
+            {
+                contactPhoneError.Text = "Character limit exceeded. Maximum allowed: 10";
+            }
+            else if (String.IsNullOrWhiteSpace(contactPhoneTextBox.Text))
+            {
+                contactPhoneError.Text = "Phone number is required";
+            }
+            else
+            {
+                contactPhoneError.Text = "";
+            }
+        }
+
+        private void StreetTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (streetTextBox.Text.Length > 45)
+            {
+                streetError.Text = "Character limit exceeded. Maximum allowed: 45";
+            }
+            else if (String.IsNullOrWhiteSpace(streetTextBox.Text))
+            {
+                streetError.Text = "Street is required";
+            }
+            else
+            {
+                streetError.Text = "";
+            }
+        }
+
+        private void GenderComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ZipTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (zipTextBox.Text.Length > 5)
+            {
+                zipCodeError.Text = "Character limit exceeded. Maximum allowed: 5";
+            }
+            else if (String.IsNullOrWhiteSpace(zipTextBox.Text))
+            {
+                zipCodeError.Text = "Zip code is required";
+            }
+            else
+            {
+                zipCodeError.Text = "";
+            }
+        }
+
+        private void StateComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CityTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (cityTextBox.Text.Length > 45)
+            {
+                cityError.Text = "Character limit exceeded. Maximum allowed: 45";
+            }
+            else if (String.IsNullOrWhiteSpace(cityTextBox.Text))
+            {
+                cityError.Text = "City is required";
+            }
+            else
+            {
+                cityError.Text = "";
+            }
+        }
+
+        private void AppointmentDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (appointmentTime.Enabled == false)
+            {
+                appointmentTime.Enabled = true;
+            }
+            if(appointmentTime.SelectedIndex <= 0)
+            {
+                appointmentTime.SelectedIndex = 0;
+            }
+            
+        }
+
+        private void AppointmentTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var time = (AppointmentHelper)this.appointmentTime.SelectedItem;
+            this.selectedAppointmentTime = TimeSpan.Parse(time.Value);
+            this.selectedAppointmentDateTime = this.appointmentDate.Value.Date + selectedAppointmentTime;
+            GetAvailableDoctors(this.selectedAppointmentDateTime);
+        }
+
+        private void GetAvailableDoctors(DateTime aptTime)
+        {
+
+            Console.WriteLine(aptTime);
+        }
+
+        private void AppointmentVisitReason_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void SsnTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (ssnTextBox.Text.Length > 9)
+            {
+                ssnError.Text = "Character limit exceeded. Maximum allowed: 9";
+            }
+            else
+            {
+                ssnError.Text = "";
             }
         }
     }

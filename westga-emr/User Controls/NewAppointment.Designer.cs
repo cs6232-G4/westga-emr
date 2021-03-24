@@ -521,6 +521,7 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDateTimePicker.Size = new System.Drawing.Size(344, 22);
             this.dateOfBirthDateTimePicker.TabIndex = 7;
             this.dateOfBirthDateTimePicker.Value = new System.DateTime(2021, 3, 21, 0, 0, 0, 0);
+            this.dateOfBirthDateTimePicker.ValueChanged += new System.EventHandler(this.DateOfBirthDateTimePicker_ValueChanged);
             // 
             // lastNameTextBox
             // 
@@ -532,6 +533,7 @@ namespace westga_emr.User_Controls
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(343, 22);
             this.lastNameTextBox.TabIndex = 6;
+            this.lastNameTextBox.TextChanged += new System.EventHandler(this.LastNameTextBox_TextChanged);
             // 
             // firstNameTextBox
             // 
@@ -543,6 +545,7 @@ namespace westga_emr.User_Controls
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(342, 22);
             this.firstNameTextBox.TabIndex = 5;
+            this.firstNameTextBox.TextChanged += new System.EventHandler(this.FirstNameTextBox_TextChanged);
             // 
             // firstnameError
             // 
@@ -618,6 +621,7 @@ namespace westga_emr.User_Controls
             this.streetTextBox.Name = "streetTextBox";
             this.streetTextBox.Size = new System.Drawing.Size(344, 22);
             this.streetTextBox.TabIndex = 10;
+            this.streetTextBox.TextChanged += new System.EventHandler(this.StreetTextBox_TextChanged);
             // 
             // genderComboBox
             // 
@@ -634,6 +638,7 @@ namespace westga_emr.User_Controls
             this.genderComboBox.Size = new System.Drawing.Size(343, 24);
             this.genderComboBox.TabIndex = 9;
             this.genderComboBox.ValueMember = "Value";
+            this.genderComboBox.SelectedIndexChanged += new System.EventHandler(this.GenderComboBox_SelectedIndexChanged);
             // 
             // appointmentHelperBindingSource
             // 
@@ -649,6 +654,7 @@ namespace westga_emr.User_Controls
             this.contactPhoneTextBox.Name = "contactPhoneTextBox";
             this.contactPhoneTextBox.Size = new System.Drawing.Size(342, 22);
             this.contactPhoneTextBox.TabIndex = 8;
+            this.contactPhoneTextBox.TextChanged += new System.EventHandler(this.ContactPhoneTextBox_TextChanged);
             // 
             // contactPhoneError
             // 
@@ -729,6 +735,7 @@ namespace westga_emr.User_Controls
             this.stateComboBox.Size = new System.Drawing.Size(343, 24);
             this.stateComboBox.TabIndex = 12;
             this.stateComboBox.ValueMember = "Value";
+            this.stateComboBox.SelectedIndexChanged += new System.EventHandler(this.StateComboBox_SelectedIndexChanged);
             // 
             // zipTextBox
             // 
@@ -740,6 +747,7 @@ namespace westga_emr.User_Controls
             this.zipTextBox.Name = "zipTextBox";
             this.zipTextBox.Size = new System.Drawing.Size(344, 22);
             this.zipTextBox.TabIndex = 13;
+            this.zipTextBox.TextChanged += new System.EventHandler(this.ZipTextBox_TextChanged);
             // 
             // cityTextBox
             // 
@@ -751,6 +759,7 @@ namespace westga_emr.User_Controls
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(342, 22);
             this.cityTextBox.TabIndex = 11;
+            this.cityTextBox.TextChanged += new System.EventHandler(this.CityTextBox_TextChanged);
             // 
             // cityError
             // 
@@ -836,6 +845,7 @@ namespace westga_emr.User_Controls
             this.appointmentVisitReason.Size = new System.Drawing.Size(730, 78);
             this.appointmentVisitReason.TabIndex = 16;
             this.appointmentVisitReason.Text = "";
+            this.appointmentVisitReason.TextChanged += new System.EventHandler(this.AppointmentVisitReason_TextChanged);
             // 
             // appointmentDateError
             // 
@@ -878,31 +888,25 @@ namespace westga_emr.User_Controls
             this.appointmentDate.Size = new System.Drawing.Size(297, 22);
             this.appointmentDate.TabIndex = 14;
             this.appointmentDate.Value = new System.DateTime(2021, 3, 21, 0, 0, 0, 0);
+            this.appointmentDate.ValueChanged += new System.EventHandler(this.AppointmentDate_ValueChanged);
             // 
             // appointmentTime
             // 
             this.appointmentTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.appointmentTime.DataSource = this.appointmentHelperBindingSource;
+            this.appointmentTime.DisplayMember = "Title";
             this.appointmentTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.appointmentTime.Enabled = false;
             this.appointmentTime.FormattingEnabled = true;
-            this.appointmentTime.Items.AddRange(new object[] {
-            "08:00:00 AM",
-            "09:00:00 AM",
-            "10:00:00 AM",
-            "11:00:00 AM",
-            "12:00:00 PM",
-            "01:00:00 PM",
-            "02:00:00 PM",
-            "03:00:00 PM",
-            "04:00:00 PM",
-            "05:00:00 PM"});
             this.appointmentTime.Location = new System.Drawing.Point(4, 43);
             this.appointmentTime.Margin = new System.Windows.Forms.Padding(4);
             this.appointmentTime.Name = "appointmentTime";
             this.appointmentTime.Size = new System.Drawing.Size(297, 24);
             this.appointmentTime.TabIndex = 15;
+            this.appointmentTime.ValueMember = "Value";
+            this.appointmentTime.SelectedIndexChanged += new System.EventHandler(this.AppointmentTime_SelectedIndexChanged);
             // 
             // tableLayoutPanel7
             // 
@@ -978,6 +982,7 @@ namespace westga_emr.User_Controls
             this.clearButton.TabIndex = 19;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // submitButton
             // 
@@ -992,6 +997,7 @@ namespace westga_emr.User_Controls
             this.submitButton.TabIndex = 20;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = false;
+            this.submitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
             // tableLayoutPanel8
             // 
@@ -1115,7 +1121,7 @@ namespace westga_emr.User_Controls
             this.ssnTextBox.Name = "ssnTextBox";
             this.ssnTextBox.Size = new System.Drawing.Size(356, 22);
             this.ssnTextBox.TabIndex = 18;
-            this.ssnTextBox.Click += new System.EventHandler(this.SsnTextBox_TextChanged);
+            this.ssnTextBox.TextChanged += new System.EventHandler(this.SsnTextBox_TextChanged);
             // 
             // NewAppointment
             // 
