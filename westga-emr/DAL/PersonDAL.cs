@@ -219,10 +219,9 @@ namespace westga_emr.DAL
         /// <param name="lastName"></param>
         /// <param name="dateOfBirth"></param>
         /// <returns>A user that matches the search criteria</returns>
-        public UserDTO SearchPatient(string firstName, string lastName, DateTime dateOfBirth)
+        public List<UserDTO> SearchPatient(string firstName, string lastName, DateTime dateOfBirth)
         {
             var patients = new List<UserDTO>();
-            UserDTO patient = null;
             string selectUserStatement = @"
                 SELECT P.id as personId, username,firstName, 
                         lastName, dateOfBirth, ssn, gender,
@@ -267,7 +266,7 @@ namespace westga_emr.DAL
                     {
                         while (reader.Read())
                         {
-                            patient = new UserDTO();
+                            UserDTO patient = new UserDTO();
                             patient.Id = (int)reader["personId"];
                             patient.Username = reader["username"].ToString();
                             patient.FirstName = reader["firstName"].ToString();
@@ -288,16 +287,10 @@ namespace westga_emr.DAL
                     }
                 }
             }
-            if (patients.Count <= 0)
-            {
-                return patient;
-
-            }
-            else if (patients.Count > 1)
-            {
-                throw new Exception("The search result returned multiple patients.Please search again");
-            }
-            return patients[0];
+           
+            return patients;
         }
+
+       
     }
 }

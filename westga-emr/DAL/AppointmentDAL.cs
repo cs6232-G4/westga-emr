@@ -42,5 +42,7 @@ namespace westga_emr.DAL
             }
             return appointments;
         }
+
+       
     }
 }
