@@ -157,6 +157,7 @@ namespace westga_emr.View
             // 
             // newAppointmentTabPage
             // 
+            this.newAppointmentTabPage.AutoScroll = true;
             this.newAppointmentTabPage.BackColor = System.Drawing.Color.SkyBlue;
             this.newAppointmentTabPage.Controls.Add(this.newAppointment1);
             this.newAppointmentTabPage.Location = new System.Drawing.Point(4, 28);

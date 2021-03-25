@@ -32,8 +32,8 @@ namespace westga_emr.User_Controls
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label4;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dobSearchLabel = new System.Windows.Forms.Label();
             this.lnameSearchLabel = new System.Windows.Forms.Label();
             this.fnameSearchLabel = new System.Windows.Forms.Label();
@@ -614,7 +614,6 @@ namespace westga_emr.User_Controls
             this.doctorListComboBox.DataSource = this.userDTOBindingSource;
             this.doctorListComboBox.DisplayMember = "FullName";
             this.doctorListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.doctorListComboBox.Enabled = false;
             this.doctorListComboBox.FormattingEnabled = true;
             this.doctorListComboBox.Location = new System.Drawing.Point(4, 21);
             this.doctorListComboBox.Margin = new System.Windows.Forms.Padding(4);
@@ -659,7 +658,7 @@ namespace westga_emr.User_Controls
             this.patientsDatatGrid.ReadOnly = true;
             this.patientsDatatGrid.RowHeadersWidth = 51;
             this.patientsDatatGrid.RowTemplate.Height = 24;
-            this.patientsDatatGrid.Size = new System.Drawing.Size(1133, 326);
+            this.patientsDatatGrid.Size = new System.Drawing.Size(1133, 233);
             this.patientsDatatGrid.TabIndex = 10;
             this.patientsDatatGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PatientsDatatGrid_CellContentClick);
             // 
@@ -701,11 +700,11 @@ namespace westga_emr.User_Controls
             // 
             // CreateAppointment
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Blue;
-            this.CreateAppointment.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Blue;
+            this.CreateAppointment.DefaultCellStyle = dataGridViewCellStyle3;
             this.CreateAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.CreateAppointment.HeaderText = "";
             this.CreateAppointment.MinimumWidth = 6;
@@ -718,10 +717,10 @@ namespace westga_emr.User_Controls
             // 
             // EditPatient
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Blue;
-            this.EditPatient.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Blue;
+            this.EditPatient.DefaultCellStyle = dataGridViewCellStyle4;
             this.EditPatient.HeaderText = "";
             this.EditPatient.MinimumWidth = 6;
             this.EditPatient.Name = "EditPatient";
@@ -749,7 +748,7 @@ namespace westga_emr.User_Controls
             this.appointmentInformationSection.Controls.Add(this.visitReasonError);
             this.appointmentInformationSection.Controls.Add(this.tableLayoutPanel6);
             this.appointmentInformationSection.Controls.Add(this.tableLayoutPanel7);
-            this.appointmentInformationSection.Location = new System.Drawing.Point(0, 462);
+            this.appointmentInformationSection.Location = new System.Drawing.Point(0, 387);
             this.appointmentInformationSection.Name = "appointmentInformationSection";
             this.appointmentInformationSection.Size = new System.Drawing.Size(1133, 412);
             this.appointmentInformationSection.TabIndex = 11;
