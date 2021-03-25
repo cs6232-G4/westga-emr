@@ -78,5 +78,35 @@ namespace westga_emr.DAL
             }
             return appointments;
         }
+
+        public static bool CreateAppointment(Appointment appointment)
+        {
+            int retValue;
+            String insertStatement = @"INSERT INTO Appointment (patientID, doctorID, appointmentDateTime, reasonForVisit)
+	                                    VALUES (@patientID, @doctorID, @appointmentDateTime, @reasonForVisit)";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@patientID", appointment.PatientID);
+                    command.Parameters.AddWithValue("@doctorID", appointment.DoctorID);
+                    command.Parameters.AddWithValue("@appointmentDateTime", appointment.AppointmentDateTime);
+                    command.Parameters.AddWithValue("@reasonForVisit", appointment.ReasonForVisit);
+
+                    retValue = command.ExecuteNonQuery();
+                }
+            }
+            if (retValue < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
