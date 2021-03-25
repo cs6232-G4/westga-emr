@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using westga_emr.Model;
 using westga_emr.DAL;
+using System;
 
 namespace westga_emr.Controller
 {
@@ -13,6 +14,16 @@ namespace westga_emr.Controller
         public List<Appointment> GetAppointments()
         {
             return AppointmentDAL.GetAppointments();
+        }
+
+        /// <see cref="AppointmentDAL.GetPatientsAppointments(Patient)"/>
+        public List<Appointment> GetPatientsAppointments(Patient patient)
+        {
+            if (patient == null)
+            {
+                throw new ArgumentNullException("patient cannot be null");
+            }
+            return AppointmentDAL.GetPatientsAppointments(patient);
         }
     }
 }
