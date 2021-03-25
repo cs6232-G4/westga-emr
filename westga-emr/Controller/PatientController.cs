@@ -43,5 +43,11 @@ namespace westga_emr.Controller
             }
             return PatientDAL.RegisterPatient(patient, address);
         }
+
+        /// <see cref="PatientDAL.UpdatePatient(Person, Address, Patient)"/>
+        public bool UpdatePatient(Person patient, Address address, Patient pT)
+        {
+            return PatientDAL.UpdatePatient(patient, address, pT);
+        }
     }
 }
