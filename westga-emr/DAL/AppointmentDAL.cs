@@ -79,6 +79,12 @@ namespace westga_emr.DAL
             return appointments;
         }
 
+        /// <summary>
+        /// Creates a new Appointment for a patient.
+        /// Does NOT check to avoid double booking. Do not use without first checking.
+        /// </summary>
+        /// <param name="appointment">The new Appointment to insert into the db</param>
+        /// <returns>Whether or not the appointment was created</returns>
         public static bool CreateAppointment(Appointment appointment)
         {
             int retValue;
