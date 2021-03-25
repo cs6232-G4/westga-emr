@@ -96,7 +96,38 @@ namespace westga_emr.DAL
                 using (SqlCommand command = new SqlCommand(insertStatement, connection))
                 {
 
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@patientID", appointment.PatientID);
+                    command.Parameters.AddWithValue("@doctorID", appointment.DoctorID);
+                    command.Parameters.AddWithValue("@appointmentDateTime", appointment.AppointmentDateTime);
+                    command.Parameters.AddWithValue("@reasonForVisit", appointment.ReasonForVisit);
+
+                    retValue = command.ExecuteNonQuery();
+                }
+            }
+            if (retValue < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static bool UpdateAppointment(Appointment appointment)
+        {
+            int retValue;
+            String updateStatement = @"UPDATE Appointment
+	                                    SET patientID = @patientID, doctorID = @doctorID, 
+		                                    appointmentDateTime = @appointmentDateTime,
+		                                    reasonForVisit = @reasonForVisit
+	                                    WHERE id = @id";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(updateStatement, connection))
+                {
+
                     command.Parameters.AddWithValue("@patientID", appointment.PatientID);
                     command.Parameters.AddWithValue("@doctorID", appointment.DoctorID);
                     command.Parameters.AddWithValue("@appointmentDateTime", appointment.AppointmentDateTime);
