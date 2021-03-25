@@ -225,6 +225,7 @@ namespace westga_emr.DAL
         /// <summary>
         /// Creates a new patient in the database, including their address.
         /// Sets patient's username and password to null, regardless of given parameters.
+        /// Does NOT check for duplicate entries
         /// </summary>
         /// <param name="patient">The Person of the patient to insert into the db</param>
         /// <param name="address">Patient's Address to insert into the db</param>
