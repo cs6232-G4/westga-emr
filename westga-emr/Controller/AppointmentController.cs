@@ -35,5 +35,15 @@ namespace westga_emr.Controller
             }
             return AppointmentDAL.CreateAppointment(appointment);
         }
+
+        /// <see cref="AppointmentDAL.UpdateAppointment(Appointment)"
+        public bool UpdateAppointment(Appointment appointment)
+        {
+            if (appointment == null)
+            {
+                throw new ArgumentNullException("appointment cannot be null");
+            }
+            return AppointmentDAL.UpdateAppointment(appointment);
+        }
     }
 }

@@ -95,7 +95,6 @@ namespace westga_emr.DAL
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(insertStatement, connection))
                 {
-
                     command.Parameters.AddWithValue("@patientID", appointment.PatientID);
                     command.Parameters.AddWithValue("@doctorID", appointment.DoctorID);
                     command.Parameters.AddWithValue("@appointmentDateTime", appointment.AppointmentDateTime);
@@ -114,6 +113,12 @@ namespace westga_emr.DAL
             }
         }
 
+        /// <summary>
+        /// Updates an Appointment.
+        /// Does NOT verify if Appointment SHOULD be updated. Do not use without checking.
+        /// </summary>
+        /// <param name="appointment">Appointment to update</param>
+        /// <returns>Whether or not the appointment was updated</returns>
         public static bool UpdateAppointment(Appointment appointment)
         {
             int retValue;
@@ -127,7 +132,7 @@ namespace westga_emr.DAL
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(updateStatement, connection))
                 {
-
+                    command.Parameters.AddWithValue("@id", appointment.ID);
                     command.Parameters.AddWithValue("@patientID", appointment.PatientID);
                     command.Parameters.AddWithValue("@doctorID", appointment.DoctorID);
                     command.Parameters.AddWithValue("@appointmentDateTime", appointment.AppointmentDateTime);
