@@ -61,7 +61,7 @@ namespace westga_emr.View
             this.MinimizeBox = false;
             this.Name = "PatientInformationDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PatientInformation";
+            this.Text = "Patient Information";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

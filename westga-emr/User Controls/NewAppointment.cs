@@ -6,6 +6,7 @@ using westga_emr.Helpers;
 using westga_emr.Controller;
 using westga_emr.Model.DTO;
 using westga_emr.View;
+using westga_emr.Model;
 
 namespace westga_emr.User_Controls
 {
@@ -16,15 +17,21 @@ namespace westga_emr.User_Controls
     {
         private PersonController personController;
         private DoctorController doctorController;
+        private AppointmentController appointmentController;
         private UserDTO patient;
         private List<UserDTO> patients;
         private TimeSpan selectedAppointmentTime;
         private DateTime selectedAppointmentDateTime;
+
+        /// <summary>
+        /// New appointment constructor
+        /// </summary>
         public NewAppointment()
         {
             InitializeComponent();
             personController = new PersonController();
             doctorController = new DoctorController();
+            appointmentController = new AppointmentController();
             patient = new UserDTO();
         }
 
@@ -169,12 +176,17 @@ namespace westga_emr.User_Controls
                 {
                     throw new Exception("Please select appointment date");
                 }
-                doctorListComboBox.DataSource = doctorController.GetAvailableDoctorsOnDate(aptDateTime);
-                doctorListComboBox.Enabled = true;
+                var availableDoctors = doctorController.GetAvailableDoctorsOnDate(aptDateTime);
+                if (availableDoctors.Count <= 0)
+                {
+                    MessageBox.Show("No avilable doctor" + Environment.NewLine + "Please choose another date or time for your appointment", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                doctorListComboBox.DataSource = availableDoctors; 
+                
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("An error occured" + Environment.NewLine + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
            
         }
@@ -200,15 +212,29 @@ namespace westga_emr.User_Controls
         {
             try
             {
+                var selectedDoctor = (UserDTO)doctorListComboBox.SelectedItem;
                 if (String.IsNullOrWhiteSpace(appointmentVisitReason.Text) 
                     || patient.PatientId <= 0 
                     || selectedAppointmentDateTime == null)
                 {
                     throw new Exception("Enter all the required fields to create an appointment");
                 }
+                var appointment = new Appointment(0, 
+                    patient.PatientId, 
+                    selectedDoctor.DoctorId, 
+                    selectedAppointmentDateTime,
+                    appointmentVisitReason.Text);
+                if (this.appointmentController.CreateAppointment(appointment))
+                {
+                    RefreshDataGrid();
+                    MessageBox.Show("Appointment created successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.ClearButton_Click("Appointment Created", EventArgs.Empty);
+                }
+
+
             } catch(Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

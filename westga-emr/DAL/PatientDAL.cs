@@ -221,5 +221,97 @@ namespace westga_emr.DAL
             }
             return patients;
         }
+
+        /// <summary>
+        /// Creates a new patient in the database, including their address.
+        /// Sets patient's username and password to null, regardless of given parameters.
+        /// Does NOT check for duplicate entries
+        /// </summary>
+        /// <param name="patient">The Person of the patient to insert into the db</param>
+        /// <param name="address">Patient's Address to insert into the db</param>
+        /// <returns>Whether or not the insert succeeded or not</returns>
+        public static bool RegisterPatient(Person patient, Address address)
+        {
+            int retValue;
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("registerPatient", connection))
+                {
+                    
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@street", address.Street);
+                    command.Parameters.AddWithValue("@city", address.City);
+                    command.Parameters.AddWithValue("@state", address.State);
+                    command.Parameters.AddWithValue("@zip", address.Zip);
+
+                    command.Parameters.AddWithValue("@firstName", patient.FirstName);
+                    command.Parameters.AddWithValue("@lastName", patient.LastName);
+                    command.Parameters.AddWithValue("@dateOfBirth", patient.DateOfBirth);
+                    command.Parameters.AddWithValue("@ssn", patient.SSN);
+                    command.Parameters.AddWithValue("@gender", patient.Gender);
+                    command.Parameters.AddWithValue("@contactPhone", patient.ContactPhone);
+
+                    retValue = command.ExecuteNonQuery();
+                }
+            }
+            if (retValue == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Updates a patient's records according to the given paramaters.
+        /// Does not change username and password. Patient usernames and passwords are null.
+        /// Does NOT check for duplicate entries.
+        /// </summary>
+        /// <param name="patient">Person of the patient with new, updated parameters</param>
+        /// <param name="address">Patient's address with new, updated parameters</param>
+        /// <param name="pT">Patient of the patient with new, updated parameters</param>
+        /// <returns></returns>
+        public static bool UpdatePatient(Person patient, Address address, Patient pT)
+        {
+            int retValue;
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("updatePatient", connection))
+                {
+
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@addressID", address.ID);
+                    command.Parameters.AddWithValue("@street", address.Street);
+                    command.Parameters.AddWithValue("@city", address.City);
+                    command.Parameters.AddWithValue("@state", address.State);
+                    command.Parameters.AddWithValue("@zip", address.Zip);
+
+                    command.Parameters.AddWithValue("@personID", patient.ID);
+                    command.Parameters.AddWithValue("@firstName", patient.FirstName);
+                    command.Parameters.AddWithValue("@lastName", patient.LastName);
+                    command.Parameters.AddWithValue("@dateOfBirth", patient.DateOfBirth);
+                    command.Parameters.AddWithValue("@ssn", patient.SSN);
+                    command.Parameters.AddWithValue("@gender", patient.Gender);
+                    command.Parameters.AddWithValue("@contactPhone", patient.ContactPhone);
+
+                    command.Parameters.AddWithValue("@patientID", pT.ID);
+                    command.Parameters.AddWithValue("@active", pT.Active);
+
+                    retValue = command.ExecuteNonQuery();
+                }
+            }
+            if (retValue == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

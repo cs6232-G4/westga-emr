@@ -23,7 +23,7 @@ namespace westga_emr.Model
 		/// <param name="reasonForVisit_">The reason for the Appointment's visit</param>
 		public Appointment(long id_, int patientID_, int doctorID_, DateTime appointmentDateTime_, string reasonForVisit_)
 		{
-			if (id_ < 1 || patientID_ < 1 || doctorID_ < 1)
+			if (patientID_ < 1 || doctorID_ < 1)
             {
 				throw new ArgumentException("id, patientID, and doctorID must be greater than zero");
 			}

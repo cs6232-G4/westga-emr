@@ -125,6 +125,122 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
+        /// Returns the Person of the Patient
+        /// </summary>
+        /// <param name="patient">The Patient</param>
+        /// <returns>Person of the Patient</returns>
+        public static Person GetPersonByPatientID(Patient patient)
+        {
+            Person person = null;
+            String selectStatement = @"SELECT Person.id, username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
+                                        FROM Person
+	                                        JOIN Patient on Person.id = Patient.personID
+                                        WHERE Patient.id = @patientID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@patientID", patient.ID);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        int ordID = reader.GetOrdinal("id");
+                        int ordUsername = reader.GetOrdinal("username");
+                        int ordPassword = reader.GetOrdinal("password");
+                        int ordFirstName = reader.GetOrdinal("firstName");
+                        int ordLastName = reader.GetOrdinal("lastName");
+                        int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
+                        int ordSSN = reader.GetOrdinal("ssn");
+                        int ordGender = reader.GetOrdinal("gender");
+                        int ordAddressID = reader.GetOrdinal("addressID");
+                        int ordContactPhone = reader.GetOrdinal("contactPhone");
+                        while (reader.Read())
+                        {
+                            string user = null;
+                            if (!reader.IsDBNull(ordUsername))
+                            {
+                                user = reader.GetString(ordUsername);
+                            }
+                            string pass = null;
+                            if (!reader.IsDBNull(ordPassword))
+                            {
+                                pass = reader.GetString(ordPassword);
+                            }
+                            string social = null;
+                            if (!reader.IsDBNull(ordSSN))
+                            {
+                                social = reader.GetString(ordSSN);
+                            }
+                            person = new Person(reader.GetInt32(ordID), user, pass,
+                                reader.GetString(ordFirstName), reader.GetString(ordLastName),
+                                reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
+                                reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
+                        }
+                    }
+                }
+            }
+            return person;
+        }
+
+        /// <summary>
+        /// Returns the Person of the Doctor
+        /// </summary>
+        /// <param name="patient">The Doctor</param>
+        /// <returns>Person of the Doctor</returns>
+        public static Person GetPersonByDoctorID(Doctor doctor)
+        {
+            Person person = null;
+            String selectStatement = @"SELECT Person.id, username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
+                                        FROM Person
+	                                        JOIN Doctor on Person.id = Doctor.personID
+                                        WHERE Doctor.id = @doctorID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@doctorID", doctor.ID);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        int ordID = reader.GetOrdinal("id");
+                        int ordUsername = reader.GetOrdinal("username");
+                        int ordPassword = reader.GetOrdinal("password");
+                        int ordFirstName = reader.GetOrdinal("firstName");
+                        int ordLastName = reader.GetOrdinal("lastName");
+                        int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
+                        int ordSSN = reader.GetOrdinal("ssn");
+                        int ordGender = reader.GetOrdinal("gender");
+                        int ordAddressID = reader.GetOrdinal("addressID");
+                        int ordContactPhone = reader.GetOrdinal("contactPhone");
+                        while (reader.Read())
+                        {
+                            string user = null;
+                            if (!reader.IsDBNull(ordUsername))
+                            {
+                                user = reader.GetString(ordUsername);
+                            }
+                            string pass = null;
+                            if (!reader.IsDBNull(ordPassword))
+                            {
+                                pass = reader.GetString(ordPassword);
+                            }
+                            string social = null;
+                            if (!reader.IsDBNull(ordSSN))
+                            {
+                                social = reader.GetString(ordSSN);
+                            }
+                            person = new Person(reader.GetInt32(ordID), user, pass,
+                                reader.GetString(ordFirstName), reader.GetString(ordLastName),
+                                reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
+                                reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
+                        }
+                    }
+                }
+            }
+            return person;
+        }
+
+        /// <summary>
         /// Method to check if User exists
         /// </summary>
         /// <param name="username"></param>
