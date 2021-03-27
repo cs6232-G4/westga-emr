@@ -7,7 +7,7 @@ namespace westga_emr.Model
 	/// </summary>
 	public class Clinical_Administrator
 	{
-		public int ID { get; }
+		public int? ID { get; }
 		public int PersonID { get; }
 		public bool Active { get; }
 

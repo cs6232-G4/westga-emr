@@ -8,7 +8,7 @@ namespace westga_emr.Model
     /// </summary>
     public class Address
     {
-        public int ID { get; }
+        public int? ID { get; }
         public string Street { get; }
         public string City { get; }
         public string State { get; }

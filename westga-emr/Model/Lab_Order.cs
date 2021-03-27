@@ -7,7 +7,7 @@ namespace westga_emr.Model
 	/// </summary>
 	public class Lab_Order
 	{
-		public long ID { get; }
+		public long? ID { get; }
 		public long VisitID { get; }
 		public DateTime DateOrdered { get; }
 
