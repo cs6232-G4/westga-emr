@@ -236,6 +236,7 @@ namespace westga_emr.User_Controls
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(343, 22);
             this.lastNameTextBox.TabIndex = 6;
+            this.lastNameTextBox.TextChanged += new System.EventHandler(this.LastNameTextBox_TextChanged);
             // 
             // firstNameTextBox
             // 
@@ -245,6 +246,7 @@ namespace westga_emr.User_Controls
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(342, 22);
             this.firstNameTextBox.TabIndex = 5;
+            this.firstNameTextBox.TextChanged += new System.EventHandler(this.FirstNameTextBox_TextChanged);
             // 
             // firstnameError
             // 
@@ -318,6 +320,7 @@ namespace westga_emr.User_Controls
             this.streetTextBox.Name = "streetTextBox";
             this.streetTextBox.Size = new System.Drawing.Size(344, 22);
             this.streetTextBox.TabIndex = 10;
+            this.streetTextBox.TextChanged += new System.EventHandler(this.StreetTextBox_TextChanged);
             // 
             // genderComboBox
             // 
@@ -340,6 +343,7 @@ namespace westga_emr.User_Controls
             this.contactPhoneTextBox.Name = "contactPhoneTextBox";
             this.contactPhoneTextBox.Size = new System.Drawing.Size(342, 22);
             this.contactPhoneTextBox.TabIndex = 8;
+            this.contactPhoneTextBox.TextChanged += new System.EventHandler(this.ContactPhoneTextBox_TextChanged);
             // 
             // contactPhoneError
             // 
@@ -426,6 +430,7 @@ namespace westga_emr.User_Controls
             this.zipTextBox.Name = "zipTextBox";
             this.zipTextBox.Size = new System.Drawing.Size(344, 22);
             this.zipTextBox.TabIndex = 13;
+            this.zipTextBox.TextChanged += new System.EventHandler(this.ZipTextBox_TextChanged);
             // 
             // cityTextBox
             // 
@@ -435,6 +440,7 @@ namespace westga_emr.User_Controls
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(342, 22);
             this.cityTextBox.TabIndex = 11;
+            this.cityTextBox.TextChanged += new System.EventHandler(this.CityTextBox_TextChanged);
             // 
             // cityError
             // 
@@ -498,6 +504,7 @@ namespace westga_emr.User_Controls
             this.ssnTextBox.Name = "ssnTextBox";
             this.ssnTextBox.Size = new System.Drawing.Size(357, 22);
             this.ssnTextBox.TabIndex = 18;
+            this.ssnTextBox.TextChanged += new System.EventHandler(this.SsnTextBox_TextChanged);
             // 
             // tableLayoutPanel9
             // 
@@ -539,6 +546,7 @@ namespace westga_emr.User_Controls
             this.submitButton.TabIndex = 20;
             this.submitButton.Text = "Save";
             this.submitButton.UseVisualStyleBackColor = false;
+            this.submitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
             // addNewPatientLabel
             // 

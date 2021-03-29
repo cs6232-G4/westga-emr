@@ -250,7 +250,7 @@ namespace westga_emr.User_Controls
             this.dobLabel.Text = "";
         }
 
-        private void addPatientButton_Click(object sender, EventArgs e)
+        private void AddPatientButton_Click(object sender, EventArgs e)
         {
             using (Form patientFormDialog = new PatientInformationDialog(new UserDTO()))
             {
@@ -270,18 +270,25 @@ namespace westga_emr.User_Controls
 
         private void PatientsDatatGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            patient = (UserDTO)patientsDatatGrid.Rows[e.RowIndex].DataBoundItem;
             if (patientsDatatGrid.Columns[e.ColumnIndex].Name  == "CreateAppointment")
             {
-                patient = (UserDTO)patientsDatatGrid.Rows[e.RowIndex].DataBoundItem;           
-
                 this.firstNameLabel.Text = patient.FirstName;
                 this.lastNameLabel.Text = patient.LastName;
                 this.genderLabel.Text = patient.Gender;
                 this.dobLabel.Text = patient.DateOfBirth.Value.ToShortDateString();
-
                 this.appointmentInformationSection.Visible = true;
-            } else
+
+            } else if (patientsDatatGrid.Columns[e.ColumnIndex].Name == "EditPatient")
             {
+                using (Form patientFormDialog = new PatientInformationDialog(patient))
+                {
+                    DialogResult result = patientFormDialog.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        this.RefreshDataGrid();
+                    }
+                }
                 this.appointmentInformationSection.Visible = false;
             }
         }

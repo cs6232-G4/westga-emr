@@ -32,8 +32,8 @@ namespace westga_emr.User_Controls
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label4;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dobSearchLabel = new System.Windows.Forms.Label();
             this.lnameSearchLabel = new System.Windows.Forms.Label();
             this.fnameSearchLabel = new System.Windows.Forms.Label();
@@ -260,7 +260,7 @@ namespace westga_emr.User_Controls
             this.addPatientButton.TabIndex = 3;
             this.addPatientButton.Text = "Add New Patient";
             this.addPatientButton.UseVisualStyleBackColor = false;
-            this.addPatientButton.Click += new System.EventHandler(this.addPatientButton_Click);
+            this.addPatientButton.Click += new System.EventHandler(this.AddPatientButton_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -700,11 +700,11 @@ namespace westga_emr.User_Controls
             // 
             // CreateAppointment
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Blue;
-            this.CreateAppointment.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Blue;
+            this.CreateAppointment.DefaultCellStyle = dataGridViewCellStyle1;
             this.CreateAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.CreateAppointment.HeaderText = "";
             this.CreateAppointment.MinimumWidth = 6;
@@ -717,10 +717,10 @@ namespace westga_emr.User_Controls
             // 
             // EditPatient
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Blue;
-            this.EditPatient.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Blue;
+            this.EditPatient.DefaultCellStyle = dataGridViewCellStyle2;
             this.EditPatient.HeaderText = "";
             this.EditPatient.MinimumWidth = 6;
             this.EditPatient.Name = "EditPatient";

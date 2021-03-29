@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using westga_emr.Controller;
 using westga_emr.Helpers;
+using westga_emr.Model;
 using westga_emr.Model.DTO;
 
 namespace westga_emr.User_Controls
@@ -15,23 +17,34 @@ namespace westga_emr.User_Controls
     public partial class PatientInformationForm : UserControl
     {
         private bool isNewPatient;
+        private Person patientPerson;
+        private Address patientAddress;
+        private Patient patient;
+        private readonly PatientController patientController;
+
         public PatientInformationForm()
         {
             InitializeComponent();
+            isNewPatient = true;
+            patientController = new PatientController();
         }
 
         private void PatientInformationForm_Load(object sender, EventArgs e)
         {
-            this.stateComboBox.DataSource = AppointmentHelper.GetStates().ToList();
-            this.genderComboBox.DataSource = AppointmentHelper.GetGenders().ToList();
-            this.stateComboBox.SelectedIndex = 0;
-            this.genderComboBox.SelectedIndex = 0;
+            //this.stateComboBox.DataSource = AppointmentHelper.GetStates().ToList();
+            //this.genderComboBox.DataSource = AppointmentHelper.GetGenders().ToList();
+            //this.stateComboBox.SelectedIndex = 0;
+            //this.genderComboBox.SelectedIndex = 0;
             this.dateOfBirthDateTimePicker.MaxDate = DateTime.Now;
             this.dateOfBirthDateTimePicker.Value = this.dateOfBirthDateTimePicker.MaxDate;
         }
 
         public void PopulateTextBoxes(UserDTO aPatient)
         {
+            this.stateComboBox.DataSource = AppointmentHelper.GetStates().ToList();
+            this.genderComboBox.DataSource = AppointmentHelper.GetGenders().ToList();
+            this.stateComboBox.SelectedIndex = 0;
+            this.genderComboBox.SelectedIndex = 0;
             if (aPatient.PatientId >  0)
             {
                 this.isNewPatient = false;
@@ -47,6 +60,7 @@ namespace westga_emr.User_Controls
                 this.streetTextBox.Text = aPatient.Street;
                 this.zipTextBox.Text = aPatient.Zip;
                 this.ssnTextBox.Text = aPatient.SSN;
+                patient = new Patient(aPatient.PatientId, aPatient.Id, true);
             } else
             {
                 this.isNewPatient = true;
@@ -164,6 +178,33 @@ namespace westga_emr.User_Controls
             }
         }
 
-     
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var gender = (AppointmentHelper)genderComboBox.SelectedItem;
+                var state = (AppointmentHelper)stateComboBox.SelectedItem;
+                patientPerson = new Person(0, "", "",
+                       firstNameTextBox.Text,
+                       lastNameTextBox.Text,
+                       dateOfBirthDateTimePicker.Value,
+                       ssnTextBox.Text,
+                       gender.Value,
+                       0,
+                       contactPhoneTextBox.Text);
+                patientAddress = new Address(0, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
+
+                if (isNewPatient)
+                {
+                    patientController.RegisterPatient(patientPerson, patientAddress);
+                } else
+                {
+                    patientController.UpdatePatient(patientPerson, patientAddress, patient);
+                }
+            }catch(Exception ex)
+            {
+
+            }
+        }
     }
 }
