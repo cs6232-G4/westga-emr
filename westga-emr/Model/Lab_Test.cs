@@ -7,7 +7,7 @@ namespace westga_emr.Model
 	/// </summary>
 	public class Lab_Test
 	{
-		public int Code { get; }
+		public int? Code { get; }
 		public string Name { get; }
 
 		/// <summary>
