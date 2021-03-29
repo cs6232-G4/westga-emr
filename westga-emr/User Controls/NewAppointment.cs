@@ -219,7 +219,7 @@ namespace westga_emr.User_Controls
                 {
                     throw new Exception("Enter all the required fields to create an appointment");
                 }
-                var appointment = new Appointment(0, 
+                var appointment = new Appointment(null, 
                     patient.PatientId, 
                     selectedDoctor.DoctorId, 
                     selectedAppointmentDateTime,

@@ -184,7 +184,7 @@ namespace westga_emr.User_Controls
             {
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
-                patientPerson = new Person(0, "", "",
+                patientPerson = new Person(null, "", "",
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
@@ -192,7 +192,7 @@ namespace westga_emr.User_Controls
                        gender.Value,
                        0,
                        contactPhoneTextBox.Text);
-                patientAddress = new Address(0, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
+                patientAddress = new Address(null,streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
 
                 if (isNewPatient)
                 {
