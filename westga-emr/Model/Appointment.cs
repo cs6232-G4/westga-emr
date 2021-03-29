@@ -7,7 +7,7 @@ namespace westga_emr.Model
 	/// </summary>
 	public class Appointment
 	{
-		public long ID { get; }
+		public long? ID { get; }
 		public int PatientID { get; }
 		public int DoctorID { get; }
 		public DateTime AppointmentDateTime { get; }

@@ -8,7 +8,7 @@ namespace westga_emr.Model
 	/// </summary>
 	public class Person
 	{
-		public int ID { get; }
+		public int? ID { get; }
 		public string Username { get; }
 		public string Password { get; }
 		public string FirstName { get; }
