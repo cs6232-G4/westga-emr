@@ -182,6 +182,7 @@ namespace westga_emr.User_Controls
         {
             try
             {
+                bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
                 patientPerson = new Person(null, "", "",
@@ -196,14 +197,33 @@ namespace westga_emr.User_Controls
 
                 if (isNewPatient)
                 {
-                    patientController.RegisterPatient(patientPerson, patientAddress);
+                    result =  patientController.RegisterPatient(patientPerson, patientAddress);
+
                 } else
                 {
-                    patientController.UpdatePatient(patientPerson, patientAddress, patient);
+                    result = patientController.UpdatePatient(patientPerson, patientAddress, patient);
                 }
+                ShowMessageBox(result);
             }catch(Exception ex)
             {
+                MessageBox.Show("An error occured" + 
+                    Environment.NewLine + 
+                    ex.Message, 
+                    "Error", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+            }
+        }
 
+        private void ShowMessageBox(bool result)
+        {
+            if (result)
+            {
+                MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("An error occured" + Environment.NewLine +"Unable to save patient", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
