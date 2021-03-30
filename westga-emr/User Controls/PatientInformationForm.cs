@@ -31,10 +31,6 @@ namespace westga_emr.User_Controls
 
         private void PatientInformationForm_Load(object sender, EventArgs e)
         {
-            //this.stateComboBox.DataSource = AppointmentHelper.GetStates().ToList();
-            //this.genderComboBox.DataSource = AppointmentHelper.GetGenders().ToList();
-            //this.stateComboBox.SelectedIndex = 0;
-            //this.genderComboBox.SelectedIndex = 0;
             this.dateOfBirthDateTimePicker.MaxDate = DateTime.Now;
             this.dateOfBirthDateTimePicker.Value = this.dateOfBirthDateTimePicker.MaxDate;
         }
@@ -60,7 +56,9 @@ namespace westga_emr.User_Controls
                 this.streetTextBox.Text = aPatient.Street;
                 this.zipTextBox.Text = aPatient.Zip;
                 this.ssnTextBox.Text = aPatient.SSN;
+                this.addressId.Text = aPatient.AddressId.ToString();
                 patient = new Patient(aPatient.PatientId, aPatient.Id, true);
+                
             } else
             {
                 this.isNewPatient = true;
@@ -185,15 +183,17 @@ namespace westga_emr.User_Controls
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
-                patientPerson = new Person(null, "", "",
+                int personId = (patient != null && patient.PersonID > 0) ? patient.PersonID : 0;
+                int addressId = String.IsNullOrWhiteSpace(this.addressId.Text) ? 0 : int.Parse(this.addressId.Text);
+                patientPerson = new Person(personId, "", "",
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
                        ssnTextBox.Text,
                        gender.Value,
-                       0,
+                       addressId,
                        contactPhoneTextBox.Text);
-                patientAddress = new Address(null,streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
+                patientAddress = new Address(addressId,streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
 
                 if (isNewPatient)
                 {

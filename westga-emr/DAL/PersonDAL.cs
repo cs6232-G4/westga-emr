@@ -335,7 +335,7 @@ namespace westga_emr.DAL
         /// <param name="lastName"></param>
         /// <param name="dateOfBirth"></param>
         /// <returns>A user that matches the search criteria</returns>
-        public List<UserDTO> SearchPatient(string firstName, string lastName, DateTime dateOfBirth)
+        public List<UserDTO> SearchPatient(string firstName, string lastName, DateTime? dateOfBirth)
         {
             var patients = new List<UserDTO>();
             string selectUserStatement = @"
@@ -376,7 +376,7 @@ namespace westga_emr.DAL
                     }
                     else
                     {
-                        selectCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth.Date);
+                        selectCommand.Parameters.AddWithValue("@DateOfBirth", dateOfBirth.Value.Date);
                     }
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {

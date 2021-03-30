@@ -82,8 +82,18 @@ namespace westga_emr.User_Controls
             try
             {
                 patientsDatatGrid.DataSource = null;
-                this.patients = this.personController.SearchPatient(this.firstNameTextBoxSearchInput.Text, 
-                    this.lastNameTextBoxSearchInput.Text, this.dateOfBirthDateTimePickerSearchInput.Value);
+                switch (this.searchCriteria.SelectedIndex)
+                {
+                    case 0:
+                        this.patients = this.personController.SearchPatient("", "", this.dateOfBirthDateTimePickerSearchInput.Value);
+                        break;
+                    case 1:
+                        this.patients = this.personController.SearchPatient(this.firstNameTextBoxSearchInput.Text, this.lastNameTextBoxSearchInput.Text, null);
+                        break;
+                    case 2:
+                        this.patients = this.personController.SearchPatient("", this.lastNameTextBoxSearchInput.Text, this.dateOfBirthDateTimePickerSearchInput.Value);
+                        break;
+                }
                 this.firstNameTextBoxSearchInput.Text = "";
                 this.lastNameTextBoxSearchInput.Text = "";
                 patientsDatatGrid.DataSource = this.patients;

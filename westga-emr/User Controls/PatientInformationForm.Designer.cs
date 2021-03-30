@@ -68,6 +68,7 @@ namespace westga_emr.User_Controls
             this.updatePatientLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ssnError = new System.Windows.Forms.Label();
+            this.addressId = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
@@ -598,11 +599,21 @@ namespace westga_emr.User_Controls
             this.ssnError.Size = new System.Drawing.Size(524, 71);
             this.ssnError.TabIndex = 19;
             // 
+            // addressId
+            // 
+            this.addressId.AutoSize = true;
+            this.addressId.Location = new System.Drawing.Point(35, 20);
+            this.addressId.Name = "addressId";
+            this.addressId.Size = new System.Drawing.Size(0, 17);
+            this.addressId.TabIndex = 20;
+            this.addressId.Visible = false;
+            // 
             // PatientInformationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
+            this.Controls.Add(this.addressId);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.updatePatientLabel);
             this.Controls.Add(this.addNewPatientLabel);
@@ -659,5 +670,6 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.Label updatePatientLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label ssnError;
+        private System.Windows.Forms.Label addressId;
     }
 }

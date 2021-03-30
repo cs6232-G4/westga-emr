@@ -24,10 +24,6 @@ namespace westga_emr.Model
         /// <param name="zip">Zip code of the Address</param>
         public Address(int? id, string street, string city, string state, string zip)
         {
-            if (id < 1)
-            {
-                throw new ArgumentException("id must be greater than zero");
-            }
             if (string.IsNullOrWhiteSpace(street) || string.IsNullOrWhiteSpace(city)
                 || string.IsNullOrWhiteSpace(state) || string.IsNullOrWhiteSpace(zip))
             {
