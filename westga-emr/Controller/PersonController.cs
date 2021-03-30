@@ -43,6 +43,26 @@ namespace westga_emr.Controller
             return PersonDAL.GetPersonByDoctorID(doctor);
         }
 
+        /// <see cref="PersonDAL.GetPersonByNurseID(Nurse)"/>
+        public Person GetPersonByNurseID(Nurse nurse)
+        {
+            if (nurse == null)
+            {
+                throw new ArgumentNullException("nurse cannot be null");
+            }
+            return PersonDAL.GetPersonByNurseID(nurse);
+        }
+
+        /// <see cref="PersonDAL.GetPersonByClinicalAdministratorID(Clinical_Administrator)"/>
+        public Person GetPersonByClinicalAdministratorID(Clinical_Administrator admin)
+        {
+            if (admin == null)
+            {
+                throw new ArgumentNullException("admin cannot be null");
+            }
+            return PersonDAL.GetPersonByClinicalAdministratorID(admin);
+        }
+
         /// <summary>
         /// Sign In method to authenticate User
         /// </summary>
