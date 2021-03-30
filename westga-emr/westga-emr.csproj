@@ -108,17 +108,17 @@
     <Compile Include="User Controls\Nurses.Designer.cs">
       <DependentUpon>Nurses.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Controls\PatientInformationForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\PatientInformationForm.Designer.cs">
+      <DependentUpon>PatientInformationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Controls\Report.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="User Controls\Report.Designer.cs">
       <DependentUpon>Report.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatientDemographics.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\PatientDemographics.Designer.cs">
-      <DependentUpon>PatientDemographics.cs</DependentUpon>
     </Compile>
     <Compile Include="User Controls\SearchPatient.cs">
       <SubType>UserControl</SubType>
@@ -144,6 +144,12 @@
     <Compile Include="View\MainTabbedForm.Designer.cs">
       <DependentUpon>MainTabbedForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\PatientInformationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientInformationDialog.Designer.cs">
+      <DependentUpon>PatientInformationDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -162,6 +168,9 @@
     <EmbeddedResource Include="User Controls\Nurses.resx">
       <DependentUpon>Nurses.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\PatientInformationForm.resx">
+      <DependentUpon>PatientInformationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Controls\Report.resx">
       <DependentUpon>Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,8 +186,8 @@
     <EmbeddedResource Include="View\MainTabbedForm.resx">
       <DependentUpon>MainTabbedForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\PatientDemographics.resx">
-      <DependentUpon>PatientDemographics.cs</DependentUpon>
+    <EmbeddedResource Include="View\PatientInformationDialog.resx">
+      <DependentUpon>PatientInformationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\westga_emr.Helpers.AppointmentHelper.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.UserDTO.datasource" />
