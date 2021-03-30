@@ -232,7 +232,7 @@ namespace westga_emr.DAL
         /// <returns>Whether or not the insert succeeded or not</returns>
         public static bool RegisterPatient(Person patient, Address address)
         {
-            int retValue;
+            bool retValue;
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 connection.Open();
@@ -252,17 +252,18 @@ namespace westga_emr.DAL
                     command.Parameters.AddWithValue("@gender", patient.Gender);
                     command.Parameters.AddWithValue("@contactPhone", patient.ContactPhone);
 
-                    retValue = command.ExecuteNonQuery();
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        retValue = true;
+                    }
+                    catch (SqlException)
+                    {
+                        retValue = false;
+                    }
                 }
             }
-            if (retValue == -1)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return retValue;
         }
 
         /// <summary>
@@ -276,7 +277,7 @@ namespace westga_emr.DAL
         /// <returns></returns>
         public static bool UpdatePatient(Person patient, Address address, Patient pT)
         {
-            int retValue;
+            bool retValue;
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 connection.Open();
@@ -301,17 +302,18 @@ namespace westga_emr.DAL
                     command.Parameters.AddWithValue("@patientID", pT.ID);
                     command.Parameters.AddWithValue("@active", pT.Active);
 
-                    retValue = command.ExecuteNonQuery();
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        retValue = true;
+                    }
+                    catch (SqlException)
+                    {
+                        retValue = false;
+                    }
                 }
             }
-            if (retValue == -1)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return retValue;
         }
     }
 }
