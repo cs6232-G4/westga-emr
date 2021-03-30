@@ -15,7 +15,7 @@ namespace westga_emr.Model
 		/// </summary>
 		/// <param name="code_">The code of the Lab Test</param>
 		/// <param name="name_">The name of the Lab Test</param>
-		public Lab_Test(int code_, string name_)
+		public Lab_Test(int? code_, string name_)
 		{
 			if (code_ < 1)
             {

@@ -18,7 +18,7 @@ CREATE PROCEDURE registerPatient
 	@contactPhone char(10)
 AS
 BEGIN
-	SET XACT_ABORT, NOCOUNT ON
+	SET XACT_ABORT ON
 
 	BEGIN TRY
 		BEGIN TRANSACTION
@@ -47,10 +47,8 @@ BEGIN
 		IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION
 
 		DECLARE @errormessage nvarchar(2048) = ERROR_MESSAGE()
-		DECLARE @severity int = ERROR_SEVERITY()
 		DECLARE @errorstate int = ERROR_STATE()
 
-		RAISERROR(@errormessage, @severity, @errorstate)
-		RETURN -1
+		RAISERROR(@errormessage, 16, @errorstate)
 	END CATCH
 END

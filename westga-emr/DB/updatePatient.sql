@@ -44,10 +44,8 @@ BEGIN
 		IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION
 
 		DECLARE @errormessage nvarchar(2048) = ERROR_MESSAGE()
-		DECLARE @severity int = ERROR_SEVERITY()
 		DECLARE @errorstate int = ERROR_STATE()
 
-		RAISERROR(@errormessage, @severity, @errorstate)
-		RETURN -1
+		RAISERROR(@errormessage, 16, @errorstate)
 	END CATCH
 END
