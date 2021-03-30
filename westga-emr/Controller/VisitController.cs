@@ -25,5 +25,15 @@ namespace westga_emr.Controller
             }
             return VisitDAL.GetVisitByAppointment(appointment);
         }
+
+        /// <see cref="VisitDAL.GetVisitsByPatient(Patient)"/>
+        public List<Visit> GetVisitsByPatient(Patient patient)
+        {
+            if (patient == null)
+            {
+                throw new ArgumentNullException("patient cannot be null");
+            }
+            return VisitDAL.GetVisitsByPatient(patient);
+        }
     }
 }
