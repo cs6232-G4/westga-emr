@@ -17,7 +17,7 @@ namespace westga_emr.Model
 		/// <param name="id_">Sql Server's id for the Patient</param>
 		/// <param name="personID_">Sql Server's id for the person of the Patient</param>
 		/// <param name="active_">Whether or not the Patient is active or inactive</param>
-		public Patient(int id_, int personID_, bool active_)
+		public Patient(int? id_, int personID_, bool active_)
 		{
 			if (id_ < 1 || personID_ < 1)
             {

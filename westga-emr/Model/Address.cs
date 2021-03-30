@@ -22,7 +22,7 @@ namespace westga_emr.Model
         /// <param name="city">City of the Address</param>
         /// <param name="state">State of the Address</param>
         /// <param name="zip">Zip code of the Address</param>
-        public Address(int id, string street, string city, string state, string zip)
+        public Address(int? id, string street, string city, string state, string zip)
         {
             if (id < 1)
             {

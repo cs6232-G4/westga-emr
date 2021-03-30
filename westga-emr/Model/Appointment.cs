@@ -21,7 +21,7 @@ namespace westga_emr.Model
 		/// <param name="doctorID_">Sql Server's id for the doctor associated with the Appointment</param>
 		/// <param name="appointmentDateTime_">The date and time of the Appointment</param>
 		/// <param name="reasonForVisit_">The reason for the Appointment's visit</param>
-		public Appointment(long id_, int patientID_, int doctorID_, DateTime appointmentDateTime_, string reasonForVisit_)
+		public Appointment(long? id_, int patientID_, int doctorID_, DateTime appointmentDateTime_, string reasonForVisit_)
 		{
 			if (id_ < 1 || patientID_ < 1 || doctorID_ < 1)
             {
