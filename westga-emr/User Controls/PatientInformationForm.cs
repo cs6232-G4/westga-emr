@@ -19,6 +19,8 @@ namespace westga_emr.User_Controls
         private readonly PatientController patientController;
         private Regex validSSN;
         private Dictionary<string, string> errors;
+        private int? newPatientAddressId;
+        private int? newPersonId;
 
         public PatientInformationForm()
         {
@@ -27,6 +29,7 @@ namespace westga_emr.User_Controls
             patientController = new PatientController();
             validSSN = new Regex("[0-9]{9}");
             errors = new Dictionary<string, string>();
+            
         }
 
         private void PatientInformationForm_Load(object sender, EventArgs e)
@@ -37,6 +40,7 @@ namespace westga_emr.User_Controls
 
         public void PopulateTextBoxes(UserDTO aPatient)
         {
+            this.dateOfBirthDateTimePicker.MaxDate = DateTime.Now;
             this.stateComboBox.DataSource = AppointmentHelper.GetStates().ToList();
             this.genderComboBox.DataSource = AppointmentHelper.GetGenders().ToList();
             this.stateComboBox.SelectedIndex = 0;
@@ -56,14 +60,17 @@ namespace westga_emr.User_Controls
                 this.streetTextBox.Text = aPatient.Street;
                 this.zipTextBox.Text = aPatient.Zip;
                 this.ssnTextBox.Text = aPatient.SSN;
-                this.addressId.Text = aPatient.AddressId.ToString();
                 patient = new Patient(aPatient.PatientId, aPatient.Id, true);
+                patientAddress = new Address(aPatient.AddressId, aPatient.Street, aPatient.City, aPatient.State, aPatient.Zip);
+                patientPerson = new Person(aPatient.Id, "", "", aPatient.FirstName, aPatient.LastName, aPatient.DateOfBirth.Value, aPatient.SSN, aPatient.Gender, aPatient.AddressId, aPatient.ContactPhone);
                 
             } else
             {
                 this.isNewPatient = true;
                 this.addNewPatientLabel.Visible = true;
                 this.updatePatientLabel.Visible = false;
+                newPatientAddressId = null;
+                newPersonId = null;
             }
 
         }
@@ -209,24 +216,31 @@ namespace westga_emr.User_Controls
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
-                int personId = (patient != null && patient.PersonID > 0) ? patient.PersonID : 0;
-                int addressId = String.IsNullOrWhiteSpace(this.addressId.Text) ? 0 : int.Parse(this.addressId.Text);
-                patientPerson = new Person(null, "", "",
+
+                if (isNewPatient)
+                {
+                    patientPerson = new Person(newPersonId, "", "",
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
                        ssnTextBox.Text,
                        gender.Value,
-                       addressId,
+                       newPatientAddressId,
                        contactPhoneTextBox.Text);
-                patientAddress = new Address(addressId,streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
-
-                if (isNewPatient)
-                {
+                    patientAddress = new Address(newPatientAddressId, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
                     result =  patientController.RegisterPatient(patientPerson, patientAddress);
 
                 } else
                 {
+                    patientPerson = new Person(patientPerson.ID, "", "",
+                      firstNameTextBox.Text,
+                      lastNameTextBox.Text,
+                      dateOfBirthDateTimePicker.Value,
+                      ssnTextBox.Text,
+                      gender.Value,
+                      patientPerson.AddressID,
+                      contactPhoneTextBox.Text);
+                    patientAddress = new Address(newPatientAddressId, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
                     result = patientController.UpdatePatient(patientPerson, patientAddress, patient);
                 }
                 ShowMessageBox(result);
@@ -245,6 +259,7 @@ namespace westga_emr.User_Controls
         {
             if (result)
             {
+                ClearInputs();
                 MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -280,6 +295,29 @@ namespace westga_emr.User_Controls
             this.StreetTextBox_TextChanged("SUBMIT", EventArgs.Empty);
             this.CityTextBox_TextChanged("SUBMIT", EventArgs.Empty);
             this.ZipTextBox_TextChanged("SUBMIT", EventArgs.Empty);
+        }
+
+        private void ClearInputs()
+        {
+            this.firstNameTextBox.Text = "";
+            this.firstnameError.Text = "";
+            this.lastNameTextBox.Text = "";
+            this.lastNameError.Text = "";
+            this.contactPhoneTextBox.Text = "";
+            this.contactPhoneError.Text = "";
+            this.streetTextBox.Text = "";
+            this.streetError.Text = "";
+            this.cityTextBox.Text = "";
+            this.cityError.Text = "";
+            this.zipTextBox.Text = "";
+            this.zipCodeError.Text = "";
+            this.ssnTextBox.Text = "";
+            this.ssnError.Text = "";
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.ClearInputs();
         }
     }
 }

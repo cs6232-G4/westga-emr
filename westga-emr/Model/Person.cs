@@ -40,6 +40,10 @@ namespace westga_emr.Model
 				throw new ArgumentException("first name, last name, gender, and contact phone cannot be " +
 					"null, empty, or consist only of white space");
             }
+			if((addressID_ != null) && addressID_ < 1)
+            {
+				throw new ArgumentException("addressID must be greater than zero");
+			}
 			if (dateOfBirth_ == null)
             {
 				throw new ArgumentNullException("dateOfBirth cannot be null");
@@ -48,7 +52,7 @@ namespace westga_emr.Model
             {
 				throw new ArgumentException("contact phone must be 10 characters in length and consist only of numbers");
             }
-			if (ssn_ != null && (ssn_.Length != 9 || !ssn_.All(char.IsDigit)))
+			if (!string.IsNullOrWhiteSpace(ssn_) && (ssn_.Length != 9 || !ssn_.All(char.IsDigit)))
             {
 				throw new ArgumentException("If an ssn exists, it must be 9 characters in length and consist only of numbers");
             }

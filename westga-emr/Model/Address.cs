@@ -38,6 +38,10 @@ namespace westga_emr.Model
             {
                 throw new ArgumentException("state must be 2 characters in length and consist only of letters");
             }
+            if((id != null) && id < 0)
+            {
+                throw new ArgumentException("id cannot be less than 0");
+            }
             this.ID = id;
             this.Street = street;
             this.City = city;
