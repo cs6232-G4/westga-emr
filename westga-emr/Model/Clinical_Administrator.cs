@@ -8,7 +8,7 @@ namespace westga_emr.Model
 	public class Clinical_Administrator
 	{
 		public int? ID { get; }
-		public int PersonID { get; }
+		public int? PersonID { get; }
 		public bool Active { get; }
 
 		/// <summary>
@@ -17,7 +17,7 @@ namespace westga_emr.Model
 		/// <param name="id_">Sql Server's id for the Clinical Admin</param>
 		/// <param name="personID_">Sql Server's id for the person who is the Clinical Admin</param>
 		/// <param name="active_">Whether or not the Clinical Admin is active or inactive</param>
-		public Clinical_Administrator(int? id_, int personID_, bool active_)
+		public Clinical_Administrator(int? id_, int? personID_, bool active_)
 		{
 			if (id_ < 1 || personID_ < 1)
             {

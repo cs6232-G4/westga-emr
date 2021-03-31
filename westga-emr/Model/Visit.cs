@@ -8,8 +8,8 @@ namespace westga_emr.Model
 	public class Visit
 	{
 		public long? ID { get; }
-		public long AppointmentID { get; }
-		public int NurseID { get; }
+		public long? AppointmentID { get; }
+		public int? NurseID { get; }
 		public DateTime VisitDateTime { get; }
 		public string InitialDiagnosis { get; }
 		public decimal Weight { get; }
@@ -35,7 +35,7 @@ namespace westga_emr.Model
 		/// <param name="pulse_">Patient's heart pulse measured during the Visit</param>
 		/// <param name="symptoms_">Symptoms the patient exhibits during the Visit</param>
 		/// <param name="finalDiagnosis_">The final diagnosis made during the Visit</param>
-		public Visit(long? id_, long appointmentID_, int nurseID_, DateTime visitDateTime_, string initialDiagnosis_, decimal weight_, int systolicPressure_, int diastolicPressure_, decimal bodyTemperature_, int pulse_, string symptoms_, string finalDiagnosis_)
+		public Visit(long? id_, long? appointmentID_, int? nurseID_, DateTime visitDateTime_, string initialDiagnosis_, decimal weight_, int systolicPressure_, int diastolicPressure_, decimal bodyTemperature_, int pulse_, string symptoms_, string finalDiagnosis_)
 		{
 			if (id_ < 1 || appointmentID_ < 1 || nurseID_ < 1)
 			{

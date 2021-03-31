@@ -7,7 +7,7 @@ namespace westga_emr.Model
 	/// </summary>
 	public class Doctor_has_Specialties
 	{
-		public int DoctorID { get; }
+		public int? DoctorID { get; }
 		public string SpecialtyName { get; }
 
 		/// <summary>
@@ -15,7 +15,7 @@ namespace westga_emr.Model
 		/// </summary>
 		/// <param name="doctorID_">Sql Server's id for the doctor in this relation</param>
 		/// <param name="specialtyName_">The name of the specialty in this relation</param>
-		public Doctor_has_Specialties(int doctorID_, string specialtyName_)
+		public Doctor_has_Specialties(int? doctorID_, string specialtyName_)
 		{
 			if (doctorID_ < 1)
             {

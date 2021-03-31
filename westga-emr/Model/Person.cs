@@ -16,7 +16,7 @@ namespace westga_emr.Model
 		public DateTime DateOfBirth { get; }
 		public string SSN { get; }
 		public string Gender { get; }
-		public int AddressID { get; }
+		public int? AddressID { get; }
 		public string ContactPhone { get; }
 
 		/// <summary>
@@ -32,7 +32,7 @@ namespace westga_emr.Model
 		/// <param name="gender_">Person's gender</param>
 		/// <param name="addressID_">Sql Server's id of the address of the Person</param>
 		/// <param name="contactPhone_">Person's contact phone number</param>
-		public Person(int? id_, string username_, string password_, string firstName_, string lastName_, DateTime dateOfBirth_, string ssn_, string gender_, int addressID_, string contactPhone_)
+		public Person(int? id_, string username_, string password_, string firstName_, string lastName_, DateTime dateOfBirth_, string ssn_, string gender_, int? addressID_, string contactPhone_)
 		{
 			if (id_ < 1 || addressID_ < 1)
             {
