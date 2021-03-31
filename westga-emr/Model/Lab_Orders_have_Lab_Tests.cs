@@ -7,8 +7,8 @@ namespace westga_emr.Model
 	/// </summary>
 	public class Lab_Orders_have_Lab_Tests
 	{
-		public long LabOrderID { get; }
-		public int LabTestCode { get; }
+		public long? LabOrderID { get; }
+		public int? LabTestCode { get; }
 		public DateTime TestPerformed { get; }
 		public string Results { get; }
 
@@ -19,7 +19,7 @@ namespace westga_emr.Model
 		/// <param name="labTestCode_">The code of the lab test in this relation</param>
 		/// <param name="testPerformed_">The date the test was performed</param>
 		/// <param name="results_">The results of the lab tests</param>
-		public Lab_Orders_have_Lab_Tests(long labOrderID_, int labTestCode_, DateTime testPerformed_, string results_)
+		public Lab_Orders_have_Lab_Tests(long? labOrderID_, int? labTestCode_, DateTime testPerformed_, string results_)
 		{
 			if (labOrderID_ < 1 || labTestCode_ < 1)
             {
