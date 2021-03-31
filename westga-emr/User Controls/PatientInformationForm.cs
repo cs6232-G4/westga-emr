@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using westga_emr.Controller;
 using westga_emr.Helpers;
@@ -21,12 +17,16 @@ namespace westga_emr.User_Controls
         private Address patientAddress;
         private Patient patient;
         private readonly PatientController patientController;
+        private Regex validSSN;
+        private Dictionary<string, string> errors;
 
         public PatientInformationForm()
         {
             InitializeComponent();
             isNewPatient = true;
             patientController = new PatientController();
+            validSSN = new Regex("[0-9]{9}");
+            errors = new Dictionary<string, string>();
         }
 
         private void PatientInformationForm_Load(object sender, EventArgs e)
@@ -73,14 +73,17 @@ namespace westga_emr.User_Controls
             if (firstNameTextBox.Text.Length > 45)
             {
                 firstnameError.Text = "Character limit exceeded. Maximum allowed: 45";
+                AddError("firstnameError", firstnameError.Text);
             }
             else if (String.IsNullOrWhiteSpace(firstNameTextBox.Text))
             {
                 firstnameError.Text = "First name is required";
+                AddError("firstnameError", firstnameError.Text);
             }
             else
             {
                 firstnameError.Text = "";
+                RemoveError("firstnameError");
             }
         }
 
@@ -89,30 +92,36 @@ namespace westga_emr.User_Controls
             if (lastNameTextBox.Text.Length > 45)
             {
                 lastNameError.Text = "Character limit exceeded. Maximum allowed: 45";
+                AddError("lastNameError", lastNameError.Text);
             }
             else if (String.IsNullOrWhiteSpace(lastNameTextBox.Text))
             {
                 lastNameError.Text = "Last name is required";
+                AddError("lastNameError", lastNameError.Text);
             }
             else
             {
                 lastNameError.Text = "";
+                RemoveError("lastNameError");
             }
         }
 
         private void ContactPhoneTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (contactPhoneTextBox.Text.Length > 10)
+            if (contactPhoneTextBox.Text.Length != 10)
             {
                 contactPhoneError.Text = "Character limit exceeded. Maximum allowed: 10";
+                AddError("contactPhoneError", contactPhoneError.Text);
             }
             else if (String.IsNullOrWhiteSpace(contactPhoneTextBox.Text))
             {
                 contactPhoneError.Text = "Phone number is required";
+                AddError("contactPhoneError", contactPhoneError.Text);
             }
             else
             {
                 contactPhoneError.Text = "";
+                RemoveError("contactPhoneError");
             }
         }
 
@@ -121,30 +130,36 @@ namespace westga_emr.User_Controls
             if (streetTextBox.Text.Length > 45)
             {
                 streetError.Text = "Character limit exceeded. Maximum allowed: 45";
+                AddError("streetError", contactPhoneError.Text);
             }
             else if (String.IsNullOrWhiteSpace(streetTextBox.Text))
             {
                 streetError.Text = "Street is required";
+                AddError("streetError", contactPhoneError.Text);
             }
             else
             {
                 streetError.Text = "";
+                RemoveError("streetError");
             }
         }
 
         private void ZipTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (zipTextBox.Text.Length > 5)
+            if (zipTextBox.Text.Length != 5)
             {
-                zipCodeError.Text = "Character limit exceeded. Maximum allowed: 5";
+                zipCodeError.Text = "Please enter a valid zip code";
+                AddError("zipCodeError", zipCodeError.Text);
             }
             else if (String.IsNullOrWhiteSpace(zipTextBox.Text))
             {
                 zipCodeError.Text = "Zip code is required";
+                AddError("zipCodeError", zipCodeError.Text);
             }
             else
             {
                 zipCodeError.Text = "";
+                RemoveError("zipCodeError");
             }
         }
 
@@ -153,22 +168,28 @@ namespace westga_emr.User_Controls
             if (cityTextBox.Text.Length > 45)
             {
                 cityError.Text = "Character limit exceeded. Maximum allowed: 45";
+                AddError("cityError", cityError.Text);
             }
             else if (String.IsNullOrWhiteSpace(cityTextBox.Text))
             {
                 cityError.Text = "City is required";
+                AddError("cityError", cityError.Text);
             }
             else
             {
                 cityError.Text = "";
+                RemoveError("cityError");
             }
         }
 
         private void SsnTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ssnTextBox.Text.Length > 9)
+            if (ssnTextBox.Text.Length != 9)
             {
-                ssnError.Text = "Character limit exceeded. Maximum allowed: 9";
+                ssnError.Text = "Enter a valid social security number";
+            } else if (!validSSN.IsMatch(ssnTextBox.Text))
+            {
+                ssnError.Text = "Enter a valid social security number";
             }
             else
             {
@@ -180,12 +201,17 @@ namespace westga_emr.User_Controls
         {
             try
             {
+                ValidateInputs();
+                if(errors.Count > 0)
+                {
+                    throw new Exception("Enter all required values and fix errors before saving");
+                }
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
                 int personId = (patient != null && patient.PersonID > 0) ? patient.PersonID : 0;
                 int addressId = String.IsNullOrWhiteSpace(this.addressId.Text) ? 0 : int.Parse(this.addressId.Text);
-                patientPerson = new Person(personId, "", "",
+                patientPerson = new Person(null, "", "",
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
@@ -225,6 +251,35 @@ namespace westga_emr.User_Controls
             {
                 MessageBox.Show("An error occured" + Environment.NewLine +"Unable to save patient", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void AddError(string key, string value)
+        {
+            if (errors.ContainsKey(key))
+            {
+                errors[key] = value;
+            }
+            else
+            {
+                errors.Add(key, value);
+            }
+        }
+        private void RemoveError(string key)
+        {
+            if (errors.ContainsKey(key))
+            {
+                errors.Remove(key);
+            }
+        }
+
+        private void ValidateInputs()
+        {
+            this.FirstNameTextBox_TextChanged("SUBMIT", EventArgs.Empty);
+            this.LastNameTextBox_TextChanged("SUBMIT", EventArgs.Empty);
+            this.ContactPhoneTextBox_TextChanged("SUBMIT", EventArgs.Empty);
+            this.StreetTextBox_TextChanged("SUBMIT", EventArgs.Empty);
+            this.CityTextBox_TextChanged("SUBMIT", EventArgs.Empty);
+            this.ZipTextBox_TextChanged("SUBMIT", EventArgs.Empty);
         }
     }
 }
