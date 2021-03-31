@@ -113,9 +113,16 @@ namespace westga_emr.Controller
         /// <param name="lastName"></param>
         /// <param name="dateOfBirth"></param>
         /// <returns></returns>
-        public UserDTO SearchPatient(string firstName, string lastName, DateTime dateOfBirth)
+        public List<UserDTO> SearchPatient(string firstName, string lastName, DateTime? dateOfBirth)
         {
-            return personDBSource.SearchPatient(firstName, lastName, dateOfBirth);
+            if (dateOfBirth.HasValue)
+            {
+                return personDBSource.SearchPatient(firstName, lastName, dateOfBirth.Value);
+            } else
+            {
+                return personDBSource.SearchPatient(firstName, lastName, null);
+            }
+            
         }
     }
 }

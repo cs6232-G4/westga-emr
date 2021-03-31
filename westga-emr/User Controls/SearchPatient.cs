@@ -75,11 +75,11 @@ namespace westga_emr.User_Controls
 
         private void LoadPatientDemographics(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && e.ColumnIndex > -1)
-            {
-                PatientDemographics demographics = new PatientDemographics((Model.Person)gridPatients.Rows[e.RowIndex].DataBoundItem);
-                demographics.ShowDialog();
-            }
+            //if (e.RowIndex > -1 && e.ColumnIndex > -1)
+            //{
+            //    PatientDemographics demographics = new PatientDemographics((Model.Person)gridPatients.Rows[e.RowIndex].DataBoundItem);
+            //    demographics.ShowDialog();
+            //}
         }
     }
 }

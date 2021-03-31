@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using westga_emr.Model;
 using westga_emr.DAL;
+using westga_emr.Model.DTO;
+using System;
+using System.Linq;
 
 namespace westga_emr.Controller
 {
@@ -9,10 +12,40 @@ namespace westga_emr.Controller
     /// </summary>
     public class DoctorController
     {
-        /// <see cref="DoctorDAL.GetDoctors"/>
-        public List<Doctor> GetDoctors()
+        
+        private DoctorDAL doctorDBSource;
+        private List<UserDTO> activeDoctors;
+        public DoctorController()
         {
-            return DoctorDAL.GetDoctors();
+            this.doctorDBSource = new DoctorDAL();
+            this.activeDoctors = new List<UserDTO>();
+        }
+       /// <summary>
+       /// Gets list of active doctors
+       /// </summary>
+       /// <returns></returns>
+        public List<UserDTO> GetDoctors()
+        {
+            this.activeDoctors = doctorDBSource.GetActiveDoctors();
+            return activeDoctors;
+        }
+
+        /// <summary>
+        /// Get list of available doctors on a particular date and time
+        /// </summary>
+        /// <param name="appointmentDate"></param>
+        /// <returns></returns>
+        public List<UserDTO> GetAvailableDoctorsOnDate(DateTime appointmentDate)
+        {
+
+            var availableDoctorsId = doctorDBSource.GetAvailableDoctorsForAppointmentDate(appointmentDate);
+            if (activeDoctors.Count <= 0)
+            {
+                activeDoctors = GetDoctors();
+            }
+            var doctorHashSet = new HashSet<int>(availableDoctorsId.Select(x => x.DoctorId));
+
+            return activeDoctors.FindAll(x => doctorHashSet.Contains(x.DoctorId));
         }
     }
 }

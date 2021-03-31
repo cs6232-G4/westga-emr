@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using westga_emr.Model;
 using System.Data.SqlClient;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.DAL
 {
@@ -37,6 +38,76 @@ namespace westga_emr.DAL
                     }
                 }
             }
+            return doctors;
+        }
+
+        public List<UserDTO> GetAvailableDoctorsForAppointmentDate(DateTime appointmentDateTime) 
+        {
+            var availableDoctors = new List<UserDTO>();
+            string selectUserStatement = @"SELECT D.id as DoctorID
+                                        FROM dbo.Person P
+                                        inner join doctor D on  P.id = D.personID
+                                        where D.active = 1
+                                        EXCEPT 
+                                        SELECT doctorID
+                                        from dbo.Appointment
+                                        where appointmentDateTime = @AppointmentDate";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
+                {
+                    if (appointmentDateTime == null)
+                    {
+                        selectCommand.Parameters.AddWithValue("@AppointmentDate", DBNull.Value);
+                    }
+                    else
+                    {
+                        selectCommand.Parameters.AddWithValue("@AppointmentDate", appointmentDateTime);
+                    }
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            UserDTO doctor = new UserDTO();
+                            doctor.DoctorId = (int)reader["DoctorID"];
+                            availableDoctors.Add(doctor);
+                        }
+
+                    }
+                }
+            }
+
+            return availableDoctors;
+        }
+
+        public List<UserDTO> GetActiveDoctors()
+        {
+            var doctors = new List<UserDTO>();
+            string selectUserStatement = @"
+                SELECT CONCAT(P.firstName,' ', P.lastName) AS FullName, D.id as DoctorID
+                FROM Person P 
+                inner join doctor D on  P.id = D.personID
+                WHERE D.active = 1";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            UserDTO doctor = new UserDTO();
+                            doctor.FullName = reader["FullName"].ToString();
+                            doctor.DoctorId = (int)reader["DoctorID"];
+                            doctors.Add(doctor);
+                        }
+
+                    }
+                }
+            }
+
             return doctors;
         }
     }
