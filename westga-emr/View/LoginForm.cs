@@ -72,12 +72,12 @@ namespace westga_emr.View
            
         }
 
-        private void loginButton_Click(object sender, EventArgs e)
+        private void LoginButton_Click(object sender, EventArgs e)
         {
             if (this.ValidateUsernameInput() && this.ValidatePasswordInput())
             {
                 Login();
-            } 
+            }
         }
 
         private void ClearForm()
@@ -90,12 +90,12 @@ namespace westga_emr.View
             this.usernameTextBox.BackColor = Color.White;
         }
 
-        private void clearButton_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             ClearForm();
         }
 
-        private void usernameTextBox_TextChanged(object sender, EventArgs e)
+        private void UsernameTextBox_TextChanged(object sender, EventArgs e)
         {
             this.ValidateUsernameInput();
         }
@@ -119,7 +119,7 @@ namespace westga_emr.View
         }
 
 
-        private void passwordTextBox_TextChanged(object sender, EventArgs e)
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
         {
             this.ValidatePasswordInput();
         }
@@ -152,6 +152,15 @@ namespace westga_emr.View
                 this.passwordErrorLabel.Text = "";
                 this.passwordTextBox.BackColor = Color.White;
                 return true;
+            }
+        }
+
+        private void LoginButton_KeyDown(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                e.Handled = true;
+                LoginButton_Click("ENTER KEY", e);
             }
         }
     }

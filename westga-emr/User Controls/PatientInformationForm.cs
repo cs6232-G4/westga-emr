@@ -35,7 +35,6 @@ namespace westga_emr.User_Controls
         private void PatientInformationForm_Load(object sender, EventArgs e)
         {
             this.dateOfBirthDateTimePicker.MaxDate = DateTime.Now;
-            this.dateOfBirthDateTimePicker.Value = this.dateOfBirthDateTimePicker.MaxDate;
         }
 
         public void PopulateTextBoxes(UserDTO aPatient)
@@ -71,6 +70,8 @@ namespace westga_emr.User_Controls
                 this.updatePatientLabel.Visible = false;
                 newPatientAddressId = null;
                 newPersonId = null;
+                this.dateOfBirthDateTimePicker.Value = this.dateOfBirthDateTimePicker.MaxDate;
+
             }
 
         }
