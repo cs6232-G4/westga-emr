@@ -350,7 +350,7 @@ namespace westga_emr.DAL
         {
             int rowsUpdated;
             String updateStatement = @"UPDATE Patient
-			                            SET active = @active, person = @personID
+			                            SET active = @active, personID = @personID
 			                            WHERE id = @patientID";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
