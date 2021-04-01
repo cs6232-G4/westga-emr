@@ -223,6 +223,30 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
+        /// Inserts a new Patient into the db
+        /// </summary>
+        /// <param name="patient">Patient to insert</param>
+        /// <returns>ID of the newly inserted Patient, or null if the insertion failed</returns>
+        public static int? InsertPatient(Patient patient)
+        {
+            int? id = null;
+            String insertStatement = @"INSERT INTO Patient (personID, active)
+			                            VALUES (@personID, @active)";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@personID", patient.PersonID);
+                    command.Parameters.AddWithValue("@active", patient.Active);
+
+                    id = (int?)command.ExecuteScalar();
+                }
+            }
+            return id;
+        }
+
+        /// <summary>
         /// Creates a new patient in the database, including their address.
         /// Sets patient's username and password to null, regardless of given parameters.
         /// Does NOT check for duplicate entries
@@ -314,6 +338,39 @@ namespace westga_emr.DAL
                 }
             }
             return retValue;
+        }
+
+        /// <summary>
+        /// Updates a patient in the db
+        /// </summary>
+        /// <param name="patient">Patient to update</param>
+        /// <returns>Whether or not the update succeeded</returns>
+        public static bool UpdatePatient(Patient patient)
+        {
+            int rowsUpdated;
+            String updateStatement = @"UPDATE Patient
+			                            SET active = @active, person = @personID
+			                            WHERE id = @patientID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(updateStatement, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@patientID", patient.ID);
+                    command.Parameters.AddWithValue("@personID", patient.PersonID);
+                    command.Parameters.AddWithValue("@active", patient.Active);
+
+                    rowsUpdated = command.ExecuteNonQuery();
+                }
+            }
+            if (rowsUpdated < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

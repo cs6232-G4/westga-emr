@@ -531,5 +531,77 @@ namespace westga_emr.DAL
             }
             return patients[0];
         }
+
+        /// <summary>
+        /// Inserts a new Person into the db
+        /// </summary>
+        /// <param name="person">Person to insert</param>
+        /// <returns>The id of the newly inserted Person, or null if the insert failed</returns>
+        public static int? InsertPerson(Person person)
+        {
+            int? id = null;
+            String insertStatement = @"INSERT INTO Person(username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone)
+			                            VALUES (@username, @password, @firstName, @lastName, @dateOfBirth, @ssn, @gender, @addressID, @contactPhone)";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@username", person.Username);
+                    command.Parameters.AddWithValue("@password", person.Password);
+                    command.Parameters.AddWithValue("@firstName", person.FirstName);
+                    command.Parameters.AddWithValue("@lastName", person.LastName);
+                    command.Parameters.AddWithValue("@dateOfBirth", person.DateOfBirth);
+                    command.Parameters.AddWithValue("@ssn", person.SSN);
+                    command.Parameters.AddWithValue("@gender", person.Gender);
+                    command.Parameters.AddWithValue("@addressID", person.AddressID);
+                    command.Parameters.AddWithValue("@contactPhone", person.ContactPhone);
+
+                    id = (int?)command.ExecuteScalar();
+                }
+            }
+            return id;
+        }
+
+        /// <summary>
+        /// Updates a Person in the db
+        /// </summary>
+        /// <param name="person">Person to update</param>
+        /// <returns>Whether or not the update succeeded</returns>
+        public static bool UpdatePerson(Person person)
+        {
+            int rowsUpdated;
+            String updateStatement = @"UPDATE Person
+			                            SET username = @username, password = @password, firstName = @firstName, lastName = @lastName, dateOfBirth = @dateOfBirth,
+				                            ssn = @ssn, gender = @gender, addressID = @addressID, contactPhone = @contactPhone
+			                            WHERE id = @personID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(updateStatement, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@personID", person.ID);
+                    command.Parameters.AddWithValue("@username", person.Username);
+                    command.Parameters.AddWithValue("@password", person.Password);
+                    command.Parameters.AddWithValue("@firstName", person.FirstName);
+                    command.Parameters.AddWithValue("@lastName", person.LastName);
+                    command.Parameters.AddWithValue("@dateOfBirth", person.DateOfBirth);
+                    command.Parameters.AddWithValue("@ssn", person.SSN);
+                    command.Parameters.AddWithValue("@gender", person.Gender);
+                    command.Parameters.AddWithValue("@addressID", person.AddressID);
+                    command.Parameters.AddWithValue("@contactPhone", person.ContactPhone);
+
+                    rowsUpdated = command.ExecuteNonQuery();
+                }
+            }
+            if (rowsUpdated < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
