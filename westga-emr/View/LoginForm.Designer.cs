@@ -121,7 +121,8 @@ namespace westga_emr.View
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(407, 22);
             this.usernameTextBox.TabIndex = 1;
-            this.usernameTextBox.TextChanged += new System.EventHandler(this.usernameTextBox_TextChanged);
+            this.usernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
+            this.usernameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginButton_KeyDown);
             // 
             // usernameErrorLabel
             // 
@@ -179,7 +180,8 @@ namespace westga_emr.View
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(407, 22);
             this.passwordTextBox.TabIndex = 2;
-            this.passwordTextBox.TextChanged += new System.EventHandler(this.passwordTextBox_TextChanged);
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
+            this.passwordTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginButton_KeyDown);
             // 
             // tableLayoutPanel4
             // 
@@ -211,7 +213,7 @@ namespace westga_emr.View
             this.clearButton.TabIndex = 3;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // loginButton
             // 
@@ -227,7 +229,7 @@ namespace westga_emr.View
             this.loginButton.TabIndex = 4;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = false;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            this.loginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // LoginForm
             // 
@@ -242,6 +244,7 @@ namespace westga_emr.View
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginButton_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
