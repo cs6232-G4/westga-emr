@@ -34,6 +34,10 @@ namespace westga_emr.Model
 		/// <param name="contactPhone_">Person's contact phone number</param>
 		public Person(int? id_, string username_, string password_, string firstName_, string lastName_, DateTime dateOfBirth_, string ssn_, string gender_, int? addressID_, string contactPhone_)
 		{
+			if (id_ < 1 || addressID_ < 1)
+			{
+				throw new ArgumentException("id and addressID cannot be zero or negative");
+			}
 			if (string.IsNullOrWhiteSpace(firstName_) || string.IsNullOrWhiteSpace(lastName_)
 				|| string.IsNullOrWhiteSpace(gender_) || string.IsNullOrWhiteSpace(contactPhone_))
             {

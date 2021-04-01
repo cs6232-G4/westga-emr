@@ -23,6 +23,10 @@ namespace westga_emr.Model
 		/// <param name="reasonForVisit_">The reason for the Appointment's visit</param>
 		public Appointment(long? id_, int? patientID_, int? doctorID_, DateTime appointmentDateTime_, string reasonForVisit_)
 		{
+			if (id_ < 1 || patientID_ < 1 || doctorID_ < 1)
+			{
+				throw new ArgumentException("id, patientID, and doctorID cannot be zero or negative");
+			}
 			if (string.IsNullOrWhiteSpace(reasonForVisit_))
             {
 				throw new ArgumentException("reason for visit cannot be null, empty, or consist only of white space");
