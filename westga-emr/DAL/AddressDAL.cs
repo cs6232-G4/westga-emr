@@ -51,6 +51,7 @@ namespace westga_emr.DAL
         {
             int? id = null;
             String insertStatement = @"INSERT INTO Address(street, city, state, zip)
+                                        OUTPUT inserted.id
 			                            VALUES (@street, @city, @state, @zip)";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {

@@ -532,18 +532,42 @@ namespace westga_emr.DAL
         {
             int? id = null;
             String insertStatement = @"INSERT INTO Person(username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone)
+                                        OUTPUT inserted.id
 			                            VALUES (@username, @password, @firstName, @lastName, @dateOfBirth, @ssn, @gender, @addressID, @contactPhone)";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(insertStatement, connection))
                 {
-                    command.Parameters.AddWithValue("@username", person.Username);
-                    command.Parameters.AddWithValue("@password", person.Password);
+                    if (string.IsNullOrWhiteSpace(person.Username))
+                    {
+                        command.Parameters.AddWithValue("@username", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@username", person.Username);
+                    }
+
+                    if (string.IsNullOrWhiteSpace(person.Password))
+                    {
+                        command.Parameters.AddWithValue("@password", DBNull.Value);
+                    } 
+                    else
+                    {
+                        command.Parameters.AddWithValue("@password", person.Password);
+                    }
+                    if (string.IsNullOrWhiteSpace(person.SSN))
+                    {
+                        command.Parameters.AddWithValue("@ssn", DBNull.Value);
+                    } 
+                    else
+                    {
+                        command.Parameters.AddWithValue("@ssn", person.SSN);
+                    }
+                    
                     command.Parameters.AddWithValue("@firstName", person.FirstName);
                     command.Parameters.AddWithValue("@lastName", person.LastName);
                     command.Parameters.AddWithValue("@dateOfBirth", person.DateOfBirth);
-                    command.Parameters.AddWithValue("@ssn", person.SSN);
                     command.Parameters.AddWithValue("@gender", person.Gender);
                     command.Parameters.AddWithValue("@addressID", person.AddressID);
                     command.Parameters.AddWithValue("@contactPhone", person.ContactPhone);
@@ -572,12 +596,35 @@ namespace westga_emr.DAL
                 {
                     connection.Open();
                     command.Parameters.AddWithValue("@personID", person.ID);
-                    command.Parameters.AddWithValue("@username", person.Username);
-                    command.Parameters.AddWithValue("@password", person.Password);
+                    if (string.IsNullOrWhiteSpace(person.Username))
+                    {
+                        command.Parameters.AddWithValue("@username", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@username", person.Username);
+                    }
+
+                    if (string.IsNullOrWhiteSpace(person.Password))
+                    {
+                        command.Parameters.AddWithValue("@password", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@password", person.Password);
+                    }
+                    if (string.IsNullOrWhiteSpace(person.SSN))
+                    {
+                        command.Parameters.AddWithValue("@ssn", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@ssn", person.SSN);
+                    }
+
                     command.Parameters.AddWithValue("@firstName", person.FirstName);
                     command.Parameters.AddWithValue("@lastName", person.LastName);
                     command.Parameters.AddWithValue("@dateOfBirth", person.DateOfBirth);
-                    command.Parameters.AddWithValue("@ssn", person.SSN);
                     command.Parameters.AddWithValue("@gender", person.Gender);
                     command.Parameters.AddWithValue("@addressID", person.AddressID);
                     command.Parameters.AddWithValue("@contactPhone", person.ContactPhone);

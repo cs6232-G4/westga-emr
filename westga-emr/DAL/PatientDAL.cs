@@ -231,6 +231,7 @@ namespace westga_emr.DAL
         {
             int? id = null;
             String insertStatement = @"INSERT INTO Patient (personID, active)
+                                        OUTPUT inserted.id
 			                            VALUES (@personID, @active)";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
