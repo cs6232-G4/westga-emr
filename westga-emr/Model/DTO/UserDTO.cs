@@ -29,5 +29,7 @@ namespace westga_emr.Model.DTO
         public bool IsActiveAdmin { get; set; }
         public bool IsActiveDoctor { get; set; }
         public bool IsActivePatient { get; set; }
+
+        public string FullName { get; set; }
     }
 }
