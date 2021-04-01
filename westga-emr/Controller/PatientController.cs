@@ -21,18 +21,34 @@ namespace westga_emr.Controller
         /// <see cref="PatientDAL.GetActivePatientsByFirstAndLastName(string, string)"/>
         public List<Person> GetActivePatientsByFirstAndLastName(string firstName, string lastName)
         {
+            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
+            {
+                throw new ArgumentException("first name and last name cannot be null, empty, or consist only of white space");
+            }
             return PatientDAL.GetActivePatientsByFirstAndLastName(firstName, lastName);
         }
 
         /// <see cref="PatientDAL.GetActivePatientsByDoB(DateTime)"/>
         public List<Person> GetActivePatientsByDoB(DateTime dateOfBirth)
         {
+            if (dateOfBirth == null)
+            {
+                throw new ArgumentNullException("date of birth cannot be null");
+            }
             return PatientDAL.GetActivePatientsByDoB(dateOfBirth);
         }
 
         /// <see cref="PatientDAL.GetActivePatientsByDoBAndLastName(string, DateTime)"/>
         public List<Person> GetActivePatientsByDoBAndLastName(string lastName, DateTime dateOfBirth)
         {
+            if (string.IsNullOrWhiteSpace(lastName))
+            {
+                throw new ArgumentException("last name cannot be null, empty, or consist only of white space");
+            }
+            if (dateOfBirth == null)
+            {
+                throw new ArgumentNullException("date of birth cannot be null");
+            }
             return PatientDAL.GetActivePatientsByDoBAndLastName(lastName, dateOfBirth);
         }
 
