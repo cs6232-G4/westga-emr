@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using westga_emr.Model;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.DAL
 {
@@ -48,11 +49,15 @@ namespace westga_emr.DAL
         /// </summary>
         /// <param name="patient">Patient whose Appointments you desire</param>
         /// <returns>List of all Appointments for said patient</returns>
-        public static List<Appointment> GetPatientsAppointments(Patient patient)
+        public static List<AppointmentDTO> GetPatientsAppointments(Patient patient)
         {
-            List<Appointment> appointments = new List<Appointment>();
-            String selectStatement = @"SELECT id, patientID, doctorID, appointmentDateTime, reasonForVisit
+            List<AppointmentDTO> appointments = new List<AppointmentDTO>();
+            String selectStatement = @"SELECT patientID, Person.firstName + Person.lastName as doctorName, appointmentDateTime, reasonForVisit
                                         FROM Appointment
+                                        inner join Doctor
+                                        on Appointment.doctorID = Doctor.id
+										inner join Person
+										on Doctor.personID = Person.id 
                                         WHERE patientID = @patientID";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -62,16 +67,21 @@ namespace westga_emr.DAL
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        int ordID = reader.GetOrdinal("id");
                         int ordPatientID = reader.GetOrdinal("patientID");
-                        int ordDoctorID = reader.GetOrdinal("doctorID");
+                        int ordDoctorName = reader.GetOrdinal("doctorName");
                         int ordApptDateTime = reader.GetOrdinal("appointmentDateTime");
                         int ordReason = reader.GetOrdinal("reasonForVisit");
+
                         while (reader.Read())
                         {
-                            appointments.Add(new Appointment(reader.GetInt32(ordID),
-                                reader.GetInt32(ordPatientID), reader.GetInt32(ordDoctorID),
-                                reader.GetDateTime(ordApptDateTime), reader.GetString(ordReason)));
+                            AppointmentDTO appointmentDTO = new AppointmentDTO
+                            {
+                                PatientID = reader.GetInt32(ordPatientID),
+                                DoctorName = reader.GetString(ordDoctorName),
+                                AppointmentDateTime = reader.GetDateTime(ordApptDateTime),
+                                ReasonForVisit = reader.GetString(ordReason)
+                            };
+                            appointments.Add(appointmentDTO);
                         }
                     }
                 }

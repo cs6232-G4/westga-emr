@@ -1,85 +1,197 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using westga_emr.Controller;
+using westga_emr.Model.DTO;
+using westga_emr.Model;
 
 namespace westga_emr.User_Controls
 {
     /// <summary>
-    /// User Control for searching for patients
+    /// User control to create new appoint for a patient
     /// </summary>
     public partial class SearchPatient : UserControl
     {
-        private readonly PatientController controller;
+        #region Data members
+        private PersonController personController;
+        private AppointmentController appointmentController;
+        private UserDTO patient;
+        private List<UserDTO> patients;
 
+        #endregion
+
+        #region Constructors
         /// <summary>
-        /// Instantiates the User Control
+        /// New appointment constructor
         /// </summary>
         public SearchPatient()
         {
             InitializeComponent();
-            this.controller = new PatientController();
-            this.comboSearchBy.SelectedIndex = 0;
-            this.gridPatients.DataSource = null;
+            personController = new PersonController();
+            appointmentController = new AppointmentController();
+            patient = new UserDTO();
         }
 
-        private void SearchBy_GrayOut(object sender, EventArgs e)
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// The Event handler method for Search patient load
+        /// </summary>
+        private void SearchPatient_Load(object sender, EventArgs e)
         {
-            switch (this.comboSearchBy.SelectedIndex)
+            this.searchErrorLabel.BackColor = Color.White;
+            fnameSearchLabel.Hide();
+            lnameSearchLabel.Hide();
+            dobSearchLabel.Hide();
+            this.firstNameTextBoxSearchInput.Hide();
+            this.lastNameTextBoxSearchInput.Hide();
+            this.dateOfBirthDateTimePickerSearchInput.Hide();
+            this.searchButton.Hide();
+            this.dateOfBirthDateTimePickerSearchInput.MaxDate = DateTime.Now;
+            this.dateOfBirthDateTimePickerSearchInput.Value = this.dateOfBirthDateTimePickerSearchInput.MaxDate;
+            this.appointmentsDataGridView.Visible = false;
+            this.appointmentsDataGridView.DataSource = null;
+        }
+
+        /// <summary>
+        /// The Event handler method for SearchButton Click
+        /// </summary>
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            this.appointmentsDataGridView.Visible = false;
+            this.appointmentsDataGridView.DataSource = null;
+
+            if (searchCriteria.SelectedIndex == 1 &&  (String.IsNullOrWhiteSpace(firstNameTextBoxSearchInput.Text) && String.IsNullOrWhiteSpace(lastNameTextBoxSearchInput.Text)))
             {
-                case 0:
-                    this.txtFirstName.Enabled = true;
-                    this.txtLastName.Enabled = true;
-                    this.pickerDateOfBirth.Enabled = false;
-                    break;
-                case 1:
-                    this.txtFirstName.Enabled = false;
-                    this.txtLastName.Enabled = false;
-                    this.pickerDateOfBirth.Enabled = true;
-                    break;
-                case 2:
-                    this.txtFirstName.Enabled = false;
-                    this.txtLastName.Enabled = true;
-                    this.pickerDateOfBirth.Enabled = true;
-                    break;
-                default:
-                    this.txtFirstName.Enabled = false;
-                    this.txtLastName.Enabled = false;
-                    this.pickerDateOfBirth.Enabled = false;
-                    break;
+                this.searchErrorLabel.Text = "Please enter first and last name to search for a patient.";
+               
+            } else if(searchCriteria.SelectedIndex == 2 && (String.IsNullOrWhiteSpace(lastNameTextBoxSearchInput.Text)))
+            {
+                this.searchErrorLabel.Text = "Please enter last name and date of birth to search for a patient.";
+
+            }else if (searchCriteria.SelectedIndex == 0 && dateOfBirthDateTimePickerSearchInput.Value == null)
+            {
+                this.searchErrorLabel.Text = "Please enter date of birth to search for a patient.";
+            }
+            else
+            {
+                
+                this.searchErrorLabel.Text = "";
+                PatientSearch();
             }
         }
 
-        private void SearchButton_Search(object sender, EventArgs e)
+        /// <summary>
+        /// The helper method for Patient Search
+        /// </summary>
+        private void PatientSearch()
         {
-            switch (this.comboSearchBy.SelectedIndex)
+            try
             {
-                case 0:
-                    this.gridPatients.DataSource = null;
-                    this.gridPatients.DataSource = 
-                        this.controller.GetActivePatientsByFirstAndLastName(this.txtFirstName.Text, this.txtLastName.Text);
-                    break;
-                case 1:
-                    this.gridPatients.DataSource = null;
-                    this.gridPatients.DataSource =
-                        this.controller.GetActivePatientsByDoB(this.pickerDateOfBirth.Value);
-                    break;
-                case 2:
-                    this.gridPatients.DataSource = null;
-                    this.gridPatients.DataSource = 
-                        this.controller.GetActivePatientsByDoBAndLastName(this.txtLastName.Text, this.pickerDateOfBirth.Value);
-                    break;
-                default:
-                    break;
+                patientsDatatGrid.DataSource = null;
+                switch (this.searchCriteria.SelectedIndex)
+                {
+                    case 0:
+                        this.patients = this.personController.SearchPatient("", "", this.dateOfBirthDateTimePickerSearchInput.Value);
+                        break;
+                    case 1:
+                        this.patients = this.personController.SearchPatient(this.firstNameTextBoxSearchInput.Text, this.lastNameTextBoxSearchInput.Text, null);
+                        break;
+                    case 2:
+                        this.patients = this.personController.SearchPatient("", this.lastNameTextBoxSearchInput.Text, this.dateOfBirthDateTimePickerSearchInput.Value);
+                        break;
+                }
+                this.firstNameTextBoxSearchInput.Text = "";
+                this.lastNameTextBoxSearchInput.Text = "";
+                patientsDatatGrid.DataSource = this.patients;
+                if (this.patients.Count <= 0)
+                {
+                    
+                    MessageBox.Show("Patient not found in the system." + Environment.NewLine + "Add add the new Patient before doing patient visit search!",  "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   
+                }
+
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Search error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
+        }
+
+        /// <summary>
+        /// The event handler method for SearchCriteria SelectedIndexChanged
+        /// </summary>
+        private void SearchCriteria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.searchButton.Show();
+            if (searchCriteria.SelectedIndex == 0)
+            {
+                dobSearchLabel.Show();
+                this.dateOfBirthDateTimePickerSearchInput.Show();
+
+                fnameSearchLabel.Hide();
+                lnameSearchLabel.Hide();
+                this.firstNameTextBoxSearchInput.Hide();
+                this.lastNameTextBoxSearchInput.Hide();
+
+            } else if (searchCriteria.SelectedIndex == 1)
+            {
+                fnameSearchLabel.Show();
+                lnameSearchLabel.Show();
+                this.firstNameTextBoxSearchInput.Show();
+                this.lastNameTextBoxSearchInput.Show();
+
+                dobSearchLabel.Hide();
+                this.dateOfBirthDateTimePickerSearchInput.Hide();
+
+            } else if (searchCriteria.SelectedIndex == 2)
+            {
+                lnameSearchLabel.Show();
+                dobSearchLabel.Show();
+                this.dateOfBirthDateTimePickerSearchInput.Show();
+                this.lastNameTextBoxSearchInput.Show();
+
+                fnameSearchLabel.Hide();
+                this.firstNameTextBoxSearchInput.Hide();
+            }
+            else
+            {
+                fnameSearchLabel.Hide();
+                lnameSearchLabel.Hide();
+                dobSearchLabel.Hide();
+                this.dateOfBirthDateTimePickerSearchInput.Hide();
+                this.firstNameTextBoxSearchInput.Hide();
+                this.lastNameTextBoxSearchInput.Hide();
+                this.searchButton.Hide();
             }
         }
 
-        private void LoadPatientDemographics(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// The event handler method for PatientsDatatGrid CellContentClick
+        /// </summary>
+        private void PatientsDatatGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex > -1 && e.ColumnIndex > -1)
-            //{
-            //    PatientDemographics demographics = new PatientDemographics((Model.Person)gridPatients.Rows[e.RowIndex].DataBoundItem);
-            //    demographics.ShowDialog();
-            //}
+            patient = (UserDTO)patientsDatatGrid.Rows[e.RowIndex].DataBoundItem;
+            if (patientsDatatGrid.Columns[e.ColumnIndex].Name == "ViewAppointment")
+            {
+                this.appointmentsDataGridView.Visible = true;
+                this.appointmentsDataGridView.DataSource = null;
+
+                List<AppointmentDTO> appointmentDTO = this.appointmentController.GetPatientsAppointments(new Patient(patient.PatientId, patient.Id, true));
+
+                if (appointmentDTO.Count <= 0)
+                {
+
+                    MessageBox.Show("No Appointments found in the system for the Patient.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+
+                this.appointmentsDataGridView.DataSource = appointmentDTO;
+            }
         }
+
+        #endregion
     }
 }

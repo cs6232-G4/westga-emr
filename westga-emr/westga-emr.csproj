@@ -79,6 +79,7 @@
     <Compile Include="Model\Clinical_Administrator.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Doctor_has_Specialties.cs" />
+    <Compile Include="Model\DTO\AppointmentDTO.cs" />
     <Compile Include="Model\DTO\UserDTO.cs" />
     <Compile Include="Model\Lab_Order.cs" />
     <Compile Include="Model\Lab_Orders_have_Lab_Tests.cs" />
@@ -95,6 +96,12 @@
     </Compile>
     <Compile Include="User Controls\AddNurse.Designer.cs">
       <DependentUpon>AddNurse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\SearchPatient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\SearchPatient.Designer.cs">
+      <DependentUpon>SearchPatient.cs</DependentUpon>
     </Compile>
     <Compile Include="User Controls\NewAppointment.cs">
       <SubType>UserControl</SubType>
@@ -119,12 +126,6 @@
     </Compile>
     <Compile Include="User Controls\Report.Designer.cs">
       <DependentUpon>Report.cs</DependentUpon>
-    </Compile>
-    <Compile Include="User Controls\SearchPatient.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="User Controls\SearchPatient.Designer.cs">
-      <DependentUpon>SearchPatient.cs</DependentUpon>
     </Compile>
     <Compile Include="User Controls\UpcomingAppointments.cs">
       <SubType>UserControl</SubType>
@@ -162,8 +163,13 @@
     <EmbeddedResource Include="User Controls\AddNurse.resx">
       <DependentUpon>AddNurse.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\SearchPatient.resx">
+      <DependentUpon>SearchPatient.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Controls\NewAppointment.resx">
       <DependentUpon>NewAppointment.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\Nurses.resx">
       <DependentUpon>Nurses.cs</DependentUpon>
@@ -173,9 +179,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\Report.resx">
       <DependentUpon>Report.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="User Controls\SearchPatient.resx">
-      <DependentUpon>SearchPatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\UpcomingAppointments.resx">
       <DependentUpon>UpcomingAppointments.cs</DependentUpon>
@@ -190,6 +193,7 @@
       <DependentUpon>PatientInformationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\westga_emr.Helpers.AppointmentHelper.datasource" />
+    <None Include="Properties\DataSources\westga_emr.Model.DTO.AppointmentDTO.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.UserDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
