@@ -41,5 +41,67 @@ namespace westga_emr.DAL
             }
             return addresses;
         }
+
+        /// <summary>
+        /// Inserts an Address into the db
+        /// </summary>
+        /// <param name="address">The Address to insert</param>
+        /// <returns>The id of the inserted Address, or null if it did not go through</returns>
+        public static int? InsertAddress(Address address)
+        {
+            int? id = null;
+            String insertStatement = @"INSERT INTO Address(street, city, state, zip)
+                                        OUTPUT inserted.id
+			                            VALUES (@street, @city, @state, @zip)";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@street", address.Street);
+                    command.Parameters.AddWithValue("@city", address.City);
+                    command.Parameters.AddWithValue("@state", address.State);
+                    command.Parameters.AddWithValue("@zip", address.Zip);
+
+                    id = (int?) command.ExecuteScalar();
+                }
+            }
+            return id;
+        }
+
+        /// <summary>
+        /// Updates an Address in the db
+        /// </summary>
+        /// <param name="address">The Address to update</param>
+        /// <returns>Whether or not the update succeeded</returns>
+        public static bool UpdateAddress(Address address)
+        {
+            int rowsUpdated;
+            String updateStatement = @"UPDATE Address
+			                            SET street = @street, city = @city, state = @state, zip = @zip
+			                            WHERE id = @addressID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(updateStatement, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@addressID", address.ID);
+                    command.Parameters.AddWithValue("@street", address.Street);
+                    command.Parameters.AddWithValue("@city", address.City);
+                    command.Parameters.AddWithValue("@state", address.State);
+                    command.Parameters.AddWithValue("@zip", address.Zip);
+
+                    rowsUpdated = command.ExecuteNonQuery();
+                }
+            }
+            if (rowsUpdated < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

@@ -24,6 +24,10 @@ namespace westga_emr.Model
         /// <param name="zip">Zip code of the Address</param>
         public Address(int? id, string street, string city, string state, string zip)
         {
+            if (id < 1)
+            {
+                throw new ArgumentException("id cannot be zero or negative");
+            }
             if (string.IsNullOrWhiteSpace(street) || string.IsNullOrWhiteSpace(city)
                 || string.IsNullOrWhiteSpace(state) || string.IsNullOrWhiteSpace(zip))
             {
@@ -37,10 +41,6 @@ namespace westga_emr.Model
             if (state.Length != 2 || !state.All(char.IsLetter))
             {
                 throw new ArgumentException("state must be 2 characters in length and consist only of letters");
-            }
-            if((id != null) && id < 0)
-            {
-                throw new ArgumentException("id cannot be less than 0");
             }
             this.ID = id;
             this.Street = street;

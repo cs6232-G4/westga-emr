@@ -34,16 +34,16 @@ namespace westga_emr.Model
 		/// <param name="contactPhone_">Person's contact phone number</param>
 		public Person(int? id_, string username_, string password_, string firstName_, string lastName_, DateTime dateOfBirth_, string ssn_, string gender_, int? addressID_, string contactPhone_)
 		{
+			if (id_ < 1 || addressID_ < 1)
+			{
+				throw new ArgumentException("id and addressID cannot be zero or negative");
+			}
 			if (string.IsNullOrWhiteSpace(firstName_) || string.IsNullOrWhiteSpace(lastName_)
 				|| string.IsNullOrWhiteSpace(gender_) || string.IsNullOrWhiteSpace(contactPhone_))
             {
 				throw new ArgumentException("first name, last name, gender, and contact phone cannot be " +
 					"null, empty, or consist only of white space");
             }
-			if((addressID_ != null) && addressID_ < 1)
-            {
-				throw new ArgumentException("addressID must be greater than zero");
-			}
 			if (dateOfBirth_ == null)
             {
 				throw new ArgumentNullException("dateOfBirth cannot be null");
@@ -52,7 +52,7 @@ namespace westga_emr.Model
             {
 				throw new ArgumentException("contact phone must be 10 characters in length and consist only of numbers");
             }
-			if (!string.IsNullOrWhiteSpace(ssn_) && (ssn_.Length != 9 || !ssn_.All(char.IsDigit)))
+			if (ssn_ != null && (ssn_.Length != 9 || !ssn_.All(char.IsDigit)))
             {
 				throw new ArgumentException("If an ssn exists, it must be 9 characters in length and consist only of numbers");
             }
