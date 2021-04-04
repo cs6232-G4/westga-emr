@@ -158,7 +158,7 @@ namespace westga_emr.View
             this.newAppointmentTabPage.Location = new System.Drawing.Point(4, 25);
             this.newAppointmentTabPage.Name = "newAppointmentTabPage";
             this.newAppointmentTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.newAppointmentTabPage.Size = new System.Drawing.Size(916, 749);
+            this.newAppointmentTabPage.Size = new System.Drawing.Size(899, 749);
             this.newAppointmentTabPage.TabIndex = 0;
             this.newAppointmentTabPage.Text = "New Appointment";
             // 
@@ -201,7 +201,7 @@ namespace westga_emr.View
             this.upcomingAppointmentsTabPage.Location = new System.Drawing.Point(4, 25);
             this.upcomingAppointmentsTabPage.Name = "upcomingAppointmentsTabPage";
             this.upcomingAppointmentsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.upcomingAppointmentsTabPage.Size = new System.Drawing.Size(916, 749);
+            this.upcomingAppointmentsTabPage.Size = new System.Drawing.Size(899, 749);
             this.upcomingAppointmentsTabPage.TabIndex = 2;
             this.upcomingAppointmentsTabPage.Text = "Upcoming Appointments";
             this.upcomingAppointmentsTabPage.UseVisualStyleBackColor = true;
