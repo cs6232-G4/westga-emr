@@ -118,7 +118,7 @@ namespace westga_emr.User_Controls
         {
             if (contactPhoneTextBox.Text.Length != 10)
             {
-                contactPhoneError.Text = "Character limit exceeded. Maximum allowed: 10";
+                contactPhoneError.Text = "Phone number should be 10 digits";
                 AddError("contactPhoneError", contactPhoneError.Text);
             }
             else if (String.IsNullOrWhiteSpace(contactPhoneTextBox.Text))
@@ -262,11 +262,12 @@ namespace westga_emr.User_Controls
             {
                 ClearInputs();
                 MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.ParentForm.DialogResult = DialogResult.OK;
             }
             else if(result && !isNewPatient)
             {
                 MessageBox.Show("Patient information updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                this.ParentForm.DialogResult = DialogResult.OK;
             }
             else
             {
