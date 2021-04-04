@@ -493,7 +493,8 @@ namespace westga_emr.User_Controls
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(150, 71);
             this.label5.TabIndex = 1;
-            this.label5.Text = "SSN*:";
+            this.label5.Text = "SSN:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // ssnTextBox
             // 

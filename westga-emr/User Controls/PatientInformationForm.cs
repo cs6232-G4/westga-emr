@@ -220,7 +220,7 @@ namespace westga_emr.User_Controls
 
                 if (isNewPatient)
                 {
-                    patientPerson = new Person(newPersonId, "", "",
+                    patientPerson = new Person(newPersonId, null, null,
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
@@ -241,7 +241,7 @@ namespace westga_emr.User_Controls
                       gender.Value,
                       patientPerson.AddressID,
                       contactPhoneTextBox.Text);
-                    patientAddress = new Address(newPatientAddressId, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
+                    patientAddress = new Address(patientPerson.AddressID, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
                     result = patientController.UpdatePatient(patientPerson, patientAddress, patient);
                 }
                 ShowMessageBox(result);
@@ -258,10 +258,15 @@ namespace westga_emr.User_Controls
 
         private void ShowMessageBox(bool result)
         {
-            if (result)
+            if (result && isNewPatient)
             {
                 ClearInputs();
                 MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if(result && !isNewPatient)
+            {
+                MessageBox.Show("Patient information updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             else
             {
@@ -314,6 +319,9 @@ namespace westga_emr.User_Controls
             this.zipCodeError.Text = "";
             this.ssnTextBox.Text = "";
             this.ssnError.Text = "";
+            this.dateOfBirthDateTimePicker.Value = this.dateOfBirthDateTimePicker.MaxDate;
+            this.genderComboBox.SelectedIndex = 0;
+            this.stateComboBox.SelectedIndex = 0;
         }
 
         private void ClearButton_Click(object sender, EventArgs e)

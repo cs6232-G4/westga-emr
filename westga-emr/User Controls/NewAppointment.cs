@@ -94,8 +94,6 @@ namespace westga_emr.User_Controls
                         this.patients = this.personController.SearchPatient("", this.lastNameTextBoxSearchInput.Text, this.dateOfBirthDateTimePickerSearchInput.Value);
                         break;
                 }
-                this.firstNameTextBoxSearchInput.Text = "";
-                this.lastNameTextBoxSearchInput.Text = "";
                 patientsDatatGrid.DataSource = this.patients;
                 if (this.patients.Count <= 0)
                 {
@@ -265,16 +263,20 @@ namespace westga_emr.User_Controls
             using (Form patientFormDialog = new PatientInformationDialog(new UserDTO()))
             {
                 DialogResult result = patientFormDialog.ShowDialog();
-                if (result == DialogResult.OK)
+                if (result == DialogResult.OK || result == DialogResult.Cancel)
                 {
                     this.RefreshDataGrid();
-                }
+                } 
             }
         }
 
         private void RefreshDataGrid()
         {
             patientsDatatGrid.DataSource = null;
+            if(searchCriteria.SelectedIndex >= 0)
+            {
+                this.SearchPatient();
+            }
            
         }
 
@@ -294,7 +296,7 @@ namespace westga_emr.User_Controls
                 using (Form patientFormDialog = new PatientInformationDialog(patient))
                 {
                     DialogResult result = patientFormDialog.ShowDialog();
-                    if (result == DialogResult.OK)
+                    if (result == DialogResult.OK || result == DialogResult.Cancel)
                     {
                         this.RefreshDataGrid();
                     }
