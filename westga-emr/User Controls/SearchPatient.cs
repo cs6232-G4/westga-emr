@@ -213,7 +213,6 @@ namespace westga_emr.User_Controls
                 this.visitDataGridView.Visible = true;
                 this.visitDataGridView.DataSource = null;
 
-
                 List <VisitDTO> visitDTO = this.visitController.GetVisitByAppointment(
                                     new Appointment(appointmentDTO.AppointmentID, appointmentDTO.PatientID, appointmentDTO.DoctorID,
                                     appointmentDTO.AppointmentDateTime, appointmentDTO.ReasonForVisit));
