@@ -66,8 +66,7 @@ namespace westga_emr.User_Controls
         /// </summary>
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            this.patientsDatatGrid.Visible = false;
-            this.patientsDatatGrid.DataSource = null;
+            
             this.appointmentsDataGridView.Visible = false;
             this.appointmentsDataGridView.DataSource = null;
             this.visitDataGridView.Visible = false;
