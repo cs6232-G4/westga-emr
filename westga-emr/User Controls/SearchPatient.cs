@@ -58,8 +58,6 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDateTimePickerSearchInput.Value = this.dateOfBirthDateTimePickerSearchInput.MaxDate;
             this.appointmentsDataGridView.Visible = false;
             this.appointmentsDataGridView.DataSource = null;
-            //this.visitDataGridView.Visible = false;
-           // this.visitDataGridView.DataSource = null;
         }
 
         /// <summary>
@@ -69,8 +67,6 @@ namespace westga_emr.User_Controls
         {
             this.appointmentsDataGridView.Visible = false;
             this.appointmentsDataGridView.DataSource = null;
-            //this.visitDataGridView.Visible = false;
-            //this.visitDataGridView.DataSource = null;
 
             if (searchCriteria.SelectedIndex == 1 &&  (String.IsNullOrWhiteSpace(firstNameTextBoxSearchInput.Text) && String.IsNullOrWhiteSpace(lastNameTextBoxSearchInput.Text)))
             {
