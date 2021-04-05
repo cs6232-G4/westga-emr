@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using westga_emr.Model;
 using System.Data.SqlClient;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.DAL
 {
@@ -69,13 +70,15 @@ namespace westga_emr.DAL
         /// Gets a Visit by its Appointment
         /// </summary>
         /// <returns>The Visit</returns>
-        public static Visit GetVisitByAppointment(Appointment appointment)
+        public static List<VisitDTO> GetVisitByAppointment(Appointment appointment)
         {
-            Visit visit = null;
-            String selectStatement = @"SELECT id, appointmentID, nurseID, visitDateTime, 
+            List<VisitDTO> visits = new List<VisitDTO>();
+            String selectStatement = @"SELECT CAST( Visit.id as INT)  as visitID,   CAST(appointmentID AS INT) appointmentID,  PERSON.firstName +' ' + PERSON.lastName AS nurse , visitDateTime, 
 	                                    initialDiagnosis, weight, systolicPressure, diastolicPressure, 
 	                                    bodyTemperature, pulse, symptoms, finalDiagnosis
                                     FROM Visit
+                                    JOIN NURSE ON VISIT.nurseID = NURSE.id
+								    JOIN PERSON ON NURSE.personID = PERSON.ID
                                     WHERE appointmentID = @appointmentID";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -85,9 +88,9 @@ namespace westga_emr.DAL
                     command.Parameters.AddWithValue("@appointmentID", appointment.ID);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        int ordID = reader.GetOrdinal("id");
+                        int ordVisitID = reader.GetOrdinal("visitID");
                         int ordApptID = reader.GetOrdinal("appointmentID");
-                        int ordNurseID = reader.GetOrdinal("nurseID");
+                        int ordNurse = reader.GetOrdinal("nurse");
                         int ordVisitDateTime = reader.GetOrdinal("visitDateTime");
                         int ordInitialDiagnosis = reader.GetOrdinal("initialDiagnosis");
                         int ordWeight = reader.GetOrdinal("weight");
@@ -109,17 +112,28 @@ namespace westga_emr.DAL
                             {
                                 final = reader.GetString(ordFinalDiagnosis);
                             }
-                            new Visit(reader.GetInt32(ordID),
-                                reader.GetInt32(ordApptID), reader.GetInt32(ordNurseID),
-                                reader.GetDateTime(ordVisitDateTime), reader.GetString(ordInitialDiagnosis),
-                                reader.GetDecimal(ordWeight), reader.GetInt32(ordSystolicPressure),
-                                reader.GetInt32(ordDiastolicPressure), reader.GetDecimal(ordBodyTemperature),
-                                reader.GetInt32(ordPulse), symptoms, final);
+                            VisitDTO visitDTO = new VisitDTO
+                            {
+                                ID = reader.GetInt32(ordVisitID),
+                                AppointmentID = reader.GetInt32(ordApptID),
+                                Nurse = reader.GetString(ordNurse),
+                                VisitDateTime = reader.GetDateTime(ordVisitDateTime),
+                                InitialDiagnosis = reader.GetString(ordInitialDiagnosis),
+                                Weight = reader.GetDecimal(ordWeight),
+                                SystolicPressure = reader.GetInt32(ordSystolicPressure),
+                                DiastolicPressure = reader.GetInt32(ordDiastolicPressure),
+                                BodyTemperature = reader.GetDecimal(ordBodyTemperature),
+                                Pulse = reader.GetInt32(ordPulse),
+                                Symptoms = symptoms,
+                                FinalDiagnosis = final
+                            };
+
+                            visits.Add(visitDTO);
                         }
                     }
                 }
             }
-            return visit;
+            return visits;
         }
 
         /// <summary>

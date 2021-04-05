@@ -2,6 +2,7 @@
 using westga_emr.Model;
 using westga_emr.DAL;
 using System;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.Controller
 {
@@ -17,7 +18,7 @@ namespace westga_emr.Controller
         }
 
         /// <see cref="VisitDAL.GetVisitByAppointment(Appointment)"/>
-        public Visit GetVisitByAppointment(Appointment appointment)
+        public List<VisitDTO> GetVisitByAppointment(Appointment appointment)
         {
             if (appointment == null)
             {

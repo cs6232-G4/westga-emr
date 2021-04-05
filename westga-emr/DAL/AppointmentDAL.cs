@@ -52,7 +52,7 @@ namespace westga_emr.DAL
         public static List<AppointmentDTO> GetPatientsAppointments(Patient patient)
         {
             List<AppointmentDTO> appointments = new List<AppointmentDTO>();
-            String selectStatement = @"SELECT patientID, Person.firstName + Person.lastName as doctorName, appointmentDateTime, reasonForVisit
+            String selectStatement = @"SELECT  CAST(Appointment.id AS INT)   as aptID , patientID, doctorID , Person.firstName + Person.lastName as doctorName, appointmentDateTime, reasonForVisit
                                         FROM Appointment
                                         inner join Doctor
                                         on Appointment.doctorID = Doctor.id
@@ -67,7 +67,9 @@ namespace westga_emr.DAL
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
+                        int ordAptID = reader.GetOrdinal("aptID");
                         int ordPatientID = reader.GetOrdinal("patientID");
+                        int ordDoctorID = reader.GetOrdinal("doctorID");
                         int ordDoctorName = reader.GetOrdinal("doctorName");
                         int ordApptDateTime = reader.GetOrdinal("appointmentDateTime");
                         int ordReason = reader.GetOrdinal("reasonForVisit");
@@ -76,7 +78,9 @@ namespace westga_emr.DAL
                         {
                             AppointmentDTO appointmentDTO = new AppointmentDTO
                             {
+                                AppointmentID = reader.GetInt32(ordAptID),
                                 PatientID = reader.GetInt32(ordPatientID),
+                                DoctorID =  reader.GetInt32(ordPatientID),
                                 DoctorName = reader.GetString(ordDoctorName),
                                 AppointmentDateTime = reader.GetDateTime(ordApptDateTime),
                                 ReasonForVisit = reader.GetString(ordReason)

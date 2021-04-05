@@ -11,7 +11,9 @@ namespace westga_emr.Model.DTO
     /// </summary>
     public class AppointmentDTO
     {
+        public int? AppointmentID { get; set; }
         public int? PatientID { get; set; }
+        public int? DoctorID { get; set; }
         public string DoctorName { get; set; }
         public DateTime AppointmentDateTime { get; set; }
         public string ReasonForVisit { get; set; }

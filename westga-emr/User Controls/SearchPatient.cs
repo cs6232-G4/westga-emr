@@ -16,7 +16,9 @@ namespace westga_emr.User_Controls
         #region Data members
         private PersonController personController;
         private AppointmentController appointmentController;
+        private VisitController visitController;
         private UserDTO patient;
+        private AppointmentDTO appointmentDTO;
         private List<UserDTO> patients;
 
         #endregion
@@ -30,7 +32,9 @@ namespace westga_emr.User_Controls
             InitializeComponent();
             personController = new PersonController();
             appointmentController = new AppointmentController();
+            visitController = new VisitController();
             patient = new UserDTO();
+            appointmentDTO = new AppointmentDTO();
         }
 
         #endregion
@@ -53,6 +57,8 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDateTimePickerSearchInput.Value = this.dateOfBirthDateTimePickerSearchInput.MaxDate;
             this.appointmentsDataGridView.Visible = false;
             this.appointmentsDataGridView.DataSource = null;
+            this.visitDataGridView.Visible = false;
+            this.visitDataGridView.DataSource = null;
         }
 
         /// <summary>
@@ -62,6 +68,8 @@ namespace westga_emr.User_Controls
         {
             this.appointmentsDataGridView.Visible = false;
             this.appointmentsDataGridView.DataSource = null;
+            this.visitDataGridView.Visible = false;
+            this.visitDataGridView.DataSource = null;
 
             if (searchCriteria.SelectedIndex == 1 &&  (String.IsNullOrWhiteSpace(firstNameTextBoxSearchInput.Text) && String.IsNullOrWhiteSpace(lastNameTextBoxSearchInput.Text)))
             {
@@ -190,8 +198,32 @@ namespace westga_emr.User_Controls
 
                 this.appointmentsDataGridView.DataSource = appointmentDTO;
             }
+          
         }
 
+
+        /// <summary>
+        /// The event handler method for AppointmentDatatGrid CellContentClick
+        /// </summary>
+        private void AppointmentDatatGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            appointmentDTO = (AppointmentDTO)appointmentsDataGridView.Rows[e.RowIndex].DataBoundItem;
+            if (appointmentsDataGridView.Columns[e.ColumnIndex].Name == "ViewVisit")
+            {
+                this.visitDataGridView.Visible = true;
+                this.visitDataGridView.DataSource = null;
+
+                List <VisitDTO> visitDTO = this.visitController.GetVisitByAppointment(
+                                    new Appointment(appointmentDTO.AppointmentID, appointmentDTO.PatientID, appointmentDTO.DoctorID,
+                                    appointmentDTO.AppointmentDateTime, appointmentDTO.ReasonForVisit));
+                if (visitDTO.Count <= 0)
+                {
+                    MessageBox.Show("No Visits found in the system for the Patient.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                this.visitDataGridView.DataSource = visitDTO;
+            }
+        }
         #endregion
     }
 }

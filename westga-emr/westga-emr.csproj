@@ -81,6 +81,7 @@
     <Compile Include="Model\Doctor_has_Specialties.cs" />
     <Compile Include="Model\DTO\AppointmentDTO.cs" />
     <Compile Include="Model\DTO\UserDTO.cs" />
+    <Compile Include="Model\DTO\VisitDTO.cs" />
     <Compile Include="Model\Lab_Order.cs" />
     <Compile Include="Model\Lab_Orders_have_Lab_Tests.cs" />
     <Compile Include="Model\Lab_Test.cs" />
@@ -195,6 +196,7 @@
     <None Include="Properties\DataSources\westga_emr.Helpers.AppointmentHelper.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.AppointmentDTO.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.UserDTO.datasource" />
+    <None Include="Properties\DataSources\westga_emr.Model.DTO.VisitDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
