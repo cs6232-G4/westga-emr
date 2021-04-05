@@ -261,25 +261,30 @@ namespace westga_emr.User_Controls
             // EditButton
             // 
             this.EditButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.EditButton.BackColor = System.Drawing.Color.Green;
+            this.EditButton.ForeColor = System.Drawing.Color.White;
             this.EditButton.Location = new System.Drawing.Point(641, 3);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(116, 25);
             this.EditButton.TabIndex = 23;
             this.EditButton.Text = "Edit Visit";
-            this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.UseVisualStyleBackColor = false;
             this.EditButton.Visible = false;
             this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // createButton
             // 
             this.createButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.createButton.BackColor = System.Drawing.Color.Green;
+            this.createButton.ForeColor = System.Drawing.Color.White;
             this.createButton.Location = new System.Drawing.Point(372, 3);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(116, 25);
             this.createButton.TabIndex = 22;
             this.createButton.Text = "Create Visit";
-            this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.UseVisualStyleBackColor = false;
             this.createButton.Visible = false;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
             // closeButton
             // 
@@ -411,7 +416,7 @@ namespace westga_emr.User_Controls
             this.messageLabel.AutoSize = true;
             this.messageLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.messageLabel.ForeColor = System.Drawing.Color.Red;
-            this.messageLabel.Location = new System.Drawing.Point(23, 340);
+            this.messageLabel.Location = new System.Drawing.Point(286, 351);
             this.messageLabel.Name = "messageLabel";
             this.messageLabel.Size = new System.Drawing.Size(144, 17);
             this.messageLabel.TabIndex = 29;

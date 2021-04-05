@@ -52,6 +52,7 @@ namespace westga_emr.User_Controls
                 if((visitDTO is null || visitDTO.Count <= 0) 
                     && (appointmentDTO.AppointmentDateTime > DateTime.Now))
                 {
+                    this.visitLabel.Text = "Create "+ this.visitLabel.Text;
                     UserDTO user = personController.GetCurrentUser();
 
                     this.createButton.Visible = true;
@@ -60,11 +61,13 @@ namespace westga_emr.User_Controls
                 {
                     if (appointmentDTO.AppointmentDateTime > DateTime.Now)
                     {
+                        this.visitLabel.Text = "Edit " + this.visitLabel.Text;
                         this.PopulateTextBoxesForVisit(visitDTO);
                         this.EditButton.Visible = true;
                     }
                     else
                     {
+                        this.visitLabel.Text = "View " + this.visitLabel.Text;
                         this.PopulateTextBoxesForVisit(visitDTO);
                         this.DisableAllFormFields();
                         this.messageLabel.Text = "Visit Appointment is backdated." + Environment.NewLine + "Hence can not be edited!!";
@@ -178,8 +181,12 @@ namespace westga_emr.User_Controls
             }
         }
 
+
         #endregion
 
+        private void createButton_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
