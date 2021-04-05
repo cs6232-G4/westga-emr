@@ -39,27 +39,27 @@ namespace westga_emr.View
             this.panel1.Controls.Add(this.patientInformationUserControl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(886, 609);
+            this.panel1.Size = new System.Drawing.Size(1181, 753);
             this.panel1.TabIndex = 0;
             // 
             // patientInformationUserControl
             // 
             this.patientInformationUserControl.BackColor = System.Drawing.Color.SkyBlue;
-            this.patientInformationUserControl.Location = new System.Drawing.Point(9, 10);
-            this.patientInformationUserControl.Margin = new System.Windows.Forms.Padding(2);
+            this.patientInformationUserControl.Location = new System.Drawing.Point(12, 11);
+            this.patientInformationUserControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.patientInformationUserControl.Name = "patientInformationUserControl";
-            this.patientInformationUserControl.Size = new System.Drawing.Size(850, 632);
+            this.patientInformationUserControl.Size = new System.Drawing.Size(1157, 731);
             this.patientInformationUserControl.TabIndex = 0;
             // 
             // PatientInformationDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 609);
+            this.ClientSize = new System.Drawing.Size(1181, 753);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PatientInformationDialog";

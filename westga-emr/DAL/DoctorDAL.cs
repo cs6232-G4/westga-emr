@@ -110,5 +110,34 @@ namespace westga_emr.DAL
 
             return doctors;
         }
+
+        public UserDTO GetDoctorById(int doctorId)
+        {
+            var doctor = new UserDTO();
+            string selectUserStatement = @"
+                SELECT CONCAT(P.firstName,' ', P.lastName) AS FullName, D.id as DoctorID
+                FROM Person P 
+                inner join doctor D on  P.id = D.personID
+                WHERE D.active = 1 and D.id = @DoctorID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@DoctorID", doctorId);
+                    connection.Open();
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            doctor.FullName = reader["FullName"].ToString();
+                            doctor.DoctorId = (int)reader["DoctorID"];
+                        }
+
+                    }
+                }
+            }
+
+            return doctor;
+        }
     }
 }

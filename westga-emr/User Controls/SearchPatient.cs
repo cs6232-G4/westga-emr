@@ -212,7 +212,28 @@ namespace westga_emr.User_Controls
             else if (appointmentsDataGridView.Columns[e.ColumnIndex].Name == "EditAppointment")
             {
                 var _datediff = appointmentDTO.AppointmentDateTime - DateTime.Now;
+                if(_datediff.Days >= 1)
+                {
+                    using (Form editAppointmentDialog = new AppointmentInformationDialog(appointmentDTO, patient))
+                    {
+                        DialogResult result = editAppointmentDialog.ShowDialog();
+                        if (result == DialogResult.OK || result == DialogResult.Cancel)
+                        {
+                            this.RefreshDataGrid();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Appointments less than 24 hours cannot be edited.", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                }
             }
+        }
+
+        private void RefreshDataGrid()
+        {
+            
         }
         #endregion
     }

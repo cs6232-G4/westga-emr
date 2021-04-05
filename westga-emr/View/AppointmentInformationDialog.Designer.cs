@@ -34,7 +34,7 @@ namespace westga_emr.View
             this.appointmentInformationSection = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.clearButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.updateAppointmentButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
@@ -158,7 +158,7 @@ namespace westga_emr.View
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.clearButton, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.cancelButton, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.updateAppointmentButton, 1, 0);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 65);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
@@ -169,17 +169,18 @@ namespace westga_emr.View
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1171, 54);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
-            // clearButton
+            // cancelButton
             // 
-            this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearButton.Location = new System.Drawing.Point(481, 4);
-            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(100, 46);
-            this.clearButton.TabIndex = 19;
-            this.clearButton.Text = "Clear";
-            this.clearButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Location = new System.Drawing.Point(481, 4);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(100, 46);
+            this.cancelButton.TabIndex = 19;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // updateAppointmentButton
             // 
@@ -194,6 +195,7 @@ namespace westga_emr.View
             this.updateAppointmentButton.TabIndex = 20;
             this.updateAppointmentButton.Text = "Update";
             this.updateAppointmentButton.UseVisualStyleBackColor = false;
+            this.updateAppointmentButton.Click += new System.EventHandler(this.UpdateAppointmentButton_Click);
             // 
             // tableLayoutPanel12
             // 
@@ -320,6 +322,7 @@ namespace westga_emr.View
             this.appointmentDate.Size = new System.Drawing.Size(297, 22);
             this.appointmentDate.TabIndex = 14;
             this.appointmentDate.Value = new System.DateTime(2021, 3, 21, 0, 0, 0, 0);
+            this.appointmentDate.ValueChanged += new System.EventHandler(this.AppointmentDate_ValueChanged);
             // 
             // appointmentTime
             // 
@@ -336,6 +339,7 @@ namespace westga_emr.View
             this.appointmentTime.Size = new System.Drawing.Size(297, 24);
             this.appointmentTime.TabIndex = 15;
             this.appointmentTime.ValueMember = "Value";
+            this.appointmentTime.SelectedIndexChanged += new System.EventHandler(this.AppointmentTime_SelectedIndexChanged);
             // 
             // appointmentVisitReason
             // 
@@ -469,6 +473,7 @@ namespace westga_emr.View
             this.Name = "AppointmentInformationDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Appointment Information";
+            this.Load += new System.EventHandler(this.AppointmentInformationDialog_Load);
             this.appointmentInformationSection.ResumeLayout(false);
             this.appointmentInformationSection.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -506,7 +511,7 @@ namespace westga_emr.View
         private System.Windows.Forms.RichTextBox appointmentVisitReason;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button updateAppointmentButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;

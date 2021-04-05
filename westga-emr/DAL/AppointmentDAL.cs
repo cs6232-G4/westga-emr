@@ -81,7 +81,7 @@ namespace westga_emr.DAL
                             {
                                 AppointmentID = reader.GetInt32(ordAptID),
                                 PatientID = reader.GetInt32(ordPatientID),
-                                DoctorID =  reader.GetInt32(ordPatientID),
+                                DoctorID =  reader.GetInt32(ordDoctorID),
                                 DoctorName = reader.GetString(ordDoctorName),
                                 AppointmentDateTime = reader.GetDateTime(ordApptDateTime),
                                 ReasonForVisit = reader.GetString(ordReason)

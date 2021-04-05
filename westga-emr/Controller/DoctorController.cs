@@ -47,5 +47,15 @@ namespace westga_emr.Controller
 
             return activeDoctors.FindAll(x => doctorHashSet.Contains(x.DoctorId));
         }
+
+        /// <summary>
+        /// Gets a doctor by id from the database
+        /// </summary>
+        /// <param name="doctorId"></param>
+        /// <returns></returns>
+        public UserDTO GetDoctorById(int doctorId)
+        {
+            return doctorDBSource.GetDoctorById(doctorId);
+        }
     }
 }
