@@ -90,10 +90,9 @@ namespace westga_emr.User_Controls
             dateOfBirthLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dateOfBirthLabel.AutoSize = true;
-            dateOfBirthLabel.Location = new System.Drawing.Point(705, 13);
-            dateOfBirthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            dateOfBirthLabel.Location = new System.Drawing.Point(529, 12);
             dateOfBirthLabel.Name = "dateOfBirthLabel";
-            dateOfBirthLabel.Size = new System.Drawing.Size(344, 17);
+            dateOfBirthLabel.Size = new System.Drawing.Size(258, 13);
             dateOfBirthLabel.TabIndex = 5;
             dateOfBirthLabel.Text = "Date Of Birth*";
             // 
@@ -102,10 +101,9 @@ namespace westga_emr.User_Controls
             lastNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             lastNameLabel.AutoSize = true;
-            lastNameLabel.Location = new System.Drawing.Point(354, 13);
-            lastNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lastNameLabel.Location = new System.Drawing.Point(266, 12);
             lastNameLabel.Name = "lastNameLabel";
-            lastNameLabel.Size = new System.Drawing.Size(343, 17);
+            lastNameLabel.Size = new System.Drawing.Size(257, 13);
             lastNameLabel.TabIndex = 5;
             lastNameLabel.Text = "Last Name*";
             // 
@@ -114,10 +112,9 @@ namespace westga_emr.User_Controls
             firstNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             firstNameLabel.AutoSize = true;
-            firstNameLabel.Location = new System.Drawing.Point(4, 13);
-            firstNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            firstNameLabel.Location = new System.Drawing.Point(3, 12);
             firstNameLabel.Name = "firstNameLabel";
-            firstNameLabel.Size = new System.Drawing.Size(342, 17);
+            firstNameLabel.Size = new System.Drawing.Size(257, 13);
             firstNameLabel.TabIndex = 5;
             firstNameLabel.Text = "First Name*";
             // 
@@ -126,10 +123,9 @@ namespace westga_emr.User_Controls
             streetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             streetLabel.AutoSize = true;
-            streetLabel.Location = new System.Drawing.Point(705, 7);
-            streetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            streetLabel.Location = new System.Drawing.Point(529, 7);
             streetLabel.Name = "streetLabel";
-            streetLabel.Size = new System.Drawing.Size(344, 17);
+            streetLabel.Size = new System.Drawing.Size(258, 13);
             streetLabel.TabIndex = 6;
             streetLabel.Text = "Street*";
             // 
@@ -138,10 +134,9 @@ namespace westga_emr.User_Controls
             genderLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             genderLabel.AutoSize = true;
-            genderLabel.Location = new System.Drawing.Point(354, 7);
-            genderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            genderLabel.Location = new System.Drawing.Point(266, 7);
             genderLabel.Name = "genderLabel";
-            genderLabel.Size = new System.Drawing.Size(343, 17);
+            genderLabel.Size = new System.Drawing.Size(257, 13);
             genderLabel.TabIndex = 6;
             genderLabel.Text = "Gender*";
             // 
@@ -150,10 +145,9 @@ namespace westga_emr.User_Controls
             contactPhoneLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             contactPhoneLabel.AutoSize = true;
-            contactPhoneLabel.Location = new System.Drawing.Point(4, 7);
-            contactPhoneLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            contactPhoneLabel.Location = new System.Drawing.Point(3, 7);
             contactPhoneLabel.Name = "contactPhoneLabel";
-            contactPhoneLabel.Size = new System.Drawing.Size(342, 17);
+            contactPhoneLabel.Size = new System.Drawing.Size(257, 13);
             contactPhoneLabel.TabIndex = 6;
             contactPhoneLabel.Text = "Contact Phone*";
             // 
@@ -162,10 +156,9 @@ namespace westga_emr.User_Controls
             cityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             cityLabel.AutoSize = true;
-            cityLabel.Location = new System.Drawing.Point(4, 7);
-            cityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            cityLabel.Location = new System.Drawing.Point(3, 7);
             cityLabel.Name = "cityLabel";
-            cityLabel.Size = new System.Drawing.Size(342, 17);
+            cityLabel.Size = new System.Drawing.Size(257, 13);
             cityLabel.TabIndex = 7;
             cityLabel.Text = "City*";
             // 
@@ -174,10 +167,9 @@ namespace westga_emr.User_Controls
             zipLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             zipLabel.AutoSize = true;
-            zipLabel.Location = new System.Drawing.Point(705, 7);
-            zipLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            zipLabel.Location = new System.Drawing.Point(529, 7);
             zipLabel.Name = "zipLabel";
-            zipLabel.Size = new System.Drawing.Size(344, 17);
+            zipLabel.Size = new System.Drawing.Size(258, 13);
             zipLabel.TabIndex = 7;
             zipLabel.Text = "Zip*";
             // 
@@ -186,10 +178,9 @@ namespace westga_emr.User_Controls
             stateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             stateLabel.AutoSize = true;
-            stateLabel.Location = new System.Drawing.Point(354, 7);
-            stateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            stateLabel.Location = new System.Drawing.Point(266, 7);
             stateLabel.Name = "stateLabel";
-            stateLabel.Size = new System.Drawing.Size(343, 17);
+            stateLabel.Size = new System.Drawing.Size(257, 13);
             stateLabel.TabIndex = 7;
             stateLabel.Text = "State*";
             // 
@@ -208,44 +199,40 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel5.Controls.Add(this.firstnameError, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.lastNameError, 1, 2);
             this.tableLayoutPanel5.Controls.Add(this.dobError, 2, 2);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(31, 74);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(23, 60);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1053, 123);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(790, 100);
             this.tableLayoutPanel5.TabIndex = 5;
             // 
             // dateOfBirthDateTimePicker
             // 
             this.dateOfBirthDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateOfBirthDateTimePicker.Location = new System.Drawing.Point(705, 49);
-            this.dateOfBirthDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
+            this.dateOfBirthDateTimePicker.Location = new System.Drawing.Point(529, 40);
             this.dateOfBirthDateTimePicker.MaxDate = new System.DateTime(2021, 3, 21, 7, 5, 30, 0);
             this.dateOfBirthDateTimePicker.Name = "dateOfBirthDateTimePicker";
-            this.dateOfBirthDateTimePicker.Size = new System.Drawing.Size(344, 22);
+            this.dateOfBirthDateTimePicker.Size = new System.Drawing.Size(258, 20);
             this.dateOfBirthDateTimePicker.TabIndex = 7;
             this.dateOfBirthDateTimePicker.Value = new System.DateTime(2021, 3, 21, 0, 0, 0, 0);
             // 
             // lastNameTextBox
             // 
             this.lastNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lastNameTextBox.Location = new System.Drawing.Point(354, 49);
-            this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.lastNameTextBox.Location = new System.Drawing.Point(266, 40);
             this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(343, 22);
+            this.lastNameTextBox.Size = new System.Drawing.Size(257, 20);
             this.lastNameTextBox.TabIndex = 6;
             this.lastNameTextBox.TextChanged += new System.EventHandler(this.LastNameTextBox_TextChanged);
             // 
             // firstNameTextBox
             // 
             this.firstNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.firstNameTextBox.Location = new System.Drawing.Point(4, 49);
-            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.firstNameTextBox.Location = new System.Drawing.Point(3, 40);
             this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(342, 22);
+            this.firstNameTextBox.Size = new System.Drawing.Size(257, 20);
             this.firstNameTextBox.TabIndex = 5;
             this.firstNameTextBox.TextChanged += new System.EventHandler(this.FirstNameTextBox_TextChanged);
             // 
@@ -256,10 +243,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.firstnameError.AutoSize = true;
             this.firstnameError.ForeColor = System.Drawing.Color.Red;
-            this.firstnameError.Location = new System.Drawing.Point(4, 91);
-            this.firstnameError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.firstnameError.Location = new System.Drawing.Point(3, 75);
             this.firstnameError.Name = "firstnameError";
-            this.firstnameError.Size = new System.Drawing.Size(342, 32);
+            this.firstnameError.Size = new System.Drawing.Size(257, 25);
             this.firstnameError.TabIndex = 7;
             // 
             // lastNameError
@@ -269,10 +255,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lastNameError.AutoSize = true;
             this.lastNameError.ForeColor = System.Drawing.Color.Red;
-            this.lastNameError.Location = new System.Drawing.Point(354, 91);
-            this.lastNameError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lastNameError.Location = new System.Drawing.Point(266, 75);
             this.lastNameError.Name = "lastNameError";
-            this.lastNameError.Size = new System.Drawing.Size(343, 32);
+            this.lastNameError.Size = new System.Drawing.Size(257, 25);
             this.lastNameError.TabIndex = 8;
             // 
             // dobError
@@ -282,10 +267,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dobError.AutoSize = true;
             this.dobError.ForeColor = System.Drawing.Color.Red;
-            this.dobError.Location = new System.Drawing.Point(705, 91);
-            this.dobError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.dobError.Location = new System.Drawing.Point(529, 75);
             this.dobError.Name = "dobError";
-            this.dobError.Size = new System.Drawing.Size(344, 32);
+            this.dobError.Size = new System.Drawing.Size(258, 25);
             this.dobError.TabIndex = 9;
             // 
             // tableLayoutPanel3
@@ -303,23 +287,21 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel3.Controls.Add(this.contactPhoneError, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.genderError, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.streetError, 2, 2);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(31, 205);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(23, 167);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1053, 123);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(790, 100);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // streetTextBox
             // 
             this.streetTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.streetTextBox.Location = new System.Drawing.Point(705, 49);
-            this.streetTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.streetTextBox.Location = new System.Drawing.Point(529, 40);
             this.streetTextBox.Name = "streetTextBox";
-            this.streetTextBox.Size = new System.Drawing.Size(344, 22);
+            this.streetTextBox.Size = new System.Drawing.Size(258, 20);
             this.streetTextBox.TabIndex = 10;
             this.streetTextBox.TextChanged += new System.EventHandler(this.StreetTextBox_TextChanged);
             // 
@@ -329,20 +311,18 @@ namespace westga_emr.User_Controls
             this.genderComboBox.DisplayMember = "Title";
             this.genderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.genderComboBox.FormattingEnabled = true;
-            this.genderComboBox.Location = new System.Drawing.Point(354, 48);
-            this.genderComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.genderComboBox.Location = new System.Drawing.Point(266, 39);
             this.genderComboBox.Name = "genderComboBox";
-            this.genderComboBox.Size = new System.Drawing.Size(343, 24);
+            this.genderComboBox.Size = new System.Drawing.Size(257, 21);
             this.genderComboBox.TabIndex = 9;
             this.genderComboBox.ValueMember = "Value";
             // 
             // contactPhoneTextBox
             // 
             this.contactPhoneTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.contactPhoneTextBox.Location = new System.Drawing.Point(4, 49);
-            this.contactPhoneTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.contactPhoneTextBox.Location = new System.Drawing.Point(3, 40);
             this.contactPhoneTextBox.Name = "contactPhoneTextBox";
-            this.contactPhoneTextBox.Size = new System.Drawing.Size(342, 22);
+            this.contactPhoneTextBox.Size = new System.Drawing.Size(257, 20);
             this.contactPhoneTextBox.TabIndex = 8;
             this.contactPhoneTextBox.TextChanged += new System.EventHandler(this.ContactPhoneTextBox_TextChanged);
             // 
@@ -353,10 +333,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.contactPhoneError.AutoSize = true;
             this.contactPhoneError.ForeColor = System.Drawing.Color.Red;
-            this.contactPhoneError.Location = new System.Drawing.Point(4, 97);
-            this.contactPhoneError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.contactPhoneError.Location = new System.Drawing.Point(3, 80);
             this.contactPhoneError.Name = "contactPhoneError";
-            this.contactPhoneError.Size = new System.Drawing.Size(342, 26);
+            this.contactPhoneError.Size = new System.Drawing.Size(257, 20);
             this.contactPhoneError.TabIndex = 8;
             // 
             // genderError
@@ -366,10 +345,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.genderError.AutoSize = true;
             this.genderError.ForeColor = System.Drawing.Color.Red;
-            this.genderError.Location = new System.Drawing.Point(354, 97);
-            this.genderError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.genderError.Location = new System.Drawing.Point(266, 80);
             this.genderError.Name = "genderError";
-            this.genderError.Size = new System.Drawing.Size(343, 26);
+            this.genderError.Size = new System.Drawing.Size(257, 20);
             this.genderError.TabIndex = 9;
             // 
             // streetError
@@ -379,10 +357,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.streetError.AutoSize = true;
             this.streetError.ForeColor = System.Drawing.Color.Red;
-            this.streetError.Location = new System.Drawing.Point(705, 97);
-            this.streetError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.streetError.Location = new System.Drawing.Point(529, 80);
             this.streetError.Name = "streetError";
-            this.streetError.Size = new System.Drawing.Size(344, 26);
+            this.streetError.Size = new System.Drawing.Size(258, 20);
             this.streetError.TabIndex = 10;
             // 
             // tableLayoutPanel4
@@ -400,14 +377,13 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel4.Controls.Add(this.cityError, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.stateError, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.zipCodeError, 2, 2);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(31, 336);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(23, 273);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1053, 123);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(790, 100);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
             // stateComboBox
@@ -416,30 +392,27 @@ namespace westga_emr.User_Controls
             this.stateComboBox.DisplayMember = "Title";
             this.stateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stateComboBox.FormattingEnabled = true;
-            this.stateComboBox.Location = new System.Drawing.Point(354, 48);
-            this.stateComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.stateComboBox.Location = new System.Drawing.Point(266, 39);
             this.stateComboBox.Name = "stateComboBox";
-            this.stateComboBox.Size = new System.Drawing.Size(343, 24);
+            this.stateComboBox.Size = new System.Drawing.Size(257, 21);
             this.stateComboBox.TabIndex = 12;
             this.stateComboBox.ValueMember = "Value";
             // 
             // zipTextBox
             // 
             this.zipTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.zipTextBox.Location = new System.Drawing.Point(705, 49);
-            this.zipTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.zipTextBox.Location = new System.Drawing.Point(529, 40);
             this.zipTextBox.Name = "zipTextBox";
-            this.zipTextBox.Size = new System.Drawing.Size(344, 22);
+            this.zipTextBox.Size = new System.Drawing.Size(258, 20);
             this.zipTextBox.TabIndex = 13;
             this.zipTextBox.TextChanged += new System.EventHandler(this.ZipTextBox_TextChanged);
             // 
             // cityTextBox
             // 
             this.cityTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cityTextBox.Location = new System.Drawing.Point(4, 49);
-            this.cityTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cityTextBox.Location = new System.Drawing.Point(3, 40);
             this.cityTextBox.Name = "cityTextBox";
-            this.cityTextBox.Size = new System.Drawing.Size(342, 22);
+            this.cityTextBox.Size = new System.Drawing.Size(257, 20);
             this.cityTextBox.TabIndex = 11;
             this.cityTextBox.TextChanged += new System.EventHandler(this.CityTextBox_TextChanged);
             // 
@@ -450,10 +423,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cityError.AutoSize = true;
             this.cityError.ForeColor = System.Drawing.Color.Red;
-            this.cityError.Location = new System.Drawing.Point(4, 97);
-            this.cityError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.cityError.Location = new System.Drawing.Point(3, 80);
             this.cityError.Name = "cityError";
-            this.cityError.Size = new System.Drawing.Size(342, 26);
+            this.cityError.Size = new System.Drawing.Size(257, 20);
             this.cityError.TabIndex = 9;
             // 
             // stateError
@@ -463,10 +435,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stateError.AutoSize = true;
             this.stateError.ForeColor = System.Drawing.Color.Red;
-            this.stateError.Location = new System.Drawing.Point(354, 97);
-            this.stateError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.stateError.Location = new System.Drawing.Point(266, 80);
             this.stateError.Name = "stateError";
-            this.stateError.Size = new System.Drawing.Size(343, 26);
+            this.stateError.Size = new System.Drawing.Size(257, 20);
             this.stateError.TabIndex = 10;
             // 
             // zipCodeError
@@ -476,10 +447,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.zipCodeError.AutoSize = true;
             this.zipCodeError.ForeColor = System.Drawing.Color.Red;
-            this.zipCodeError.Location = new System.Drawing.Point(705, 97);
-            this.zipCodeError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.zipCodeError.Location = new System.Drawing.Point(529, 80);
             this.zipCodeError.Name = "zipCodeError";
-            this.zipCodeError.Size = new System.Drawing.Size(344, 26);
+            this.zipCodeError.Size = new System.Drawing.Size(258, 20);
             this.zipCodeError.TabIndex = 11;
             // 
             // label5
@@ -488,10 +458,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 0);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(3, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 71);
+            this.label5.Size = new System.Drawing.Size(113, 58);
             this.label5.TabIndex = 1;
             this.label5.Text = "SSN:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -501,10 +470,9 @@ namespace westga_emr.User_Controls
             this.ssnTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ssnTextBox.Location = new System.Drawing.Point(162, 4);
-            this.ssnTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ssnTextBox.Location = new System.Drawing.Point(122, 3);
             this.ssnTextBox.Name = "ssnTextBox";
-            this.ssnTextBox.Size = new System.Drawing.Size(357, 22);
+            this.ssnTextBox.Size = new System.Drawing.Size(267, 20);
             this.ssnTextBox.TabIndex = 18;
             this.ssnTextBox.TextChanged += new System.EventHandler(this.SsnTextBox_TextChanged);
             // 
@@ -516,22 +484,20 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel9.Controls.Add(this.clearButton, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.submitButton, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 578);
-            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 469);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 61F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(1133, 61);
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(850, 50);
             this.tableLayoutPanel9.TabIndex = 10;
             // 
             // clearButton
             // 
             this.clearButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.clearButton.Location = new System.Drawing.Point(462, 8);
-            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
+            this.clearButton.Location = new System.Drawing.Point(347, 6);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(100, 45);
+            this.clearButton.Size = new System.Drawing.Size(75, 37);
             this.clearButton.TabIndex = 19;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -542,10 +508,9 @@ namespace westga_emr.User_Controls
             this.submitButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.submitButton.BackColor = System.Drawing.Color.Green;
             this.submitButton.ForeColor = System.Drawing.Color.White;
-            this.submitButton.Location = new System.Drawing.Point(570, 8);
-            this.submitButton.Margin = new System.Windows.Forms.Padding(4);
+            this.submitButton.Location = new System.Drawing.Point(428, 6);
             this.submitButton.Name = "submitButton";
-            this.submitButton.Size = new System.Drawing.Size(100, 45);
+            this.submitButton.Size = new System.Drawing.Size(75, 37);
             this.submitButton.TabIndex = 20;
             this.submitButton.Text = "Save";
             this.submitButton.UseVisualStyleBackColor = false;
@@ -555,9 +520,10 @@ namespace westga_emr.User_Controls
             // 
             this.addNewPatientLabel.AutoSize = true;
             this.addNewPatientLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addNewPatientLabel.Location = new System.Drawing.Point(504, 20);
+            this.addNewPatientLabel.Location = new System.Drawing.Point(378, 16);
+            this.addNewPatientLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.addNewPatientLabel.Name = "addNewPatientLabel";
-            this.addNewPatientLabel.Size = new System.Drawing.Size(157, 25);
+            this.addNewPatientLabel.Size = new System.Drawing.Size(127, 20);
             this.addNewPatientLabel.TabIndex = 11;
             this.addNewPatientLabel.Text = "Add New Patient";
             this.addNewPatientLabel.Visible = false;
@@ -566,9 +532,10 @@ namespace westga_emr.User_Controls
             // 
             this.updatePatientLabel.AutoSize = true;
             this.updatePatientLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updatePatientLabel.Location = new System.Drawing.Point(504, 20);
+            this.updatePatientLabel.Location = new System.Drawing.Point(378, 16);
+            this.updatePatientLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.updatePatientLabel.Name = "updatePatientLabel";
-            this.updatePatientLabel.Size = new System.Drawing.Size(140, 25);
+            this.updatePatientLabel.Size = new System.Drawing.Size(116, 20);
             this.updatePatientLabel.TabIndex = 12;
             this.updatePatientLabel.Text = "Update Patient";
             this.updatePatientLabel.Visible = false;
@@ -582,11 +549,12 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.ssnTextBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ssnError, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(31, 466);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 379);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1053, 71);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(790, 58);
             this.tableLayoutPanel1.TabIndex = 19;
             // 
             // ssnError
@@ -596,23 +564,25 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ssnError.AutoSize = true;
             this.ssnError.ForeColor = System.Drawing.Color.Red;
-            this.ssnError.Location = new System.Drawing.Point(526, 0);
+            this.ssnError.Location = new System.Drawing.Point(394, 0);
+            this.ssnError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ssnError.Name = "ssnError";
-            this.ssnError.Size = new System.Drawing.Size(524, 71);
+            this.ssnError.Size = new System.Drawing.Size(394, 58);
             this.ssnError.TabIndex = 19;
             // 
             // addressId
             // 
             this.addressId.AutoSize = true;
-            this.addressId.Location = new System.Drawing.Point(35, 20);
+            this.addressId.Location = new System.Drawing.Point(26, 16);
+            this.addressId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.addressId.Name = "addressId";
-            this.addressId.Size = new System.Drawing.Size(0, 17);
+            this.addressId.Size = new System.Drawing.Size(0, 13);
             this.addressId.TabIndex = 20;
             this.addressId.Visible = false;
             // 
             // PatientInformationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.Controls.Add(this.addressId);
@@ -623,8 +593,9 @@ namespace westga_emr.User_Controls
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel5);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PatientInformationForm";
-            this.Size = new System.Drawing.Size(1133, 639);
+            this.Size = new System.Drawing.Size(850, 519);
             this.Load += new System.EventHandler(this.PatientInformationForm_Load);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();

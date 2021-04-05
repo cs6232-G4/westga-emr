@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using westga_emr.Controller;
 using westga_emr.Model.DTO;
 using westga_emr.Model;
+using westga_emr.View;
 
 namespace westga_emr.User_Controls
 {
@@ -57,8 +58,6 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDateTimePickerSearchInput.Value = this.dateOfBirthDateTimePickerSearchInput.MaxDate;
             this.appointmentsDataGridView.Visible = false;
             this.appointmentsDataGridView.DataSource = null;
-            this.visitDataGridView.Visible = false;
-            this.visitDataGridView.DataSource = null;
         }
 
         /// <summary>
@@ -68,8 +67,6 @@ namespace westga_emr.User_Controls
         {
             this.appointmentsDataGridView.Visible = false;
             this.appointmentsDataGridView.DataSource = null;
-            this.visitDataGridView.Visible = false;
-            this.visitDataGridView.DataSource = null;
 
             if (searchCriteria.SelectedIndex == 1 &&  (String.IsNullOrWhiteSpace(firstNameTextBoxSearchInput.Text) && String.IsNullOrWhiteSpace(lastNameTextBoxSearchInput.Text)))
             {
@@ -201,7 +198,6 @@ namespace westga_emr.User_Controls
           
         }
 
-
         /// <summary>
         /// The event handler method for AppointmentDatatGrid CellContentClick
         /// </summary>
@@ -210,21 +206,12 @@ namespace westga_emr.User_Controls
             appointmentDTO = (AppointmentDTO)appointmentsDataGridView.Rows[e.RowIndex].DataBoundItem;
             if (appointmentsDataGridView.Columns[e.ColumnIndex].Name == "ViewVisit")
             {
-                this.visitDataGridView.Visible = true;
-                this.visitDataGridView.DataSource = null;
-
-                List<VisitDTO> visitDTO = this.visitController.GetVisitByAppointment(
-                                    new Appointment(appointmentDTO.AppointmentID, appointmentDTO.PatientID, appointmentDTO.DoctorID,
-                                    appointmentDTO.AppointmentDateTime, appointmentDTO.ReasonForVisit));
-                if (visitDTO.Count <= 0)
-                {
-                    MessageBox.Show("No Visits found in the system for the Patient.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                this.visitDataGridView.DataSource = visitDTO;
-            } else if (appointmentsDataGridView.Columns[e.ColumnIndex].Name == "EditAppointment")
+                Form appointmmentVisitFormDialog = new AppointmentVisitDialog(appointmentDTO);
+                DialogResult result = appointmmentVisitFormDialog.ShowDialog();
+            }
+            else if (appointmentsDataGridView.Columns[e.ColumnIndex].Name == "EditAppointment")
             {
-               var _datediff = appointmentDTO.AppointmentDateTime - DateTime.Now;
+                var _datediff = appointmentDTO.AppointmentDateTime - DateTime.Now;
             }
         }
         #endregion
