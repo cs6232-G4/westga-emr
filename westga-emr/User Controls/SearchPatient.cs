@@ -233,7 +233,17 @@ namespace westga_emr.User_Controls
 
         private void RefreshDataGrid()
         {
-            
+            this.appointmentsDataGridView.DataSource = null;
+            List<AppointmentDTO> appointmentDTO = this.appointmentController.GetPatientsAppointments(new Patient(patient.PatientId, patient.Id, true));
+
+            if (appointmentDTO.Count <= 0)
+            {
+
+                MessageBox.Show("No Appointments found in the system for the Patient.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+            this.appointmentsDataGridView.DataSource = appointmentDTO;
         }
         #endregion
     }

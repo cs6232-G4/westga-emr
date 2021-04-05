@@ -59,7 +59,7 @@ namespace westga_emr.DAL
 										inner join Person
 										on Doctor.personID = Person.id 
                                         WHERE patientID = @patientID 
-                                        order by appointmentDateTime desc";
+                                        order by appointmentDateTime";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 using (SqlCommand command = new SqlCommand(selectStatement, connection))
