@@ -11,6 +11,8 @@ namespace westga_emr.User_Controls
     {
         #region Data members
         private VisitController visitController;
+        private PersonController personController;
+        private AppointmentDTO appointment;
         #endregion
 
         #region Constructors
@@ -21,6 +23,8 @@ namespace westga_emr.User_Controls
         {
             InitializeComponent();
             visitController = new VisitController();
+            personController = new PersonController();
+            appointment = new AppointmentDTO();
         }
         #endregion
         #region Methods
@@ -29,32 +33,45 @@ namespace westga_emr.User_Controls
         /// </summary>
         public void populateTextBoxes(AppointmentDTO appointmentDTO)
         {
+            /**
+             * 1.Chcek if the VisitDTO is empty or null and Appintment date is today or future dated 
+             *                  -> display visit form with create feature
+             * 2.Check of visit is Non Empty and 
+             *          a. Appotinment date is today or after 
+             *                      --> Edit form 
+             *          else
+             *          b.Appoitnemtn date is back dated then display error message.
+             **/
             try
             {
+                appointment = appointmentDTO;
                 List<VisitDTO> visitDTO = this.visitController.GetVisitByAppointment(
                                     new Appointment(appointmentDTO.AppointmentID, appointmentDTO.PatientID, appointmentDTO.DoctorID,
                                     appointmentDTO.AppointmentDateTime, appointmentDTO.ReasonForVisit));
-                this.nurseTextBox.Text = visitDTO[0].Nurse;
-                this.nurseTextBox.Enabled = false;
-                this.initialDiagnosticTextBox.Text = visitDTO[0].InitialDiagnosis;
-                this.initialDiagnosticTextBox.Enabled = false;
-                this.visitDateTextBox.Text = visitDTO[0].VisitDateTime.ToString();
-                this.visitDateTextBox.Enabled = false;
-                this.weightTextBox.Text = visitDTO[0].Weight.ToString();
-                this.weightTextBox.Enabled = false;
-                this.systolicPressureTextBox.Text = visitDTO[0].SystolicPressure.ToString();
-                this.systolicPressureTextBox.Enabled = false;
-                this.dialosticPressureTextBox.Text = visitDTO[0].DiastolicPressure.ToString();
-                this.dialosticPressureTextBox.Enabled = false;
-                this.bodyTemperatureTextBox.Text = visitDTO[0].BodyTemperature.ToString();
-                this.bodyTemperatureTextBox.Enabled = false;
-                this.pulseTextBox.Text = visitDTO[0].Pulse.ToString();
-                this.pulseTextBox.Enabled = false;
-                this.symptomsTextBox.Text = visitDTO[0].Symptoms;
-                this.symptomsTextBox.Enabled = false;
-                this.finalDiagnosticTextBox.Text = visitDTO[0].FinalDiagnosis;
-                this.finalDiagnosticTextBox.Enabled = false;
-                this.ParentForm.DialogResult = DialogResult.OK;
+
+                if((visitDTO is null || visitDTO.Count <= 0) 
+                    && (appointmentDTO.AppointmentDateTime > DateTime.Now))
+                {
+                    UserDTO user = personController.GetCurrentUser();
+
+                    this.createButton.Visible = true;
+                }
+                else if(visitDTO.Count > 0)
+                {
+                    if (appointmentDTO.AppointmentDateTime > DateTime.Now)
+                    {
+                        this.PopulateTextBoxesForVisit(visitDTO);
+                        this.EditButton.Visible = true;
+                    }
+                    else
+                    {
+                        this.PopulateTextBoxesForVisit(visitDTO);
+                        this.DisableAllFormFields();
+                        this.messageLabel.Text = "Visit Appointment is backdated." + Environment.NewLine + "Hence can not be edited!!";
+                        this.messageLabel.Visible = true;
+                    }
+                }
+                
             }
             catch(Exception ex)
             {
@@ -65,12 +82,104 @@ namespace westga_emr.User_Controls
         }
 
         /// <summary>
+        /// The method to disable text fields
+        /// </summary>
+        private void DisableAllFormFields()
+        {
+            this.nurseTextBox.Enabled = false;
+            this.initialDiagnosticTextBox.Enabled = false;
+            this.visitDateTextBox.Enabled = false;
+            this.weightTextBox.Enabled = false;
+            this.systolicPressureTextBox.Enabled = false;
+            this.dialosticPressureTextBox.Enabled = false;
+            this.bodyTemperatureTextBox.Enabled = false;
+            this.pulseTextBox.Enabled = false;
+            this.symptomsTextBox.Enabled = false;
+            this.finalDiagnosticTextBox.Enabled = false;
+        }
+
+        /// <summary>
+        /// The helper method to populate TextBoxes
+        /// </summary>
+        private void PopulateTextBoxesForVisit(List<VisitDTO> visitDTO)
+        {
+            this.nurseTextBox.Text = visitDTO[0].Nurse;
+            this.initialDiagnosticTextBox.Text = visitDTO[0].InitialDiagnosis;
+            this.visitDateTextBox.Text = visitDTO[0].VisitDateTime.ToString();
+            this.weightTextBox.Text = visitDTO[0].Weight.ToString();
+            this.systolicPressureTextBox.Text = visitDTO[0].SystolicPressure.ToString();
+            this.dialosticPressureTextBox.Text = visitDTO[0].DiastolicPressure.ToString();
+            this.bodyTemperatureTextBox.Text = visitDTO[0].BodyTemperature.ToString();
+            this.pulseTextBox.Text = visitDTO[0].Pulse.ToString();
+            this.symptomsTextBox.Text = visitDTO[0].Symptoms;
+            this.finalDiagnosticTextBox.Text = visitDTO[0].FinalDiagnosis;
+            this.ParentForm.DialogResult = DialogResult.OK;
+        }
+
+        /// <summary>
         /// The handlers to closeButton Click
         /// </summary>
-        private void closeButton_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
             this.ParentForm.DialogResult = DialogResult.Cancel;
         }
+
+
+        /// <summary>
+        /// The handlers to EditButton Click
+        /// </summary>
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var appointmentID = appointment.AppointmentID.ToString();
+                var initialDiagnistic = this.initialDiagnosticTextBox.Text.Trim();
+                var weight = decimal.Parse(this.weightTextBox.Text.Trim());
+                var systolicPressure = int.Parse(this.systolicPressureTextBox.Text.Trim());
+                var diastolicPressure = int.Parse(this.dialosticPressureTextBox.Text.Trim());
+                var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
+                var pulse = int.Parse(this.pulseTextBox.Text.Trim());
+                var symptoms = this.symptomsTextBox.Text.Trim();
+                var finalDiagnosis = this.finalDiagnosticTextBox.Text.Trim();
+
+                if (weight < 0 || systolicPressure < 0 || diastolicPressure < 0 || bodyTemperature < 0
+                    && pulse < 0)
+                {
+                    this.messageLabel.Text = "Invalid Input Data inconsistent!!";
+                    this.messageLabel.Visible = true;
+                }
+                else
+                {
+                    
+                        Visit visit = new Visit(long.Parse(appointmentID),
+                                                                        initialDiagnistic, weight, systolicPressure,
+                                                                       diastolicPressure, bodyTemperature,
+                                                                       pulse, symptoms, finalDiagnosis);
+                        bool isVisitUpdateSuccesful = this.visitController.UpdateVisit(visit);
+
+                        if (isVisitUpdateSuccesful)
+                        {
+                            this.messageLabel.Text = "Incident Update Successfully!!";
+                            this.messageLabel.Visible = true;
+                        }
+                        else
+                        {
+                            this.messageLabel.Text = "Input Data inconsistent!!";
+                            this.messageLabel.Visible = true;
+                        }
+                }
+            }
+            catch(Exception ex)
+            {
+                this.messageLabel.Text = "Input Data inconsistent." + Environment.NewLine +
+                                        "Please verify all data entered for the input fields and try again!!";
+                var message = ex.Message;
+                this.messageLabel.Visible = true;
+            }
+        }
+
         #endregion
+
+
     }
 }
