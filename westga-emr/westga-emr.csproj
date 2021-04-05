@@ -134,6 +134,12 @@
     <Compile Include="User Controls\UpcomingAppointments.Designer.cs">
       <DependentUpon>UpcomingAppointments.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\AppointmentInformationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AppointmentInformationDialog.Designer.cs">
+      <DependentUpon>AppointmentInformationDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\UpcomingAppointments.resx">
       <DependentUpon>UpcomingAppointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AppointmentInformationDialog.resx">
+      <DependentUpon>AppointmentInformationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

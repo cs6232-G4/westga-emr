@@ -52,7 +52,7 @@ namespace westga_emr.DAL
         public static List<AppointmentDTO> GetPatientsAppointments(Patient patient)
         {
             List<AppointmentDTO> appointments = new List<AppointmentDTO>();
-            String selectStatement = @"SELECT  CAST(Appointment.id AS INT)   as aptID , patientID, doctorID , Person.firstName + Person.lastName as doctorName, appointmentDateTime, reasonForVisit
+            String selectStatement = @"SELECT  CAST(Appointment.id AS INT)   as aptID , patientID, doctorID , CONCAT(Person.firstName,' ', Person.lastName) as doctorName, appointmentDateTime, reasonForVisit
                                         FROM Appointment
                                         inner join Doctor
                                         on Appointment.doctorID = Doctor.id
