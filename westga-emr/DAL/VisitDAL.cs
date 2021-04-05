@@ -79,8 +79,7 @@ namespace westga_emr.DAL
                                     FROM Visit
                                     JOIN NURSE ON VISIT.nurseID = NURSE.id
 								    JOIN PERSON ON NURSE.personID = PERSON.ID
-                                    WHERE appointmentID = @appointmentID
-                                    order by visitDateTime desc ";
+                                    WHERE appointmentID = @appointmentID";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 using (SqlCommand command = new SqlCommand(selectStatement, connection))
