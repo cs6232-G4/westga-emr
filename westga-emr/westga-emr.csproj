@@ -98,6 +98,12 @@
     <Compile Include="User Controls\AddNurse.Designer.cs">
       <DependentUpon>AddNurse.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Controls\AppointmentVisitUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\AppointmentVisitUserControl.Designer.cs">
+      <DependentUpon>AppointmentVisitUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Controls\SearchPatient.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -134,6 +140,12 @@
     <Compile Include="User Controls\UpcomingAppointments.Designer.cs">
       <DependentUpon>UpcomingAppointments.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\AppointmentVisitDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AppointmentVisitDialog.Designer.cs">
+      <DependentUpon>AppointmentVisitDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +176,9 @@
     <EmbeddedResource Include="User Controls\AddNurse.resx">
       <DependentUpon>AddNurse.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\AppointmentVisitUserControl.resx">
+      <DependentUpon>AppointmentVisitUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Controls\SearchPatient.resx">
       <DependentUpon>SearchPatient.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -183,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\UpcomingAppointments.resx">
       <DependentUpon>UpcomingAppointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AppointmentVisitDialog.resx">
+      <DependentUpon>AppointmentVisitDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
