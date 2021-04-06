@@ -56,6 +56,7 @@ namespace westga_emr.User_Controls
             this.appointmentDate.MinDate = DateTime.Now.AddDays(1.0);
             this.appointmentTime.Enabled = false;
             this.appointmentInformationSection.Hide();
+            this.searchCriteria.SelectedIndex = -1;
         }
 
       

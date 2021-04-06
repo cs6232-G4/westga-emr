@@ -62,6 +62,7 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDateTimePickerSearchInput.Value = this.dateOfBirthDateTimePickerSearchInput.MaxDate;
             this.appointmentsDataGridView.Visible = false;
             this.appointmentsDataGridView.DataSource = null;
+            this.searchCriteria.SelectedIndex = -1;
         }
 
         /// <summary>
