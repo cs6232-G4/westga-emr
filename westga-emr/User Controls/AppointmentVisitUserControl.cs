@@ -13,6 +13,7 @@ namespace westga_emr.User_Controls
         private VisitController visitController;
         private PersonController personController;
         private AppointmentDTO appointment;
+        private Dictionary<string, string> errors;
         #endregion
 
         #region Constructors
@@ -25,6 +26,7 @@ namespace westga_emr.User_Controls
             visitController = new VisitController();
             personController = new PersonController();
             appointment = new AppointmentDTO();
+            errors = new Dictionary<string, string>();
         }
         #endregion
         #region Methods
@@ -33,15 +35,6 @@ namespace westga_emr.User_Controls
         /// </summary>
         public void populateTextBoxes(AppointmentDTO appointmentDTO)
         {
-            /**
-             * 1.Chcek if the VisitDTO is empty or null and Appintment date is today or future dated 
-             *                  -> display visit form with create feature
-             * 2.Check of visit is Non Empty and 
-             *          a. Appotinment date is today or after 
-             *                      --> Edit form 
-             *          else
-             *          b.Appoitnemtn date is back dated then display error message.
-             **/
             try
             {
                 appointment = appointmentDTO;
@@ -54,7 +47,7 @@ namespace westga_emr.User_Controls
                 if ((visitDTO is null || visitDTO.Count <= 0) && _datediff.Days >= 1)
                 {
                     this.visitLabel.Text = "Create " + this.visitLabel.Text;
-                    this.nurseTextBox.Text = "Santosh Jha";
+                    this.nurseTextBox.Text = "Santosh Jha"; //TODO:Santosh
                     this.visitDateTextBox.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     this.createButton.Visible = true;
                 }
@@ -92,8 +85,8 @@ namespace westga_emr.User_Controls
             this.nurseTextBox.Enabled = false;
             this.initialDiagnosticTextBox.Enabled = false;
             this.visitDateTextBox.Enabled = false;
-            this.weightTextBox.Enabled = false;
             this.systolicPressureTextBox.Enabled = false;
+            this.weightTextBox.Enabled = false;
             this.dialosticPressureTextBox.Enabled = false;
             this.bodyTemperatureTextBox.Enabled = false;
             this.pulseTextBox.Enabled = false;
@@ -109,8 +102,8 @@ namespace westga_emr.User_Controls
             this.nurseTextBox.Text = visitDTO[0].Nurse;
             this.initialDiagnosticTextBox.Text = visitDTO[0].InitialDiagnosis;
             this.visitDateTextBox.Text = visitDTO[0].VisitDateTime.ToString();
-            this.weightTextBox.Text = visitDTO[0].Weight.ToString();
-            this.systolicPressureTextBox.Text = visitDTO[0].SystolicPressure.ToString();
+            this.systolicPressureTextBox.Text = visitDTO[0].Weight.ToString();
+            this.weightTextBox.Text = visitDTO[0].SystolicPressure.ToString();
             this.dialosticPressureTextBox.Text = visitDTO[0].DiastolicPressure.ToString();
             this.bodyTemperatureTextBox.Text = visitDTO[0].BodyTemperature.ToString();
             this.pulseTextBox.Text = visitDTO[0].Pulse.ToString();
@@ -135,26 +128,34 @@ namespace westga_emr.User_Controls
         {
             try
             {
-                var appointmentID = appointment.AppointmentID.ToString();
-                var initialDiagnistic = this.initialDiagnosticTextBox.Text.Trim();
-                var weight = decimal.Parse(this.weightTextBox.Text.Trim());
-                var systolicPressure = int.Parse(this.systolicPressureTextBox.Text.Trim());
-                var diastolicPressure = int.Parse(this.dialosticPressureTextBox.Text.Trim());
-                var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
-                var pulse = int.Parse(this.pulseTextBox.Text.Trim());
-                var symptoms = this.symptomsTextBox.Text.Trim();
-                var finalDiagnosis = this.finalDiagnosticTextBox.Text.Trim();
 
-                if (weight < 0 || systolicPressure < 0 || diastolicPressure < 0 || bodyTemperature < 0
-                    && pulse < 0)
+
+                bool isInValidInitialDiagnostic = ValidateInitialDiagnostic();
+                bool isInValidateWeight = ValidateWeight();
+                bool isInValidateSystolicPressure = ValidateSystolicPressure();
+                bool isInValidateDialosticPressure = ValidateDialosticPressur();
+                bool isInValidateBodyTemperature = ValidateBodyTemperature();
+                bool isInValidatePulse = ValidatePulse();
+
+                if (isInValidInitialDiagnostic || isInValidateWeight || isInValidateSystolicPressure
+                    || isInValidateBodyTemperature
+                    || isInValidatePulse)
                 {
                     this.messageLabel.Text = "Invalid Input Data inconsistent!!";
                     this.messageLabel.Visible = true;
                 }
                 else
                 {
-                    
-                        Visit visit = new Visit(long.Parse(appointmentID),
+                    var appointmentID = appointment.AppointmentID.ToString();
+                    var initialDiagnistic = this.initialDiagnosticTextBox.Text.Trim();
+                    var weight = decimal.Parse(this.weightTextBox.Text.Trim());
+                    var systolicPressure = int.Parse(this.systolicPressureTextBox.Text.Trim());
+                    var diastolicPressure = int.Parse(this.dialosticPressureTextBox.Text.Trim());
+                    var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
+                    var pulse = int.Parse(this.pulseTextBox.Text.Trim());
+                    var symptoms = this.symptomsTextBox.Text.Trim();
+                    var finalDiagnosis = this.finalDiagnosticTextBox.Text.Trim();
+                    Visit visit = new Visit(long.Parse(appointmentID),
                                                                         initialDiagnistic, weight, systolicPressure,
                                                                        diastolicPressure, bodyTemperature,
                                                                        pulse, symptoms, finalDiagnosis);
@@ -187,25 +188,33 @@ namespace westga_emr.User_Controls
         {
             try
             {
-                var appointmentID = appointment.AppointmentID.ToString();
-                var initialDiagnistic = this.initialDiagnosticTextBox.Text.Trim();
-                var weight = decimal.Parse(this.weightTextBox.Text.Trim());
-                var systolicPressure = int.Parse(this.systolicPressureTextBox.Text.Trim());
-                var diastolicPressure = int.Parse(this.dialosticPressureTextBox.Text.Trim());
-                var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
-                var pulse = int.Parse(this.pulseTextBox.Text.Trim());
-                var symptoms = this.symptomsTextBox.Text.Trim();
-                var finalDiagnosis = this.finalDiagnosticTextBox.Text.Trim();
 
-                if (weight < 0 || systolicPressure < 0 || diastolicPressure < 0 || bodyTemperature < 0
-                    && pulse < 0)
+                bool isInValidInitialDiagnostic = ValidateInitialDiagnostic();
+                bool isInValidateWeight =   ValidateWeight();
+                bool isInValidateSystolicPressure = ValidateSystolicPressure();
+                bool isInValidateDialosticPressure = ValidateDialosticPressur();
+                bool isInValidateBodyTemperature =  ValidateBodyTemperature();
+                bool isInValidatePulse =  ValidatePulse();
+
+                if (isInValidInitialDiagnostic || isInValidateWeight || isInValidateSystolicPressure 
+                    || isInValidateBodyTemperature
+                    || isInValidatePulse)
                 {
                     this.messageLabel.Text = "Invalid Input Data inconsistent!!";
                     this.messageLabel.Visible = true;
                 }
                 else
                 {
-
+                    //TODO:Santosh
+                    var appointmentID = appointment.AppointmentID.ToString();
+                    var initialDiagnistic = this.initialDiagnosticTextBox.Text.Trim();
+                    var weight = decimal.Parse(this.weightTextBox.Text.Trim());
+                    var systolicPressure = int.Parse(this.systolicPressureTextBox.Text.Trim());
+                    var diastolicPressure = int.Parse(this.dialosticPressureTextBox.Text.Trim());
+                    var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
+                    var pulse = int.Parse(this.pulseTextBox.Text.Trim());
+                    var symptoms = this.symptomsTextBox.Text.Trim();
+                    var finalDiagnosis = this.finalDiagnosticTextBox.Text.Trim();
                     Visit visit = new Visit(long.Parse(appointmentID), 1, DateTime.Now, 
                                                                     initialDiagnistic, weight, systolicPressure,
                                                                    diastolicPressure, bodyTemperature,
@@ -232,6 +241,268 @@ namespace westga_emr.User_Controls
             }
 
 
+        }
+
+        /// <summary>
+        /// The handlers to Validate InitialDiagnostic
+        /// </summary>
+        private bool ValidateInitialDiagnostic()
+        {
+            bool isInValidInitialDiagnostic = false;
+            if (String.IsNullOrWhiteSpace(initialDiagnosticTextBox.Text))
+            {
+                initialDiagnosticError.Text = "Initial Diagnostic is required";
+                AddError("initialDiagnosticError", initialDiagnosticError.Text);
+                isInValidInitialDiagnostic = true;
+            }
+            else
+            {
+                initialDiagnosticError.Text = "";
+                RemoveError("initialDiagnosticError");
+                isInValidInitialDiagnostic = false;
+            }
+            return isInValidInitialDiagnostic;
+        }
+
+        /// <summary>
+        /// The handlers to Validate Weight
+        /// </summary>
+        private bool ValidateWeight()
+        {
+            bool isInValidateWeight = false; ;
+
+            if (String.IsNullOrWhiteSpace(weightTextBox.Text))
+            {
+                isInValidateWeight = true;
+                weightError.Text = "Weight is required";
+                AddError("weightError", weightError.Text);
+            }
+            else
+            {
+                try
+                {
+                    var weight = decimal.Parse(this.weightTextBox.Text.Trim());
+                    if (weight > 999.99m || weight < 0.00m)
+                    {
+                        weightError.Text = "Weight is Invalid";
+                        AddError("weightError", weightError.Text);
+                        isInValidateWeight = true;
+                    }
+                    else
+                    {
+                        weightError.Text = "";
+                        RemoveError("weightError");
+                        isInValidateWeight = false;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message;
+                    weightError.Text = "Weight is Invalid";
+                    AddError("weightError", weightError.Text);
+                    isInValidateWeight = true;
+                }
+            }
+            return isInValidateWeight ;
+        }
+
+        /// <summary>
+        /// The handlers to Validate SystolicPressure
+        /// </summary>
+        private bool ValidateSystolicPressure()
+        {
+            bool isInValidateSystolicPressure = false;
+
+            if (String.IsNullOrWhiteSpace(systolicPressureTextBox.Text))
+            {
+                systolicPressureError.Text = "Systolic Pressure is required";
+                AddError("systolicPressureError", systolicPressureError.Text);
+                isInValidateSystolicPressure = true;
+            }
+            else
+            {
+                try
+                {
+                    var systolicPressure = int.Parse(this.systolicPressureTextBox.Text.Trim());
+                    if (systolicPressure <= 0)
+                    {
+                        systolicPressureError.Text = "Systolic Pressure is Invalid";
+                        AddError("systolicPressureError", systolicPressureError.Text);
+                        isInValidateSystolicPressure = true;
+                    }
+                    else
+                    {
+                        systolicPressureError.Text = "";
+                        RemoveError("systolicPressureError");
+                        isInValidateSystolicPressure = false;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message;
+                    systolicPressureError.Text = "Systolic Pressure is Invalid";
+                    AddError("systolicPressureError", systolicPressureError.Text);
+                    isInValidateSystolicPressure = true;
+                }
+            }
+            return isInValidateSystolicPressure;
+        }
+
+
+        /// <summary>
+        /// The handlers to Validate DialosticPressur
+        /// </summary>
+        private bool ValidateDialosticPressur()
+        {
+            bool isInValidateDialosticPressur = false;
+            if (String.IsNullOrWhiteSpace(dialosticPressureTextBox.Text))
+            {
+                dialosticPressureError.Text = "Dialostic Pressure is required";
+                AddError("dialosticPressureError", dialosticPressureError.Text);
+                isInValidateDialosticPressur = true;
+            }
+            else
+            {
+                try
+                {
+                    var dialosticPressure = int.Parse(this.dialosticPressureTextBox.Text.Trim());
+                    if (dialosticPressure <= 0)
+                    {
+                        dialosticPressureError.Text = "Dialostic Pressure is Invalid";
+                        AddError("dialosticPressureError", dialosticPressureError.Text);
+                        isInValidateDialosticPressur = true;
+                    }
+                    else
+                    {
+                        dialosticPressureError.Text = "";
+                        RemoveError("dialosticPressureError");
+                        isInValidateDialosticPressur = false;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message;
+                    dialosticPressureError.Text = "Dialostic Pressure is Invalid";
+                    AddError("dialosticPressureError", dialosticPressureError.Text);
+                    isInValidateDialosticPressur = true;
+                }
+            }
+            return isInValidateDialosticPressur;
+        }
+
+        /// <summary>
+        /// The handlers to Validate BodyTemperature
+        /// </summary>
+        private bool ValidateBodyTemperature()
+        {
+            bool isInValidateBodyTemperature = false;
+
+            if (String.IsNullOrWhiteSpace(bodyTemperatureTextBox.Text))
+            {
+                bodyTemperatureError.Text = "Body Temperatue is required";
+                AddError("bodyTemperatureError", bodyTemperatureError.Text);
+                isInValidateBodyTemperature = true;
+            }
+            else
+            {
+                try
+                {
+                    var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
+                    if (bodyTemperature > 9999.9m || bodyTemperature < 0.00m)
+                    {
+                        bodyTemperatureError.Text = "Body Temperatue is Invalid";
+                        AddError("bodyTemperatureError", bodyTemperatureError.Text);
+                        isInValidateBodyTemperature = true;
+                    }
+                    else
+                    {
+                        bodyTemperatureError.Text = "";
+                        RemoveError("bodyTemperatureError");
+                        isInValidateBodyTemperature = false;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message;
+                    bodyTemperatureError.Text = "Body Temperatue is Invalid";
+                    AddError("bodyTemperatureError", bodyTemperatureError.Text);
+                    isInValidateBodyTemperature = true;
+                }
+
+            }
+            return isInValidateBodyTemperature;
+        }
+
+        /// <summary>
+        /// The handlers to Validate Pulse
+        /// </summary>
+        private bool ValidatePulse()
+        {
+            bool isInValidatePulse = false;
+            if (String.IsNullOrWhiteSpace(pulseTextBox.Text))
+            {
+                pulseError.Text = "Pulse is required";
+                AddError("pulseError", pulseError.Text);
+                isInValidatePulse = true;
+            }
+            else
+            {
+                try
+                {
+                    var pulse = int.Parse(this.pulseTextBox.Text.Trim());
+                    if (pulse <= 0)
+                    {
+                        pulseError.Text = "Pulse is Invalid";
+                        AddError("pulseError", pulseError.Text);
+                        isInValidatePulse = true;
+                    }
+                    else
+                    {
+                        pulseError.Text = "";
+                        RemoveError("pulseError");
+                        isInValidatePulse = false;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    var message = ex.Message;
+                    pulseError.Text = "Pulse is Invalid";
+                    AddError("pulseError", pulseError.Text);
+                    isInValidatePulse = true;
+                }
+            }
+            return isInValidatePulse;
+        }
+
+        /// <summary>
+        /// The handlers to Add Error
+        /// </summary>
+        private void AddError(string key, string value)
+        {
+            if (errors.ContainsKey(key))
+            {
+                errors[key] = value;
+            }
+            else
+            {
+                errors.Add(key, value);
+            }
+        }
+
+        /// <summary>
+        /// The handlers to Remove Error
+        /// </summary>
+        private void RemoveError(string key)
+        {
+            if (errors.ContainsKey(key))
+            {
+                errors.Remove(key);
+            }
         }
 
         #endregion

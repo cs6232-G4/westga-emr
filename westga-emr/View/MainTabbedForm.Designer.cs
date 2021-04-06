@@ -157,7 +157,7 @@ namespace westga_emr.View
             this.newAppointmentTabPage.Controls.Add(this.newAppointment1);
             this.newAppointmentTabPage.Location = new System.Drawing.Point(4, 25);
             this.newAppointmentTabPage.Name = "newAppointmentTabPage";
-            this.newAppointmentTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.newAppointmentTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.newAppointmentTabPage.Size = new System.Drawing.Size(899, 783);
             this.newAppointmentTabPage.TabIndex = 0;
             this.newAppointmentTabPage.Text = "New Appointment";
@@ -167,7 +167,7 @@ namespace westga_emr.View
             this.newAppointment1.AutoScroll = true;
             this.newAppointment1.BackColor = System.Drawing.Color.SkyBlue;
             this.newAppointment1.Location = new System.Drawing.Point(24, 6);
-            this.newAppointment1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newAppointment1.Margin = new System.Windows.Forms.Padding(4);
             this.newAppointment1.MaximumSize = new System.Drawing.Size(890, 812);
             this.newAppointment1.Name = "newAppointment1";
             this.newAppointment1.Size = new System.Drawing.Size(850, 731);
@@ -180,8 +180,8 @@ namespace westga_emr.View
             this.saerchPatientTabPage.Controls.Add(this.searchPatient1);
             this.saerchPatientTabPage.Location = new System.Drawing.Point(4, 25);
             this.saerchPatientTabPage.Name = "saerchPatientTabPage";
-            this.saerchPatientTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.saerchPatientTabPage.Size = new System.Drawing.Size(900, 783);
+            this.saerchPatientTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.saerchPatientTabPage.Size = new System.Drawing.Size(899, 783);
             this.saerchPatientTabPage.TabIndex = 1;
             this.saerchPatientTabPage.Text = "Search Patient";
             // 
@@ -201,8 +201,8 @@ namespace westga_emr.View
             this.upcomingAppointmentsTabPage.Controls.Add(this.upcomingAppointments1);
             this.upcomingAppointmentsTabPage.Location = new System.Drawing.Point(4, 25);
             this.upcomingAppointmentsTabPage.Name = "upcomingAppointmentsTabPage";
-            this.upcomingAppointmentsTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.upcomingAppointmentsTabPage.Size = new System.Drawing.Size(900, 783);
+            this.upcomingAppointmentsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.upcomingAppointmentsTabPage.Size = new System.Drawing.Size(899, 783);
             this.upcomingAppointmentsTabPage.TabIndex = 2;
             this.upcomingAppointmentsTabPage.Text = "Upcoming Appointments";
             this.upcomingAppointmentsTabPage.UseVisualStyleBackColor = true;
@@ -210,7 +210,7 @@ namespace westga_emr.View
             // upcomingAppointments1
             // 
             this.upcomingAppointments1.Location = new System.Drawing.Point(20, 6);
-            this.upcomingAppointments1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.upcomingAppointments1.Margin = new System.Windows.Forms.Padding(4);
             this.upcomingAppointments1.Name = "upcomingAppointments1";
             this.upcomingAppointments1.Size = new System.Drawing.Size(594, 286);
             this.upcomingAppointments1.TabIndex = 0;
@@ -220,8 +220,8 @@ namespace westga_emr.View
             this.nurseListTabPage.Controls.Add(this.nurses1);
             this.nurseListTabPage.Location = new System.Drawing.Point(4, 25);
             this.nurseListTabPage.Name = "nurseListTabPage";
-            this.nurseListTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.nurseListTabPage.Size = new System.Drawing.Size(900, 783);
+            this.nurseListTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.nurseListTabPage.Size = new System.Drawing.Size(899, 783);
             this.nurseListTabPage.TabIndex = 3;
             this.nurseListTabPage.Text = "Nurses";
             this.nurseListTabPage.UseVisualStyleBackColor = true;
@@ -229,7 +229,7 @@ namespace westga_emr.View
             // nurses1
             // 
             this.nurses1.Location = new System.Drawing.Point(17, 6);
-            this.nurses1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nurses1.Margin = new System.Windows.Forms.Padding(4);
             this.nurses1.Name = "nurses1";
             this.nurses1.Size = new System.Drawing.Size(534, 270);
             this.nurses1.TabIndex = 0;
@@ -239,8 +239,8 @@ namespace westga_emr.View
             this.addNurseTabPage.Controls.Add(this.addNurse1);
             this.addNurseTabPage.Location = new System.Drawing.Point(4, 25);
             this.addNurseTabPage.Name = "addNurseTabPage";
-            this.addNurseTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.addNurseTabPage.Size = new System.Drawing.Size(900, 783);
+            this.addNurseTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.addNurseTabPage.Size = new System.Drawing.Size(899, 783);
             this.addNurseTabPage.TabIndex = 4;
             this.addNurseTabPage.Text = "Add Nurse";
             this.addNurseTabPage.UseVisualStyleBackColor = true;
@@ -248,7 +248,7 @@ namespace westga_emr.View
             // addNurse1
             // 
             this.addNurse1.Location = new System.Drawing.Point(8, 6);
-            this.addNurse1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addNurse1.Margin = new System.Windows.Forms.Padding(4);
             this.addNurse1.Name = "addNurse1";
             this.addNurse1.Size = new System.Drawing.Size(585, 332);
             this.addNurse1.TabIndex = 0;
@@ -258,8 +258,8 @@ namespace westga_emr.View
             this.reportsTabPage.Controls.Add(this.report1);
             this.reportsTabPage.Location = new System.Drawing.Point(4, 25);
             this.reportsTabPage.Name = "reportsTabPage";
-            this.reportsTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.reportsTabPage.Size = new System.Drawing.Size(900, 783);
+            this.reportsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.reportsTabPage.Size = new System.Drawing.Size(899, 783);
             this.reportsTabPage.TabIndex = 5;
             this.reportsTabPage.Text = "Report";
             this.reportsTabPage.UseVisualStyleBackColor = true;
@@ -267,7 +267,7 @@ namespace westga_emr.View
             // report1
             // 
             this.report1.Location = new System.Drawing.Point(18, 16);
-            this.report1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.report1.Margin = new System.Windows.Forms.Padding(4);
             this.report1.Name = "report1";
             this.report1.Size = new System.Drawing.Size(521, 299);
             this.report1.TabIndex = 0;

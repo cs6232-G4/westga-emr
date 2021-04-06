@@ -550,7 +550,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel1.Controls.Add(this.ssnTextBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.ssnError, 2, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 379);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -593,7 +593,7 @@ namespace westga_emr.User_Controls
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel5);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PatientInformationForm";
             this.Size = new System.Drawing.Size(850, 519);
             this.Load += new System.EventHandler(this.PatientInformationForm_Load);
