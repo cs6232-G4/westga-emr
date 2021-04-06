@@ -130,8 +130,6 @@ namespace westga_emr.User_Controls
         {
             try
             {
-
-
                 bool isInValidInitialDiagnostic = ValidateInitialDiagnostic();
                 bool isInValidateWeight = ValidateWeight();
                 bool isInValidateSystolicPressure = ValidateSystolicPressure();
@@ -190,7 +188,6 @@ namespace westga_emr.User_Controls
         {
             try
             {
-
                 bool isInValidInitialDiagnostic = ValidateInitialDiagnostic();
                 bool isInValidateWeight =   ValidateWeight();
                 bool isInValidateSystolicPressure = ValidateSystolicPressure();
@@ -282,8 +279,9 @@ namespace westga_emr.User_Controls
             {
                 try
                 {
-                    var weight = decimal.Parse(this.weightTextBox.Text.Trim());
-                    if (weight > 999.99m || weight < 0.00m)
+                    bool isInValidNumber = ValidateDecimalNumbers(this.weightTextBox.Text.Trim(), 3, 2);
+
+                    if (isInValidNumber || (decimal.Parse(this.weightTextBox.Text.Trim()) < 0))
                     {
                         weightError.Text = "Weight is Invalid";
                         AddError("weightError", weightError.Text);
@@ -306,6 +304,28 @@ namespace westga_emr.User_Controls
                 }
             }
             return isInValidateWeight ;
+        }
+
+        /// <summary>
+        /// The handlers to Validate DecimalNumbers
+        /// </summary>
+        private bool ValidateDecimalNumbers(String number, int expectedNumberBeforeDecimal, int expectedNumberAfterDecimal)
+        {
+            string[] digits = number.Trim().ToString().Split('.');
+            var numbeforeDecimal = digits[0].Length;
+            if (digits.Length > 2)
+            {
+                return true;
+            }
+            else if (numbeforeDecimal > expectedNumberBeforeDecimal)
+            {
+                return true;
+            }
+            else if (digits.Length > 1 && digits[1].Length > expectedNumberAfterDecimal)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -411,8 +431,8 @@ namespace westga_emr.User_Controls
             {
                 try
                 {
-                    var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
-                    if (bodyTemperature > 9999.9m || bodyTemperature < 0.00m)
+                    bool isInValidNumber = ValidateDecimalNumbers(this.bodyTemperatureTextBox.Text.Trim(), 3, 1);
+                    if (isInValidNumber || (decimal.Parse(this.bodyTemperatureTextBox.Text.Trim()) < 0))
                     {
                         bodyTemperatureError.Text = "Body Temperatue is Invalid";
                         AddError("bodyTemperatureError", bodyTemperatureError.Text);
