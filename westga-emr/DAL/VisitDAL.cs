@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using westga_emr.Model;
 using System.Data.SqlClient;
 using westga_emr.Model.DTO;
+using System.Data;
 
 namespace westga_emr.DAL
 {
@@ -64,6 +65,108 @@ namespace westga_emr.DAL
                 }
             }
             return visits;
+        }
+
+        /// <summary>
+        /// Create a Visits to the data source.
+        /// </summary>
+        /// <param name="visit"></param>
+        public static bool CreateVisit(Visit visit)
+        {
+            int retValue;
+            String insertStatement = @" INSERT INTO VISIT 
+                     (appointmentID , nurseID , visitDateTime , initialDiagnosis ,weight , systolicPressure , diastolicPressure ,
+	                    bodyTemperature , pulse , symptoms , finalDiagnosis)
+                    VALUES
+                    ( @appointmentID , @nurseID , @visitDateTime , @initialDiagnosis , @weight , @systolicPressure, @diastolicPressure,
+	                    @bodyTemperature , @pulse , @symptoms , @finalDiagnosis)";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@appointmentID", visit.AppointmentID);
+                    command.Parameters.AddWithValue("@nurseID", visit.NurseID);
+                    command.Parameters.AddWithValue("@visitDateTime", visit.VisitDateTime);
+                    command.Parameters.AddWithValue("@initialDiagnosis", visit.InitialDiagnosis);
+                    command.Parameters.AddWithValue("@weight", visit.Weight);
+                    command.Parameters.AddWithValue("@systolicPressure", visit.SystolicPressure);
+                    command.Parameters.AddWithValue("@diastolicPressure", visit.DiastolicPressure);
+                    command.Parameters.AddWithValue("@bodyTemperature", visit.BodyTemperature);
+                    command.Parameters.AddWithValue("@pulse", visit.Pulse);
+                    command.Parameters.AddWithValue("@symptoms", visit.Symptoms);
+                    command.Parameters.AddWithValue("@finalDiagnosis", visit.FinalDiagnosis);
+
+                    retValue = command.ExecuteNonQuery();
+                }
+            }
+            if (retValue < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Update a Visits to the data source.
+        /// </summary>
+        /// <param name="visit"></param>
+        public static bool UpdateVisit(Visit visit)
+        {
+            bool isUpdateSuccesful = false;
+            string selectStatement = " Update Visit set initialDiagnosis = @initialDiagnosis , " +
+            "weight = @weight,    systolicPressure = @systolicPressure,    diastolicPressure = @diastolicPressure , " +
+            "bodyTemperature = @bodyTemperature,  pulse = @pulse , symptoms = @symptoms, finalDiagnosis = @finalDiagnosis  "+
+            " where appointmentID = @appointmentID ";
+
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@appointmentID", SqlDbType.Int);
+                    selectCommand.Parameters["@appointmentID"].Value = visit.AppointmentID;
+
+                    selectCommand.Parameters.Add("@initialDiagnosis", SqlDbType.VarChar);
+                    selectCommand.Parameters["@initialDiagnosis"].Value = visit.InitialDiagnosis;
+
+                    selectCommand.Parameters.Add("@weight", SqlDbType.Decimal);
+                    selectCommand.Parameters["@weight"].Value = visit.Weight;
+
+                    selectCommand.Parameters.Add("@systolicPressure", SqlDbType.Int);
+                    selectCommand.Parameters["@systolicPressure"].Value = visit.SystolicPressure;
+
+                    selectCommand.Parameters.Add("@diastolicPressure", SqlDbType.Int);
+                    selectCommand.Parameters["@diastolicPressure"].Value = visit.DiastolicPressure;
+
+                    selectCommand.Parameters.Add("@bodyTemperature", SqlDbType.Decimal);
+                    selectCommand.Parameters["@bodyTemperature"].Value = visit.BodyTemperature;
+
+                    selectCommand.Parameters.Add("@pulse", SqlDbType.Int);
+                    selectCommand.Parameters["@pulse"].Value = visit.Pulse;
+
+                    selectCommand.Parameters.Add("@symptoms", SqlDbType.VarChar);
+                    selectCommand.Parameters["@symptoms"].Value = visit.Symptoms;
+
+                    selectCommand.Parameters.Add("@finalDiagnosis", SqlDbType.VarChar);
+                    selectCommand.Parameters["@finalDiagnosis"].Value = visit.FinalDiagnosis;
+                    
+
+                    int rowsAffected = selectCommand.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        isUpdateSuccesful = true;
+                    }
+                }
+
+                return isUpdateSuccesful;
+            }
+
         }
 
         /// <summary>
