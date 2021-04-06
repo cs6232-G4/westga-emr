@@ -49,17 +49,18 @@ namespace westga_emr.User_Controls
                                     new Appointment(appointmentDTO.AppointmentID, appointmentDTO.PatientID, appointmentDTO.DoctorID,
                                     appointmentDTO.AppointmentDateTime, appointmentDTO.ReasonForVisit));
 
-                if((visitDTO is null || visitDTO.Count <= 0) 
-                    && (appointmentDTO.AppointmentDateTime > DateTime.Now))
-                {
-                    this.visitLabel.Text = "Create "+ this.visitLabel.Text;
-                    UserDTO user = personController.GetCurrentUser();
+                var _datediff = appointmentDTO.AppointmentDateTime - DateTime.Now;
 
+                if ((visitDTO is null || visitDTO.Count <= 0) && _datediff.Days >= 1)
+                {
+                    this.visitLabel.Text = "Create " + this.visitLabel.Text;
+                    this.nurseTextBox.Text = "Santosh Jha";
+                    this.visitDateTextBox.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     this.createButton.Visible = true;
                 }
-                else if(visitDTO.Count > 0)
+                else if (visitDTO.Count > 0)
                 {
-                    if (appointmentDTO.AppointmentDateTime > DateTime.Now)
+                    if (_datediff.Days >= 1)
                     {
                         this.visitLabel.Text = "Edit " + this.visitLabel.Text;
                         this.PopulateTextBoxesForVisit(visitDTO);
@@ -74,7 +75,6 @@ namespace westga_emr.User_Controls
                         this.messageLabel.Visible = true;
                     }
                 }
-                
             }
             catch(Exception ex)
             {
@@ -158,9 +158,7 @@ namespace westga_emr.User_Controls
                                                                         initialDiagnistic, weight, systolicPressure,
                                                                        diastolicPressure, bodyTemperature,
                                                                        pulse, symptoms, finalDiagnosis);
-                        bool isVisitUpdateSuccesful = this.visitController.UpdateVisit(visit);
-
-                        if (isVisitUpdateSuccesful)
+                        if (this.visitController.UpdateVisit(visit))
                         {
                             this.messageLabel.Text = "Incident Update Successfully!!";
                             this.messageLabel.Visible = true;
@@ -182,11 +180,60 @@ namespace westga_emr.User_Controls
         }
 
 
-        #endregion
-
-        private void createButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// The handlers to Create Button Click
+        /// </summary>
+        private void CreateButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var appointmentID = appointment.AppointmentID.ToString();
+                var initialDiagnistic = this.initialDiagnosticTextBox.Text.Trim();
+                var weight = decimal.Parse(this.weightTextBox.Text.Trim());
+                var systolicPressure = int.Parse(this.systolicPressureTextBox.Text.Trim());
+                var diastolicPressure = int.Parse(this.dialosticPressureTextBox.Text.Trim());
+                var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
+                var pulse = int.Parse(this.pulseTextBox.Text.Trim());
+                var symptoms = this.symptomsTextBox.Text.Trim();
+                var finalDiagnosis = this.finalDiagnosticTextBox.Text.Trim();
+
+                if (weight < 0 || systolicPressure < 0 || diastolicPressure < 0 || bodyTemperature < 0
+                    && pulse < 0)
+                {
+                    this.messageLabel.Text = "Invalid Input Data inconsistent!!";
+                    this.messageLabel.Visible = true;
+                }
+                else
+                {
+
+                    Visit visit = new Visit(long.Parse(appointmentID), 1, DateTime.Now, 
+                                                                    initialDiagnistic, weight, systolicPressure,
+                                                                   diastolicPressure, bodyTemperature,
+                                                                   pulse, symptoms, finalDiagnosis);
+
+                    if (this.visitController.CreateVisit(visit))
+                    {
+                        this.messageLabel.Text = "Incident Created Successfully!!";
+                        this.messageLabel.Visible = true;
+                    }
+                    else
+                    {
+                        this.messageLabel.Text = "Input Data inconsistent!!";
+                        this.messageLabel.Visible = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.messageLabel.Text = "Input Data inconsistent." + Environment.NewLine +
+                                        "Please verify all data entered for the input fields and try again!!";
+                var message = ex.Message;
+                this.messageLabel.Visible = true;
+            }
+
 
         }
+
+        #endregion
     }
 }

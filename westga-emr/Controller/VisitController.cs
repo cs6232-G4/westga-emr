@@ -46,5 +46,15 @@ namespace westga_emr.Controller
             }
             return VisitDAL.UpdateVisit(visit);
         }
+
+        /// <see cref="VisitDAL.CreateVisit(Visit)"/>
+        public bool CreateVisit(Visit visit)
+        {
+            if (visit == null)
+            {
+                throw new ArgumentNullException("visit cannot be null");
+            }
+            return VisitDAL.CreateVisit(visit);
+        }
     }
 }

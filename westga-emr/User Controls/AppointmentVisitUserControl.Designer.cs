@@ -284,7 +284,7 @@ namespace westga_emr.User_Controls
             this.createButton.Text = "Create Visit";
             this.createButton.UseVisualStyleBackColor = false;
             this.createButton.Visible = false;
-            this.createButton.Click += new System.EventHandler(this.createButton_Click);
+            this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // closeButton
             // 

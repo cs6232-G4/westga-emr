@@ -67,6 +67,48 @@ namespace westga_emr.DAL
             return visits;
         }
 
+        /// <summary>
+        /// Create a Visits to the data source.
+        /// </summary>
+        /// <param name="visit"></param>
+        public static bool CreateVisit(Visit visit)
+        {
+            int retValue;
+            String insertStatement = @" INSERT INTO VISIT 
+                     (appointmentID , nurseID , visitDateTime , initialDiagnosis ,weight , systolicPressure , diastolicPressure ,
+	                    bodyTemperature , pulse , symptoms , finalDiagnosis)
+                    VALUES
+                    ( @appointmentID , @nurseID , @visitDateTime , @initialDiagnosis , @weight , @systolicPressure, @diastolicPressure,
+	                    @bodyTemperature , @pulse , @symptoms , @finalDiagnosis)";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@appointmentID", visit.AppointmentID);
+                    command.Parameters.AddWithValue("@nurseID", visit.NurseID);
+                    command.Parameters.AddWithValue("@visitDateTime", visit.VisitDateTime);
+                    command.Parameters.AddWithValue("@initialDiagnosis", visit.InitialDiagnosis);
+                    command.Parameters.AddWithValue("@weight", visit.Weight);
+                    command.Parameters.AddWithValue("@systolicPressure", visit.SystolicPressure);
+                    command.Parameters.AddWithValue("@diastolicPressure", visit.DiastolicPressure);
+                    command.Parameters.AddWithValue("@bodyTemperature", visit.BodyTemperature);
+                    command.Parameters.AddWithValue("@pulse", visit.Pulse);
+                    command.Parameters.AddWithValue("@symptoms", visit.Symptoms);
+                    command.Parameters.AddWithValue("@finalDiagnosis", visit.FinalDiagnosis);
+
+                    retValue = command.ExecuteNonQuery();
+                }
+            }
+            if (retValue < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         /// <summary>
         /// Update a Visits to the data source.
