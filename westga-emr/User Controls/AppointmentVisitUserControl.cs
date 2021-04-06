@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using westga_emr.Controller;
+using westga_emr.Helpers;
 using westga_emr.Model;
 using westga_emr.Model.DTO;
 
@@ -47,7 +48,8 @@ namespace westga_emr.User_Controls
                 if ((visitDTO is null || visitDTO.Count <= 0) && _datediff.Days >= 1)
                 {
                     this.visitLabel.Text = "Create " + this.visitLabel.Text;
-                    this.nurseTextBox.Text = "Santosh Jha"; //TODO:Santosh
+                    this.nurseTextBox.Text = AuthenticationHelper.currentUser.FirstName + " " +
+                        AuthenticationHelper.currentUser.LastName;
                     this.visitDateTextBox.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     this.createButton.Visible = true;
                 }
@@ -102,8 +104,8 @@ namespace westga_emr.User_Controls
             this.nurseTextBox.Text = visitDTO[0].Nurse;
             this.initialDiagnosticTextBox.Text = visitDTO[0].InitialDiagnosis;
             this.visitDateTextBox.Text = visitDTO[0].VisitDateTime.ToString();
-            this.systolicPressureTextBox.Text = visitDTO[0].Weight.ToString();
-            this.weightTextBox.Text = visitDTO[0].SystolicPressure.ToString();
+            this.systolicPressureTextBox.Text = visitDTO[0].SystolicPressure.ToString();
+            this.weightTextBox.Text = visitDTO[0].Weight.ToString();
             this.dialosticPressureTextBox.Text = visitDTO[0].DiastolicPressure.ToString();
             this.bodyTemperatureTextBox.Text = visitDTO[0].BodyTemperature.ToString();
             this.pulseTextBox.Text = visitDTO[0].Pulse.ToString();
@@ -205,7 +207,6 @@ namespace westga_emr.User_Controls
                 }
                 else
                 {
-                    //TODO:Santosh
                     var appointmentID = appointment.AppointmentID.ToString();
                     var initialDiagnistic = this.initialDiagnosticTextBox.Text.Trim();
                     var weight = decimal.Parse(this.weightTextBox.Text.Trim());
@@ -215,7 +216,7 @@ namespace westga_emr.User_Controls
                     var pulse = int.Parse(this.pulseTextBox.Text.Trim());
                     var symptoms = this.symptomsTextBox.Text.Trim();
                     var finalDiagnosis = this.finalDiagnosticTextBox.Text.Trim();
-                    Visit visit = new Visit(long.Parse(appointmentID), 1, DateTime.Now, 
+                    Visit visit = new Visit(long.Parse(appointmentID), AuthenticationHelper.currentUser.NurseId, DateTime.Now, 
                                                                     initialDiagnistic, weight, systolicPressure,
                                                                    diastolicPressure, bodyTemperature,
                                                                    pulse, symptoms, finalDiagnosis);
