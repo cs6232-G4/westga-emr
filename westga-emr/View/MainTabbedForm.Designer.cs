@@ -154,6 +154,7 @@ namespace westga_emr.View
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(1211, 1000);
             this.mainTabControl.TabIndex = 1;
+            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
             // newAppointmentTabPage
             // 
@@ -164,7 +165,7 @@ namespace westga_emr.View
             this.newAppointmentTabPage.Margin = new System.Windows.Forms.Padding(4);
             this.newAppointmentTabPage.Name = "newAppointmentTabPage";
             this.newAppointmentTabPage.Padding = new System.Windows.Forms.Padding(4);
-            this.newAppointmentTabPage.Size = new System.Drawing.Size(1224, 968);
+            this.newAppointmentTabPage.Size = new System.Drawing.Size(1203, 968);
             this.newAppointmentTabPage.TabIndex = 0;
             this.newAppointmentTabPage.Text = "New Appointment";
             // 

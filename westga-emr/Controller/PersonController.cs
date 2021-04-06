@@ -3,6 +3,7 @@ using westga_emr.Model;
 using westga_emr.DAL;
 using System;
 using westga_emr.Model.DTO;
+using westga_emr.Helpers;
 
 namespace westga_emr.Controller
 {
@@ -75,8 +76,9 @@ namespace westga_emr.Controller
             {
                 throw new Exception();
             }
-            currentUser =  personDBSource.SignIn(username, password);
-            return currentUser;
+            this.currentUser =  personDBSource.SignIn(username, password);
+            AuthenticationHelper.SetCurrentUser(this.currentUser);
+            return this.currentUser;
         }
 
         /// <see cref="PersonDAL.GetPersonByUsernameAndPassword(string, string)"/>
@@ -103,7 +105,8 @@ namespace westga_emr.Controller
         /// </summary>
         public void SignOutUser()
         {
-            this.currentUser = null;
+            this.currentUser = new UserDTO();
+            AuthenticationHelper.SetCurrentUser(this.currentUser);
         }
 
         /// <summary>

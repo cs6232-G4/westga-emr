@@ -35,12 +35,16 @@ namespace westga_emr.User_Controls
             patient = new UserDTO();
         }
 
-        private void NewAppointment_Load(object sender, EventArgs e)
+        public void NewAppointment_Load(object sender, EventArgs e)
         {
+            patientsDatatGrid.DataSource = null;
             this.searchErrorLabel.BackColor = Color.White;
             fnameSearchLabel.Hide();
             lnameSearchLabel.Hide();
             dobSearchLabel.Hide();
+            this.firstNameTextBoxSearchInput.Text = "";
+            this.lastNameTextBoxSearchInput.Text = "";
+            this.searchErrorLabel.Text = "";
             this.firstNameTextBoxSearchInput.Hide();
             this.lastNameTextBoxSearchInput.Hide();
             this.dateOfBirthDateTimePickerSearchInput.Hide();
@@ -51,6 +55,7 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDateTimePickerSearchInput.Value = this.dateOfBirthDateTimePickerSearchInput.MaxDate;
             this.appointmentDate.MinDate = DateTime.Now.AddDays(1.0);
             this.appointmentTime.Enabled = false;
+            this.appointmentInformationSection.Hide();
         }
 
       

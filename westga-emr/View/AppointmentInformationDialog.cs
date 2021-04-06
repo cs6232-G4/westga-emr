@@ -41,6 +41,10 @@ namespace westga_emr.View
             this.appointmentDate.MinDate = DateTime.Now.AddDays(1.0);
 
             string time = this.appointmentDTO.AppointmentDateTime.TimeOfDay.ToString();
+            if (time.Equals("00:00:00"))
+            {
+                time = AppointmentHelper.GetAppointmentTimeslots()[0].Value;
+            }
 
             this.firstNameText.Text = this.patient.FirstName;
             this.lastNameText.Text = this.patient.LastName;

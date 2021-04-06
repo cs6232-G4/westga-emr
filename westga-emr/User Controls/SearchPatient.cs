@@ -44,12 +44,16 @@ namespace westga_emr.User_Controls
         /// <summary>
         /// The Event handler method for Search patient load
         /// </summary>
-        private void SearchPatient_Load(object sender, EventArgs e)
+        public void SearchPatient_Load(object sender, EventArgs e)
         {
+            patientsDatatGrid.DataSource = null;
             this.searchErrorLabel.BackColor = Color.White;
             fnameSearchLabel.Hide();
             lnameSearchLabel.Hide();
             dobSearchLabel.Hide();
+            this.firstNameTextBoxSearchInput.Text = "";
+            this.lastNameTextBoxSearchInput.Text = "";
+            this.searchErrorLabel.Text = "";
             this.firstNameTextBoxSearchInput.Hide();
             this.lastNameTextBoxSearchInput.Hide();
             this.dateOfBirthDateTimePickerSearchInput.Hide();
