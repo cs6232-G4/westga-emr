@@ -504,7 +504,6 @@ namespace westga_emr.User_Controls
                 errors.Remove(key);
             }
         }
-
         #endregion
     }
 }
