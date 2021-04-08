@@ -32,13 +32,18 @@ namespace westga_emr.DAL
                         int ordResults = reader.GetOrdinal("results");
                         while (reader.Read())
                         {
+                            DateTime? testPerformed = null;
+                            if (!reader.IsDBNull(ordPerformed))
+                            {
+                                testPerformed = reader.GetDateTime(ordPerformed);
+                            }
                             string results = null;
                             if (!reader.IsDBNull(ordResults))
                             {
                                 results = reader.GetString(ordResults);
                             }
                             relations.Add(new Lab_Orders_have_Lab_Tests(reader.GetInt64(ordID),
-                                reader.GetInt32(ordCode), reader.GetDateTime(ordPerformed), results));
+                                reader.GetInt32(ordCode), testPerformed, results));
                         }
                     }
                 }
