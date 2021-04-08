@@ -39,5 +39,30 @@ namespace westga_emr.DAL
             }
             return orders;
         }
+
+        /// <summary>
+        /// Inserts a new Lab_Order into the db
+        /// </summary>
+        /// <param name="order">The order to insert</param>
+        /// <returns>ID of the newly inserted Lab_order, or null if the insertion failed</returns>
+        public static int? InsertLab_Order(Lab_Order order)
+        {
+            int? id = null;
+            String insertStatement = @"INSERT INTO Lab_Order (visitID, dateOrdered)
+                                        OUTPUT inserted.id
+			                            VALUES (@visitID, @dateOrdered)";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@visitID", order.VisitID);
+                    command.Parameters.AddWithValue("@dateOrdered", order.DateOrdered);
+
+                    id = (int?)command.ExecuteScalar();
+                }
+            }
+            return id;
+        }
     }
 }
