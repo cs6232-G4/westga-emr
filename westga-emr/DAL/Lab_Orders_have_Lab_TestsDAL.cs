@@ -67,8 +67,24 @@ namespace westga_emr.DAL
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(insertStatement, connection))
                 {
-                    command.Parameters.AddWithValue("@labOrderID", relation.LabOrderID);
-                    command.Parameters.AddWithValue("@labTestCode", relation.LabTestCode);
+                    if (relation.LabOrderID == null)
+                    {
+                        command.Parameters.AddWithValue("@labOrderID", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@labOrderID", relation.LabOrderID);
+                    }
+
+                    if (relation.LabTestCode == null)
+                    {
+                        command.Parameters.AddWithValue("@labTestCode", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@labTestCode", relation.LabTestCode);
+                    }
+
                     command.Parameters.AddWithValue("@testPerformed", relation.TestPerformed);
                     command.Parameters.AddWithValue("@results", relation.Results);
 
@@ -76,6 +92,56 @@ namespace westga_emr.DAL
                 }
             }
             return id;
+        }
+
+        /// <summary>
+        /// Updates the given relation of Lab_Orders_have_Lab_Tests
+        /// </summary>
+        /// <param name="relation">The Lab_Orders_have_Lab_Tests to update</param>
+        /// <returns>Whether or not the update succeeded</returns>
+        public static bool UpdateLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests relation)
+        {
+            int rowsUpdated;
+            String updateStatement = @"UPDATE Lab_Orders_have_Lab_Tests
+			                            SET testPerformed = @testPerformed, results = @results
+			                            WHERE labOrderID = @labOrderID AND labTestCode = @labTestCode";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(updateStatement, connection))
+                {
+                    connection.Open();
+                    if (relation.LabOrderID == null)
+                    {
+                        command.Parameters.AddWithValue("@labOrderID", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@labOrderID", relation.LabOrderID);
+                    }
+
+                    if (relation.LabTestCode == null)
+                    {
+                        command.Parameters.AddWithValue("@labTestCode", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@labTestCode", relation.LabTestCode);
+                    }
+
+                    command.Parameters.AddWithValue("@testPerformed", relation.TestPerformed);
+                    command.Parameters.AddWithValue("@results", relation.Results);
+
+                    rowsUpdated = command.ExecuteNonQuery();
+                }
+            }
+            if (rowsUpdated < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
