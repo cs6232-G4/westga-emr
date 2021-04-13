@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using westga_emr.Controller;
 using westga_emr.Model.DTO;
@@ -81,7 +74,10 @@ namespace westga_emr.User_Controls
                 }
             }
         }
-        private void LoadDataGrid()
+        /// <summary>
+        /// Loads appointments
+        /// </summary>
+        public void LoadDataGrid()
         {
             var startDate = this.appointmentCalendar.SelectionRange.Start;
             var endDate = this.appointmentCalendar.SelectionRange.End;

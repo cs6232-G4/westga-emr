@@ -48,6 +48,7 @@ namespace westga_emr.View
             this.addNurse1 = new westga_emr.User_Controls.AddNurse();
             this.reportsTabPage = new System.Windows.Forms.TabPage();
             this.report1 = new westga_emr.User_Controls.Report();
+            this.testsTabPage = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -140,6 +141,7 @@ namespace westga_emr.View
             this.mainTabControl.Controls.Add(this.newAppointmentTabPage);
             this.mainTabControl.Controls.Add(this.saerchPatientTabPage);
             this.mainTabControl.Controls.Add(this.upcomingAppointmentsTabPage);
+            this.mainTabControl.Controls.Add(this.testsTabPage);
             this.mainTabControl.Controls.Add(this.nurseListTabPage);
             this.mainTabControl.Controls.Add(this.addNurseTabPage);
             this.mainTabControl.Controls.Add(this.reportsTabPage);
@@ -275,6 +277,15 @@ namespace westga_emr.View
             this.report1.Size = new System.Drawing.Size(521, 299);
             this.report1.TabIndex = 0;
             // 
+            // testsTabPage
+            // 
+            this.testsTabPage.Location = new System.Drawing.Point(4, 25);
+            this.testsTabPage.Name = "testsTabPage";
+            this.testsTabPage.Size = new System.Drawing.Size(1176, 901);
+            this.testsTabPage.TabIndex = 6;
+            this.testsTabPage.Text = "Tests";
+            this.testsTabPage.UseVisualStyleBackColor = true;
+            // 
             // MainTabbedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,5 +337,6 @@ namespace westga_emr.View
         private User_Controls.AddNurse addNurse1;
         private User_Controls.Report report1;
         private User_Controls.NewAppointment newAppointment1;
+        private System.Windows.Forms.TabPage testsTabPage;
     }
 }

@@ -57,6 +57,7 @@ namespace westga_emr.View
                 this.mainTabControl.TabPages.Remove(this.newAppointmentTabPage);
                 this.mainTabControl.TabPages.Remove(this.saerchPatientTabPage);
                 this.mainTabControl.TabPages.Remove(this.upcomingAppointmentsTabPage);
+                this.mainTabControl.TabPages.Remove(this.testsTabPage);
 
             }
             this.currentTimeLabel.Text = DateTime.Now.ToShortTimeString();
@@ -103,6 +104,10 @@ namespace westga_emr.View
             {
                 this.mainTabControl.TabPages.Add(this.upcomingAppointmentsTabPage);
             }
+            if (!this.mainTabControl.TabPages.Contains(this.testsTabPage))
+            {
+                this.mainTabControl.TabPages.Add(this.testsTabPage);
+            }
         }
 
         private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,6 +118,9 @@ namespace westga_emr.View
             } else if(this.mainTabControl.SelectedIndex == 1)
             {
                 this.searchPatient1.SearchPatient_Load("MAIN FORM", EventArgs.Empty);
+            } else if(this.mainTabControl.SelectedIndex == 2)
+            {
+                this.upcomingAppointments1.LoadDataGrid();
             }
         }
     }
