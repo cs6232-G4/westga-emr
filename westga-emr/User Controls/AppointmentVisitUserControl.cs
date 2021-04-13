@@ -43,9 +43,9 @@ namespace westga_emr.User_Controls
                                     new Appointment(appointmentDTO.AppointmentID, appointmentDTO.PatientID, appointmentDTO.DoctorID,
                                     appointmentDTO.AppointmentDateTime, appointmentDTO.ReasonForVisit));
 
-                var _datediff = appointmentDTO.AppointmentDateTime - DateTime.Now;
+               // var _datediff = appointmentDTO.AppointmentDateTime - DateTime.Now;
 
-                if ((visitDTO is null || visitDTO.Count <= 0) && _datediff.Days >= 1)
+                if (visitDTO is null || visitDTO.Count <= 0 )
                 {
                     this.visitLabel.Text = "Create " + this.visitLabel.Text;
                     this.nurseTextBox.Text = AuthenticationHelper.currentUser.FirstName + " " +
@@ -55,20 +55,9 @@ namespace westga_emr.User_Controls
                 }
                 else if (visitDTO.Count > 0)
                 {
-                    if (_datediff.Days >= 1)
-                    {
-                        this.visitLabel.Text = "Edit " + this.visitLabel.Text;
-                        this.PopulateTextBoxesForVisit(visitDTO);
-                        this.EditButton.Visible = true;
-                    }
-                    else
-                    {
-                        this.visitLabel.Text = "View " + this.visitLabel.Text;
-                        this.PopulateTextBoxesForVisit(visitDTO);
-                        this.DisableAllFormFields();
-                        this.messageLabel.Text = "Visit Appointment is backdated." + Environment.NewLine + "Hence can not be edited!!";
-                        this.messageLabel.Visible = true;
-                    }
+                    this.visitLabel.Text = "Edit " + this.visitLabel.Text;
+                    this.PopulateTextBoxesForVisit(visitDTO);
+                    this.EditButton.Visible = true;
                 }
             }
             catch(Exception ex)
@@ -77,23 +66,6 @@ namespace westga_emr.User_Controls
                    "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
-        }
-
-        /// <summary>
-        /// The method to disable text fields
-        /// </summary>
-        private void DisableAllFormFields()
-        {
-            this.nurseTextBox.Enabled = false;
-            this.initialDiagnosticTextBox.Enabled = false;
-            this.visitDateTextBox.Enabled = false;
-            this.systolicPressureTextBox.Enabled = false;
-            this.weightTextBox.Enabled = false;
-            this.dialosticPressureTextBox.Enabled = false;
-            this.bodyTemperatureTextBox.Enabled = false;
-            this.pulseTextBox.Enabled = false;
-            this.symptomsTextBox.Enabled = false;
-            this.finalDiagnosticTextBox.Enabled = false;
         }
 
         /// <summary>
