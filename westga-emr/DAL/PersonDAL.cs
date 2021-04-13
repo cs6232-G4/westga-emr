@@ -324,7 +324,7 @@ namespace westga_emr.DAL
                 FULL OUTER JOIN Nurse N ON P.id = N.personID
 	            FULL OUTER JOIN Clinical_Administrator C ON P.id = C.personID
 	            FULL OUTER JOIN Address A ON P.addressID = A.id
-                WHERE P.username = @Username AND P.password = @Password";
+                WHERE P.username = @Username";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 connection.Open();
