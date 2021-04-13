@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using westga_emr.Model;
 using westga_emr.DAL;
 using System.Data.SqlClient;
+using System.Transactions;
 
 namespace westga_emr.Controller
 {
@@ -67,10 +68,14 @@ namespace westga_emr.Controller
             {
                 throw new ArgumentNullException("username and password of a patient should be null");
             }
-            int? addressID = AddressDAL.InsertAddress(address);
-            int? personID = PersonDAL.InsertPerson(new Person(null, null, null, patient.FirstName, patient.LastName, patient.DateOfBirth,
-                patient.SSN, patient.Gender, addressID, patient.ContactPhone));
-            PatientDAL.InsertPatient(new Patient(null, personID, true));
+            using (TransactionScope scope = new TransactionScope())
+            {
+                int? addressID = AddressDAL.InsertAddress(address);
+                int? personID = PersonDAL.InsertPerson(new Person(null, null, null, patient.FirstName, patient.LastName, patient.DateOfBirth,
+                    patient.SSN, patient.Gender, addressID, patient.ContactPhone));
+                PatientDAL.InsertPatient(new Patient(null, personID, true));
+                scope.Complete();
+            }
             return true;
         }
 
@@ -83,9 +88,13 @@ namespace westga_emr.Controller
         /// <returns></returns>
         public bool UpdatePatient(Person person, Address address, Patient patient)
         {
-            AddressDAL.UpdateAddress(address);
-            PersonDAL.UpdatePerson(person);
-            PatientDAL.UpdatePatient(patient);
+            using (TransactionScope scope = new TransactionScope())
+            {
+                AddressDAL.UpdateAddress(address);
+                PersonDAL.UpdatePerson(person);
+                PatientDAL.UpdatePatient(patient);
+                scope.Complete();
+            }
             return true;
         }
     }
