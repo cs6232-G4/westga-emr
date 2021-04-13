@@ -55,12 +55,11 @@ namespace westga_emr.DAL
         /// Insert a new Lab_Orders_have_Lab_Tests relation into the db
         /// </summary>
         /// <param name="relation">The Lab_Orders_have_Lab_Tests to insert</param>
-        /// <returns>ID of the newly inserted Lab_Orders_have_Lab_Tests, or null if the insertion failed</returns>
-        public static int? InsertLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests relation)
+        /// <returns>Whether or not the insert succeeded</returns>
+        public static bool InsertLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests relation)
         {
-            int? id = null;
+            Object obj = null;
             String insertStatement = @"INSERT INTO Lab_Order (labOrderID, labTestCode, testPerformed, results)
-                                        OUTPUT inserted.id
 			                            VALUES (@labOrderID, @labTestCode, @testPerformed, @results)";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -88,10 +87,17 @@ namespace westga_emr.DAL
                     command.Parameters.AddWithValue("@testPerformed", relation.TestPerformed);
                     command.Parameters.AddWithValue("@results", relation.Results);
 
-                    id = (int?)command.ExecuteScalar();
+                    obj = command.ExecuteScalar();
                 }
             }
-            return id;
+            if (obj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         /// <summary>
