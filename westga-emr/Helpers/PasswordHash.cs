@@ -67,7 +67,7 @@ namespace westga_emr.Helpers
             byte[] test = new Rfc2898DeriveBytes(password, _salt, HashIter).GetBytes(HashSize);
             for (int i = 0; i < HashSize; i++)
             {
-                if (test[i] != Hash[i])
+                if (test[i] != _hash[i])
                 {
                     return false;
                 }
