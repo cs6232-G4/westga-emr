@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using westga_emr.Model;
 using System.Data.SqlClient;
 using westga_emr.Model.DTO;
+using westga_emr.Helpers;
 
 namespace westga_emr.DAL
 {
@@ -18,7 +19,7 @@ namespace westga_emr.DAL
         public static List<Person> GetPersons()
         {
             List<Person> persons = new List<Person>();
-            String selectStatement = @"SELECT id, username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
+            String selectStatement = @"SELECT id, username, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
                                         FROM Person";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -29,7 +30,6 @@ namespace westga_emr.DAL
                     {
                         int ordID = reader.GetOrdinal("id");
                         int ordUsername = reader.GetOrdinal("username");
-                        int ordPassword = reader.GetOrdinal("password");
                         int ordFirstName = reader.GetOrdinal("firstName");
                         int ordLastName = reader.GetOrdinal("lastName");
                         int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
@@ -44,17 +44,12 @@ namespace westga_emr.DAL
                             {
                                 user = reader.GetString(ordUsername);
                             }
-                            string pass = null;
-                            if (!reader.IsDBNull(ordPassword))
-                            {
-                                pass = reader.GetString(ordPassword);
-                            }
                             string social = null;
                             if (!reader.IsDBNull(ordSSN))
                             {
                                 social = reader.GetString(ordSSN);
                             }
-                            persons.Add(new Person(reader.GetInt32(ordID), user, pass,
+                            persons.Add(new Person(reader.GetInt32(ordID), user, null,
                                 reader.GetString(ordFirstName), reader.GetString(ordLastName),
                                 reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
                                 reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone)));
@@ -66,73 +61,16 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
-        /// Finds a Person by their username and password. Returns null if user does not exist
-        /// </summary>
-        /// <param name="username">Username of Person to find</param>
-        /// <param name="password">Password of Person to find</param>
-        /// <returns></returns>
-        public static Person GetPersonByUsernameAndPassword(string username, string password)
-        {
-            Person person = null;
-            String selectStatement = @"SELECT id, username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
-                                        FROM Person
-                                        WHERE username = @username AND password = @password";
-            using (SqlConnection connection = GetSQLConnection.GetConnection())
-            {
-                using (SqlCommand command = new SqlCommand(selectStatement, connection))
-                {
-                    command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", password);
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        int ordID = reader.GetOrdinal("id");
-                        int ordUsername = reader.GetOrdinal("username");
-                        int ordPassword = reader.GetOrdinal("password");
-                        int ordFirstName = reader.GetOrdinal("firstName");
-                        int ordLastName = reader.GetOrdinal("lastName");
-                        int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
-                        int ordSSN = reader.GetOrdinal("ssn");
-                        int ordGender = reader.GetOrdinal("gender");
-                        int ordAddressID = reader.GetOrdinal("addressID");
-                        int ordContactPhone = reader.GetOrdinal("contactPhone");
-                        while (reader.Read())
-                        {
-                            string user = null;
-                            if (!reader.IsDBNull(ordUsername))
-                            {
-                                user = reader.GetString(ordUsername);
-                            }
-                            string pass = null;
-                            if (!reader.IsDBNull(ordPassword))
-                            {
-                                pass = reader.GetString(ordPassword);
-                            }
-                            string social = null;
-                            if (!reader.IsDBNull(ordSSN))
-                            {
-                                social = reader.GetString(ordSSN);
-                            }
-                            person = new Person(reader.GetInt32(ordID), user, pass,
-                                reader.GetString(ordFirstName), reader.GetString(ordLastName),
-                                reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
-                                reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
-                        }
-                    }
-                }
-            }
-            return person;
-        }
-
-        /// <summary>
-        /// Returns the Person of the Patient
+        /// Returns the Person of the Patient.
+        /// 
+        /// Returns password as null.
         /// </summary>
         /// <param name="patient">The Patient</param>
         /// <returns>Person of the Patient</returns>
         public static Person GetPersonByPatientID(Patient patient)
         {
             Person person = null;
-            String selectStatement = @"SELECT Person.id, username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
+            String selectStatement = @"SELECT Person.id, username, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
                                         FROM Person
 	                                        JOIN Patient on Person.id = Patient.personID
                                         WHERE Patient.id = @patientID";
@@ -146,7 +84,6 @@ namespace westga_emr.DAL
                     {
                         int ordID = reader.GetOrdinal("id");
                         int ordUsername = reader.GetOrdinal("username");
-                        int ordPassword = reader.GetOrdinal("password");
                         int ordFirstName = reader.GetOrdinal("firstName");
                         int ordLastName = reader.GetOrdinal("lastName");
                         int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
@@ -161,17 +98,12 @@ namespace westga_emr.DAL
                             {
                                 user = reader.GetString(ordUsername);
                             }
-                            string pass = null;
-                            if (!reader.IsDBNull(ordPassword))
-                            {
-                                pass = reader.GetString(ordPassword);
-                            }
                             string social = null;
                             if (!reader.IsDBNull(ordSSN))
                             {
                                 social = reader.GetString(ordSSN);
                             }
-                            person = new Person(reader.GetInt32(ordID), user, pass,
+                            person = new Person(reader.GetInt32(ordID), user, null,
                                 reader.GetString(ordFirstName), reader.GetString(ordLastName),
                                 reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
                                 reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
@@ -183,14 +115,16 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
-        /// Returns the Person of the Doctor
+        /// Returns the Person of the Doctor.
+        /// 
+        /// Returns password as null.
         /// </summary>
         /// <param name="patient">The Doctor</param>
         /// <returns>Person of the Doctor</returns>
         public static Person GetPersonByDoctorID(Doctor doctor)
         {
             Person person = null;
-            String selectStatement = @"SELECT Person.id, username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
+            String selectStatement = @"SELECT Person.id, username, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
                                         FROM Person
 	                                        JOIN Doctor on Person.id = Doctor.personID
                                         WHERE Doctor.id = @doctorID";
@@ -204,7 +138,6 @@ namespace westga_emr.DAL
                     {
                         int ordID = reader.GetOrdinal("id");
                         int ordUsername = reader.GetOrdinal("username");
-                        int ordPassword = reader.GetOrdinal("password");
                         int ordFirstName = reader.GetOrdinal("firstName");
                         int ordLastName = reader.GetOrdinal("lastName");
                         int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
@@ -219,17 +152,12 @@ namespace westga_emr.DAL
                             {
                                 user = reader.GetString(ordUsername);
                             }
-                            string pass = null;
-                            if (!reader.IsDBNull(ordPassword))
-                            {
-                                pass = reader.GetString(ordPassword);
-                            }
                             string social = null;
                             if (!reader.IsDBNull(ordSSN))
                             {
                                 social = reader.GetString(ordSSN);
                             }
-                            person = new Person(reader.GetInt32(ordID), user, pass,
+                            person = new Person(reader.GetInt32(ordID), user, null,
                                 reader.GetString(ordFirstName), reader.GetString(ordLastName),
                                 reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
                                 reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
@@ -241,14 +169,16 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
-        /// Gets the Person of the Nurse by their id
+        /// Gets the Person of the Nurse by their id.
+        /// 
+        /// Returns password as null.
         /// </summary>
         /// <param name="nurse">Nurse whose Person is desired</param>
         /// <returns>Person of the Nurse</returns>
         public static Person GetPersonByNurseID(Nurse nurse)
         {
             Person person = null;
-            String selectStatement = @"SELECT Person.id, username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
+            String selectStatement = @"SELECT Person.id, username, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
                                         FROM Person
 	                                        JOIN Nurse on Person.id = Nurse.personID
                                         WHERE Nurse.id = @nurseID";
@@ -262,7 +192,6 @@ namespace westga_emr.DAL
                     {
                         int ordID = reader.GetOrdinal("id");
                         int ordUsername = reader.GetOrdinal("username");
-                        int ordPassword = reader.GetOrdinal("password");
                         int ordFirstName = reader.GetOrdinal("firstName");
                         int ordLastName = reader.GetOrdinal("lastName");
                         int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
@@ -277,17 +206,12 @@ namespace westga_emr.DAL
                             {
                                 user = reader.GetString(ordUsername);
                             }
-                            string pass = null;
-                            if (!reader.IsDBNull(ordPassword))
-                            {
-                                pass = reader.GetString(ordPassword);
-                            }
                             string social = null;
                             if (!reader.IsDBNull(ordSSN))
                             {
                                 social = reader.GetString(ordSSN);
                             }
-                            person = new Person(reader.GetInt32(ordID), user, pass,
+                            person = new Person(reader.GetInt32(ordID), user, null,
                                 reader.GetString(ordFirstName), reader.GetString(ordLastName),
                                 reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
                                 reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
@@ -299,14 +223,16 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
-        /// Gets the Person of the Clinical_Administor by their adminID
+        /// Gets the Person of the Clinical_Administor by their adminID.
+        /// 
+        /// Returns password as null.
         /// </summary>
         /// <param name="admin">Clinical_Administrator whose Person you desire</param>
         /// <returns>Person of the Clinical_Administrator</returns>
         public static Person GetPersonByClinicalAdministratorID(Clinical_Administrator admin)
         {
             Person person = null;
-            String selectStatement = @"SELECT Person.id, username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
+            String selectStatement = @"SELECT Person.id, username, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone
                                         FROM Person
 	                                        JOIN Clinical_Administrator on Person.id = Clinical_Administrator.personID
                                         WHERE Clinical_Administrator.id = @adminID";
@@ -320,7 +246,6 @@ namespace westga_emr.DAL
                     {
                         int ordID = reader.GetOrdinal("id");
                         int ordUsername = reader.GetOrdinal("username");
-                        int ordPassword = reader.GetOrdinal("password");
                         int ordFirstName = reader.GetOrdinal("firstName");
                         int ordLastName = reader.GetOrdinal("lastName");
                         int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
@@ -335,17 +260,12 @@ namespace westga_emr.DAL
                             {
                                 user = reader.GetString(ordUsername);
                             }
-                            string pass = null;
-                            if (!reader.IsDBNull(ordPassword))
-                            {
-                                pass = reader.GetString(ordPassword);
-                            }
                             string social = null;
                             if (!reader.IsDBNull(ordSSN))
                             {
                                 social = reader.GetString(ordSSN);
                             }
-                            person = new Person(reader.GetInt32(ordID), user, pass,
+                            person = new Person(reader.GetInt32(ordID), user, null,
                                 reader.GetString(ordFirstName), reader.GetString(ordLastName),
                                 reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
                                 reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
@@ -392,6 +312,7 @@ namespace westga_emr.DAL
         /// <returns>The current user</returns>
         public UserDTO SignIn( string username, string password)
         {
+            VerifyLogin(username, password);
             UserDTO currentUser = new UserDTO();
             string selectUserStatement = @"
                 SELECT P.id as personId, username,firstName, 
@@ -442,6 +363,37 @@ namespace westga_emr.DAL
                 }
             }
             return currentUser;
+        }
+
+        private static void VerifyLogin(string username, string password)
+        {
+            string selectUserStatement = @"
+                SELECT password
+                FROM Person 
+                WHERE username = @Username";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@Username", username);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            byte[] hash = (byte[]) reader.GetValue(reader.GetOrdinal("password"));
+                            if (!PasswordHashUse.VerifyPassword(hash, password))
+                            {
+                                throw new Exception("Incorrect username or password");
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Incorrect username or password");
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
