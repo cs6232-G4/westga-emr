@@ -80,35 +80,7 @@ namespace westga_emr.DAL
                 {
                     command.Parameters.AddWithValue("@patientID", patient.ID);
                     connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        int ordID = reader.GetOrdinal("id");
-                        int ordUsername = reader.GetOrdinal("username");
-                        int ordFirstName = reader.GetOrdinal("firstName");
-                        int ordLastName = reader.GetOrdinal("lastName");
-                        int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
-                        int ordSSN = reader.GetOrdinal("ssn");
-                        int ordGender = reader.GetOrdinal("gender");
-                        int ordAddressID = reader.GetOrdinal("addressID");
-                        int ordContactPhone = reader.GetOrdinal("contactPhone");
-                        while (reader.Read())
-                        {
-                            string user = null;
-                            if (!reader.IsDBNull(ordUsername))
-                            {
-                                user = reader.GetString(ordUsername);
-                            }
-                            string social = null;
-                            if (!reader.IsDBNull(ordSSN))
-                            {
-                                social = reader.GetString(ordSSN);
-                            }
-                            person = new Person(reader.GetInt32(ordID), user, null,
-                                reader.GetString(ordFirstName), reader.GetString(ordLastName),
-                                reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
-                                reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
-                        }
-                    }
+                    person = GetPerson(command);
                 }
             }
             return person;
@@ -134,35 +106,7 @@ namespace westga_emr.DAL
                 {
                     command.Parameters.AddWithValue("@doctorID", doctor.ID);
                     connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        int ordID = reader.GetOrdinal("id");
-                        int ordUsername = reader.GetOrdinal("username");
-                        int ordFirstName = reader.GetOrdinal("firstName");
-                        int ordLastName = reader.GetOrdinal("lastName");
-                        int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
-                        int ordSSN = reader.GetOrdinal("ssn");
-                        int ordGender = reader.GetOrdinal("gender");
-                        int ordAddressID = reader.GetOrdinal("addressID");
-                        int ordContactPhone = reader.GetOrdinal("contactPhone");
-                        while (reader.Read())
-                        {
-                            string user = null;
-                            if (!reader.IsDBNull(ordUsername))
-                            {
-                                user = reader.GetString(ordUsername);
-                            }
-                            string social = null;
-                            if (!reader.IsDBNull(ordSSN))
-                            {
-                                social = reader.GetString(ordSSN);
-                            }
-                            person = new Person(reader.GetInt32(ordID), user, null,
-                                reader.GetString(ordFirstName), reader.GetString(ordLastName),
-                                reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
-                                reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
-                        }
-                    }
+                    person = GetPerson(command);
                 }
             }
             return person;
@@ -188,35 +132,7 @@ namespace westga_emr.DAL
                 {
                     command.Parameters.AddWithValue("@nurseID", nurse.ID);
                     connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        int ordID = reader.GetOrdinal("id");
-                        int ordUsername = reader.GetOrdinal("username");
-                        int ordFirstName = reader.GetOrdinal("firstName");
-                        int ordLastName = reader.GetOrdinal("lastName");
-                        int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
-                        int ordSSN = reader.GetOrdinal("ssn");
-                        int ordGender = reader.GetOrdinal("gender");
-                        int ordAddressID = reader.GetOrdinal("addressID");
-                        int ordContactPhone = reader.GetOrdinal("contactPhone");
-                        while (reader.Read())
-                        {
-                            string user = null;
-                            if (!reader.IsDBNull(ordUsername))
-                            {
-                                user = reader.GetString(ordUsername);
-                            }
-                            string social = null;
-                            if (!reader.IsDBNull(ordSSN))
-                            {
-                                social = reader.GetString(ordSSN);
-                            }
-                            person = new Person(reader.GetInt32(ordID), user, null,
-                                reader.GetString(ordFirstName), reader.GetString(ordLastName),
-                                reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
-                                reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
-                        }
-                    }
+                    person = GetPerson(command);
                 }
             }
             return person;
@@ -242,35 +158,42 @@ namespace westga_emr.DAL
                 {
                     command.Parameters.AddWithValue("@adminID", admin.ID);
                     connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    person = GetPerson(command);
+                }
+            }
+            return person;
+        }
+
+        private static Person GetPerson(SqlCommand command)
+        {
+            Person person = null;
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                int ordID = reader.GetOrdinal("id");
+                int ordUsername = reader.GetOrdinal("username");
+                int ordFirstName = reader.GetOrdinal("firstName");
+                int ordLastName = reader.GetOrdinal("lastName");
+                int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
+                int ordSSN = reader.GetOrdinal("ssn");
+                int ordGender = reader.GetOrdinal("gender");
+                int ordAddressID = reader.GetOrdinal("addressID");
+                int ordContactPhone = reader.GetOrdinal("contactPhone");
+                while (reader.Read())
+                {
+                    string user = null;
+                    if (!reader.IsDBNull(ordUsername))
                     {
-                        int ordID = reader.GetOrdinal("id");
-                        int ordUsername = reader.GetOrdinal("username");
-                        int ordFirstName = reader.GetOrdinal("firstName");
-                        int ordLastName = reader.GetOrdinal("lastName");
-                        int ordDateOfBirth = reader.GetOrdinal("dateOfBirth");
-                        int ordSSN = reader.GetOrdinal("ssn");
-                        int ordGender = reader.GetOrdinal("gender");
-                        int ordAddressID = reader.GetOrdinal("addressID");
-                        int ordContactPhone = reader.GetOrdinal("contactPhone");
-                        while (reader.Read())
-                        {
-                            string user = null;
-                            if (!reader.IsDBNull(ordUsername))
-                            {
-                                user = reader.GetString(ordUsername);
-                            }
-                            string social = null;
-                            if (!reader.IsDBNull(ordSSN))
-                            {
-                                social = reader.GetString(ordSSN);
-                            }
-                            person = new Person(reader.GetInt32(ordID), user, null,
-                                reader.GetString(ordFirstName), reader.GetString(ordLastName),
-                                reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
-                                reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
-                        }
+                        user = reader.GetString(ordUsername);
                     }
+                    string social = null;
+                    if (!reader.IsDBNull(ordSSN))
+                    {
+                        social = reader.GetString(ordSSN);
+                    }
+                    person = new Person(reader.GetInt32(ordID), user, null,
+                        reader.GetString(ordFirstName), reader.GetString(ordLastName),
+                        reader.GetDateTime(ordDateOfBirth), social, reader.GetString(ordGender),
+                        reader.GetInt32(ordAddressID), reader.GetString(ordContactPhone));
                 }
             }
             return person;
