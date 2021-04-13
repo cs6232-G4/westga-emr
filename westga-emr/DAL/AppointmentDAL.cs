@@ -166,6 +166,65 @@ namespace westga_emr.DAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public static List<AppointmentDTO> GetAppointmentInDateRange(DateTime start, DateTime end)
+        {
+            List<AppointmentDTO> appointments = new List<AppointmentDTO>();
+            string query = @"SELECT Appointment.id as appointmentID, [patientID], [appointmentDateTime], [reasonForVisit]
+                            ,CONCAT(Person.firstName,' ', Person.lastName) as doctorName, [doctorID]
+                            INTO aptTemp
+                            FROM Appointment
+                            inner join Doctor on Appointment.doctorID = Doctor.id
+                            inner join Person on Doctor.personID = Person.id
+                            WHERE Appointment.appointmentDateTime between @StartDate and @EndDate
+
+                            SELECT appointmentDateTime, patientID, doctorID, reasonForVisit, doctorName, appointmentID, CONCAT(Person.firstName,' ', Person.lastName) as patientName  
+                            from aptTemp
+                            inner join Patient on aptTemp.patientID = Patient.id
+                            inner join Person on Patient.personID = Person.id
+                            order by aptTemp.appointmentDateTime
+
+                            IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[aptTemp]') AND type in (N'U'))
+                            DROP TABLE [dbo].[aptTemp]";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@StartDate", start.Date);
+                    command.Parameters.AddWithValue("@EndDate", end.AddDays(1).Date);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        int ordAptID = reader.GetOrdinal("appointmentID");
+                        int ordPatientName = reader.GetOrdinal("patientName");
+                        int ordDoctorName = reader.GetOrdinal("doctorName");
+                        int ordApptDateTime = reader.GetOrdinal("appointmentDateTime");
+                        int ordReason = reader.GetOrdinal("reasonForVisit");
+                        int ordDoctorId = reader.GetOrdinal("doctorID");
+                        int ordPatientId = reader.GetOrdinal("patientID");
+                        while (reader.Read())
+                        {
+                            var appointment = new AppointmentDTO();
+                            appointment.AppointmentID = Convert.ToInt32(reader.GetInt64(ordAptID));
+                            appointment.AppointmentDateTime = reader.GetDateTime(ordApptDateTime);
+                            appointment.DoctorName = reader.GetString(ordDoctorName);
+                            appointment.PatientName = reader.GetString(ordPatientName);
+                            appointment.ReasonForVisit = reader.GetString(ordReason);
+                            appointment.DoctorID = reader.GetInt32(ordDoctorId);
+                            appointment.PatientID = reader.GetInt32(ordPatientId);
+                            appointments.Add(appointment);
+                        }
+                    }
+                }
+            }
+            return appointments;
+        }
+
        
     }
 }

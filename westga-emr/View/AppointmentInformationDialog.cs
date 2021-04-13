@@ -55,13 +55,12 @@ namespace westga_emr.View
             this.appointmentVisitReason.Text = this.appointmentDTO.ReasonForVisit;
             this.appointmentDate.Value = this.appointmentDTO.AppointmentDateTime.Date;
             this.selectedAppointmentDateTime = this.appointmentDTO.AppointmentDateTime;
-            
             if(this.doctor != null)
             {
+                this.availableDoctors = doctorController.GetAvailableDoctorsOnDate(this.appointmentDTO.AppointmentDateTime);
                 this.availableDoctors.Add(doctor);
                 this.availableDoctorsComboBox.DataSource = this.availableDoctors;
                 this.availableDoctorsComboBox.SelectedIndex = this.availableDoctors.FindIndex(x => x.DoctorId == appointmentDTO.DoctorID);
-                this.availableDoctorsComboBox.Enabled = false;
             }
         }
 
@@ -78,6 +77,7 @@ namespace westga_emr.View
                 {
                     MessageBox.Show("No avilable doctor" + Environment.NewLine + "Please choose another date or time for your appointment", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+
                 availableDoctorsComboBox.DataSource = this.availableDoctors;
                 availableDoctorsComboBox.Enabled = true;
 
@@ -139,6 +139,18 @@ namespace westga_emr.View
 
             }
 
+        }
+
+        private void appointmentVisitReason_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(appointmentVisitReason.Text))
+            {
+                reasonForVisitError.Text = "Please enter a reason for the visit";
+            }
+            else
+            {
+                reasonForVisitError.Text = "";
+            }
         }
     }
 }

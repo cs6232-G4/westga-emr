@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using westga_emr.Model;
 using System.Data.SqlClient;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.DAL
 {
@@ -278,6 +279,76 @@ namespace westga_emr.DAL
             {
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Method to check if patient already has appointment for particular time
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <param name="appointmentTime"></param>
+        /// <returns></returns>
+        public bool PatietHasAppointment(int patientId, DateTime appointmentTime)
+        {
+            bool appointmentExist = false;
+            string selectStatement = @"SELECT id FROM Appointment where patientID = @PatientId and appointmentDateTime = @AppointmentDateTime";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@PatientId", patientId);
+                    selectCommand.Parameters.AddWithValue("@AppointmentDateTime", appointmentTime);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            appointmentExist = true;
+                        }
+                    }
+                }
+            }
+            return appointmentExist;
+        }
+
+        /// <summary>
+        /// Gets a patient information by patient id
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        public static UserDTO GetPatientById(int patientId)
+        {
+            UserDTO patient = new UserDTO();
+            string selectStatement = @"SELECT p.id as personId, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone, pt.id as patientId
+                                    FROM Patient as pt
+	                                    JOIN Person as p ON pt.personID = p.id
+                                    WHERE pt.active = 1
+	                                    AND pt.id = @PatientId";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@PatientId", patientId);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            patient.Id = (int)reader["personId"];
+                            patient.FirstName = reader["firstName"].ToString();
+                            patient.LastName = reader["lastName"].ToString();
+                            patient.SSN = reader["ssn"].ToString();
+                            patient.Gender = reader["gender"].ToString();
+                            patient.ContactPhone = reader["contactPhone"].ToString();
+                            patient.AddressId = reader["addressID"] != DBNull.Value ? (int)reader["addressID"] : 0;
+                            patient.DateOfBirth = reader["dateOfBirth"] != DBNull.Value ? (DateTime)reader["dateOfBirth"] : (DateTime?)null;
+                            patient.PatientId = (int)reader["patientId"];
+                            patient.IsActivePatient = true;
+
+                        };
+                    }
+                }
+            }
+            return patient;
         }
     }
 }

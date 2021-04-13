@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using westga_emr.Model;
 using westga_emr.DAL;
 using System.Data.SqlClient;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.Controller
 {
@@ -11,7 +12,12 @@ namespace westga_emr.Controller
     /// </summary>
     public class PatientController
     {
+        private PatientDAL patientDBSource;
 
+        public PatientController()
+        {
+            this.patientDBSource = new PatientDAL();
+        }
         /// <see cref="PatientDAL.GetAllActivePatients"/>
         public List<Person> GetAllActivePatients()
         {
@@ -87,6 +93,26 @@ namespace westga_emr.Controller
             PersonDAL.UpdatePerson(person);
             PatientDAL.UpdatePatient(patient);
             return true;
+        }
+        /// <summary>
+        /// Checks if patient has existing appointment at particular time
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <param name="appointmentTime"></param>
+        /// <returns></returns>
+        public bool PatientHasAppointment(int patientId, DateTime appointmentTime)
+        {
+            return this.patientDBSource.PatietHasAppointment(patientId, appointmentTime);
+        }
+
+        /// <summary>
+        /// Gets patient information by patient d
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        public UserDTO GetPatientByPatientId(int patientId)
+        {
+            return PatientDAL.GetPatientById(patientId);
         }
     }
 }
