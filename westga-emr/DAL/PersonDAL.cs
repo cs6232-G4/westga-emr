@@ -506,7 +506,8 @@ namespace westga_emr.DAL
                     } 
                     else
                     {
-                        command.Parameters.AddWithValue("@password", person.Password);
+                        byte[] hash = PasswordHashUse.HashPassword(person.Password);
+                        command.Parameters.AddWithValue("@password", hash);
                     }
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {
@@ -563,7 +564,8 @@ namespace westga_emr.DAL
                     }
                     else
                     {
-                        command.Parameters.AddWithValue("@password", person.Password);
+                        byte[] hash = PasswordHashUse.HashPassword(person.Password);
+                        command.Parameters.AddWithValue("@password", hash);
                     }
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {
