@@ -429,8 +429,11 @@ namespace westga_emr.DAL
                     } 
                     else
                     {
-                        byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        command.Parameters.AddWithValue("@password", hash);
+                        //byte[] hash = PasswordHashUse.HashPassword(person.Password);
+                        //SqlParameter param = command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary);
+                        //param.Value = hash;
+                        SqlParameter param = command.Parameters.AddWithValue("@password", PasswordHashUse.HashPassword(person.Password));
+                        param.DbType = System.Data.DbType.Binary;
                     }
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {
@@ -487,8 +490,9 @@ namespace westga_emr.DAL
                     }
                     else
                     {
-                        byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        command.Parameters.AddWithValue("@password", hash);
+                        Byte[] hash = PasswordHashUse.HashPassword(person.Password);
+                        SqlParameter param = command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary);
+                        param.Value = hash;
                     }
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {
