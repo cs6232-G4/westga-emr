@@ -135,6 +135,12 @@
     <Compile Include="User Controls\Report.Designer.cs">
       <DependentUpon>Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Controls\TestsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\TestsUserControl.Designer.cs">
+      <DependentUpon>TestsUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Controls\UpcomingAppointments.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\Report.resx">
       <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\TestsUserControl.resx">
+      <DependentUpon>TestsUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\UpcomingAppointments.resx">
       <DependentUpon>UpcomingAppointments.cs</DependentUpon>
