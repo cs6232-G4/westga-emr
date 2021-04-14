@@ -14,14 +14,24 @@ namespace westga_emr.User_Controls
 {
     public partial class TestsUserControl : UserControl
     {
-        private PersonController personController;
-        private VisitController visitController;
+        private readonly PersonController personController;
+        private readonly VisitController visitController;
+        private readonly Lab_Orders_have_Lab_TestsController labOrdersTestController;
         private UserDTO patient;
+        private VisitDTO visit;
         private List<VisitDTO> visits;
         private List<UserDTO> patients;
+        private List<LabOrderTestDTO> visitTests;
         public TestsUserControl()
         {
             InitializeComponent();
+            personController = new PersonController();
+            visitController = new VisitController();
+            patients = new List<UserDTO>();
+            visits = new List<VisitDTO>();
+            visitTests = new List<LabOrderTestDTO>();
+            labOrdersTestController = new Lab_Orders_have_Lab_TestsController();
+
         }
 
         private void TestsUserControl_Load(object sender, EventArgs e)
@@ -42,6 +52,7 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDateTimePickerSearchInput.Value = this.dateOfBirthDateTimePickerSearchInput.MaxDate;
             this.visitsDataGridView.Visible = false;
             this.visitsDataGridView.DataSource = null;
+            this.testsDataGrid.DataSource = null;
             this.searchCriteria.SelectedIndex = -1;
         }
         /// <summary>
@@ -95,7 +106,7 @@ namespace westga_emr.User_Controls
                 this.firstNameTextBoxSearchInput.Text = "";
                 this.lastNameTextBoxSearchInput.Text = "";
                 patientsDatatGrid.DataSource = this.patients;
-                if (this.visits.Count <= 0)
+                if (this.patients.Count <= 0)
                 {
 
                     MessageBox.Show("Patient not found in the system." + Environment.NewLine + "Add add the new Patient before doing patient visit search!", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -175,10 +186,35 @@ namespace westga_emr.User_Controls
                 if (visits.Count <= 0)
                 {
 
-                    MessageBox.Show("No visit found in the system for the Patient.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"No visit found in the system for the Patient - {patient.FullName}.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 this.visitsDataGridView.DataSource = visits;
+            }
+
+        }
+        /// <summary>
+        /// The event handler method for PatientsDatatGrid CellContentClick
+        /// </summary>
+        private void VisitsDatatGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            visit = (VisitDTO)visitsDataGridView.Rows[e.RowIndex].DataBoundItem;
+            if (patientsDatatGrid.Columns[e.ColumnIndex].Name == "ViewTests")
+            {
+                this.testsDataGrid.Visible = true;
+                this.testsDataGrid.DataSource = null;
+                visitTests = labOrdersTestController.GetVisitTests(Convert.ToInt32(visit.ID));
+                if (visits.Count <= 0)
+                {
+                    MessageBox.Show($"No test found in the system for visit {visit.ID}.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                this.visitsDataGridView.DataSource = visits;
+            }
+            else if (patientsDatatGrid.Columns[e.ColumnIndex].Name == "OrderTest")
+            {
+                this.testsDataGrid.Visible = false;
+                this.testsDataGrid.DataSource = null;
+
             }
 
         }

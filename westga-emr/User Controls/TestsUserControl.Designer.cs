@@ -30,7 +30,7 @@ namespace westga_emr.User_Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,11 +45,15 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDateTimePickerSearchInput = new System.Windows.Forms.DateTimePicker();
             this.searchButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
-            this.visitsDataGridView = new System.Windows.Forms.DataGridView();
             this.searchErrorLabel = new System.Windows.Forms.Label();
+            this.visitsDataGridView = new System.Windows.Forms.DataGridView();
             this.patientsDatatGrid = new System.Windows.Forms.DataGridView();
             this.ViewVisits = new System.Windows.Forms.DataGridViewButtonColumn();
             this.visitForLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.testsDataGrid = new System.Windows.Forms.DataGridView();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.labOrderTestDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +63,14 @@ namespace westga_emr.User_Controls
             this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.visitDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.visitIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testResultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterTestResults = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nurseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VisitReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,18 +81,18 @@ namespace westga_emr.User_Controls
             this.finalDiagnosisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewTests = new System.Windows.Forms.DataGridViewButtonColumn();
             this.OrderTest = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.testsDataGrid = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visitsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientsDatatGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.labOrderTestDTOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -150,6 +162,7 @@ namespace westga_emr.User_Controls
             this.searchCriteria.Name = "searchCriteria";
             this.searchCriteria.Size = new System.Drawing.Size(207, 21);
             this.searchCriteria.TabIndex = 1;
+            this.searchCriteria.SelectedIndexChanged += new System.EventHandler(this.SearchCriteria_SelectedIndexChanged);
             // 
             // searchCriteriaError
             // 
@@ -265,6 +278,7 @@ namespace westga_emr.User_Controls
             this.searchButton.TabIndex = 4;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = false;
+            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // tableLayoutPanel13
             // 
@@ -283,6 +297,16 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel13.Size = new System.Drawing.Size(1108, 15);
             this.tableLayoutPanel13.TabIndex = 2;
+            // 
+            // searchErrorLabel
+            // 
+            this.searchErrorLabel.AutoSize = true;
+            this.searchErrorLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.searchErrorLabel.Location = new System.Drawing.Point(3, 0);
+            this.searchErrorLabel.Name = "searchErrorLabel";
+            this.searchErrorLabel.Size = new System.Drawing.Size(1102, 15);
+            this.searchErrorLabel.TabIndex = 0;
             // 
             // visitsDataGridView
             // 
@@ -303,21 +327,11 @@ namespace westga_emr.User_Controls
             this.ViewTests,
             this.OrderTest});
             this.visitsDataGridView.DataSource = this.visitDTOBindingSource;
-            this.visitsDataGridView.Location = new System.Drawing.Point(0, 329);
+            this.visitsDataGridView.Location = new System.Drawing.Point(-2, 303);
             this.visitsDataGridView.Name = "visitsDataGridView";
             this.visitsDataGridView.ReadOnly = true;
-            this.visitsDataGridView.Size = new System.Drawing.Size(1114, 330);
+            this.visitsDataGridView.Size = new System.Drawing.Size(1114, 345);
             this.visitsDataGridView.TabIndex = 3;
-            // 
-            // searchErrorLabel
-            // 
-            this.searchErrorLabel.AutoSize = true;
-            this.searchErrorLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.searchErrorLabel.Location = new System.Drawing.Point(3, 0);
-            this.searchErrorLabel.Name = "searchErrorLabel";
-            this.searchErrorLabel.Size = new System.Drawing.Size(1102, 15);
-            this.searchErrorLabel.TabIndex = 0;
             // 
             // patientsDatatGrid
             // 
@@ -339,15 +353,15 @@ namespace westga_emr.User_Controls
             this.patientsDatatGrid.Location = new System.Drawing.Point(0, 100);
             this.patientsDatatGrid.Name = "patientsDatatGrid";
             this.patientsDatatGrid.ReadOnly = true;
-            this.patientsDatatGrid.Size = new System.Drawing.Size(1114, 223);
+            this.patientsDatatGrid.Size = new System.Drawing.Size(1114, 197);
             this.patientsDatatGrid.TabIndex = 5;
             this.patientsDatatGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PatientsDatatGrid_CellContentClick);
             // 
             // ViewVisits
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Green;
-            this.ViewVisits.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Green;
+            this.ViewVisits.DefaultCellStyle = dataGridViewCellStyle2;
             this.ViewVisits.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ViewVisits.HeaderText = "";
             this.ViewVisits.Name = "ViewVisits";
@@ -364,6 +378,49 @@ namespace westga_emr.User_Controls
             this.visitForLabel.Name = "visitForLabel";
             this.visitForLabel.Size = new System.Drawing.Size(0, 18);
             this.visitForLabel.TabIndex = 6;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.testsDataGrid);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 665);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1114, 450);
+            this.panel1.TabIndex = 7;
+            // 
+            // testsDataGrid
+            // 
+            this.testsDataGrid.AllowUserToAddRows = false;
+            this.testsDataGrid.AllowUserToDeleteRows = false;
+            this.testsDataGrid.AutoGenerateColumns = false;
+            this.testsDataGrid.BackgroundColor = System.Drawing.Color.OldLace;
+            this.testsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.testsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderIdDataGridViewTextBoxColumn,
+            this.visitIdDataGridViewTextBoxColumn,
+            this.testNameDataGridViewTextBoxColumn,
+            this.testResultDataGridViewTextBoxColumn,
+            this.orderedDateDataGridViewTextBoxColumn,
+            this.testDateDataGridViewTextBoxColumn,
+            this.testCodeDataGridViewTextBoxColumn,
+            this.EnterTestResults});
+            this.testsDataGrid.DataSource = this.labOrderTestDTOBindingSource;
+            this.testsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.testsDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.testsDataGrid.Name = "testsDataGrid";
+            this.testsDataGrid.ReadOnly = true;
+            this.testsDataGrid.Size = new System.Drawing.Size(1114, 450);
+            this.testsDataGrid.TabIndex = 0;
+            this.testsDataGrid.Visible = false;
+            // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // labOrderTestDTOBindingSource
+            // 
+            this.labOrderTestDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.LabOrderTestDTO);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -423,6 +480,67 @@ namespace westga_emr.User_Controls
             // visitDTOBindingSource
             // 
             this.visitDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.VisitDTO);
+            // 
+            // orderIdDataGridViewTextBoxColumn
+            // 
+            this.orderIdDataGridViewTextBoxColumn.DataPropertyName = "OrderId";
+            this.orderIdDataGridViewTextBoxColumn.HeaderText = "Lab Order Id";
+            this.orderIdDataGridViewTextBoxColumn.Name = "orderIdDataGridViewTextBoxColumn";
+            this.orderIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // visitIdDataGridViewTextBoxColumn
+            // 
+            this.visitIdDataGridViewTextBoxColumn.DataPropertyName = "VisitId";
+            this.visitIdDataGridViewTextBoxColumn.HeaderText = "Visit Id";
+            this.visitIdDataGridViewTextBoxColumn.Name = "visitIdDataGridViewTextBoxColumn";
+            this.visitIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // testNameDataGridViewTextBoxColumn
+            // 
+            this.testNameDataGridViewTextBoxColumn.DataPropertyName = "TestName";
+            this.testNameDataGridViewTextBoxColumn.HeaderText = "Test Name";
+            this.testNameDataGridViewTextBoxColumn.Name = "testNameDataGridViewTextBoxColumn";
+            this.testNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testNameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // testResultDataGridViewTextBoxColumn
+            // 
+            this.testResultDataGridViewTextBoxColumn.DataPropertyName = "TestResult";
+            this.testResultDataGridViewTextBoxColumn.HeaderText = "Test Result";
+            this.testResultDataGridViewTextBoxColumn.Name = "testResultDataGridViewTextBoxColumn";
+            this.testResultDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testResultDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // orderedDateDataGridViewTextBoxColumn
+            // 
+            this.orderedDateDataGridViewTextBoxColumn.DataPropertyName = "OrderedDate";
+            this.orderedDateDataGridViewTextBoxColumn.HeaderText = "Date Ordered";
+            this.orderedDateDataGridViewTextBoxColumn.Name = "orderedDateDataGridViewTextBoxColumn";
+            this.orderedDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // testDateDataGridViewTextBoxColumn
+            // 
+            this.testDateDataGridViewTextBoxColumn.DataPropertyName = "TestDate";
+            this.testDateDataGridViewTextBoxColumn.HeaderText = "Test Date";
+            this.testDateDataGridViewTextBoxColumn.Name = "testDateDataGridViewTextBoxColumn";
+            this.testDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // testCodeDataGridViewTextBoxColumn
+            // 
+            this.testCodeDataGridViewTextBoxColumn.DataPropertyName = "TestCode";
+            this.testCodeDataGridViewTextBoxColumn.HeaderText = "Test Code";
+            this.testCodeDataGridViewTextBoxColumn.Name = "testCodeDataGridViewTextBoxColumn";
+            this.testCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // EnterTestResults
+            // 
+            this.EnterTestResults.HeaderText = "";
+            this.EnterTestResults.Name = "EnterTestResults";
+            this.EnterTestResults.ReadOnly = true;
+            this.EnterTestResults.Text = "Enter Test Result";
+            this.EnterTestResults.UseColumnTextForButtonValue = true;
+            this.EnterTestResults.Width = 150;
             // 
             // ID
             // 
@@ -496,29 +614,8 @@ namespace westga_emr.User_Controls
             this.OrderTest.HeaderText = "";
             this.OrderTest.Name = "OrderTest";
             this.OrderTest.ReadOnly = true;
-            this.OrderTest.ToolTipText = "Order Test";
+            this.OrderTest.Text = "Order Test";
             this.OrderTest.UseColumnTextForButtonValue = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.testsDataGrid);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 665);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1114, 450);
-            this.panel1.TabIndex = 7;
-            // 
-            // testsDataGrid
-            // 
-            this.testsDataGrid.AllowUserToAddRows = false;
-            this.testsDataGrid.AllowUserToDeleteRows = false;
-            this.testsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.testsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.testsDataGrid.Location = new System.Drawing.Point(0, 0);
-            this.testsDataGrid.Name = "testsDataGrid";
-            this.testsDataGrid.ReadOnly = true;
-            this.testsDataGrid.Size = new System.Drawing.Size(1114, 450);
-            this.testsDataGrid.TabIndex = 0;
             // 
             // TestsUserControl
             // 
@@ -542,10 +639,12 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visitsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientsDatatGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.labOrderTestDTOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -581,6 +680,10 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.DataGridViewButtonColumn ViewVisits;
         private System.Windows.Forms.Label visitForLabel;
         private System.Windows.Forms.BindingSource visitDTOBindingSource;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView testsDataGrid;
+        private System.Windows.Forms.BindingSource labOrderTestDTOBindingSource;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn nurseDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn VisitReason;
@@ -591,7 +694,13 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.DataGridViewTextBoxColumn finalDiagnosisDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn ViewTests;
         private System.Windows.Forms.DataGridViewButtonColumn OrderTest;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView testsDataGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn visitIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn testNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn testResultDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderedDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn testDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn testCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn EnterTestResults;
     }
 }

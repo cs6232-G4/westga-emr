@@ -302,11 +302,11 @@ namespace westga_emr.DAL
         public static List<VisitDTO> GetPatientsVisits(int patientId)
         {
             List<VisitDTO> visits = new List<VisitDTO>();
-            string selectStatement = @"SELECT a.reasonForVisit, a.appointmentDateTime, a.appointmentID,
+            string selectStatement = @"SELECT a.reasonForVisit, a.appointmentDateTime, a.id as appointmentID,
                                         CONCAT(p.firstName, ' ', p.lastName) as nurse,
-                                        v.bodyTemperature, v.diastolicPressure, v.visitID,
+                                        v.bodyTemperature, v.diastolicPressure, v.id as visitID,
                                         v.initialDiagnosis, v.pulse, v.symptoms, 
-                                        v.systolicPressure, v.visitDateTime, v.weight
+                                        v.systolicPressure, v.visitDateTime, v.weight, v.finalDiagnosis
                                         FROM Appointment a
                                         inner JOIN Visit v on a.id = v.appointmentID
                                         INNER JOIN NURSE n ON v.nurseID = n.id
@@ -323,12 +323,12 @@ namespace westga_emr.DAL
                         while (reader.Read())
                         {
                             VisitDTO visitDTO = new VisitDTO();
-                            visitDTO.AppointmentID = (int)reader["appointmentID"];
+                            visitDTO.AppointmentID = (long)reader["appointmentID"];
                             visitDTO.AppointmentDateTime = (DateTime)reader["appointmentDateTime"];
                             visitDTO.BodyTemperature = (decimal)reader["bodyTemperature"];
                             visitDTO.DiastolicPressure = (int)reader["diastolicPressure"];
-                            visitDTO.FinalDiagnosis = (String)reader[""];
-                            visitDTO.ID = (int)reader["visitID"];
+                            visitDTO.FinalDiagnosis = (String)reader["finalDiagnosis"];
+                            visitDTO.ID = (long)reader["visitID"];
                             visitDTO.InitialDiagnosis = reader["initialDiagnosis"].ToString();
                             visitDTO.Nurse = reader["nurse"].ToString();
                             visitDTO.Pulse = (int)reader["pulse"];
