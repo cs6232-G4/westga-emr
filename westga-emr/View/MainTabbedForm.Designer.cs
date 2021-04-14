@@ -37,29 +37,29 @@ namespace westga_emr.View
             this.signOutLink = new System.Windows.Forms.LinkLabel();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.newAppointmentTabPage = new System.Windows.Forms.TabPage();
-            this.saerchPatientTabPage = new System.Windows.Forms.TabPage();
-            this.upcomingAppointmentsTabPage = new System.Windows.Forms.TabPage();
-            this.nurseListTabPage = new System.Windows.Forms.TabPage();
-            this.addNurseTabPage = new System.Windows.Forms.TabPage();
-            this.reportsTabPage = new System.Windows.Forms.TabPage();
-            this.testsTabPage = new System.Windows.Forms.TabPage();
             this.newAppointment1 = new westga_emr.User_Controls.NewAppointment();
+            this.saerchPatientTabPage = new System.Windows.Forms.TabPage();
             this.searchPatient1 = new westga_emr.User_Controls.SearchPatient();
+            this.upcomingAppointmentsTabPage = new System.Windows.Forms.TabPage();
             this.upcomingAppointments1 = new westga_emr.User_Controls.UpcomingAppointments();
-            this.nurses1 = new westga_emr.User_Controls.Nurses();
-            this.addNurse1 = new westga_emr.User_Controls.AddNurse();
-            this.report1 = new westga_emr.User_Controls.Report();
+            this.testsTabPage = new System.Windows.Forms.TabPage();
             this.testsUserControl1 = new westga_emr.User_Controls.TestsUserControl();
+            this.nurseListTabPage = new System.Windows.Forms.TabPage();
+            this.nurses1 = new westga_emr.User_Controls.Nurses();
+            this.addNurseTabPage = new System.Windows.Forms.TabPage();
+            this.addNurse1 = new westga_emr.User_Controls.AddNurse();
+            this.reportsTabPage = new System.Windows.Forms.TabPage();
+            this.report1 = new westga_emr.User_Controls.Report();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.newAppointmentTabPage.SuspendLayout();
             this.saerchPatientTabPage.SuspendLayout();
             this.upcomingAppointmentsTabPage.SuspendLayout();
+            this.testsTabPage.SuspendLayout();
             this.nurseListTabPage.SuspendLayout();
             this.addNurseTabPage.SuspendLayout();
             this.reportsTabPage.SuspendLayout();
-            this.testsTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -167,6 +167,17 @@ namespace westga_emr.View
             this.newAppointmentTabPage.TabIndex = 0;
             this.newAppointmentTabPage.Text = "New Appointment";
             // 
+            // newAppointment1
+            // 
+            this.newAppointment1.AutoScroll = true;
+            this.newAppointment1.BackColor = System.Drawing.Color.SkyBlue;
+            this.newAppointment1.Location = new System.Drawing.Point(62, 4);
+            this.newAppointment1.Margin = new System.Windows.Forms.Padding(4);
+            this.newAppointment1.MaximumSize = new System.Drawing.Size(1100, 850);
+            this.newAppointment1.Name = "newAppointment1";
+            this.newAppointment1.Size = new System.Drawing.Size(1040, 823);
+            this.newAppointment1.TabIndex = 0;
+            // 
             // saerchPatientTabPage
             // 
             this.saerchPatientTabPage.AutoScroll = true;
@@ -179,6 +190,17 @@ namespace westga_emr.View
             this.saerchPatientTabPage.TabIndex = 1;
             this.saerchPatientTabPage.Text = "Search Patient";
             // 
+            // searchPatient1
+            // 
+            this.searchPatient1.AutoScroll = true;
+            this.searchPatient1.BackColor = System.Drawing.Color.SkyBlue;
+            this.searchPatient1.Location = new System.Drawing.Point(75, 0);
+            this.searchPatient1.Margin = new System.Windows.Forms.Padding(1);
+            this.searchPatient1.MaximumSize = new System.Drawing.Size(1100, 850);
+            this.searchPatient1.Name = "searchPatient1";
+            this.searchPatient1.Size = new System.Drawing.Size(1040, 823);
+            this.searchPatient1.TabIndex = 0;
+            // 
             // upcomingAppointmentsTabPage
             // 
             this.upcomingAppointmentsTabPage.BackColor = System.Drawing.Color.SkyBlue;
@@ -190,8 +212,37 @@ namespace westga_emr.View
             this.upcomingAppointmentsTabPage.TabIndex = 2;
             this.upcomingAppointmentsTabPage.Text = "Upcoming Appointments";
             // 
+            // upcomingAppointments1
+            // 
+            this.upcomingAppointments1.BackColor = System.Drawing.Color.SkyBlue;
+            this.upcomingAppointments1.Location = new System.Drawing.Point(73, 0);
+            this.upcomingAppointments1.Margin = new System.Windows.Forms.Padding(4);
+            this.upcomingAppointments1.MaximumSize = new System.Drawing.Size(1100, 850);
+            this.upcomingAppointments1.Name = "upcomingAppointments1";
+            this.upcomingAppointments1.Size = new System.Drawing.Size(1040, 823);
+            this.upcomingAppointments1.TabIndex = 0;
+            // 
+            // testsTabPage
+            // 
+            this.testsTabPage.BackColor = System.Drawing.Color.SkyBlue;
+            this.testsTabPage.Controls.Add(this.testsUserControl1);
+            this.testsTabPage.Location = new System.Drawing.Point(4, 25);
+            this.testsTabPage.Name = "testsTabPage";
+            this.testsTabPage.Size = new System.Drawing.Size(1176, 901);
+            this.testsTabPage.TabIndex = 6;
+            this.testsTabPage.Text = "Tests";
+            // 
+            // testsUserControl1
+            // 
+            this.testsUserControl1.BackColor = System.Drawing.Color.SkyBlue;
+            this.testsUserControl1.Location = new System.Drawing.Point(38, 3);
+            this.testsUserControl1.Name = "testsUserControl1";
+            this.testsUserControl1.Size = new System.Drawing.Size(1100, 850);
+            this.testsUserControl1.TabIndex = 0;
+            // 
             // nurseListTabPage
             // 
+            this.nurseListTabPage.BackColor = System.Drawing.Color.SkyBlue;
             this.nurseListTabPage.Controls.Add(this.nurses1);
             this.nurseListTabPage.Location = new System.Drawing.Point(4, 25);
             this.nurseListTabPage.Name = "nurseListTabPage";
@@ -199,7 +250,15 @@ namespace westga_emr.View
             this.nurseListTabPage.Size = new System.Drawing.Size(1176, 901);
             this.nurseListTabPage.TabIndex = 3;
             this.nurseListTabPage.Text = "Nurses";
-            this.nurseListTabPage.UseVisualStyleBackColor = true;
+            // 
+            // nurses1
+            // 
+            this.nurses1.BackColor = System.Drawing.Color.SkyBlue;
+            this.nurses1.Location = new System.Drawing.Point(17, 6);
+            this.nurses1.Margin = new System.Windows.Forms.Padding(4);
+            this.nurses1.Name = "nurses1";
+            this.nurses1.Size = new System.Drawing.Size(1133, 886);
+            this.nurses1.TabIndex = 0;
             // 
             // addNurseTabPage
             // 
@@ -212,6 +271,14 @@ namespace westga_emr.View
             this.addNurseTabPage.Text = "Add Nurse";
             this.addNurseTabPage.UseVisualStyleBackColor = true;
             // 
+            // addNurse1
+            // 
+            this.addNurse1.Location = new System.Drawing.Point(8, 6);
+            this.addNurse1.Margin = new System.Windows.Forms.Padding(4);
+            this.addNurse1.Name = "addNurse1";
+            this.addNurse1.Size = new System.Drawing.Size(585, 332);
+            this.addNurse1.TabIndex = 0;
+            // 
             // reportsTabPage
             // 
             this.reportsTabPage.Controls.Add(this.report1);
@@ -223,64 +290,6 @@ namespace westga_emr.View
             this.reportsTabPage.Text = "Report";
             this.reportsTabPage.UseVisualStyleBackColor = true;
             // 
-            // testsTabPage
-            // 
-            this.testsTabPage.BackColor = System.Drawing.Color.SkyBlue;
-            this.testsTabPage.Controls.Add(this.testsUserControl1);
-            this.testsTabPage.Location = new System.Drawing.Point(4, 25);
-            this.testsTabPage.Name = "testsTabPage";
-            this.testsTabPage.Size = new System.Drawing.Size(1176, 901);
-            this.testsTabPage.TabIndex = 6;
-            this.testsTabPage.Text = "Tests";
-            // 
-            // newAppointment1
-            // 
-            this.newAppointment1.AutoScroll = true;
-            this.newAppointment1.BackColor = System.Drawing.Color.SkyBlue;
-            this.newAppointment1.Location = new System.Drawing.Point(62, 4);
-            this.newAppointment1.Margin = new System.Windows.Forms.Padding(4);
-            this.newAppointment1.MaximumSize = new System.Drawing.Size(1100, 850);
-            this.newAppointment1.Name = "newAppointment1";
-            this.newAppointment1.Size = new System.Drawing.Size(1040, 823);
-            this.newAppointment1.TabIndex = 0;
-            // 
-            // searchPatient1
-            // 
-            this.searchPatient1.AutoScroll = true;
-            this.searchPatient1.BackColor = System.Drawing.Color.SkyBlue;
-            this.searchPatient1.Location = new System.Drawing.Point(75, 0);
-            this.searchPatient1.Margin = new System.Windows.Forms.Padding(1);
-            this.searchPatient1.MaximumSize = new System.Drawing.Size(1100, 850);
-            this.searchPatient1.Name = "searchPatient1";
-            this.searchPatient1.Size = new System.Drawing.Size(1040, 823);
-            this.searchPatient1.TabIndex = 0;
-            // 
-            // upcomingAppointments1
-            // 
-            this.upcomingAppointments1.BackColor = System.Drawing.Color.SkyBlue;
-            this.upcomingAppointments1.Location = new System.Drawing.Point(73, 0);
-            this.upcomingAppointments1.Margin = new System.Windows.Forms.Padding(4);
-            this.upcomingAppointments1.MaximumSize = new System.Drawing.Size(1100, 850);
-            this.upcomingAppointments1.Name = "upcomingAppointments1";
-            this.upcomingAppointments1.Size = new System.Drawing.Size(1040, 823);
-            this.upcomingAppointments1.TabIndex = 0;
-            // 
-            // nurses1
-            // 
-            this.nurses1.Location = new System.Drawing.Point(17, 6);
-            this.nurses1.Margin = new System.Windows.Forms.Padding(4);
-            this.nurses1.Name = "nurses1";
-            this.nurses1.Size = new System.Drawing.Size(534, 270);
-            this.nurses1.TabIndex = 0;
-            // 
-            // addNurse1
-            // 
-            this.addNurse1.Location = new System.Drawing.Point(8, 6);
-            this.addNurse1.Margin = new System.Windows.Forms.Padding(4);
-            this.addNurse1.Name = "addNurse1";
-            this.addNurse1.Size = new System.Drawing.Size(585, 332);
-            this.addNurse1.TabIndex = 0;
-            // 
             // report1
             // 
             this.report1.Location = new System.Drawing.Point(18, 16);
@@ -288,14 +297,6 @@ namespace westga_emr.View
             this.report1.Name = "report1";
             this.report1.Size = new System.Drawing.Size(521, 299);
             this.report1.TabIndex = 0;
-            // 
-            // testsUserControl1
-            // 
-            this.testsUserControl1.BackColor = System.Drawing.Color.SkyBlue;
-            this.testsUserControl1.Location = new System.Drawing.Point(38, 3);
-            this.testsUserControl1.Name = "testsUserControl1";
-            this.testsUserControl1.Size = new System.Drawing.Size(1100, 850);
-            this.testsUserControl1.TabIndex = 0;
             // 
             // MainTabbedForm
             // 
@@ -320,10 +321,10 @@ namespace westga_emr.View
             this.newAppointmentTabPage.ResumeLayout(false);
             this.saerchPatientTabPage.ResumeLayout(false);
             this.upcomingAppointmentsTabPage.ResumeLayout(false);
+            this.testsTabPage.ResumeLayout(false);
             this.nurseListTabPage.ResumeLayout(false);
             this.addNurseTabPage.ResumeLayout(false);
             this.reportsTabPage.ResumeLayout(false);
-            this.testsTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

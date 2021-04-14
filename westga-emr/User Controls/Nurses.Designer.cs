@@ -29,32 +29,34 @@ namespace westga_emr.User_Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.nurseListDataGrid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.nurseListDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // nurseListDataGrid
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(130, 75);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nurses";
+            this.nurseListDataGrid.BackgroundColor = System.Drawing.Color.AliceBlue;
+            this.nurseListDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.nurseListDataGrid.Location = new System.Drawing.Point(10, 52);
+            this.nurseListDataGrid.Name = "nurseListDataGrid";
+            this.nurseListDataGrid.Size = new System.Drawing.Size(1067, 471);
+            this.nurseListDataGrid.TabIndex = 0;
             // 
             // Nurses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.BackColor = System.Drawing.Color.SkyBlue;
+            this.Controls.Add(this.nurseListDataGrid);
             this.Name = "Nurses";
-            this.Size = new System.Drawing.Size(618, 378);
+            this.Size = new System.Drawing.Size(1100, 850);
+            ((System.ComponentModel.ISupportInitialize)(this.nurseListDataGrid)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView nurseListDataGrid;
     }
 }
