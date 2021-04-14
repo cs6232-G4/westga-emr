@@ -425,16 +425,14 @@ namespace westga_emr.DAL
 
                     if (string.IsNullOrWhiteSpace(person.Password))
                     {
-                        command.Parameters.AddWithValue("@password", DBNull.Value);
+                        command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
                     } 
                     else
                     {
-                        //byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        //SqlParameter param = command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary);
-                        //param.Value = hash;
-                        SqlParameter param = command.Parameters.AddWithValue("@password", PasswordHashUse.HashPassword(person.Password));
-                        param.DbType = System.Data.DbType.Binary;
+                        byte[] hash = PasswordHashUse.HashPassword(person.Password);
+                        command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
                     }
+
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {
                         command.Parameters.AddWithValue("@ssn", DBNull.Value);
@@ -486,13 +484,12 @@ namespace westga_emr.DAL
 
                     if (string.IsNullOrWhiteSpace(person.Password))
                     {
-                        command.Parameters.AddWithValue("@password", DBNull.Value);
+                        command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
                     }
                     else
                     {
-                        Byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        SqlParameter param = command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary);
-                        param.Value = hash;
+                        byte[] hash = PasswordHashUse.HashPassword(person.Password);
+                        command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
                     }
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {
