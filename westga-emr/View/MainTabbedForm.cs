@@ -112,16 +112,22 @@ namespace westga_emr.View
 
         private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(this.mainTabControl.SelectedIndex == 0)
+            if (this.mainTabControl.SelectedIndex == 0)
             {
                 this.newAppointment1.NewAppointment_Load("MAIN FORM", EventArgs.Empty);
-            } else if(this.mainTabControl.SelectedIndex == 1)
+            }
+            else if (this.mainTabControl.SelectedIndex == 1)
             {
                 this.searchPatient1.SearchPatient_Load("MAIN FORM", EventArgs.Empty);
-            } else if(this.mainTabControl.SelectedIndex == 2)
+            }
+            else if (this.mainTabControl.SelectedIndex == 2)
             {
                 this.upcomingAppointments1.LoadDataGrid();
+            } else if (this.mainTabControl.SelectedIndex == 4)
+            {
+                this.nurses1.Nurses_Load("MAIN FORM", EventArgs.Empty);
             }
+
         }
     }
 }
