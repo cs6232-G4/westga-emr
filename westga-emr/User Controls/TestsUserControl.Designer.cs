@@ -30,7 +30,7 @@ namespace westga_emr.User_Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,7 +52,6 @@ namespace westga_emr.User_Controls
             this.visitForLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.testsDataGrid = new System.Windows.Forms.DataGridView();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.labOrderTestDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,7 +88,6 @@ namespace westga_emr.User_Controls
             ((System.ComponentModel.ISupportInitialize)(this.patientsDatatGrid)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.labOrderTestDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).BeginInit();
@@ -359,9 +357,9 @@ namespace westga_emr.User_Controls
             // 
             // ViewVisits
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Green;
-            this.ViewVisits.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Green;
+            this.ViewVisits.DefaultCellStyle = dataGridViewCellStyle3;
             this.ViewVisits.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ViewVisits.HeaderText = "";
             this.ViewVisits.Name = "ViewVisits";
@@ -412,11 +410,6 @@ namespace westga_emr.User_Controls
             this.testsDataGrid.Size = new System.Drawing.Size(1114, 450);
             this.testsDataGrid.TabIndex = 0;
             this.testsDataGrid.Visible = false;
-            // 
-            // fileSystemWatcher1
-            // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
             // 
             // labOrderTestDTOBindingSource
             // 
@@ -641,7 +634,6 @@ namespace westga_emr.User_Controls
             ((System.ComponentModel.ISupportInitialize)(this.patientsDatatGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.labOrderTestDTOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).EndInit();
@@ -683,7 +675,6 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView testsDataGrid;
         private System.Windows.Forms.BindingSource labOrderTestDTOBindingSource;
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn nurseDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn VisitReason;
