@@ -73,7 +73,7 @@ namespace westga_emr.DAL
                 }
             }
             return id;
-
+        }
         /// 
         /// </summary>
         /// <param name="visitId"></param>
