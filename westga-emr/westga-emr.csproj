@@ -81,11 +81,8 @@
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Doctor_has_Specialties.cs" />
     <Compile Include="Model\DTO\AppointmentDTO.cs" />
-
     <Compile Include="Model\DTO\LabOrderDTO.cs" />
-
     <Compile Include="Model\DTO\LabOrderTestDTO.cs" />
-
     <Compile Include="Model\DTO\UserDTO.cs" />
     <Compile Include="Model\DTO\VisitDTO.cs" />
     <Compile Include="Model\Lab_Order.cs" />
@@ -175,6 +172,12 @@
     <Compile Include="View\AppointmentInformationDialog.Designer.cs">
       <DependentUpon>AppointmentInformationDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\EditNurseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditNurseDialog.Designer.cs">
+      <DependentUpon>EditNurseDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +245,9 @@
     <EmbeddedResource Include="View\AppointmentInformationDialog.resx">
       <DependentUpon>AppointmentInformationDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\EditNurseDialog.resx">
+      <DependentUpon>EditNurseDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,11 +262,8 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\westga_emr.Helpers.AppointmentHelper.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.AppointmentDTO.datasource" />
-
     <None Include="Properties\DataSources\westga_emr.Model.DTO.LabOrderDTO.datasource" />
-
     <None Include="Properties\DataSources\westga_emr.Model.DTO.LabOrderTestDTO.datasource" />
-
     <None Include="Properties\DataSources\westga_emr.Model.DTO.UserDTO.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.VisitDTO.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.Lab_Test.datasource" />

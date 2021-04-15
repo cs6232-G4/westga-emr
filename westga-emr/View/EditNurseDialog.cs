@@ -11,13 +11,16 @@ using System.Windows.Forms;
 using westga_emr.Controller;
 using westga_emr.Helpers;
 using westga_emr.Model;
+using westga_emr.Model.DTO;
 
-namespace westga_emr.User_Controls
+namespace westga_emr.View
 {
-    public partial class AddNurse : UserControl
+    public partial class EditNurseDialog : Form
     {
+        private UserDTO nurse;
         private Person nursePerson;
         private Address nurseAddress;
+        private Nurse theNurse;
         private readonly NurseController nurseController;
         private readonly PersonController personController;
         private Regex validSSN;
@@ -25,9 +28,10 @@ namespace westga_emr.User_Controls
         private Dictionary<string, string> errors;
         private Bitmap showPasswordImage;
         private Bitmap hidePasswordImage;
-        public AddNurse()
+        public EditNurseDialog(UserDTO _nurse)
         {
             InitializeComponent();
+            this.nurse = _nurse;
             nurseController = new NurseController();
             personController = new PersonController();
             validSSN = new Regex("[0-9]{9}");
@@ -37,23 +41,32 @@ namespace westga_emr.User_Controls
             hidePasswordImage = global::westga_emr.Properties.Resources.unshowPassword1;
         }
 
-        private void AddNurse_Load(object sender, EventArgs e)
+        private void EditNurseDialog_Load(object sender, EventArgs e)
         {
-            this.dateOfBirthDateTimePicker.MaxDate = DateTime.Now.AddYears(-18);
-            this.dateOfBirthDateTimePicker.Value = this.dateOfBirthDateTimePicker.MaxDate;
             this.stateComboBox.DataSource = AppointmentHelper.GetStates().ToList();
             this.genderComboBox.DataSource = AppointmentHelper.GetGenders().ToList();
-            this.stateComboBox.SelectedIndex = 0;
-            this.genderComboBox.SelectedIndex = 0;
+            this.dateOfBirthDateTimePicker.MaxDate = DateTime.Now.AddYears(-18);
+            this.dateOfBirthDateTimePicker.Value = this.nurse.DateOfBirth.Value;
+            this.stateComboBox.SelectedIndex = AppointmentHelper.GetStates().FindIndex(x => x.Value.Equals(nurse.State, StringComparison.InvariantCultureIgnoreCase));
+            this.genderComboBox.SelectedIndex = AppointmentHelper.GetGenders().FindIndex(x => x.Value.Equals(nurse.Gender, StringComparison.InvariantCultureIgnoreCase));
+            this.firstNameTextBox.Text = nurse.FirstName;
+            this.lastNameTextBox.Text = nurse.FirstName;
+            this.cityTextBox.Text = nurse.City;
+            this.streetTextBox.Text = nurse.Street;
+            this.contactPhoneTextBox.Text = nurse.ContactPhone;
+            this.zipTextBox.Text = nurse.Zip;
+            this.ssnTextBox.Text = nurse.SSN;
+            this.usernameTextBox.Text = nurse.Username;
+            this.passwordTextBox.Text = nurse.Password;
+            this.isActiveCheckbox.Checked = nurse.IsActiveNurse;
         }
-
         private void SsnTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ssnTextBox.Text.Length != 9)
             {
                 ssnError.Text = "Enter a valid social security number";
             }
-            else if (!validSSN.IsMatch(ssnTextBox.Text))
+            else if (nurse.SSN != ssnTextBox.Text && !validSSN.IsMatch(ssnTextBox.Text))
             {
                 ssnError.Text = "Enter a valid social security number";
             }
@@ -196,7 +209,7 @@ namespace westga_emr.User_Controls
             {
                 passwordError.Text = "";
             }
-           
+
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
@@ -211,15 +224,16 @@ namespace westga_emr.User_Controls
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
-                nursePerson = new Person(null, usernameTextBox.Text, passwordTextBox.Text,
+                nursePerson = new Person(nurse.Id, usernameTextBox.Text, passwordTextBox.Text,
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
                        ssnTextBox.Text,
                        gender.Value,
-                       null,
+                       nurse.AddressId,
                        contactPhoneTextBox.Text);
-                nurseAddress = new Address(null, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
+                nurseAddress = new Address(nurse.AddressId, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
+                theNurse = new Nurse(nurse.NurseId, nurse.Id, isActiveCheckbox.Checked);
                 //result = patientController.RegisterPatient(patientPerson, patientAddress);
                 ClearInputs();
                 MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -235,7 +249,7 @@ namespace westga_emr.User_Controls
             }
         }
 
-      
+
 
         private void AddError(string key, string value)
         {
