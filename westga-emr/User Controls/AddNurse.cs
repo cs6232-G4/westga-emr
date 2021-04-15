@@ -22,6 +22,7 @@ namespace westga_emr.User_Controls
         private readonly NurseController nurseController;
         private readonly PersonController personController;
         private Regex validSSN;
+        private Regex validPassword;
         private Dictionary<string, string> errors;
         private int? newNurseAddressId;
         private int? newPersonId;
@@ -33,6 +34,7 @@ namespace westga_emr.User_Controls
             nurseController = new NurseController();
             personController = new PersonController();
             validSSN = new Regex("[0-9]{9}");
+            validPassword = new Regex(@"^(?=.{8,16}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*$");
             errors = new Dictionary<string, string>();
             newPersonId = null;
             newNurseAddressId = null;
@@ -191,7 +193,15 @@ namespace westga_emr.User_Controls
 
         private void PasswordTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            if (!validPassword.IsMatch(passwordTextBox.Text))
+            {
+                passwordError.Text = "Password must be between 8 - 16 characters" + Environment.NewLine + "At least one digit, lower case and one uppercase";
+            }
+            else
+            {
+                passwordError.Text = "";
+            }
+           
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)

@@ -78,6 +78,7 @@ namespace westga_emr.User_Controls
             this.passwordTextBox = new System.Windows.Forms.MaskedTextBox();
             this.passwordViewer = new System.Windows.Forms.PictureBox();
             this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.appointmentHelperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             cityLabel = new System.Windows.Forms.Label();
             zipLabel = new System.Windows.Forms.Label();
             stateLabel = new System.Windows.Forms.Label();
@@ -100,6 +101,7 @@ namespace westga_emr.User_Controls
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.passwordViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cityLabel
@@ -250,6 +252,7 @@ namespace westga_emr.User_Controls
             // stateComboBox
             // 
             this.stateComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.stateComboBox.DataSource = this.appointmentHelperBindingSource;
             this.stateComboBox.DisplayMember = "Title";
             this.stateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stateComboBox.FormattingEnabled = true;
@@ -396,6 +399,7 @@ namespace westga_emr.User_Controls
             // genderComboBox
             // 
             this.genderComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.genderComboBox.DataSource = this.appointmentHelperBindingSource;
             this.genderComboBox.DisplayMember = "Title";
             this.genderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.genderComboBox.FormattingEnabled = true;
@@ -668,6 +672,7 @@ namespace westga_emr.User_Controls
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(272, 20);
             this.passwordTextBox.TabIndex = 35;
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // passwordViewer
             // 
@@ -687,6 +692,10 @@ namespace westga_emr.User_Controls
             // userDTOBindingSource
             // 
             this.userDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.UserDTO);
+            // 
+            // appointmentHelperBindingSource
+            // 
+            this.appointmentHelperBindingSource.DataSource = typeof(westga_emr.Helpers.AppointmentHelper);
             // 
             // AddNurse
             // 
@@ -719,6 +728,7 @@ namespace westga_emr.User_Controls
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.passwordViewer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -763,5 +773,6 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.MaskedTextBox passwordTextBox;
         private System.Windows.Forms.PictureBox passwordViewer;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.BindingSource appointmentHelperBindingSource;
     }
 }
