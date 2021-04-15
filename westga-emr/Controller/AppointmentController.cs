@@ -44,6 +44,10 @@ namespace westga_emr.Controller
             {
                 throw new ArgumentNullException("appointment cannot be null");
             }
+            if (appointment.PatientID == null || appointment.DoctorID == null)
+            {
+                throw new ArgumentNullException("patientID and doctorID cannot be null");
+            }
             return AppointmentDAL.UpdateAppointment(appointment);
         }
         /// <see cref="AppointmentDAL.GetAppointmentInDateRange(DateTime, DateTime)"/>
