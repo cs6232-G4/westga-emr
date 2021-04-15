@@ -20,9 +20,9 @@ namespace westga_emr.Controller
         /// <see cref="AppointmentDAL.GetPatientsAppointments(Patient)"/>
         public List<AppointmentDTO> GetPatientsAppointments(Patient patient)
         {
-            if (patient == null)
+            if (patient == null || patient.ID == null)
             {
-                throw new ArgumentNullException("patient cannot be null");
+                throw new ArgumentNullException("patient and patientID cannot be null");
             }
             return AppointmentDAL.GetPatientsAppointments(patient);
         }
@@ -44,17 +44,21 @@ namespace westga_emr.Controller
             {
                 throw new ArgumentNullException("appointment cannot be null");
             }
+            if (appointment.PatientID == null || appointment.DoctorID == null)
+            {
+                throw new ArgumentNullException("patientID and doctorID cannot be null");
+            }
             return AppointmentDAL.UpdateAppointment(appointment);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
-        /// <returns></returns>
-        public List<AppointmentDTO> GetAppointmentsInDateRange(DateTime start, DateTime end)
+
+        /// <see cref="AppointmentDAL.GetAppointmentInDateRange(DateTime, DateTime)"/>
+        public List<AppointmentDTO> GetAppointmentsInDateRange(DateTime startDate, DateTime endDate)
         {
-            return AppointmentDAL.GetAppointmentInDateRange(start, end);
+            if (startDate == null || endDate == null)
+            {
+                throw new ArgumentNullException("startDate and endDate cannot be null");
+            }
+            return AppointmentDAL.GetAppointmentInDateRange(startDate, endDate.AddDays(1));
         }
     }
 }

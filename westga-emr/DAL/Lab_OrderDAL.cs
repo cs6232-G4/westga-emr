@@ -60,7 +60,7 @@ namespace westga_emr.DAL
                     command.Parameters.AddWithValue("@visitID", order.VisitID);
                     command.Parameters.AddWithValue("@dateOrdered", order.DateOrdered);
 
-                    id = (int?)command.ExecuteScalar();
+                    id = (int?) command.ExecuteScalar();
                 }
             }
             return id;

@@ -15,11 +15,13 @@ namespace westga_emr.Controller
         
         private DoctorDAL doctorDBSource;
         private List<UserDTO> activeDoctors;
+
         public DoctorController()
         {
             this.doctorDBSource = new DoctorDAL();
             this.activeDoctors = new List<UserDTO>();
         }
+
        /// <summary>
        /// Gets list of active doctors
        /// </summary>

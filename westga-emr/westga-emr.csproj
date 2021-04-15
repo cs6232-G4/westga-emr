@@ -84,11 +84,8 @@
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Doctor_has_Specialties.cs" />
     <Compile Include="Model\DTO\AppointmentDTO.cs" />
-
     <Compile Include="Model\DTO\LabOrderDTO.cs" />
-
     <Compile Include="Model\DTO\LabOrderTestDTO.cs" />
-
     <Compile Include="Model\DTO\UserDTO.cs" />
     <Compile Include="Model\DTO\VisitDTO.cs" />
     <Compile Include="Model\Lab_Order.cs" />
@@ -259,11 +256,8 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\westga_emr.Helpers.AppointmentHelper.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.AppointmentDTO.datasource" />
-
     <None Include="Properties\DataSources\westga_emr.Model.DTO.LabOrderDTO.datasource" />
-
     <None Include="Properties\DataSources\westga_emr.Model.DTO.LabOrderTestDTO.datasource" />
-
     <None Include="Properties\DataSources\westga_emr.Model.DTO.UserDTO.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.VisitDTO.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.Lab_Test.datasource" />
@@ -281,7 +275,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB\cs6232-g4-sql-server.sql" />
     <None Include="Resources\unshowPassword1.png" />
     <None Include="Resources\viewPassword1.png" />
     <Content Include="DB\cs6232-g4-sql-server-schema.sql" />

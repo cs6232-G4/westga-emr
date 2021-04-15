@@ -52,10 +52,6 @@ namespace westga_emr.Model
             {
 				throw new ArgumentException("contact phone must be 10 characters in length and consist only of numbers");
             }
-			//if (string.IsNullOrWhiteSpace(ssn_))
-   //         {
-			//	ssn_ = null;
-   //         }
 			if (!string.IsNullOrWhiteSpace(ssn_) && !(ssn_.Length == 9 && ssn_.All(char.IsDigit)))
             {
 				throw new ArgumentException("If an ssn exists, it must be 9 characters in length and consist only of numbers");
