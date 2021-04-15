@@ -167,11 +167,11 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
-        /// 
+        /// Gets a List of AppointmentDTO within the specified date range
         /// </summary>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
-        /// <returns></returns>
+        /// <param name="start">Starting date of the range</param>
+        /// <param name="end">Ending date of the range</param>
+        /// <returns>List of AppointmentDTO within said date range</returns>
         public static List<AppointmentDTO> GetAppointmentInDateRange(DateTime start, DateTime end)
         {
             List<AppointmentDTO> appointments = new List<AppointmentDTO>();
@@ -197,7 +197,7 @@ namespace westga_emr.DAL
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@StartDate", start.Date);
-                    command.Parameters.AddWithValue("@EndDate", end.AddDays(1).Date);
+                    command.Parameters.AddWithValue("@EndDate", end.Date);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         int ordAptID = reader.GetOrdinal("appointmentID");
