@@ -37,18 +37,8 @@ namespace westga_emr.Model
 		/// </summary>
 		/// <param name="visitID_">Sql Server's id for the visit associated with the Lab Order</param>
 		/// <param name="dateOrdered_">The date the lab was ordered</param>
-		public Lab_Order( long? visitID_, DateTime dateOrdered_)
+		public Lab_Order( long? visitID_, DateTime dateOrdered_) : this(null, visitID_, dateOrdered_)
 		{
-			if (visitID_ < 1)
-			{
-				throw new ArgumentException("id and visitID must be greater than zero");
-			}
-			if (dateOrdered_ == null)
-			{
-				throw new ArgumentNullException("dateOrdered cannot be null");
-			}
-			this.VisitID = visitID_;
-			this.DateOrdered = dateOrdered_;
 		}
 	}
 }
