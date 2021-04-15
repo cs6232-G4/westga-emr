@@ -14,10 +14,12 @@ namespace westga_emr.Controller
     {
         private UserDTO currentUser;
         private PersonDAL personDBSource;
+
         public PersonController()
         {
             this.personDBSource = new PersonDAL();
         }
+
         /// <see cref="PersonDAL.GetPersons"/>
         public List<Person> GetPersons()
         {

@@ -19,6 +19,7 @@ namespace westga_emr.Controller
         {
             this.patientDBSource = new PatientDAL();
         }
+
         /// <see cref="PatientDAL.GetAllActivePatients"/>
         public List<Person> GetAllActivePatients()
         {
