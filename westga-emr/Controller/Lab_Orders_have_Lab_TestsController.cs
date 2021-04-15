@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using westga_emr.Model;
 using westga_emr.DAL;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.Controller
 {
@@ -21,6 +22,10 @@ namespace westga_emr.Controller
             return Lab_Orders_have_Lab_TestsDAL.InsertLab_Orders_have_Lab_Tests(lab_Orders_have_Lab_Tests);
         }
 
+        public List<LabOrderTestDTO>GetVisitTests(int visitId)
+        {
+            return Lab_Orders_have_Lab_TestsDAL.GetVisitTests(visitId);
+        }
 
     }
 }

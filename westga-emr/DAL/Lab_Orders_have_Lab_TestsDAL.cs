@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using westga_emr.Model;
 using System.Data.SqlClient;
+using westga_emr.Model.DTO;
 
 namespace westga_emr.DAL
 {
@@ -47,6 +48,7 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
+
         /// Inserts a new Patient into the db
         /// </summary>
         /// <param name="patient">Patient to insert</param>
@@ -71,6 +73,47 @@ namespace westga_emr.DAL
                 }
             }
             return id;
+
+        /// 
+        /// </summary>
+        /// <param name="visitId"></param>
+        /// <returns></returns>
+        public static List<LabOrderTestDTO> GetVisitTests(int visitId)
+        {
+            List<LabOrderTestDTO> labTests = new List<LabOrderTestDTO>();
+            string selectStatement = @"select l.labOrderID, l.labTestCode, l.testPerformed, l.results,
+		                                o.visitID, o.dateOrdered,
+		                                t.name as testName
+                                        from Lab_Orders_have_Lab_Tests l
+                                        inner join Lab_Order o on l.labOrderID = o.id
+                                        inner join Lab_Test t on l.labTestCode = t.code
+                                        where l.results is not null and o.visitID = @VisitID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@VisitID", visitId);
+                   
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            LabOrderTestDTO labTest = new LabOrderTestDTO();
+                            labTest.OrderId = (int)reader["labOrderID"];
+                            labTest.OrderedDate = (DateTime) reader["dateOrdered"];
+                            labTest.TestCode = (int)reader["labTestCode"];
+                            labTest.TestName = reader["testName"].ToString();
+                            labTest.TestResult = reader["results"].ToString();
+                            labTest.TestDate = (DateTime)reader["testPerformed"];
+                            labTest.VisitId = (int)reader["visitID"];
+                            labTests.Add(labTest);
+                        }
+                    }
+                }
+            }
+            return labTests;
+
         }
     }
 }

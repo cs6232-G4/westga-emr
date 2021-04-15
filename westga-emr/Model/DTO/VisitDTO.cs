@@ -20,6 +20,8 @@ namespace westga_emr.Model.DTO
 		public int Pulse { get; set; }
 		public string Symptoms { get; set; }
 		public string FinalDiagnosis { get; set; }
+		public DateTime AppointmentDateTime { get; set; }
+		public string VisitReason { get; set; }
 
 	}
 }
