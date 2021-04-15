@@ -18,8 +18,13 @@ namespace westga_emr.Controller
             return Lab_OrderDAL.GetLab_Orders();
         }
 
+        /// <see cref="Lab_OrderDAL.GetLab_Orders_For_Visit(int)"/>
         public List<LabOrderDTO> GetLab_Orders_For_Visit(int visitID)
         {
+            if (visitID < 1)
+            {
+                throw new ArgumentException("visitID must be greater than zero");
+            }
             return Lab_OrderDAL.GetLab_Orders_For_Visit(visitID);
         }
 

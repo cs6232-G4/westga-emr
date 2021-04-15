@@ -50,6 +50,7 @@ namespace westga_emr.Controller
             }
             return AppointmentDAL.UpdateAppointment(appointment);
         }
+
         /// <see cref="AppointmentDAL.GetAppointmentInDateRange(DateTime, DateTime)"/>
         public List<AppointmentDTO> GetAppointmentsInDateRange(DateTime start, DateTime end)
         {
