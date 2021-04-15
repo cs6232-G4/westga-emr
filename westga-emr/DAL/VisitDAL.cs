@@ -298,5 +298,51 @@ namespace westga_emr.DAL
             }
             return visits;
         }
+
+        public static List<VisitDTO> GetPatientsVisits(int patientId)
+        {
+            List<VisitDTO> visits = new List<VisitDTO>();
+            string selectStatement = @"SELECT a.reasonForVisit, a.appointmentDateTime, a.id as appointmentID,
+                                        CONCAT(p.firstName, ' ', p.lastName) as nurse,
+                                        v.bodyTemperature, v.diastolicPressure, v.id as visitID,
+                                        v.initialDiagnosis, v.pulse, v.symptoms, 
+                                        v.systolicPressure, v.visitDateTime, v.weight, v.finalDiagnosis
+                                        FROM Appointment a
+                                        inner JOIN Visit v on a.id = v.appointmentID
+                                        INNER JOIN NURSE n ON v.nurseID = n.id
+                                        INNER JOIN PERSON p ON n.personID = p.ID
+                                        where a.patientID = @PatientId";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@PatientId", patientId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            VisitDTO visitDTO = new VisitDTO();
+                            visitDTO.AppointmentID = (long)reader["appointmentID"];
+                            visitDTO.AppointmentDateTime = (DateTime)reader["appointmentDateTime"];
+                            visitDTO.BodyTemperature = (decimal)reader["bodyTemperature"];
+                            visitDTO.DiastolicPressure = (int)reader["diastolicPressure"];
+                            visitDTO.FinalDiagnosis = (String)reader["finalDiagnosis"];
+                            visitDTO.ID = (long)reader["visitID"];
+                            visitDTO.InitialDiagnosis = reader["initialDiagnosis"].ToString();
+                            visitDTO.Nurse = reader["nurse"].ToString();
+                            visitDTO.Pulse = (int)reader["pulse"];
+                            visitDTO.Symptoms = reader["symptoms"].ToString();
+                            visitDTO.SystolicPressure = (int)reader["systolicPressure"];
+                            visitDTO.VisitDateTime = (DateTime)reader["visitDateTime"];
+                            visitDTO.VisitReason = reader["reasonForVisit"].ToString();
+                            visitDTO.Weight = (decimal)reader["weight"];
+                            visits.Add(visitDTO);
+                        }
+                    }
+                }
+            }
+            return visits;
+        }
     }
 }

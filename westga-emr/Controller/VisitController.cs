@@ -56,5 +56,15 @@ namespace westga_emr.Controller
             }
             return VisitDAL.CreateVisit(visit);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="patientId"></param>
+        /// <returns></returns>
+        public List<VisitDTO> GetVisitsByPatientId(int patientId)
+        {
+            return VisitDAL.GetPatientsVisits(patientId);
+        }
     }
 }

@@ -399,6 +399,34 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
+        /// Checks to see if SSN exists in DB
+        /// </summary>
+        /// <param name="ssn"></param>
+        /// <returns></returns>
+        public bool SocialSecurityExist(string ssn)
+        {
+            bool ssnExist = false;
+            string selectStatement = "SELECT id FROM Person WHERE ssn = @ssn";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@ssn", ssn);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Console.WriteLine(reader);
+                            ssnExist = true;
+                        }
+                    }
+                }
+            }
+            return ssnExist;
+        }
+
+        /// <summary>
         /// Inserts a new Person into the db
         /// </summary>
         /// <param name="person">Person to insert</param>

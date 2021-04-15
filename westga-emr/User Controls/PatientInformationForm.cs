@@ -17,6 +17,7 @@ namespace westga_emr.User_Controls
         private Address patientAddress;
         private Patient patient;
         private readonly PatientController patientController;
+        private readonly PersonController personController;
         private Regex validSSN;
         private Dictionary<string, string> errors;
         private int? newPatientAddressId;
@@ -27,6 +28,7 @@ namespace westga_emr.User_Controls
             InitializeComponent();
             isNewPatient = true;
             patientController = new PatientController();
+            personController = new PersonController();
             validSSN = new Regex("[0-9]{9}");
             errors = new Dictionary<string, string>();
             
@@ -58,7 +60,7 @@ namespace westga_emr.User_Controls
                 this.stateComboBox.SelectedIndex = AppointmentHelper.GetStates().FindIndex(x => x.Value.Equals(aPatient.State, StringComparison.InvariantCultureIgnoreCase));
                 this.streetTextBox.Text = aPatient.Street;
                 this.zipTextBox.Text = aPatient.Zip;
-                this.ssnTextBox.Text = aPatient.SSN;
+                this.ssnTextBox.Text = String.IsNullOrWhiteSpace(aPatient.SSN) ? "" : aPatient.SSN;
                 patient = new Patient(aPatient.PatientId, aPatient.Id, true);
                 patientAddress = new Address(aPatient.AddressId, aPatient.Street, aPatient.City, aPatient.State, aPatient.Zip);
                 patientPerson = new Person(aPatient.Id, "", "", aPatient.FirstName, aPatient.LastName, aPatient.DateOfBirth.Value, aPatient.SSN, aPatient.Gender, aPatient.AddressId, aPatient.ContactPhone);
@@ -198,6 +200,14 @@ namespace westga_emr.User_Controls
             } else if (!validSSN.IsMatch(ssnTextBox.Text))
             {
                 ssnError.Text = "Enter a valid social security number";
+            }
+            else if (isNewPatient && this.personController.SocialSecurityExist(ssnTextBox.Text))
+            {
+                ssnError.Text = "Enter a valid social security number. Duplicate social security nnumber not allowed!";
+            }
+            else if (patientPerson != null && patientPerson.SSN != ssnTextBox.Text && this.personController.SocialSecurityExist(ssnTextBox.Text))
+            {
+                ssnError.Text = "Enter a valid social security number. Duplicate social security nnumber not allowed!";
             }
             else
             {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using westga_emr.Model;
 using westga_emr.DAL;
+using westga_emr.Model.DTO;
 using System;
 using System.Transactions;
 
@@ -16,6 +17,17 @@ namespace westga_emr.Controller
         {
             return Lab_OrderDAL.GetLab_Orders();
         }
+
+        public List<LabOrderDTO> GetLab_Orders_For_Visit(int visitID)
+        {
+            return Lab_OrderDAL.GetLab_Orders_For_Visit(visitID);
+        }
+
+        public int? InsertLab_Order(Lab_Order labOrder)
+        {
+            return Lab_OrderDAL.InsertLab_Order(labOrder);
+        }
+        
 
         /// <summary>
         /// Orders a new set of labs tests for a Visit

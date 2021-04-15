@@ -22,6 +22,7 @@ namespace westga_emr.User_Controls
         private List<UserDTO> patients;
         private TimeSpan selectedAppointmentTime;
         private DateTime selectedAppointmentDateTime;
+        private PatientController patientController;
 
         /// <summary>
         /// New appointment constructor
@@ -32,6 +33,7 @@ namespace westga_emr.User_Controls
             personController = new PersonController();
             doctorController = new DoctorController();
             appointmentController = new AppointmentController();
+            patientController = new PatientController();
             patient = new UserDTO();
         }
 
@@ -49,14 +51,15 @@ namespace westga_emr.User_Controls
             this.lastNameTextBoxSearchInput.Hide();
             this.dateOfBirthDateTimePickerSearchInput.Hide();
             this.searchButton.Hide();
-            this.appointmentTime.DataSource = AppointmentHelper.GetAppointmentTimeslots();
-            this.doctorListComboBox.DataSource = doctorController.GetDoctors();
             this.dateOfBirthDateTimePickerSearchInput.MaxDate = DateTime.Now;
             this.dateOfBirthDateTimePickerSearchInput.Value = this.dateOfBirthDateTimePickerSearchInput.MaxDate;
-            this.appointmentDate.MinDate = DateTime.Now.AddDays(1.0);
-            this.appointmentTime.Enabled = false;
+            this.appointmentDate.MinDate = DateTime.Now;
             this.appointmentInformationSection.Hide();
             this.searchCriteria.SelectedIndex = -1;
+            this.appointmentTime.SelectedIndex = -1;
+            this.doctorListComboBox.SelectedIndex = -1;
+            doctorListError.Text = "";
+            appointmentDateError.Text = "";
         }
 
       
@@ -163,23 +166,27 @@ namespace westga_emr.User_Controls
 
         private void AppointmentDate_ValueChanged(object sender, EventArgs e)
         {
+            this.appointmentTime.DataSource = AppointmentHelper.GetAppointmentTimeslots();
             if (appointmentTime.Enabled == false)
             {
                 appointmentTime.Enabled = true;
             }
-            if(appointmentTime.SelectedIndex <= 0)
-            {
-                appointmentTime.SelectedIndex = 0;
-            }
-            
         }
 
         private void AppointmentTime_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var time = (AppointmentHelper)this.appointmentTime.SelectedItem;
-            this.selectedAppointmentTime = TimeSpan.Parse(time.Value);
-            this.selectedAppointmentDateTime = this.appointmentDate.Value.Date + selectedAppointmentTime;
-            GetAvailableDoctors(this.selectedAppointmentDateTime);
+            if(this.appointmentTime.SelectedIndex >= 0)
+            {
+                appointmentDateError.Text = "";
+                var time = (AppointmentHelper)this.appointmentTime.SelectedItem;
+                this.selectedAppointmentTime = TimeSpan.Parse(time.Value);
+                this.selectedAppointmentDateTime = this.appointmentDate.Value.Date + selectedAppointmentTime;
+                GetAvailableDoctors(this.selectedAppointmentDateTime);
+            } else
+            {
+                appointmentDateError.Text = "Please select a time for the appointment";
+            }
+            
         }
 
         private void GetAvailableDoctors(DateTime aptDateTime)
@@ -209,15 +216,15 @@ namespace westga_emr.User_Controls
         {
             if (appointmentVisitReason.Text.Length > 45)
             {
-                visitReasonError.Text = "Character limit exceeded. Maximum allowed: 45";
+                reasonForVisitError.Text = "Character limit exceeded. Maximum allowed: 45";
             }
             else if (String.IsNullOrWhiteSpace(appointmentVisitReason.Text))
             {
-                visitReasonError.Text = "Reason for visit is required";
+                reasonForVisitError.Text = "Reason for visit is required";
             }
             else
             {
-                visitReasonError.Text = "";
+                reasonForVisitError.Text = "";
             }
         }
 
@@ -227,11 +234,27 @@ namespace westga_emr.User_Controls
             try
             {
                 var selectedDoctor = (UserDTO)doctorListComboBox.SelectedItem;
+                if (this.doctorListComboBox.SelectedIndex < 0)
+                {
+                    doctorListError.Text = "Please select a doctor for the appointment";
+                }
+                if (this.appointmentTime.SelectedIndex < 0)
+                {
+                    appointmentDateError.Text = "Please select a time for the appointment";
+                }
+                if (String.IsNullOrWhiteSpace(appointmentVisitReason.Text))
+                {
+                    reasonForVisitError.Text = "Please enter a reason for the appointment";
+                }
                 if (String.IsNullOrWhiteSpace(appointmentVisitReason.Text) 
                     || patient.PatientId <= 0 
                     || selectedAppointmentDateTime == null)
                 {
                     throw new Exception("Enter all the required fields to create an appointment");
+                }
+                if (patientController.PatientHasAppointment(patient.PatientId, selectedAppointmentDateTime))
+                {
+                    throw new Exception($"Patient already has appointment scheduled for {selectedAppointmentDateTime.ToLocalTime()}");
                 }
                 var appointment = new Appointment(null, 
                     patient.PatientId, 
@@ -255,13 +278,17 @@ namespace westga_emr.User_Controls
         private void ClearButton_Click(object sender, EventArgs e)
         {
             appointmentVisitReason.Text = "";
-            visitReasonError.Text = "";
+            reasonForVisitError.Text = "";
             this.appointmentTime.DataSource = AppointmentHelper.GetAppointmentTimeslots();
-            this.doctorListComboBox.DataSource = doctorController.GetDoctors();
+            this.appointmentTime.SelectedIndex = -1;
+            GetAvailableDoctors(this.selectedAppointmentDateTime);
+            this.doctorListComboBox.SelectedIndex = -1;
             this.firstNameLabel.Text = "";
             this.lastNameLabel.Text = "";
             this.genderLabel.Text = "";
             this.dobLabel.Text = "";
+            doctorListError.Text = "";
+            appointmentDateError.Text = "";
         }
 
         private void AddPatientButton_Click(object sender, EventArgs e)
@@ -308,6 +335,17 @@ namespace westga_emr.User_Controls
                     }
                 }
                 this.appointmentInformationSection.Visible = false;
+            }
+        }
+
+        private void DoctorListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.doctorListComboBox.SelectedIndex < 0)
+            {
+                doctorListError.Text = "Please select a doctor for the appointment";
+            } else
+            {
+                doctorListError.Text = "";
             }
         }
     }

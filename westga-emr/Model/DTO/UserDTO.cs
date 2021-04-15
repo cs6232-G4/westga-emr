@@ -31,5 +31,7 @@ namespace westga_emr.Model.DTO
         public bool IsActivePatient { get; set; }
 
         public string FullName { get; set; }
+
+        public string Password { get; set; }
     }
 }

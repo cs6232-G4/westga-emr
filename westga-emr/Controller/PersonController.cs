@@ -117,5 +117,15 @@ namespace westga_emr.Controller
             }
             
         }
+
+        /// <summary>
+        /// Checks if social security exists
+        /// </summary>
+        /// <param name="ssn"></param>
+        /// <returns></returns>
+        public bool SocialSecurityExist(string ssn)
+        {
+            return personDBSource.SocialSecurityExist(ssn);
+        }
     }
 }

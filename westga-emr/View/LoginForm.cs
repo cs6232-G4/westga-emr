@@ -10,10 +10,14 @@ namespace westga_emr.View
     {
         private PersonController personController;
         private MainTabbedForm mainTabbedForm;
+        private Bitmap showPasswordImage;
+        private Bitmap hidePasswordImage;
         public LoginForm()
         {
             InitializeComponent();
             personController = new PersonController();
+            showPasswordImage = global::westga_emr.Properties.Resources.viewPassword1;
+            hidePasswordImage = global::westga_emr.Properties.Resources.unshowPassword1;
         }
 
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -161,6 +165,20 @@ namespace westga_emr.View
             {
                 e.Handled = true;
                 LoginButton_Click("ENTER KEY", e);
+            }
+        }
+
+        private void PasswordViewer_Click(object sender, EventArgs e)
+        {
+            if (passwordViewer.Image == showPasswordImage)
+            {
+                passwordTextBox.PasswordChar = '\0';
+                passwordViewer.Image = hidePasswordImage;
+            }
+            else
+            {
+                passwordTextBox.PasswordChar = '*';
+                passwordViewer.Image = showPasswordImage;
             }
         }
     }
