@@ -45,5 +45,32 @@ namespace westga_emr.DAL
             }
             return relations;
         }
+
+        /// <summary>
+        /// Inserts a new Patient into the db
+        /// </summary>
+        /// <param name="patient">Patient to insert</param>
+        /// <returns>ID of the newly inserted Patient, or null if the insertion failed</returns>
+        public static int? InsertLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests lab_Orders_have_Lab_Tests)
+        {
+            int? id = null;
+            String insertStatement = @"INSERT INTO Lab_Orders_have_Lab_Tests (labOrderID, labTestCode, testPerformed,results)
+                                        OUTPUT inserted.labOrderID
+			                            VALUES (@labOrderID , @labTestCode, @testPerformed, @results)";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@labOrderID", lab_Orders_have_Lab_Tests.LabOrderID);
+                    command.Parameters.AddWithValue("@labTestCode", lab_Orders_have_Lab_Tests.LabTestCode);
+                    command.Parameters.AddWithValue("@testPerformed", lab_Orders_have_Lab_Tests.TestPerformed);
+                    command.Parameters.AddWithValue("@results", lab_Orders_have_Lab_Tests.Results);
+
+                    id = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            return id;
+        }
     }
 }

@@ -65,6 +65,7 @@ namespace westga_emr.User_Controls
             this.nurseTextBox = new System.Windows.Forms.TextBox();
             this.initialDiagnosticError = new System.Windows.Forms.Label();
             this.messageLabel = new System.Windows.Forms.Label();
+            this.orderLabTestButton = new System.Windows.Forms.Button();
             pulseLabel = new System.Windows.Forms.Label();
             finalDiagnosticLabel = new System.Windows.Forms.Label();
             symptomsLabel = new System.Windows.Forms.Label();
@@ -119,7 +120,7 @@ namespace westga_emr.User_Controls
             dialosticPressureLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dialosticPressureLabel.AutoSize = true;
-            dialosticPressureLabel.Location = new System.Drawing.Point(381, 0);
+            dialosticPressureLabel.Location = new System.Drawing.Point(380, 0);
             dialosticPressureLabel.Name = "dialosticPressureLabel";
             dialosticPressureLabel.Size = new System.Drawing.Size(183, 13);
             dialosticPressureLabel.TabIndex = 9;
@@ -163,7 +164,7 @@ namespace westga_emr.User_Controls
             systolicPressureLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             systolicPressureLabel.AutoSize = true;
-            systolicPressureLabel.Location = new System.Drawing.Point(192, 0);
+            systolicPressureLabel.Location = new System.Drawing.Point(191, 0);
             systolicPressureLabel.Name = "systolicPressureLabel";
             systolicPressureLabel.Size = new System.Drawing.Size(183, 13);
             systolicPressureLabel.TabIndex = 8;
@@ -176,7 +177,7 @@ namespace westga_emr.User_Controls
             weightLabel.AutoSize = true;
             weightLabel.Location = new System.Drawing.Point(3, 0);
             weightLabel.Name = "weightLabel";
-            weightLabel.Size = new System.Drawing.Size(183, 13);
+            weightLabel.Size = new System.Drawing.Size(182, 13);
             weightLabel.TabIndex = 7;
             weightLabel.Text = "Weight";
             // 
@@ -185,18 +186,18 @@ namespace westga_emr.User_Controls
             bodyTemperatureLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             bodyTemperatureLabel.AutoSize = true;
-            bodyTemperatureLabel.Location = new System.Drawing.Point(570, 0);
+            bodyTemperatureLabel.Location = new System.Drawing.Point(569, 0);
             bodyTemperatureLabel.Name = "bodyTemperatureLabel";
-            bodyTemperatureLabel.Size = new System.Drawing.Size(217, 13);
+            bodyTemperatureLabel.Size = new System.Drawing.Size(218, 13);
             bodyTemperatureLabel.TabIndex = 10;
             bodyTemperatureLabel.Text = "Body Temperature";
             // 
             // bodyTemperatureTextBox
             // 
             this.bodyTemperatureTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.bodyTemperatureTextBox.Location = new System.Drawing.Point(570, 22);
+            this.bodyTemperatureTextBox.Location = new System.Drawing.Point(569, 22);
             this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
-            this.bodyTemperatureTextBox.Size = new System.Drawing.Size(217, 20);
+            this.bodyTemperatureTextBox.Size = new System.Drawing.Size(218, 20);
             this.bodyTemperatureTextBox.TabIndex = 7;
             // 
             // tableLayoutPanel4
@@ -262,13 +263,16 @@ namespace westga_emr.User_Controls
             // 
             // tableLayoutPanel9
             // 
-            this.tableLayoutPanel9.ColumnCount = 3;
+            this.tableLayoutPanel9.ColumnCount = 5;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 304F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 235F));
-            this.tableLayoutPanel9.Controls.Add(this.EditButton, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.createButton, 0, 0);
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 194F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 193F));
             this.tableLayoutPanel9.Controls.Add(this.closeButton, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.orderLabTestButton, 3, 0);
+            this.tableLayoutPanel9.Controls.Add(this.EditButton, 2, 0);
+            this.tableLayoutPanel9.Controls.Add(this.createButton, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 407);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
@@ -283,7 +287,7 @@ namespace westga_emr.User_Controls
             this.EditButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.EditButton.BackColor = System.Drawing.Color.Green;
             this.EditButton.ForeColor = System.Drawing.Color.White;
-            this.EditButton.Location = new System.Drawing.Point(654, 3);
+            this.EditButton.Location = new System.Drawing.Point(309, 3);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(116, 25);
             this.EditButton.TabIndex = 13;
@@ -297,7 +301,7 @@ namespace westga_emr.User_Controls
             this.createButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.createButton.BackColor = System.Drawing.Color.Green;
             this.createButton.ForeColor = System.Drawing.Color.White;
-            this.createButton.Location = new System.Drawing.Point(385, 3);
+            this.createButton.Location = new System.Drawing.Point(164, 3);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(116, 25);
             this.createButton.TabIndex = 12;
@@ -309,7 +313,7 @@ namespace westga_emr.User_Controls
             // closeButton
             // 
             this.closeButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.closeButton.Location = new System.Drawing.Point(87, 3);
+            this.closeButton.Location = new System.Drawing.Point(18, 3);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(116, 25);
             this.closeButton.TabIndex = 11;
@@ -344,7 +348,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 221F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 223F));
             this.tableLayoutPanel3.Controls.Add(this.systolicPressureError, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.weightError, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.bodyTemperatureError, 0, 2);
@@ -373,7 +377,7 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.systolicPressureError.AutoSize = true;
             this.systolicPressureError.ForeColor = System.Drawing.Color.Red;
-            this.systolicPressureError.Location = new System.Drawing.Point(192, 52);
+            this.systolicPressureError.Location = new System.Drawing.Point(191, 52);
             this.systolicPressureError.Name = "systolicPressureError";
             this.systolicPressureError.Size = new System.Drawing.Size(183, 21);
             this.systolicPressureError.TabIndex = 18;
@@ -387,7 +391,7 @@ namespace westga_emr.User_Controls
             this.weightError.ForeColor = System.Drawing.Color.Red;
             this.weightError.Location = new System.Drawing.Point(3, 52);
             this.weightError.Name = "weightError";
-            this.weightError.Size = new System.Drawing.Size(183, 21);
+            this.weightError.Size = new System.Drawing.Size(182, 21);
             this.weightError.TabIndex = 17;
             // 
             // bodyTemperatureError
@@ -397,9 +401,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bodyTemperatureError.AutoSize = true;
             this.bodyTemperatureError.ForeColor = System.Drawing.Color.Red;
-            this.bodyTemperatureError.Location = new System.Drawing.Point(570, 52);
+            this.bodyTemperatureError.Location = new System.Drawing.Point(569, 52);
             this.bodyTemperatureError.Name = "bodyTemperatureError";
-            this.bodyTemperatureError.Size = new System.Drawing.Size(217, 21);
+            this.bodyTemperatureError.Size = new System.Drawing.Size(218, 21);
             this.bodyTemperatureError.TabIndex = 16;
             // 
             // dialosticPressureError
@@ -409,7 +413,7 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dialosticPressureError.AutoSize = true;
             this.dialosticPressureError.ForeColor = System.Drawing.Color.Red;
-            this.dialosticPressureError.Location = new System.Drawing.Point(381, 52);
+            this.dialosticPressureError.Location = new System.Drawing.Point(380, 52);
             this.dialosticPressureError.Name = "dialosticPressureError";
             this.dialosticPressureError.Size = new System.Drawing.Size(183, 21);
             this.dialosticPressureError.TabIndex = 15;
@@ -417,7 +421,7 @@ namespace westga_emr.User_Controls
             // systolicPressureTextBox
             // 
             this.systolicPressureTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.systolicPressureTextBox.Location = new System.Drawing.Point(192, 22);
+            this.systolicPressureTextBox.Location = new System.Drawing.Point(191, 22);
             this.systolicPressureTextBox.Name = "systolicPressureTextBox";
             this.systolicPressureTextBox.Size = new System.Drawing.Size(183, 20);
             this.systolicPressureTextBox.TabIndex = 5;
@@ -427,13 +431,13 @@ namespace westga_emr.User_Controls
             this.weightTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.weightTextBox.Location = new System.Drawing.Point(3, 22);
             this.weightTextBox.Name = "weightTextBox";
-            this.weightTextBox.Size = new System.Drawing.Size(183, 20);
+            this.weightTextBox.Size = new System.Drawing.Size(182, 20);
             this.weightTextBox.TabIndex = 4;
             // 
             // dialosticPressureTextBox
             // 
             this.dialosticPressureTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dialosticPressureTextBox.Location = new System.Drawing.Point(381, 22);
+            this.dialosticPressureTextBox.Location = new System.Drawing.Point(380, 22);
             this.dialosticPressureTextBox.Name = "dialosticPressureTextBox";
             this.dialosticPressureTextBox.Size = new System.Drawing.Size(183, 20);
             this.dialosticPressureTextBox.TabIndex = 6;
@@ -509,6 +513,20 @@ namespace westga_emr.User_Controls
             this.messageLabel.TabIndex = 29;
             this.messageLabel.Text = "                                  ";
             // 
+            // orderLabTestButton
+            // 
+            this.orderLabTestButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.orderLabTestButton.BackColor = System.Drawing.Color.Green;
+            this.orderLabTestButton.ForeColor = System.Drawing.Color.White;
+            this.orderLabTestButton.Location = new System.Drawing.Point(482, 3);
+            this.orderLabTestButton.Name = "orderLabTestButton";
+            this.orderLabTestButton.Size = new System.Drawing.Size(116, 25);
+            this.orderLabTestButton.TabIndex = 14;
+            this.orderLabTestButton.Text = "Order Test";
+            this.orderLabTestButton.UseVisualStyleBackColor = false;
+            this.orderLabTestButton.Visible = false;
+            this.orderLabTestButton.Click += new System.EventHandler(this.orderLabTestButton_Click);
+            // 
             // AppointmentVisitUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -563,5 +581,6 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.Label weightError;
         private System.Windows.Forms.Label systolicPressureError;
         private System.Windows.Forms.Label pulseError;
+        private System.Windows.Forms.Button orderLabTestButton;
     }
 }
