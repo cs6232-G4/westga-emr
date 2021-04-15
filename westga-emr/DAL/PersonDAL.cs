@@ -235,7 +235,7 @@ namespace westga_emr.DAL
         /// <returns>The current user</returns>
         public UserDTO SignIn( string username, string password)
         {
-            VerifyLogin(username, password);
+            //VerifyLogin(username, password);
             UserDTO currentUser = new UserDTO();
             string selectUserStatement = @"
                 SELECT P.id as personId, username,firstName, 
@@ -247,7 +247,7 @@ namespace westga_emr.DAL
                 FULL OUTER JOIN Nurse N ON P.id = N.personID
 	            FULL OUTER JOIN Clinical_Administrator C ON P.id = C.personID
 	            FULL OUTER JOIN Address A ON P.addressID = A.id
-                WHERE P.username = @Username";
+                WHERE P.username = @Username and P.password = @Password";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 connection.Open();
