@@ -18,7 +18,7 @@ namespace westga_emr.Controller
         }
 
         /// <see cref="Lab_Orders_have_Lab_TestsDAL.InsertLab_Orders_have_Lab_Tests"/>
-        public int? InsertLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests lab_Orders_have_Lab_Tests)
+        public bool InsertLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests lab_Orders_have_Lab_Tests)
         {
             return Lab_Orders_have_Lab_TestsDAL.InsertLab_Orders_have_Lab_Tests(lab_Orders_have_Lab_Tests);
         }
