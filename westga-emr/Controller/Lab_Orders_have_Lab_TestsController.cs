@@ -30,7 +30,7 @@ namespace westga_emr.Controller
 
 
         /// <see cref="Lab_Orders_have_Lab_TestsDAL.UpdateLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests)"/>
-        public bool UpdateLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests[] relations)
+        public bool UpdateLabTestsForVisit(Lab_Orders_have_Lab_Tests[] relations)
         {
             if (relations == null)
             {
