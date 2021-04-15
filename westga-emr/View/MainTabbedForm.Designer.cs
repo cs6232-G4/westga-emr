@@ -273,10 +273,11 @@ namespace westga_emr.View
             // 
             // addNurse1
             // 
+            this.addNurse1.BackColor = System.Drawing.Color.SkyBlue;
             this.addNurse1.Location = new System.Drawing.Point(8, 6);
             this.addNurse1.Margin = new System.Windows.Forms.Padding(4);
             this.addNurse1.Name = "addNurse1";
-            this.addNurse1.Size = new System.Drawing.Size(585, 332);
+            this.addNurse1.Size = new System.Drawing.Size(1161, 888);
             this.addNurse1.TabIndex = 0;
             // 
             // reportsTabPage
