@@ -330,7 +330,7 @@ namespace westga_emr.DAL
         {
             var patients = new List<UserDTO>();
             string selectUserStatement = @"
-                SELECT P.id as personId, username,firstName, 
+                SELECT P.id as personId, username,firstName, CONCAT(firstName, ' ', lastName) as fullName,
                         lastName, dateOfBirth, ssn, gender,
                         addressID, contactPhone, U.id as PatientId,
                         street, city, state, zip
@@ -375,6 +375,7 @@ namespace westga_emr.DAL
                         {
                             UserDTO patient = new UserDTO();
                             patient.Id = (int)reader["personId"];
+                            patient.FullName = reader["fullName"].ToString();
                             patient.Username = reader["username"].ToString();
                             patient.FirstName = reader["firstName"].ToString();
                             patient.LastName = reader["lastName"].ToString();

@@ -51,17 +51,17 @@ namespace westga_emr.User_Controls
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            Lab_Order labOrder = new Lab_Order(this.visitDTO.ID , this.orderedDateTimePicker.Value);
-            int OrderId = (int) this.labOrderController.InsertLab_Order(labOrder);
+            //Lab_Order labOrder = new Lab_Order(this.visitDTO.ID , this.orderedDateTimePicker.Value);
+            //int OrderId = (int) this.labOrderController.InsertLab_Order(labOrder);
 
-            Lab_Orders_have_Lab_Tests labOrdersHaveLabTests = new Lab_Orders_have_Lab_Tests(OrderId , labTestList[this.orderNameComboBox.SelectedIndex].Code , this.testPerformedDateTimePicker.Value , this.testResultTextBox.Text);
-            bool labOrderID = this.labOrdersHaveLabTestsController.InsertLab_Orders_have_Lab_Tests(labOrdersHaveLabTests);
+            //Lab_Orders_have_Lab_Tests labOrdersHaveLabTests = new Lab_Orders_have_Lab_Tests(OrderId , labTestList[this.orderNameComboBox.SelectedIndex].Code , this.testPerformedDateTimePicker.Value , this.testResultTextBox.Text);
+            //bool labOrderID = this.labOrdersHaveLabTestsController.InsertLab_Orders_have_Lab_Tests(labOrdersHaveLabTests);
             
-            if(labOrderID == false)
-            {
-                MessageBox.Show("labOrderID  " + labOrderID +  Environment.NewLine ,
-                    "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //if(labOrderID == false)
+            //{
+            //    MessageBox.Show("labOrderID  " + labOrderID +  Environment.NewLine ,
+            //        "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
     }
 }

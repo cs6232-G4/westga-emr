@@ -65,7 +65,7 @@ namespace westga_emr.DAL
                                         from Lab_Orders_have_Lab_Tests l
                                         inner join Lab_Order o on l.labOrderID = o.id
                                         inner join Lab_Test t on l.labTestCode = t.code
-                                        where l.results is not null and o.visitID = @VisitID";
+                                        where o.visitID = @VisitID";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 connection.Open();
@@ -78,13 +78,13 @@ namespace westga_emr.DAL
                         while (reader.Read())
                         {
                             LabOrderTestDTO labTest = new LabOrderTestDTO();
-                            labTest.OrderId = (int)reader["labOrderID"];
+                            labTest.OrderId = Convert.ToInt32(reader["labOrderID"].ToString());
                             labTest.OrderedDate = (DateTime) reader["dateOrdered"];
                             labTest.TestCode = (int)reader["labTestCode"];
                             labTest.TestName = reader["testName"].ToString();
                             labTest.TestResult = reader["results"].ToString();
                             labTest.TestDate = (DateTime)reader["testPerformed"];
-                            labTest.VisitId = (int)reader["visitID"];
+                            labTest.VisitId = Convert.ToInt32(reader["visitID"].ToString());
                             labTests.Add(labTest);
                         }
                     }
