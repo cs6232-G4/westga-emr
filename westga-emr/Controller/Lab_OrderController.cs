@@ -23,12 +23,6 @@ namespace westga_emr.Controller
             return Lab_OrderDAL.GetLab_Orders_For_Visit(visitID);
         }
 
-        public int? InsertLab_Order(Lab_Order labOrder)
-        {
-            return Lab_OrderDAL.InsertLab_Order(labOrder);
-        }
-        
-
         /// <summary>
         /// Orders a new set of labs tests for a Visit
         /// </summary>
@@ -52,9 +46,6 @@ namespace westga_emr.Controller
                     throw new ArgumentNullException("tests' Codes cannot be null");
                 }
             }
-
-
-            
             
             using (TransactionScope scope = new TransactionScope())
             {
