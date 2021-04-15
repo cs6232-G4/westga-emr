@@ -3,6 +3,7 @@ using westga_emr.Model;
 using westga_emr.DAL;
 using westga_emr.Model.DTO;
 using System;
+using System.Transactions;
 
 namespace westga_emr.Controller
 {
@@ -37,10 +38,16 @@ namespace westga_emr.Controller
                     throw new ArgumentNullException("relation inside relations cannot be null");
                 }
             }
-            foreach (Lab_Orders_have_Lab_Tests relation in relations)
+
+            using (TransactionScope scope = new TransactionScope())
             {
-                Lab_Orders_have_Lab_TestsDAL.UpdateLab_Orders_have_Lab_Tests(relation);
+                foreach (Lab_Orders_have_Lab_Tests relation in relations)
+                {
+                    Lab_Orders_have_Lab_TestsDAL.UpdateLab_Orders_have_Lab_Tests(relation);
+                }
+                scope.Complete();
             }
+
             return true;
         }
     }
