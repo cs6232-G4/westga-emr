@@ -81,16 +81,6 @@ namespace westga_emr.Controller
             return this.currentUser;
         }
 
-        /// <see cref="PersonDAL.GetPersonByUsernameAndPassword(string, string)"/>
-        public Person GetPersonByUsernameAndPassword(string username, string password)
-        {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                throw new ArgumentException("username and password cannot be null, empty, or consist only of white spaces");
-            }
-            return PersonDAL.GetPersonByUsernameAndPassword(username, password);
-        }
-
         /// <summary>
         /// Method to get current user of the application
         /// </summary>

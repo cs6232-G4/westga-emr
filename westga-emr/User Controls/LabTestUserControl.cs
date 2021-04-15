@@ -55,9 +55,9 @@ namespace westga_emr.User_Controls
             int OrderId = (int) this.labOrderController.InsertLab_Order(labOrder);
 
             Lab_Orders_have_Lab_Tests labOrdersHaveLabTests = new Lab_Orders_have_Lab_Tests(OrderId , labTestList[this.orderNameComboBox.SelectedIndex].Code , this.testPerformedDateTimePicker.Value , this.testResultTextBox.Text);
-            int labOrderID = (int) this.labOrdersHaveLabTestsController.InsertLab_Orders_have_Lab_Tests(labOrdersHaveLabTests);
+            bool labOrderID = this.labOrdersHaveLabTestsController.InsertLab_Orders_have_Lab_Tests(labOrdersHaveLabTests);
             
-            if(labOrderID  > 0)
+            if(labOrderID == false)
             {
                 MessageBox.Show("labOrderID  " + labOrderID +  Environment.NewLine ,
                     "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);

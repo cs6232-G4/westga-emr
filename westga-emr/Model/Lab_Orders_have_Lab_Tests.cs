@@ -9,7 +9,7 @@ namespace westga_emr.Model
 	{
 		public long? LabOrderID { get; }
 		public int? LabTestCode { get; }
-		public DateTime TestPerformed { get; }
+		public DateTime? TestPerformed { get; }
 		public string Results { get; }
 
 		/// <summary>
@@ -19,15 +19,11 @@ namespace westga_emr.Model
 		/// <param name="labTestCode_">The code of the lab test in this relation</param>
 		/// <param name="testPerformed_">The date the test was performed</param>
 		/// <param name="results_">The results of the lab tests</param>
-		public Lab_Orders_have_Lab_Tests(long? labOrderID_, int? labTestCode_, DateTime testPerformed_, string results_)
+		public Lab_Orders_have_Lab_Tests(long? labOrderID_, int? labTestCode_, DateTime? testPerformed_, string results_)
 		{
 			if (labOrderID_ < 1 || labTestCode_ < 1)
             {
 				throw new ArgumentException("labOrderID and labTestCode must be greater than zero");
-            }
-			if (testPerformed_ == null)
-            {
-				throw new ArgumentNullException("testPerformed cannot be null");
             }
 			this.LabOrderID = labOrderID_;
 			this.LabTestCode = labTestCode_;
