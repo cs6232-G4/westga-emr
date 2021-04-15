@@ -95,6 +95,7 @@ namespace westga_emr.View
             {
                 appointmentTime.Enabled = true;
             }
+            AppointmentTime_SelectedIndexChanged("APPT-DATE", EventArgs.Empty);
         }
 
         private void AppointmentTime_SelectedIndexChanged(object sender, EventArgs e)
