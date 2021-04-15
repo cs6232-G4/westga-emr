@@ -5,6 +5,7 @@ using westga_emr.Controller;
 using westga_emr.Helpers;
 using westga_emr.Model;
 using westga_emr.Model.DTO;
+using westga_emr.View;
 
 namespace westga_emr.User_Controls
 {
@@ -15,6 +16,7 @@ namespace westga_emr.User_Controls
         private PersonController personController;
         private AppointmentDTO appointment;
         private Dictionary<string, string> errors;
+        List<VisitDTO> visitDTO;
         #endregion
 
         #region Constructors
@@ -39,7 +41,7 @@ namespace westga_emr.User_Controls
             try
             {
                 appointment = appointmentDTO;
-                List<VisitDTO> visitDTO = this.visitController.GetVisitByAppointment(
+                visitDTO = this.visitController.GetVisitByAppointment(
                                     new Appointment(appointmentDTO.AppointmentID, appointmentDTO.PatientID, appointmentDTO.DoctorID,
                                     appointmentDTO.AppointmentDateTime, appointmentDTO.ReasonForVisit));
 
@@ -58,6 +60,7 @@ namespace westga_emr.User_Controls
                     this.visitLabel.Text = "Edit " + this.visitLabel.Text;
                     this.PopulateTextBoxesForVisit(visitDTO);
                     this.EditButton.Visible = true;
+                    this.orderLabTestButton.Visible = true;
                 }
             }
             catch(Exception ex)
@@ -497,6 +500,14 @@ namespace westga_emr.User_Controls
                 errors.Remove(key);
             }
         }
+
+        private void orderLabTestButton_Click(object sender, EventArgs e)
+        {
+            Form orderTestDialog = new OrderTestDialog(this.visitDTO[0]);
+            DialogResult result = orderTestDialog.ShowDialog();
+        }
         #endregion
+
+
     }
 }
