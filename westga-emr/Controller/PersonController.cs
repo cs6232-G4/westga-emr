@@ -14,10 +14,12 @@ namespace westga_emr.Controller
     {
         private UserDTO currentUser;
         private PersonDAL personDBSource;
+
         public PersonController()
         {
             this.personDBSource = new PersonDAL();
         }
+
         /// <see cref="PersonDAL.GetPersons"/>
         public List<Person> GetPersons()
         {
@@ -79,16 +81,6 @@ namespace westga_emr.Controller
             this.currentUser =  personDBSource.SignIn(username, password);
             AuthenticationHelper.SetCurrentUser(this.currentUser);
             return this.currentUser;
-        }
-
-        /// <see cref="PersonDAL.GetPersonByUsernameAndPassword(string, string)"/>
-        public Person GetPersonByUsernameAndPassword(string username, string password)
-        {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                throw new ArgumentException("username and password cannot be null, empty, or consist only of white spaces");
-            }
-            return PersonDAL.GetPersonByUsernameAndPassword(username, password);
         }
 
         /// <summary>

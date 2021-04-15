@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +76,8 @@
     <Compile Include="DAL\VisitDAL.cs" />
     <Compile Include="Helpers\AppointmerntHelper.cs" />
     <Compile Include="Helpers\AuthenticationHelper.cs" />
+    <Compile Include="Helpers\PasswordHash.cs" />
+    <Compile Include="Helpers\PasswordHashUse.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Clinical_Administrator.cs" />
@@ -281,9 +284,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB\cs6232-g4-sql-server.sql" />
     <None Include="Resources\unshowPassword1.png" />
     <None Include="Resources\viewPassword1.png" />
+    <Content Include="DB\cs6232-g4-sql-server-schema.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
