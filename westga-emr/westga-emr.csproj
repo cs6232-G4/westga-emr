@@ -76,9 +76,7 @@
     <Compile Include="DAL\VisitDAL.cs" />
     <Compile Include="Helpers\AppointmerntHelper.cs" />
     <Compile Include="Helpers\AuthenticationHelper.cs" />
-    <Compile Include="Helpers\PasswordHash.cs" />
     <Compile Include="Helpers\PasswordHashSHA512.cs" />
-    <Compile Include="Helpers\PasswordHashUse.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Clinical_Administrator.cs" />
