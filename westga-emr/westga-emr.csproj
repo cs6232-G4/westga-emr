@@ -176,6 +176,12 @@
     <Compile Include="View\AppointmentInformationDialog.Designer.cs">
       <DependentUpon>AppointmentInformationDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\EditNurseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditNurseDialog.Designer.cs">
+      <DependentUpon>EditNurseDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\AppointmentInformationDialog.resx">
       <DependentUpon>AppointmentInformationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditNurseDialog.resx">
+      <DependentUpon>EditNurseDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

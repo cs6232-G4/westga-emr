@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using westga_emr.Controller;
 using westga_emr.Model.DTO;
+using westga_emr.View;
 
 namespace westga_emr.User_Controls
 {
@@ -30,13 +31,30 @@ namespace westga_emr.User_Controls
         /// <param name="e"></param>
         public void Nurses_Load(object sender, EventArgs e)
         {
-            this.nurseListDataGrid.DataSource = null;
-            this.nurses = nurseController.GetAllNurse();
-            this.nurseListDataGrid.DataSource = this.nurses;
+            this.RefreshDataGrid();
         }
         private void NurseListDatatGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            nurse = (UserDTO)nurseListDataGrid.Rows[e.RowIndex].DataBoundItem;
+            if (nurseListDataGrid.Columns[e.ColumnIndex].Name == "EditNurse")
+            {
+                using (Form editNurseDialog = new EditNurseDialog(nurse))
+                {
+                    DialogResult result = editNurseDialog.ShowDialog();
+                    if (result == DialogResult.OK || result == DialogResult.Cancel)
+                    {
+                        this.RefreshDataGrid();
+                    }
+                }
 
+            }
+        }
+
+        private void RefreshDataGrid()
+        {
+            this.nurseListDataGrid.DataSource = null;
+            this.nurses = nurseController.GetAllNurse();
+            this.nurseListDataGrid.DataSource = this.nurses;
         }
     }
 }

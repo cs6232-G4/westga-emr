@@ -330,7 +330,7 @@ namespace westga_emr.DAL
         {
             var patients = new List<UserDTO>();
             string selectUserStatement = @"
-                SELECT P.id as personId, username,firstName, 
+                SELECT P.id as personId, username,firstName, CONCAT(firstName, ' ', lastName) as fullName,
                         lastName, dateOfBirth, ssn, gender,
                         addressID, contactPhone, U.id as PatientId,
                         street, city, state, zip
@@ -375,6 +375,7 @@ namespace westga_emr.DAL
                         {
                             UserDTO patient = new UserDTO();
                             patient.Id = (int)reader["personId"];
+                            patient.FullName = reader["fullName"].ToString();
                             patient.Username = reader["username"].ToString();
                             patient.FirstName = reader["firstName"].ToString();
                             patient.LastName = reader["lastName"].ToString();
@@ -453,12 +454,15 @@ namespace westga_emr.DAL
 
                     if (string.IsNullOrWhiteSpace(person.Password))
                     {
-                        command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
+                        command.Parameters.AddWithValue("@password", DBNull.Value);
+
+                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
                     } 
                     else
                     {
-                        byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
+                        command.Parameters.AddWithValue("@password", person.Password);
+                        //byte[] hash = PasswordHashUse.HashPassword(person.Password);
+                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
                     }
 
                     if (string.IsNullOrWhiteSpace(person.SSN))
@@ -512,12 +516,14 @@ namespace westga_emr.DAL
 
                     if (string.IsNullOrWhiteSpace(person.Password))
                     {
-                        command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
+                        command.Parameters.AddWithValue("@password", DBNull.Value);
+                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
                     }
                     else
                     {
-                        byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
+                        command.Parameters.AddWithValue("@password", person.Password);
+                        //byte[] hash = PasswordHashUse.HashPassword(person.Password);
+                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
                     }
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {
@@ -546,6 +552,28 @@ namespace westga_emr.DAL
             {
                 return true;
             }
+        }
+
+        public static int HashDBPasswords()
+        {
+            int rowsUpdated = 0;
+            string query = @"IF (SELECT COL_LENGTH('dbo.Person', 'password')) <> 64
+                               BEGIN
+                                ALTER TABLE db.Person
+                                ALTER COLUMN password varchar(64) null;
+                               END
+                              update Person
+                              set password = CONVERT(VARCHAR(64),HashBytes('SHA2_256', Person.password),2)
+                              where LEN(password) <> 64";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    rowsUpdated = command.ExecuteNonQuery();
+                }
+            }
+            return rowsUpdated;
         }
     }
 }

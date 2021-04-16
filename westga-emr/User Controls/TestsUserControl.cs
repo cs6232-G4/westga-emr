@@ -199,23 +199,32 @@ namespace westga_emr.User_Controls
         private void VisitsDatatGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             visit = (VisitDTO)visitsDataGridView.Rows[e.RowIndex].DataBoundItem;
-            if (patientsDatatGrid.Columns[e.ColumnIndex].Name == "ViewTests")
+            if (visitsDataGridView.Columns[e.ColumnIndex].Name == "ViewTests")
             {
                 this.testsDataGrid.Visible = true;
                 this.testsDataGrid.DataSource = null;
                 visitTests = labOrdersTestController.GetVisitTests(Convert.ToInt32(visit.ID));
-                if (visits.Count <= 0)
+                if (visitTests.Count <= 0)
                 {
                     MessageBox.Show($"No test found in the system for visit {visit.ID}.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                this.visitsDataGridView.DataSource = visits;
+                this.testsDataGrid.DataSource = visitTests;
             }
-            else if (patientsDatatGrid.Columns[e.ColumnIndex].Name == "OrderTest")
+            else if (visitsDataGridView.Columns[e.ColumnIndex].Name == "OrderTest")
             {
                 this.testsDataGrid.Visible = false;
                 this.testsDataGrid.DataSource = null;
 
             }
+
+        }
+
+        /// <summary>
+        /// The event handler method for PatientsDatatGrid CellContentClick
+        /// </summary>
+        private void TestsDatatGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
 
         }
     }

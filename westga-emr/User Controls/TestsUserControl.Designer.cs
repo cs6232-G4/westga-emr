@@ -30,7 +30,7 @@ namespace westga_emr.User_Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,29 +47,6 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.searchErrorLabel = new System.Windows.Forms.Label();
             this.visitsDataGridView = new System.Windows.Forms.DataGridView();
-            this.patientsDatatGrid = new System.Windows.Forms.DataGridView();
-            this.ViewVisits = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.visitForLabel = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.testsDataGrid = new System.Windows.Forms.DataGridView();
-            this.labOrderTestDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.visitDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.orderIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.visitIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testResultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnterTestResults = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nurseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VisitReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,17 +57,40 @@ namespace westga_emr.User_Controls
             this.finalDiagnosisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ViewTests = new System.Windows.Forms.DataGridViewButtonColumn();
             this.OrderTest = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.visitDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.patientsDatatGrid = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewVisits = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.visitForLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.testsDataGrid = new System.Windows.Forms.DataGridView();
+            this.orderIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.visitIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testResultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnterTestResults = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.labOrderTestDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visitsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientsDatatGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.labOrderTestDTOBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -330,210 +330,7 @@ namespace westga_emr.User_Controls
             this.visitsDataGridView.ReadOnly = true;
             this.visitsDataGridView.Size = new System.Drawing.Size(1114, 345);
             this.visitsDataGridView.TabIndex = 3;
-            // 
-            // patientsDatatGrid
-            // 
-            this.patientsDatatGrid.AllowUserToAddRows = false;
-            this.patientsDatatGrid.AllowUserToDeleteRows = false;
-            this.patientsDatatGrid.AutoGenerateColumns = false;
-            this.patientsDatatGrid.BackgroundColor = System.Drawing.Color.LightCyan;
-            this.patientsDatatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.patientsDatatGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn,
-            this.genderDataGridViewTextBoxColumn,
-            this.contactPhoneDataGridViewTextBoxColumn,
-            this.dateOfBirthDataGridViewTextBoxColumn,
-            this.cityDataGridViewTextBoxColumn,
-            this.stateDataGridViewTextBoxColumn,
-            this.ViewVisits});
-            this.patientsDatatGrid.DataSource = this.userDTOBindingSource;
-            this.patientsDatatGrid.Location = new System.Drawing.Point(0, 100);
-            this.patientsDatatGrid.Name = "patientsDatatGrid";
-            this.patientsDatatGrid.ReadOnly = true;
-            this.patientsDatatGrid.Size = new System.Drawing.Size(1114, 197);
-            this.patientsDatatGrid.TabIndex = 5;
-            this.patientsDatatGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PatientsDatatGrid_CellContentClick);
-            // 
-            // ViewVisits
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Green;
-            this.ViewVisits.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ViewVisits.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ViewVisits.HeaderText = "";
-            this.ViewVisits.Name = "ViewVisits";
-            this.ViewVisits.ReadOnly = true;
-            this.ViewVisits.Text = "View Visits";
-            this.ViewVisits.UseColumnTextForButtonValue = true;
-            this.ViewVisits.Width = 150;
-            // 
-            // visitForLabel
-            // 
-            this.visitForLabel.AutoSize = true;
-            this.visitForLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.visitForLabel.Location = new System.Drawing.Point(519, 416);
-            this.visitForLabel.Name = "visitForLabel";
-            this.visitForLabel.Size = new System.Drawing.Size(0, 18);
-            this.visitForLabel.TabIndex = 6;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.testsDataGrid);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 665);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1114, 450);
-            this.panel1.TabIndex = 7;
-            // 
-            // testsDataGrid
-            // 
-            this.testsDataGrid.AllowUserToAddRows = false;
-            this.testsDataGrid.AllowUserToDeleteRows = false;
-            this.testsDataGrid.AutoGenerateColumns = false;
-            this.testsDataGrid.BackgroundColor = System.Drawing.Color.OldLace;
-            this.testsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.testsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderIdDataGridViewTextBoxColumn,
-            this.visitIdDataGridViewTextBoxColumn,
-            this.testNameDataGridViewTextBoxColumn,
-            this.testResultDataGridViewTextBoxColumn,
-            this.orderedDateDataGridViewTextBoxColumn,
-            this.testDateDataGridViewTextBoxColumn,
-            this.testCodeDataGridViewTextBoxColumn,
-            this.EnterTestResults});
-            this.testsDataGrid.DataSource = this.labOrderTestDTOBindingSource;
-            this.testsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.testsDataGrid.Location = new System.Drawing.Point(0, 0);
-            this.testsDataGrid.Name = "testsDataGrid";
-            this.testsDataGrid.ReadOnly = true;
-            this.testsDataGrid.Size = new System.Drawing.Size(1114, 450);
-            this.testsDataGrid.TabIndex = 0;
-            this.testsDataGrid.Visible = false;
-            // 
-            // labOrderTestDTOBindingSource
-            // 
-            this.labOrderTestDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.LabOrderTestDTO);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // genderDataGridViewTextBoxColumn
-            // 
-            this.genderDataGridViewTextBoxColumn.DataPropertyName = "Gender";
-            this.genderDataGridViewTextBoxColumn.HeaderText = "Gender";
-            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
-            this.genderDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // contactPhoneDataGridViewTextBoxColumn
-            // 
-            this.contactPhoneDataGridViewTextBoxColumn.DataPropertyName = "ContactPhone";
-            this.contactPhoneDataGridViewTextBoxColumn.HeaderText = "ContactPhone";
-            this.contactPhoneDataGridViewTextBoxColumn.Name = "contactPhoneDataGridViewTextBoxColumn";
-            this.contactPhoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateOfBirthDataGridViewTextBoxColumn
-            // 
-            this.dateOfBirthDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirth";
-            this.dateOfBirthDataGridViewTextBoxColumn.HeaderText = "DateOfBirth";
-            this.dateOfBirthDataGridViewTextBoxColumn.Name = "dateOfBirthDataGridViewTextBoxColumn";
-            this.dateOfBirthDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cityDataGridViewTextBoxColumn
-            // 
-            this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
-            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
-            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
-            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // stateDataGridViewTextBoxColumn
-            // 
-            this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
-            this.stateDataGridViewTextBoxColumn.HeaderText = "State";
-            this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
-            this.stateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // userDTOBindingSource
-            // 
-            this.userDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.UserDTO);
-            // 
-            // visitDTOBindingSource
-            // 
-            this.visitDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.VisitDTO);
-            // 
-            // orderIdDataGridViewTextBoxColumn
-            // 
-            this.orderIdDataGridViewTextBoxColumn.DataPropertyName = "OrderId";
-            this.orderIdDataGridViewTextBoxColumn.HeaderText = "Lab Order Id";
-            this.orderIdDataGridViewTextBoxColumn.Name = "orderIdDataGridViewTextBoxColumn";
-            this.orderIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // visitIdDataGridViewTextBoxColumn
-            // 
-            this.visitIdDataGridViewTextBoxColumn.DataPropertyName = "VisitId";
-            this.visitIdDataGridViewTextBoxColumn.HeaderText = "Visit Id";
-            this.visitIdDataGridViewTextBoxColumn.Name = "visitIdDataGridViewTextBoxColumn";
-            this.visitIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // testNameDataGridViewTextBoxColumn
-            // 
-            this.testNameDataGridViewTextBoxColumn.DataPropertyName = "TestName";
-            this.testNameDataGridViewTextBoxColumn.HeaderText = "Test Name";
-            this.testNameDataGridViewTextBoxColumn.Name = "testNameDataGridViewTextBoxColumn";
-            this.testNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.testNameDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // testResultDataGridViewTextBoxColumn
-            // 
-            this.testResultDataGridViewTextBoxColumn.DataPropertyName = "TestResult";
-            this.testResultDataGridViewTextBoxColumn.HeaderText = "Test Result";
-            this.testResultDataGridViewTextBoxColumn.Name = "testResultDataGridViewTextBoxColumn";
-            this.testResultDataGridViewTextBoxColumn.ReadOnly = true;
-            this.testResultDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // orderedDateDataGridViewTextBoxColumn
-            // 
-            this.orderedDateDataGridViewTextBoxColumn.DataPropertyName = "OrderedDate";
-            this.orderedDateDataGridViewTextBoxColumn.HeaderText = "Date Ordered";
-            this.orderedDateDataGridViewTextBoxColumn.Name = "orderedDateDataGridViewTextBoxColumn";
-            this.orderedDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // testDateDataGridViewTextBoxColumn
-            // 
-            this.testDateDataGridViewTextBoxColumn.DataPropertyName = "TestDate";
-            this.testDateDataGridViewTextBoxColumn.HeaderText = "Test Date";
-            this.testDateDataGridViewTextBoxColumn.Name = "testDateDataGridViewTextBoxColumn";
-            this.testDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // testCodeDataGridViewTextBoxColumn
-            // 
-            this.testCodeDataGridViewTextBoxColumn.DataPropertyName = "TestCode";
-            this.testCodeDataGridViewTextBoxColumn.HeaderText = "Test Code";
-            this.testCodeDataGridViewTextBoxColumn.Name = "testCodeDataGridViewTextBoxColumn";
-            this.testCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.testCodeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // EnterTestResults
-            // 
-            this.EnterTestResults.HeaderText = "";
-            this.EnterTestResults.Name = "EnterTestResults";
-            this.EnterTestResults.ReadOnly = true;
-            this.EnterTestResults.Text = "Enter Test Result";
-            this.EnterTestResults.UseColumnTextForButtonValue = true;
-            this.EnterTestResults.Width = 150;
+            this.visitsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.VisitsDatatGrid_CellContentClick);
             // 
             // ID
             // 
@@ -610,6 +407,210 @@ namespace westga_emr.User_Controls
             this.OrderTest.Text = "Order Test";
             this.OrderTest.UseColumnTextForButtonValue = true;
             // 
+            // visitDTOBindingSource
+            // 
+            this.visitDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.VisitDTO);
+            // 
+            // patientsDatatGrid
+            // 
+            this.patientsDatatGrid.AllowUserToAddRows = false;
+            this.patientsDatatGrid.AllowUserToDeleteRows = false;
+            this.patientsDatatGrid.AutoGenerateColumns = false;
+            this.patientsDatatGrid.BackgroundColor = System.Drawing.Color.LightCyan;
+            this.patientsDatatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.patientsDatatGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.fullNameDataGridViewTextBoxColumn,
+            this.genderDataGridViewTextBoxColumn,
+            this.contactPhoneDataGridViewTextBoxColumn,
+            this.dateOfBirthDataGridViewTextBoxColumn,
+            this.cityDataGridViewTextBoxColumn,
+            this.stateDataGridViewTextBoxColumn,
+            this.ViewVisits});
+            this.patientsDatatGrid.DataSource = this.userDTOBindingSource;
+            this.patientsDatatGrid.Location = new System.Drawing.Point(0, 100);
+            this.patientsDatatGrid.Name = "patientsDatatGrid";
+            this.patientsDatatGrid.ReadOnly = true;
+            this.patientsDatatGrid.Size = new System.Drawing.Size(1114, 197);
+            this.patientsDatatGrid.TabIndex = 5;
+            this.patientsDatatGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PatientsDatatGrid_CellContentClick);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // genderDataGridViewTextBoxColumn
+            // 
+            this.genderDataGridViewTextBoxColumn.DataPropertyName = "Gender";
+            this.genderDataGridViewTextBoxColumn.HeaderText = "Gender";
+            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
+            this.genderDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // contactPhoneDataGridViewTextBoxColumn
+            // 
+            this.contactPhoneDataGridViewTextBoxColumn.DataPropertyName = "ContactPhone";
+            this.contactPhoneDataGridViewTextBoxColumn.HeaderText = "ContactPhone";
+            this.contactPhoneDataGridViewTextBoxColumn.Name = "contactPhoneDataGridViewTextBoxColumn";
+            this.contactPhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateOfBirthDataGridViewTextBoxColumn
+            // 
+            this.dateOfBirthDataGridViewTextBoxColumn.DataPropertyName = "DateOfBirth";
+            this.dateOfBirthDataGridViewTextBoxColumn.HeaderText = "DateOfBirth";
+            this.dateOfBirthDataGridViewTextBoxColumn.Name = "dateOfBirthDataGridViewTextBoxColumn";
+            this.dateOfBirthDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cityDataGridViewTextBoxColumn
+            // 
+            this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
+            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
+            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
+            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // stateDataGridViewTextBoxColumn
+            // 
+            this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
+            this.stateDataGridViewTextBoxColumn.HeaderText = "State";
+            this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
+            this.stateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ViewVisits
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Green;
+            this.ViewVisits.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ViewVisits.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ViewVisits.HeaderText = "";
+            this.ViewVisits.Name = "ViewVisits";
+            this.ViewVisits.ReadOnly = true;
+            this.ViewVisits.Text = "View Visits";
+            this.ViewVisits.UseColumnTextForButtonValue = true;
+            this.ViewVisits.Width = 150;
+            // 
+            // userDTOBindingSource
+            // 
+            this.userDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.UserDTO);
+            // 
+            // visitForLabel
+            // 
+            this.visitForLabel.AutoSize = true;
+            this.visitForLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.visitForLabel.Location = new System.Drawing.Point(519, 416);
+            this.visitForLabel.Name = "visitForLabel";
+            this.visitForLabel.Size = new System.Drawing.Size(0, 18);
+            this.visitForLabel.TabIndex = 6;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.testsDataGrid);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 665);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1114, 450);
+            this.panel1.TabIndex = 7;
+            // 
+            // testsDataGrid
+            // 
+            this.testsDataGrid.AllowUserToAddRows = false;
+            this.testsDataGrid.AllowUserToDeleteRows = false;
+            this.testsDataGrid.AutoGenerateColumns = false;
+            this.testsDataGrid.BackgroundColor = System.Drawing.Color.OldLace;
+            this.testsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.testsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderIdDataGridViewTextBoxColumn,
+            this.visitIdDataGridViewTextBoxColumn,
+            this.testNameDataGridViewTextBoxColumn,
+            this.testResultDataGridViewTextBoxColumn,
+            this.orderedDateDataGridViewTextBoxColumn,
+            this.testDateDataGridViewTextBoxColumn,
+            this.testCodeDataGridViewTextBoxColumn,
+            this.EnterTestResults});
+            this.testsDataGrid.DataSource = this.labOrderTestDTOBindingSource;
+            this.testsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.testsDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.testsDataGrid.Name = "testsDataGrid";
+            this.testsDataGrid.ReadOnly = true;
+            this.testsDataGrid.Size = new System.Drawing.Size(1114, 450);
+            this.testsDataGrid.TabIndex = 0;
+            this.testsDataGrid.Visible = false;
+            // 
+            // orderIdDataGridViewTextBoxColumn
+            // 
+            this.orderIdDataGridViewTextBoxColumn.DataPropertyName = "OrderId";
+            this.orderIdDataGridViewTextBoxColumn.HeaderText = "Lab Order Id";
+            this.orderIdDataGridViewTextBoxColumn.Name = "orderIdDataGridViewTextBoxColumn";
+            this.orderIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // visitIdDataGridViewTextBoxColumn
+            // 
+            this.visitIdDataGridViewTextBoxColumn.DataPropertyName = "VisitId";
+            this.visitIdDataGridViewTextBoxColumn.HeaderText = "Visit Id";
+            this.visitIdDataGridViewTextBoxColumn.Name = "visitIdDataGridViewTextBoxColumn";
+            this.visitIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // testNameDataGridViewTextBoxColumn
+            // 
+            this.testNameDataGridViewTextBoxColumn.DataPropertyName = "TestName";
+            this.testNameDataGridViewTextBoxColumn.HeaderText = "Test Name";
+            this.testNameDataGridViewTextBoxColumn.Name = "testNameDataGridViewTextBoxColumn";
+            this.testNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testNameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // testResultDataGridViewTextBoxColumn
+            // 
+            this.testResultDataGridViewTextBoxColumn.DataPropertyName = "TestResult";
+            this.testResultDataGridViewTextBoxColumn.HeaderText = "Test Result";
+            this.testResultDataGridViewTextBoxColumn.Name = "testResultDataGridViewTextBoxColumn";
+            this.testResultDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testResultDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // orderedDateDataGridViewTextBoxColumn
+            // 
+            this.orderedDateDataGridViewTextBoxColumn.DataPropertyName = "OrderedDate";
+            this.orderedDateDataGridViewTextBoxColumn.HeaderText = "Date Ordered";
+            this.orderedDateDataGridViewTextBoxColumn.Name = "orderedDateDataGridViewTextBoxColumn";
+            this.orderedDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // testDateDataGridViewTextBoxColumn
+            // 
+            this.testDateDataGridViewTextBoxColumn.DataPropertyName = "TestDate";
+            this.testDateDataGridViewTextBoxColumn.HeaderText = "Test Date";
+            this.testDateDataGridViewTextBoxColumn.Name = "testDateDataGridViewTextBoxColumn";
+            this.testDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // testCodeDataGridViewTextBoxColumn
+            // 
+            this.testCodeDataGridViewTextBoxColumn.DataPropertyName = "TestCode";
+            this.testCodeDataGridViewTextBoxColumn.HeaderText = "Test Code";
+            this.testCodeDataGridViewTextBoxColumn.Name = "testCodeDataGridViewTextBoxColumn";
+            this.testCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testCodeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // EnterTestResults
+            // 
+            this.EnterTestResults.HeaderText = "";
+            this.EnterTestResults.Name = "EnterTestResults";
+            this.EnterTestResults.ReadOnly = true;
+            this.EnterTestResults.Text = "Enter Test Result";
+            this.EnterTestResults.UseColumnTextForButtonValue = true;
+            this.EnterTestResults.Width = 150;
+            // 
+            // labOrderTestDTOBindingSource
+            // 
+            this.labOrderTestDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.LabOrderTestDTO);
+            // 
             // TestsUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -631,12 +632,12 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visitsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientsDatatGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.labOrderTestDTOBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

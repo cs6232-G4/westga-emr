@@ -65,7 +65,7 @@ namespace westga_emr.DAL
                                         from Lab_Orders_have_Lab_Tests l
                                         inner join Lab_Order o on l.labOrderID = o.id
                                         inner join Lab_Test t on l.labTestCode = t.code
-                                        where l.results is not null and o.visitID = @VisitID";
+                                        where o.visitID = @VisitID";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 connection.Open();
@@ -78,13 +78,13 @@ namespace westga_emr.DAL
                         while (reader.Read())
                         {
                             LabOrderTestDTO labTest = new LabOrderTestDTO();
-                            labTest.OrderId = (int)reader["labOrderID"];
+                            labTest.OrderId = Convert.ToInt32(reader["labOrderID"].ToString());
                             labTest.OrderedDate = (DateTime) reader["dateOrdered"];
                             labTest.TestCode = (int)reader["labTestCode"];
                             labTest.TestName = reader["testName"].ToString();
                             labTest.TestResult = reader["results"].ToString();
                             labTest.TestDate = (DateTime)reader["testPerformed"];
-                            labTest.VisitId = (int)reader["visitID"];
+                            labTest.VisitId = Convert.ToInt32(reader["visitID"].ToString());
                             labTests.Add(labTest);
                         }
                     }
@@ -102,7 +102,7 @@ namespace westga_emr.DAL
         public static bool InsertLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests relation)
         {
             Object obj = null;
-            String insertStatement = @"INSERT INTO Lab_Order (labOrderID, labTestCode, testPerformed, results)
+            String insertStatement = @"INSERT INTO Lab_Orders_have_Lab_Tests (labOrderID, labTestCode, testPerformed, results)
 			                            VALUES (@labOrderID, @labTestCode, @testPerformed, @results)";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -127,8 +127,24 @@ namespace westga_emr.DAL
                         command.Parameters.AddWithValue("@labTestCode", relation.LabTestCode);
                     }
 
-                    command.Parameters.AddWithValue("@testPerformed", relation.TestPerformed);
-                    command.Parameters.AddWithValue("@results", relation.Results);
+                    
+                    if (relation.TestPerformed == null)
+                    {
+                        command.Parameters.AddWithValue("@testPerformed", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@testPerformed", relation.TestPerformed);
+                    }
+
+                    if (relation.Results == null)
+                    {
+                        command.Parameters.AddWithValue("@results", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@results", relation.Results);
+                    }
 
                     obj = command.ExecuteScalar();
                 }
