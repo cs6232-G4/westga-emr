@@ -235,7 +235,7 @@ namespace westga_emr.DAL
         /// <returns>The current user</returns>
         public UserDTO SignIn( string username, string password)
         {
-            string hash = PasswordHashSHA512.GenerateSHA512String(password);
+            string hash = Helpers.PasswordHashSHA512.GenerateSHA512String(password);
             UserDTO currentUser = new UserDTO();
             string selectUserStatement = @"
                 SELECT P.id as personId, username,firstName, 
@@ -434,6 +434,7 @@ namespace westga_emr.DAL
         /// <returns>The id of the newly inserted Person, or null if the insert failed</returns>
         public static int? InsertPerson(Person person)
         {
+            string hash = PasswordHashSHA512.GenerateSHA512String(person.Password);
             int? id = null;
             String insertStatement = @"INSERT INTO Person(username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone)
                                         OUTPUT inserted.id
@@ -458,7 +459,7 @@ namespace westga_emr.DAL
                     } 
                     else
                     {
-                        command.Parameters.AddWithValue("@password", PasswordHashSHA512.GenerateSHA512String(person.Password));
+                        command.Parameters.AddWithValue("@password", hash);
                     }
 
                     if (string.IsNullOrWhiteSpace(person.SSN))
@@ -516,7 +517,7 @@ namespace westga_emr.DAL
                     }
                     else
                     {
-                        command.Parameters.AddWithValue("@password", PasswordHashSHA512.GenerateSHA512String(person.Password));
+                        command.Parameters.AddWithValue("@password", Helpers.PasswordHashSHA512.GenerateSHA512String(person.Password));
                     }
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {

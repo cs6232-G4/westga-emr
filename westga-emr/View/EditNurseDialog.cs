@@ -259,8 +259,7 @@ namespace westga_emr.View
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
-                hashedPassword = passwordTextBox.Text != nurse.Password ? AuthenticationHelper.HashPassword(passwordTextBox.Text) : passwordTextBox.Text;
-                nursePerson = new Person(nurse.Id, usernameTextBox.Text, hashedPassword,
+                nursePerson = new Person(nurse.Id, usernameTextBox.Text, passwordTextBox.Text,
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,

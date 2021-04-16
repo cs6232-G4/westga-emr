@@ -155,10 +155,23 @@ namespace westga_emr.Controller
             }
             using (TransactionScope scope = new TransactionScope())
             {
+                
                 int? addressID = AddressDAL.InsertAddress(address);
                 int? personID = PersonDAL.InsertPerson(new Person(null, nurse.Username, nurse.Password, nurse.FirstName, nurse.LastName, nurse.DateOfBirth,
                     nurse.SSN, nurse.Gender, addressID, nurse.ContactPhone));
                 NurseDAL.InsertNurse(new Nurse(null, personID, true));
+                scope.Complete();
+            }
+            return true;
+        }
+
+        public bool UpdateNurse(Person person, Address address, Nurse nurse)
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                AddressDAL.UpdateAddress(address);
+                PersonDAL.UpdatePerson(person);
+                NurseDAL.UpdateNurse(nurse);
                 scope.Complete();
             }
             return true;
@@ -171,25 +184,6 @@ namespace westga_emr.Controller
         public int PasswordsHashed()
         {
             return PersonDAL.HashDBPasswords();
-        }
-        /// <summary>
-        /// Updates nurse
-        /// </summary>
-        /// <param name="person"></param>
-        /// <param name="address"></param>
-        /// <param name="nurse"></param>
-        /// <returns></returns>
-
-        public bool UpdateNurse(Person person, Address address, Nurse nurse)
-        {
-            using (TransactionScope scope = new TransactionScope())
-            {
-                AddressDAL.UpdateAddress(address);
-                PersonDAL.UpdatePerson(person);
-                NurseDAL.UpdateNurse(nurse);
-                scope.Complete();
-            }
-            return true;
         }
     }
 }
