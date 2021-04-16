@@ -4,6 +4,7 @@ using westga_emr.DAL;
 using System;
 using westga_emr.Model.DTO;
 using westga_emr.Helpers;
+using System.Transactions;
 
 namespace westga_emr.Controller
 {
@@ -78,7 +79,7 @@ namespace westga_emr.Controller
             {
                 throw new Exception();
             }
-            this.currentUser =  personDBSource.SignIn(username, password);
+            this.currentUser =  personDBSource.SignIn(username, AuthenticationHelper.HashPassword(password));
             AuthenticationHelper.SetCurrentUser(this.currentUser);
             return this.currentUser;
         }
@@ -128,6 +129,67 @@ namespace westga_emr.Controller
         public bool SocialSecurityExist(string ssn)
         {
             return personDBSource.SocialSecurityExist(ssn);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public bool IsUsernameDuplicate(string username)
+        {
+            return personDBSource.UserExist(username);
+        }
+
+        /// <summary>
+        /// Inserts a new Patient with their data into the db.
+        /// </summary>
+        /// <param name="patient">Person of Patient to insert</param>
+        /// <param name="address">Address of Patient to insert</param>
+        /// <returns>Whether or not the insertion succeeded</returns>
+        public bool RegisterNurse(Person nurse, Address address)
+        {
+            if (nurse == null || address == null)
+            {
+                throw new ArgumentNullException("nurse and address cannot be null");
+            }
+            using (TransactionScope scope = new TransactionScope())
+            {
+                int? addressID = AddressDAL.InsertAddress(address);
+                int? personID = PersonDAL.InsertPerson(new Person(null, nurse.Username, nurse.Password, nurse.FirstName, nurse.LastName, nurse.DateOfBirth,
+                    nurse.SSN, nurse.Gender, addressID, nurse.ContactPhone));
+                NurseDAL.InsertNurse(new Nurse(null, personID, true));
+                scope.Complete();
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Gets number of password hashed
+        /// </summary>
+        /// <returns></returns>
+        public int PasswordsHashed()
+        {
+            return PersonDAL.HashDBPasswords();
+        }
+        /// <summary>
+        /// Updates nurse
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="address"></param>
+        /// <param name="nurse"></param>
+        /// <returns></returns>
+
+        public bool UpdateNurse(Person person, Address address, Nurse nurse)
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                AddressDAL.UpdateAddress(address);
+                PersonDAL.UpdatePerson(person);
+                NurseDAL.UpdateNurse(nurse);
+                scope.Complete();
+            }
+            return true;
         }
     }
 }

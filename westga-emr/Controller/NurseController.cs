@@ -2,6 +2,7 @@
 using westga_emr.Model;
 using westga_emr.DAL;
 using westga_emr.Model.DTO;
+using westga_emr.Helpers;
 
 namespace westga_emr.Controller
 {
@@ -22,7 +23,7 @@ namespace westga_emr.Controller
         /// <returns></returns>
         public List<UserDTO> GetAllNurse()
         {
-            return NurseDAL.GetAllNurse();
+            return NurseDAL.GetAllNurse(AuthenticationHelper.currentUser);
         }
     }
 }

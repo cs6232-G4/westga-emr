@@ -37,21 +37,21 @@ namespace westga_emr.View
             this.usernameErrorLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.passwordErrorLabel = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.passwordTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.passwordViewer = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.clearButton = new System.Windows.Forms.Button();
             this.loginButton = new System.Windows.Forms.Button();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.passwordViewer = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.passwordViewer)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -168,6 +168,23 @@ namespace westga_emr.View
             this.passwordErrorLabel.Size = new System.Drawing.Size(306, 40);
             this.passwordErrorLabel.TabIndex = 1;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.passwordTextBox);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.passwordViewer);
+            this.splitContainer1.Size = new System.Drawing.Size(306, 33);
+            this.splitContainer1.SplitterDistance = 260;
+            this.splitContainer1.TabIndex = 2;
+            // 
             // passwordTextBox
             // 
             this.passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -179,6 +196,19 @@ namespace westga_emr.View
             this.passwordTextBox.TabIndex = 2;
             this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             this.passwordTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LoginButton_KeyDown);
+            // 
+            // passwordViewer
+            // 
+            this.passwordViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.passwordViewer.Image = global::westga_emr.Properties.Resources.viewPassword1;
+            this.passwordViewer.InitialImage = global::westga_emr.Properties.Resources.viewPassword1;
+            this.passwordViewer.Location = new System.Drawing.Point(0, 0);
+            this.passwordViewer.Name = "passwordViewer";
+            this.passwordViewer.Size = new System.Drawing.Size(42, 33);
+            this.passwordViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.passwordViewer.TabIndex = 0;
+            this.passwordViewer.TabStop = false;
+            this.passwordViewer.Click += new System.EventHandler(this.PasswordViewer_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -225,36 +255,6 @@ namespace westga_emr.View
             this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.passwordTextBox);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.passwordViewer);
-            this.splitContainer1.Size = new System.Drawing.Size(306, 33);
-            this.splitContainer1.SplitterDistance = 260;
-            this.splitContainer1.TabIndex = 2;
-            // 
-            // passwordViewer
-            // 
-            this.passwordViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.passwordViewer.Image = global::westga_emr.Properties.Resources.viewPassword1;
-            this.passwordViewer.InitialImage = global::westga_emr.Properties.Resources.viewPassword1;
-            this.passwordViewer.Location = new System.Drawing.Point(0, 0);
-            this.passwordViewer.Name = "passwordViewer";
-            this.passwordViewer.Size = new System.Drawing.Size(42, 33);
-            this.passwordViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.passwordViewer.TabIndex = 0;
-            this.passwordViewer.TabStop = false;
-            this.passwordViewer.Click += new System.EventHandler(this.PasswordViewer_Click);
-            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,13 +274,13 @@ namespace westga_emr.View
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.passwordViewer)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

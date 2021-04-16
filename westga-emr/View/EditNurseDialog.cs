@@ -28,6 +28,7 @@ namespace westga_emr.View
         private Dictionary<string, string> errors;
         private Bitmap showPasswordImage;
         private Bitmap hidePasswordImage;
+        private string hashedPassword;
         public EditNurseDialog(UserDTO _nurse)
         {
             InitializeComponent();
@@ -50,7 +51,7 @@ namespace westga_emr.View
             this.stateComboBox.SelectedIndex = AppointmentHelper.GetStates().FindIndex(x => x.Value.Equals(nurse.State, StringComparison.InvariantCultureIgnoreCase));
             this.genderComboBox.SelectedIndex = AppointmentHelper.GetGenders().FindIndex(x => x.Value.Equals(nurse.Gender, StringComparison.InvariantCultureIgnoreCase));
             this.firstNameTextBox.Text = nurse.FirstName;
-            this.lastNameTextBox.Text = nurse.FirstName;
+            this.lastNameTextBox.Text = nurse.LastName;
             this.cityTextBox.Text = nurse.City;
             this.streetTextBox.Text = nurse.Street;
             this.contactPhoneTextBox.Text = nurse.ContactPhone;
@@ -59,6 +60,17 @@ namespace westga_emr.View
             this.usernameTextBox.Text = nurse.Username;
             this.passwordTextBox.Text = nurse.Password;
             this.isActiveCheckbox.Checked = nurse.IsActiveNurse;
+            this.passwordViewer.Visible = false;
+            ssnError.Text = "";
+            firstnameError.Text = "";
+            lastNameError.Text = "";
+            contactPhoneError.Text = "";
+            streetError.Text = "";
+            cityError.Text = "";
+            usernameError.Text = "";
+            passwordError.Text = "";
+            zipCodeError.Text = "";
+            errors = new Dictionary<string, string>();
         }
         private void SsnTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -196,18 +208,41 @@ namespace westga_emr.View
 
         private void UsernameTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            if (usernameTextBox.Text.Length > 45)
+            {
+                usernameError.Text = "Character limit exceeded. Maximum allowed: 45";
+                AddError("usernameError", usernameError.Text);
+            }
+            else if (String.IsNullOrWhiteSpace(usernameTextBox.Text))
+            {
+                usernameError.Text = "Username is required";
+                AddError("usernameError", usernameError.Text);
+            }
+            else if (usernameTextBox.Text != nurse.Username && personController.IsUsernameDuplicate(usernameTextBox.Text))
+            {
+                usernameError.Text = "Username is unavailable. Use a different username";
+                AddError("usernameError", usernameError.Text);
+            }
+            else
+            {
+                usernameError.Text = "";
+                RemoveError("usernameError");
+            }
         }
 
         private void PasswordTextBox_TextChanged(object sender, EventArgs e)
         {
+            this.passwordViewer.Visible = true;
+
             if (!validPassword.IsMatch(passwordTextBox.Text))
             {
                 passwordError.Text = "Password must be between 8 - 16 characters" + Environment.NewLine + "At least one digit, lower case and one uppercase";
+                AddError("passwordError", passwordError.Text);
             }
             else
             {
                 passwordError.Text = "";
+                RemoveError("passwordError");
             }
 
         }
@@ -224,7 +259,8 @@ namespace westga_emr.View
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
-                nursePerson = new Person(nurse.Id, usernameTextBox.Text, passwordTextBox.Text,
+                hashedPassword = passwordTextBox.Text != nurse.Password ? AuthenticationHelper.HashPassword(passwordTextBox.Text) : passwordTextBox.Text;
+                nursePerson = new Person(nurse.Id, usernameTextBox.Text, hashedPassword,
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
@@ -234,9 +270,10 @@ namespace westga_emr.View
                        contactPhoneTextBox.Text);
                 nurseAddress = new Address(nurse.AddressId, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
                 theNurse = new Nurse(nurse.NurseId, nurse.Id, isActiveCheckbox.Checked);
-                //result = patientController.RegisterPatient(patientPerson, patientAddress);
+                result = personController.UpdateNurse(nursePerson, nurseAddress, theNurse);
                 ClearInputs();
-                MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Nurse updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
@@ -278,6 +315,7 @@ namespace westga_emr.View
             this.StreetTextBox_TextChanged("SUBMIT", EventArgs.Empty);
             this.CityTextBox_TextChanged("SUBMIT", EventArgs.Empty);
             this.ZipTextBox_TextChanged("SUBMIT", EventArgs.Empty);
+            this.UsernameTextBox_TextChanged("SUBMIT", EventArgs.Empty);
         }
 
         private void ClearInputs()
@@ -304,6 +342,7 @@ namespace westga_emr.View
         private void ClearButton_Click(object sender, EventArgs e)
         {
             this.ClearInputs();
+            this.DialogResult = DialogResult.Cancel;
         }
 
 

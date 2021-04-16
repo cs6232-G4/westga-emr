@@ -41,7 +41,7 @@ namespace westga_emr.View
             System.Windows.Forms.Label cityLabel;
             System.Windows.Forms.Label zipLabel;
             System.Windows.Forms.Label stateLabel;
-            this.clearButton = new System.Windows.Forms.Button();
+            this.cancelBtn = new System.Windows.Forms.Button();
             this.genderComboBox = new System.Windows.Forms.ComboBox();
             this.appointmentHelperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.addressId = new System.Windows.Forms.Label();
@@ -226,15 +226,16 @@ namespace westga_emr.View
             stateLabel.TabIndex = 7;
             stateLabel.Text = "State*";
             // 
-            // clearButton
+            // cancelBtn
             // 
-            this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearButton.Location = new System.Drawing.Point(483, 3);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(75, 37);
-            this.clearButton.TabIndex = 19;
-            this.clearButton.Text = "Clear";
-            this.clearButton.UseVisualStyleBackColor = true;
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.Location = new System.Drawing.Point(483, 3);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(75, 37);
+            this.cancelBtn.TabIndex = 19;
+            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // genderComboBox
             // 
@@ -270,6 +271,7 @@ namespace westga_emr.View
             this.contactPhoneTextBox.Name = "contactPhoneTextBox";
             this.contactPhoneTextBox.Size = new System.Drawing.Size(367, 20);
             this.contactPhoneTextBox.TabIndex = 8;
+            this.contactPhoneTextBox.TextChanged += new System.EventHandler(this.ContactPhoneTextBox_TextChanged);
             // 
             // dateOfBirthDateTimePicker
             // 
@@ -312,6 +314,7 @@ namespace westga_emr.View
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(367, 20);
             this.lastNameTextBox.TabIndex = 6;
+            this.lastNameTextBox.TextChanged += new System.EventHandler(this.LastNameTextBox_TextChanged);
             // 
             // firstNameTextBox
             // 
@@ -320,6 +323,7 @@ namespace westga_emr.View
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(367, 20);
             this.firstNameTextBox.TabIndex = 5;
+            this.firstNameTextBox.TextChanged += new System.EventHandler(this.FirstNameTextBox_TextChanged);
             // 
             // firstnameError
             // 
@@ -400,6 +404,7 @@ namespace westga_emr.View
             this.streetTextBox.Name = "streetTextBox";
             this.streetTextBox.Size = new System.Drawing.Size(368, 20);
             this.streetTextBox.TabIndex = 10;
+            this.streetTextBox.TextChanged += new System.EventHandler(this.StreetTextBox_TextChanged);
             // 
             // genderError
             // 
@@ -457,6 +462,7 @@ namespace westga_emr.View
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(367, 20);
             this.usernameTextBox.TabIndex = 31;
+            this.usernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
             // 
             // userDTOBindingSource
             // 
@@ -469,6 +475,7 @@ namespace westga_emr.View
             this.ssnTextBox.Name = "ssnTextBox";
             this.ssnTextBox.Size = new System.Drawing.Size(367, 20);
             this.ssnTextBox.TabIndex = 18;
+            this.ssnTextBox.TextChanged += new System.EventHandler(this.SsnTextBox_TextChanged);
             // 
             // label5
             // 
@@ -543,6 +550,7 @@ namespace westga_emr.View
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(272, 20);
             this.passwordTextBox.TabIndex = 35;
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // passwordViewer
             // 
@@ -557,6 +565,7 @@ namespace westga_emr.View
             this.passwordViewer.TabIndex = 35;
             this.passwordViewer.TabStop = false;
             this.passwordViewer.WaitOnLoad = true;
+            this.passwordViewer.Click += new System.EventHandler(this.PasswordViewer_Click);
             // 
             // editPatientLabel
             // 
@@ -580,6 +589,7 @@ namespace westga_emr.View
             this.submitButton.TabIndex = 20;
             this.submitButton.Text = "Save";
             this.submitButton.UseVisualStyleBackColor = false;
+            this.submitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -625,6 +635,7 @@ namespace westga_emr.View
             this.zipTextBox.Name = "zipTextBox";
             this.zipTextBox.Size = new System.Drawing.Size(368, 20);
             this.zipTextBox.TabIndex = 13;
+            this.zipTextBox.TextChanged += new System.EventHandler(this.ZipTextBox_TextChanged);
             // 
             // cityTextBox
             // 
@@ -633,6 +644,7 @@ namespace westga_emr.View
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(367, 20);
             this.cityTextBox.TabIndex = 11;
+            this.cityTextBox.TextChanged += new System.EventHandler(this.CityTextBox_TextChanged);
             // 
             // cityError
             // 
@@ -675,7 +687,7 @@ namespace westga_emr.View
             this.tableLayoutPanel9.ColumnCount = 2;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Controls.Add(this.clearButton, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.cancelBtn, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.submitButton, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 588);
@@ -713,6 +725,7 @@ namespace westga_emr.View
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EditNurseDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Nurse";
             this.Load += new System.EventHandler(this.EditNurseDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).EndInit();
@@ -739,7 +752,7 @@ namespace westga_emr.View
 
         #endregion
 
-        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.ComboBox genderComboBox;
         private System.Windows.Forms.BindingSource appointmentHelperBindingSource;
         private System.Windows.Forms.Label addressId;

@@ -183,7 +183,26 @@ namespace westga_emr.User_Controls
 
         private void UsernameTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            if (usernameTextBox.Text.Length > 45)
+            {
+                usernameError.Text = "Character limit exceeded. Maximum allowed: 45";
+                AddError("usernameError", usernameError.Text);
+            }
+            else if (String.IsNullOrWhiteSpace(usernameTextBox.Text))
+            {
+                usernameError.Text = "Username is required";
+                AddError("usernameError", usernameError.Text);
+            } 
+            else if (personController.IsUsernameDuplicate(usernameTextBox.Text))
+            {
+                usernameError.Text = "Username is unavailable. Use a different username";
+                AddError("usernameError", usernameError.Text);
+            }
+            else
+            {
+                usernameError.Text = "";
+                RemoveError("usernameError");
+            }
         }
 
         private void PasswordTextBox_TextChanged(object sender, EventArgs e)
@@ -211,7 +230,7 @@ namespace westga_emr.User_Controls
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
-                nursePerson = new Person(null, usernameTextBox.Text, passwordTextBox.Text,
+                nursePerson = new Person(null, usernameTextBox.Text, AuthenticationHelper.HashPassword(passwordTextBox.Text),
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
@@ -220,7 +239,7 @@ namespace westga_emr.User_Controls
                        null,
                        contactPhoneTextBox.Text);
                 nurseAddress = new Address(null, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
-                //result = patientController.RegisterPatient(patientPerson, patientAddress);
+                result = personController.RegisterNurse(nursePerson, nurseAddress);
                 ClearInputs();
                 MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -264,6 +283,8 @@ namespace westga_emr.User_Controls
             this.StreetTextBox_TextChanged("SUBMIT", EventArgs.Empty);
             this.CityTextBox_TextChanged("SUBMIT", EventArgs.Empty);
             this.ZipTextBox_TextChanged("SUBMIT", EventArgs.Empty);
+            this.UsernameTextBox_TextChanged("SUBMIT", EventArgs.Empty);
+            this.PasswordTextBox_TextChanged("SUBMIT", EventArgs.Empty);
         }
 
         private void ClearInputs()
@@ -285,6 +306,10 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDateTimePicker.Value = this.dateOfBirthDateTimePicker.MaxDate;
             this.genderComboBox.SelectedIndex = 0;
             this.stateComboBox.SelectedIndex = 0;
+            this.usernameTextBox.Text = "";
+            this.usernameError.Text = "";
+            this.passwordTextBox.Text = "";
+            this.passwordError.Text = "";
         }
 
         private void ClearButton_Click(object sender, EventArgs e)

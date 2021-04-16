@@ -48,6 +48,7 @@ namespace westga_emr.User_Controls
             this.addressIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nurseIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditNurse = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.nurseListDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +76,8 @@ namespace westga_emr.User_Controls
             this.sSNDataGridViewTextBoxColumn,
             this.addressIdDataGridViewTextBoxColumn,
             this.nurseIdDataGridViewTextBoxColumn,
-            this.EditNurse});
+            this.EditNurse,
+            this.Password});
             this.nurseListDataGrid.DataSource = this.userDTOBindingSource;
             this.nurseListDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nurseListDataGrid.Location = new System.Drawing.Point(0, 0);
@@ -209,6 +211,14 @@ namespace westga_emr.User_Controls
             this.EditNurse.Text = "Edit Nurse";
             this.EditNurse.UseColumnTextForButtonValue = true;
             // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "Password";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Visible = false;
+            // 
             // Nurses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,6 +237,7 @@ namespace westga_emr.User_Controls
         #endregion
 
         private System.Windows.Forms.DataGridView nurseListDataGrid;
+        private System.Windows.Forms.BindingSource userDTOBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
@@ -243,6 +254,6 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.DataGridViewTextBoxColumn addressIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nurseIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn EditNurse;
-        private System.Windows.Forms.BindingSource userDTOBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
     }
 }

@@ -45,7 +45,7 @@ namespace westga_emr.DAL
         /// Gets all nurse
         /// </summary>
         /// <returns></returns>
-        public static List<UserDTO> GetAllNurse()
+        public static List<UserDTO> GetAllNurse(UserDTO currentUser)
         {
             var nurses = new List<UserDTO>();
             string selectUserStatement = @"
@@ -56,12 +56,15 @@ namespace westga_emr.DAL
                 FROM Person P 
                 INNER JOIN Nurse n ON P.id = n.personID
 	            INNER JOIN Address A ON P.addressID = A.id
+                WHERE P.id <> @CurrentUserId
                 ORDER BY lastName ";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 connection.Open();
                 using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
                 {
+                    selectCommand.Parameters.AddWithValue("@CurrentUserId", currentUser.Id);
+
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
                         while (reader.Read())
@@ -82,6 +85,7 @@ namespace westga_emr.DAL
                             nurse.NurseId = reader["nurseId"] != DBNull.Value ? (int)reader["nurseId"] : 0;
                             nurse.DateOfBirth = reader["dateOfBirth"] != DBNull.Value ? (DateTime)reader["dateOfBirth"] : (DateTime?)null;
                             nurse.IsActiveNurse = (bool)reader["active"];
+                            nurse.Password = reader["password"].ToString();
                             nurses.Add(nurse);
                         }
 
@@ -90,6 +94,64 @@ namespace westga_emr.DAL
             }
 
             return nurses;
+        }
+
+        /// <summary>
+        /// Inserts a new Patient into the db
+        /// </summary>
+        /// <param name="patient">Patient to insert</param>
+        /// <returns>ID of the newly inserted Patient, or null if the insertion failed</returns>
+        public static int? InsertNurse(Nurse nurse)
+        {
+            int? id = null;
+            String insertStatement = @"INSERT INTO Nurse (personID, active)
+                                        OUTPUT inserted.id
+			                            VALUES (@personID, @active)";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@personID", nurse.PersonID);
+                    command.Parameters.AddWithValue("@active", nurse.Active);
+
+                    id = (int?)command.ExecuteScalar();
+                }
+            }
+            return id;
+        }
+
+        /// <summary>
+        /// Updates a patient in the db
+        /// </summary>
+        /// <param name="patient">Patient to update</param>
+        /// <returns>Whether or not the update succeeded</returns>
+        public static bool UpdateNurse(Nurse nurse)
+        {
+            int rowsUpdated;
+            String updateStatement = @"UPDATE Nurse
+			                            SET active = @active, personID = @personID
+			                            WHERE id = @nurseID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(updateStatement, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@nurseID", nurse.ID);
+                    command.Parameters.AddWithValue("@personID", nurse.PersonID);
+                    command.Parameters.AddWithValue("@active", nurse.Active);
+
+                    rowsUpdated = command.ExecuteNonQuery();
+                }
+            }
+            if (rowsUpdated < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
     }
