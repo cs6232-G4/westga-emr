@@ -43,6 +43,40 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
+        /// Gets an address by it's id
+        /// </summary>
+        /// <param name="id">ID of the Address</param>
+        /// <returns>The Address</returns>
+        public static Address GetAddress(int id)
+        {
+            Address address = null;
+            String selectStatement = @"SELECT id, street, city, state, zip FROM Address WHERE id = @id";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@id", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        int ordID = reader.GetOrdinal("id");
+                        int ordStreet = reader.GetOrdinal("street");
+                        int ordCity = reader.GetOrdinal("city");
+                        int ordState = reader.GetOrdinal("state");
+                        int ordZip = reader.GetOrdinal("zip");
+                        while (reader.Read())
+                        {
+                            address = new Address(reader.GetInt32(ordID),
+                                reader.GetString(ordStreet), reader.GetString(ordCity),
+                                reader.GetString(ordState), reader.GetString(ordZip));
+                        }
+                    }
+                }
+            }
+            return address;
+        }
+
+        /// <summary>
         /// Inserts an Address into the db
         /// </summary>
         /// <param name="address">The Address to insert</param>
