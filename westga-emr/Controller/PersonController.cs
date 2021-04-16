@@ -79,7 +79,7 @@ namespace westga_emr.Controller
             {
                 throw new Exception();
             }
-            this.currentUser =  personDBSource.SignIn(username, AuthenticationHelper.HashPassword(password));
+            this.currentUser =  personDBSource.SignIn(username, password);
             AuthenticationHelper.SetCurrentUser(this.currentUser);
             return this.currentUser;
         }

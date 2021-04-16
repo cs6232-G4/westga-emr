@@ -235,7 +235,7 @@ namespace westga_emr.DAL
         /// <returns>The current user</returns>
         public UserDTO SignIn( string username, string password)
         {
-            //VerifyLogin(username, password);
+            string hash = PasswordHashSHA512.GenerateSHA512String(password);
             UserDTO currentUser = new UserDTO();
             string selectUserStatement = @"
                 SELECT P.id as personId, username,firstName, 
@@ -254,7 +254,7 @@ namespace westga_emr.DAL
                 using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
                 {
                     selectCommand.Parameters.AddWithValue("@Username", username);
-                    selectCommand.Parameters.AddWithValue("@Password", password);
+                    selectCommand.Parameters.AddWithValue("@Password", hash);
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
                         if (reader.Read())
@@ -455,14 +455,10 @@ namespace westga_emr.DAL
                     if (string.IsNullOrWhiteSpace(person.Password))
                     {
                         command.Parameters.AddWithValue("@password", DBNull.Value);
-
-                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
                     } 
                     else
                     {
-                        command.Parameters.AddWithValue("@password", person.Password);
-                        //byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
+                        command.Parameters.AddWithValue("@password", PasswordHashSHA512.GenerateSHA512String(person.Password));
                     }
 
                     if (string.IsNullOrWhiteSpace(person.SSN))
@@ -517,13 +513,10 @@ namespace westga_emr.DAL
                     if (string.IsNullOrWhiteSpace(person.Password))
                     {
                         command.Parameters.AddWithValue("@password", DBNull.Value);
-                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
                     }
                     else
                     {
-                        command.Parameters.AddWithValue("@password", person.Password);
-                        //byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
+                        command.Parameters.AddWithValue("@password", PasswordHashSHA512.GenerateSHA512String(person.Password));
                     }
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {
