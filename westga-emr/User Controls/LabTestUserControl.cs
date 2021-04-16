@@ -19,6 +19,7 @@ namespace westga_emr.User_Controls
         private Lab_OrderController labOrderController;
         private Lab_Orders_have_Lab_TestsController labOrdersHaveLabTestsController;
         private List<Lab_Test> labTestList;
+        private List<Lab_Test> selectedLabTestList;
         private VisitDTO visitDTO;
 
         public LabTestUserControl()
@@ -28,6 +29,7 @@ namespace westga_emr.User_Controls
             labOrderController = new Lab_OrderController();
             labOrdersHaveLabTestsController = new Lab_Orders_have_Lab_TestsController();
             labTestList = new List<Lab_Test>();
+            selectedLabTestList= new List<Lab_Test>();
         }
 
         public void PopulateTextBoxes(VisitDTO visitDTO)
@@ -36,32 +38,60 @@ namespace westga_emr.User_Controls
             populateUserControlOnLoad();
         }
 
-        private void LabTestUserControl_Load(object sender, EventArgs e)
-        {
-            populateUserControlOnLoad();
-        }
-
         private void populateUserControlOnLoad()
         {
             labTestList = labTestController.GetLab_Tests();
-            this.orderNameComboBox.DataSource = labTestList;
-            this.orderedDateTimePicker.MaxDate = DateTime.Now;
-            this.testPerformedDateTimePicker.MaxDate = DateTime.Now;
+            List<string> testNames = new List<string>();
+            labTestList.ForEach(x=> testNames.Add(x.Name));
+            this.testNameCheckedListBox.Items.AddRange(testNames.ToArray());
         }
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            //Lab_Order labOrder = new Lab_Order(this.visitDTO.ID , this.orderedDateTimePicker.Value);
-            //int OrderId = (int) this.labOrderController.InsertLab_Order(labOrder);
+            if (this.selectedTestNameListBox.Items.Count > 0)
+            {
+                foreach (string s in this.selectedTestNameListBox.Items)
+                {
+                    labTestList.ForEach(x => { if (x.Name.Equals(s)) selectedLabTestList.Add(x); });
+                }
 
-            //Lab_Orders_have_Lab_Tests labOrdersHaveLabTests = new Lab_Orders_have_Lab_Tests(OrderId , labTestList[this.orderNameComboBox.SelectedIndex].Code , this.testPerformedDateTimePicker.Value , this.testResultTextBox.Text);
-            //bool labOrderID = this.labOrdersHaveLabTestsController.InsertLab_Orders_have_Lab_Tests(labOrdersHaveLabTests);
-            
-            //if(labOrderID == false)
-            //{
-            //    MessageBox.Show("labOrderID  " + labOrderID +  Environment.NewLine ,
-            //        "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+                Lab_Order labOrder = new Lab_Order(this.visitDTO.ID, DateTime.Now);
+                this.labOrderController.OrderLabs(labOrder, selectedLabTestList.ToArray());
+                this.selectedTestNameListBox.Items.Clear();
+                this.messageLabel.Visible = true;
+                this.messageLabel.Text = "Test Order placed Successfully!!";
+            }
+            else
+            {
+                this.messageLabel.Visible = true;
+                this.messageLabel.Text = "Please select atlease one test to proceed!!";
+            }
+
+        }
+
+        private void AddTestNamebutton_Click(object sender, EventArgs e)
+        {
+            this.selectedTestNameListBox.Items.Clear();
+            foreach (string s in this.testNameCheckedListBox.CheckedItems)
+            {
+                this.selectedTestNameListBox.Items.Add(s);
+            }
+        }
+
+        private void ClearTestNamebutton_Click(object sender, EventArgs e)
+        {
+            this.selectedTestNameListBox.Items.Clear();
+            for (int i = 0; i < this.testNameCheckedListBox.Items.Count; i++)
+            {
+                this.testNameCheckedListBox.SetItemChecked(i, false);
+            }
+            this.messageLabel.Visible = false;
+            this.messageLabel.Text = "";
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.ParentForm.DialogResult = DialogResult.Cancel;
         }
     }
 }
