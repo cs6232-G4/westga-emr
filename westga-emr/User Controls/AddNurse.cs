@@ -239,7 +239,7 @@ namespace westga_emr.User_Controls
                        null,
                        contactPhoneTextBox.Text);
                 nurseAddress = new Address(null, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
-                result = personController.RegisterNurse(nursePerson, nurseAddress);
+                result = nurseController.RegisterNurse(nursePerson, nurseAddress);
                 ClearInputs();
                 MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

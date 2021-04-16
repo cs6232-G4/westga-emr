@@ -269,7 +269,7 @@ namespace westga_emr.View
                        contactPhoneTextBox.Text);
                 nurseAddress = new Address(nurse.AddressId, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
                 theNurse = new Nurse(nurse.NurseId, nurse.Id, isActiveCheckbox.Checked);
-                result = personController.UpdateNurse(nursePerson, nurseAddress, theNurse);
+                result = nurseController.UpdateNurse(nursePerson, nurseAddress, theNurse);
                 ClearInputs();
                 MessageBox.Show("Nurse updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
