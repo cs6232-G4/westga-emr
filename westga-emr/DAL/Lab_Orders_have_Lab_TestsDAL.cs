@@ -102,7 +102,7 @@ namespace westga_emr.DAL
         public static bool InsertLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests relation)
         {
             Object obj = null;
-            String insertStatement = @"INSERT INTO Lab_Order (labOrderID, labTestCode, testPerformed, results)
+            String insertStatement = @"INSERT INTO Lab_Orders_have_Lab_Tests (labOrderID, labTestCode, testPerformed, results)
 			                            VALUES (@labOrderID, @labTestCode, @testPerformed, @results)";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -127,8 +127,24 @@ namespace westga_emr.DAL
                         command.Parameters.AddWithValue("@labTestCode", relation.LabTestCode);
                     }
 
-                    command.Parameters.AddWithValue("@testPerformed", relation.TestPerformed);
-                    command.Parameters.AddWithValue("@results", relation.Results);
+                    
+                    if (relation.TestPerformed == null)
+                    {
+                        command.Parameters.AddWithValue("@testPerformed", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@testPerformed", relation.TestPerformed);
+                    }
+
+                    if (relation.Results == null)
+                    {
+                        command.Parameters.AddWithValue("@results", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@results", relation.Results);
+                    }
 
                     obj = command.ExecuteScalar();
                 }
