@@ -288,37 +288,6 @@ namespace westga_emr.DAL
             return currentUser;
         }
 
-        private static void VerifyLogin(string username, string password)
-        {
-            string selectUserStatement = @"
-                SELECT password
-                FROM Person 
-                WHERE username = @Username";
-            using (SqlConnection connection = GetSQLConnection.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
-                {
-                    selectCommand.Parameters.AddWithValue("@Username", username);
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            byte[] hash = (byte[]) reader.GetValue(reader.GetOrdinal("password"));
-                            if (!PasswordHashUse.VerifyPassword(hash, password))
-                            {
-                                throw new Exception("Incorrect username or password");
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception("Incorrect username or password");
-                        }
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Search for a user in the database
         /// </summary>
