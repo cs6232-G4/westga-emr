@@ -17,6 +17,7 @@ namespace westga_emr.User_Controls
         private AppointmentDTO appointment;
         private Dictionary<string, string> errors;
         List<VisitDTO> visitDTO;
+        private bool finalDiagnosticConfirmationClicked;
         #endregion
 
         #region Constructors
@@ -40,12 +41,11 @@ namespace westga_emr.User_Controls
         {
             try
             {
+                finalDiagnosticConfirmationClicked = false;
                 appointment = appointmentDTO;
                 visitDTO = this.visitController.GetVisitByAppointment(
                                     new Appointment(appointmentDTO.AppointmentID, appointmentDTO.PatientID, appointmentDTO.DoctorID,
                                     appointmentDTO.AppointmentDateTime, appointmentDTO.ReasonForVisit));
-
-               // var _datediff = appointmentDTO.AppointmentDateTime - DateTime.Now;
 
                 if (visitDTO is null || visitDTO.Count <= 0 )
                 {
@@ -54,13 +54,33 @@ namespace westga_emr.User_Controls
                         AuthenticationHelper.currentUser.LastName;
                     this.visitDateTextBox.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     this.createButton.Visible = true;
+                    EnableFormFields();
                 }
                 else if (visitDTO.Count > 0)
                 {
-                    this.visitLabel.Text = "Edit " + this.visitLabel.Text;
+                   
                     this.PopulateTextBoxesForVisit(visitDTO);
-                    this.EditButton.Visible = true;
-                    this.orderLabTestButton.Visible = true;
+                    if (String.IsNullOrWhiteSpace(visitDTO[0].FinalDiagnosis))
+                    {
+                        this.visitLabel.Text = "Edit " + this.visitLabel.Text;
+                        EnableFormFields();
+                        this.finalDiagnosticTextBox.ReadOnly = true;
+                        this.editButton.Visible = true;
+                        this.orderLabTestButton.Visible = true;
+                        this.editFinalDiagnosticButton.Visible = true;
+                        this.finalDiagnosticTextBox.ReadOnly = true;
+                    }
+                    else
+                    {
+                        this.visitLabel.Text = "View " + this.visitLabel.Text;
+                        DisableFormFields();
+                        this.finalDiagnosticTextBox.ReadOnly = true;
+                        this.editFinalDiagnosticButton.Visible = false;
+                        this.orderLabTestButton.Visible = false;
+                        this.messageLabel.Text = "Note: The final diagnostic has already been submitted."+Environment.NewLine+"No modification is now allowed!!";
+                        this.messageLabel.Visible = true;
+                    }
+                    
                 }
             }
             catch(Exception ex)
@@ -68,6 +88,35 @@ namespace westga_emr.User_Controls
                 MessageBox.Show("Something is wrong with the input!!!!" + Environment.NewLine + ex.Message,
                    "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
+        }
+
+        private void EnableFormFields()
+        {
+            this.nurseTextBox.ReadOnly = false;
+            this.initialDiagnosticTextBox.ReadOnly = false;
+            this.visitDateTextBox.ReadOnly = false;
+            this.systolicPressureTextBox.ReadOnly = false;
+            this.weightTextBox.ReadOnly = false;
+            this.dialosticPressureTextBox.ReadOnly = false;
+            this.bodyTemperatureTextBox.ReadOnly = false;
+            this.pulseTextBox.ReadOnly = false;
+            this.symptomsTextBox.ReadOnly = false;
+            this.finalDiagnosticErrorLabel.Text = "";
+            this.finalDiagnosticErrorLabel.Visible = false;
+        }
+
+        private void DisableFormFields()
+        {
+            this.nurseTextBox.ReadOnly = true;
+            this.initialDiagnosticTextBox.ReadOnly = true;
+            this.visitDateTextBox.ReadOnly = true;
+            this.systolicPressureTextBox.ReadOnly = true;
+            this.weightTextBox.ReadOnly = true;
+            this.dialosticPressureTextBox.ReadOnly = true;
+            this.bodyTemperatureTextBox.ReadOnly = true;
+            this.pulseTextBox.ReadOnly = true;
+            this.symptomsTextBox.ReadOnly = true;
             
         }
 
@@ -87,6 +136,10 @@ namespace westga_emr.User_Controls
             this.symptomsTextBox.Text = visitDTO[0].Symptoms;
             this.finalDiagnosticTextBox.Text = visitDTO[0].FinalDiagnosis;
             this.ParentForm.DialogResult = DialogResult.OK;
+            this.messageLabel.Text = "";
+            this.messageLabel.Visible = false;
+            this.finalDiagnosticErrorLabel.Text = "";
+            this.finalDiagnosticErrorLabel.Visible = false;
         }
 
         /// <summary>
@@ -121,29 +174,19 @@ namespace westga_emr.User_Controls
                 }
                 else
                 {
-                    var appointmentID = appointment.AppointmentID.ToString();
-                    var initialDiagnistic = this.initialDiagnosticTextBox.Text.Trim();
-                    var weight = decimal.Parse(this.weightTextBox.Text.Trim());
-                    var systolicPressure = int.Parse(this.systolicPressureTextBox.Text.Trim());
-                    var diastolicPressure = int.Parse(this.dialosticPressureTextBox.Text.Trim());
-                    var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
-                    var pulse = int.Parse(this.pulseTextBox.Text.Trim());
-                    var symptoms = this.symptomsTextBox.Text.Trim();
-                    var finalDiagnosis = this.finalDiagnosticTextBox.Text.Trim();
-                    Visit visit = new Visit(long.Parse(appointmentID),
-                                                                        initialDiagnistic, weight, systolicPressure,
-                                                                       diastolicPressure, bodyTemperature,
-                                                                       pulse, symptoms, finalDiagnosis);
-                        if (this.visitController.UpdateVisit(visit))
-                        {
-                            this.messageLabel.Text = "Incident Update Successfully!!";
-                            this.messageLabel.Visible = true;
-                        }
-                        else
-                        {
-                            this.messageLabel.Text = "Input Data inconsistent!!";
-                            this.messageLabel.Visible = true;
-                        }
+                    if (finalDiagnosticConfirmationClicked && 
+                        String.IsNullOrWhiteSpace(finalDiagnosticTextBox.Text))
+                    {
+                        this.finalDiagnosticErrorLabel.Text = "Final Diagnostic is mandatory!!";
+                        this.finalDiagnosticErrorLabel.Visible = true;
+                    }
+                    else
+                    {
+                        UpdateVisitInformation();
+                        this.finalDiagnosticErrorLabel.Text = "";
+                        this.finalDiagnosticErrorLabel.Visible = false;
+                    }
+
                 }
             }
             catch(Exception ex)
@@ -153,6 +196,43 @@ namespace westga_emr.User_Controls
                 var message = ex.Message;
                 this.messageLabel.Visible = true;
             }
+        }
+
+        private void UpdateVisitInformation()
+        {
+            Visit visit = PopulateVisitFromFormFields();
+            if (this.visitController.UpdateVisit(visit))
+            {
+                this.messageLabel.Text = "Visit Update Successfully!!";
+                this.messageLabel.Visible = true;
+            }
+            else
+            {
+                this.messageLabel.Text = "Input Data inconsistent!!";
+                this.messageLabel.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// The handlers to CreateVisit From FormFields
+        /// </summary>
+        private Visit PopulateVisitFromFormFields()
+        {
+            var appointmentID = appointment.AppointmentID.ToString();
+            var initialDiagnistic = this.initialDiagnosticTextBox.Text.Trim();
+            var weight = decimal.Parse(this.weightTextBox.Text.Trim());
+            var systolicPressure = int.Parse(this.systolicPressureTextBox.Text.Trim());
+            var diastolicPressure = int.Parse(this.dialosticPressureTextBox.Text.Trim());
+            var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
+            var pulse = int.Parse(this.pulseTextBox.Text.Trim());
+            var symptoms = this.symptomsTextBox.Text.Trim();
+            var finalDiagnostic = this.finalDiagnosticTextBox.Text.Trim();
+            Visit visit = new Visit(visitDTO[0].ID, long.Parse(appointmentID),
+                                                   AuthenticationHelper.currentUser.NurseId, visitDTO[0].VisitDateTime,
+                                                                initialDiagnistic, weight, systolicPressure,
+                                                               diastolicPressure, bodyTemperature,
+                                                               pulse, symptoms, finalDiagnostic);
+            return visit;
         }
 
 
@@ -187,15 +267,14 @@ namespace westga_emr.User_Controls
                     var bodyTemperature = decimal.Parse(this.bodyTemperatureTextBox.Text.Trim());
                     var pulse = int.Parse(this.pulseTextBox.Text.Trim());
                     var symptoms = this.symptomsTextBox.Text.Trim();
-                    var finalDiagnosis = this.finalDiagnosticTextBox.Text.Trim();
                     Visit visit = new Visit(long.Parse(appointmentID), AuthenticationHelper.currentUser.NurseId, DateTime.Now, 
                                                                     initialDiagnistic, weight, systolicPressure,
                                                                    diastolicPressure, bodyTemperature,
-                                                                   pulse, symptoms, finalDiagnosis);
+                                                                   pulse, symptoms, null);
 
                     if (this.visitController.CreateVisit(visit))
                     {
-                        this.messageLabel.Text = "Incident Created Successfully!!";
+                        this.messageLabel.Text = "Visit Created Successfully!!";
                         this.messageLabel.Visible = true;
                     }
                     else
@@ -501,10 +580,40 @@ namespace westga_emr.User_Controls
             }
         }
 
-        private void orderLabTestButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// The handler for OrderLabTestButton Click
+        /// </summary>
+        private void OrderLabTestButton_Click(object sender, EventArgs e)
         {
             Form orderTestDialog = new OrderTestDialog(this.visitDTO[0]);
             DialogResult result = orderTestDialog.ShowDialog();
+        }
+
+        /// <summary>
+        /// The handler for EditFinalDiagnosticButton Click
+        /// </summary>
+        private void EditFinalDiagnosticButton_Click(object sender, EventArgs e)
+        {
+            this.messageLabel.Visible = false;
+            this.finalDiagnosticErrorLabel.Visible = false;
+            this.messageLabel.Text = "";
+            this.finalDiagnosticErrorLabel.Text = "";
+            Form finalDiagnosticConfirmationDialog = new FinalDiagnosticConfirmationForm();
+            DialogResult result = finalDiagnosticConfirmationDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.finalDiagnosticConfirmationClicked = true;
+                this.editFinalDiagnosticButton.Visible = false;
+                this.createButton.Visible = false;
+                this.editButton.Visible = true;
+                this.editButton.Text = "Enter Final Diagnostic";
+                this.orderLabTestButton.Visible = false;
+                this.finalDiagnosticTextBox.ReadOnly = false;
+                this.messageLabel.Text = "";
+                this.messageLabel.Visible = false;
+                DisableFormFields();
+            }
+
         }
         #endregion
 

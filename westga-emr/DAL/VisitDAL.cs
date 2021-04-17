@@ -73,33 +73,33 @@ namespace westga_emr.DAL
         /// <param name="visit"></param>
         public static bool CreateVisit(Visit visit)
         {
-            int retValue;
-            String insertStatement = @" INSERT INTO VISIT 
+            int retValue ;
+           String insertStatement = @" INSERT INTO VISIT 
                      (appointmentID , nurseID , visitDateTime , initialDiagnosis ,weight , systolicPressure , diastolicPressure ,
-	                    bodyTemperature , pulse , symptoms , finalDiagnosis)
+	                    bodyTemperature , pulse , symptoms )
                     VALUES
                     ( @appointmentID , @nurseID , @visitDateTime , @initialDiagnosis , @weight , @systolicPressure, @diastolicPressure,
-	                    @bodyTemperature , @pulse , @symptoms , @finalDiagnosis)";
-            using (SqlConnection connection = GetSQLConnection.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+	                    @bodyTemperature , @pulse , @symptoms )";
+                using (SqlConnection connection = GetSQLConnection.GetConnection())
                 {
-                    command.Parameters.AddWithValue("@appointmentID", visit.AppointmentID);
-                    command.Parameters.AddWithValue("@nurseID", visit.NurseID);
-                    command.Parameters.AddWithValue("@visitDateTime", visit.VisitDateTime);
-                    command.Parameters.AddWithValue("@initialDiagnosis", visit.InitialDiagnosis);
-                    command.Parameters.AddWithValue("@weight", visit.Weight);
-                    command.Parameters.AddWithValue("@systolicPressure", visit.SystolicPressure);
-                    command.Parameters.AddWithValue("@diastolicPressure", visit.DiastolicPressure);
-                    command.Parameters.AddWithValue("@bodyTemperature", visit.BodyTemperature);
-                    command.Parameters.AddWithValue("@pulse", visit.Pulse);
-                    command.Parameters.AddWithValue("@symptoms", visit.Symptoms);
-                    command.Parameters.AddWithValue("@finalDiagnosis", visit.FinalDiagnosis);
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                    {
+                        command.Parameters.AddWithValue("@appointmentID", visit.AppointmentID);
+                        command.Parameters.AddWithValue("@nurseID", visit.NurseID);
+                        command.Parameters.AddWithValue("@visitDateTime", visit.VisitDateTime);
+                        command.Parameters.AddWithValue("@initialDiagnosis", visit.InitialDiagnosis);
+                        command.Parameters.AddWithValue("@weight", visit.Weight);
+                        command.Parameters.AddWithValue("@systolicPressure", visit.SystolicPressure);
+                        command.Parameters.AddWithValue("@diastolicPressure", visit.DiastolicPressure);
+                        command.Parameters.AddWithValue("@bodyTemperature", visit.BodyTemperature);
+                        command.Parameters.AddWithValue("@pulse", visit.Pulse);
+                        command.Parameters.AddWithValue("@symptoms", visit.Symptoms);
 
-                    retValue = command.ExecuteNonQuery();
+                        retValue = command.ExecuteNonQuery();
+                    }
                 }
-            }
+            
             if (retValue < 1)
             {
                 return false;
@@ -119,8 +119,8 @@ namespace westga_emr.DAL
             bool isUpdateSuccesful = false;
             string selectStatement = " Update Visit set initialDiagnosis = @initialDiagnosis , " +
             "weight = @weight,    systolicPressure = @systolicPressure,    diastolicPressure = @diastolicPressure , " +
-            "bodyTemperature = @bodyTemperature,  pulse = @pulse , symptoms = @symptoms, finalDiagnosis = @finalDiagnosis  "+
-            " where appointmentID = @appointmentID ";
+            "bodyTemperature = @bodyTemperature,  pulse = @pulse , symptoms = @symptoms, finalDiagnosis =@finalDiagnosis  " +
+            " where id = @visitID ";
 
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -128,8 +128,8 @@ namespace westga_emr.DAL
 
                 using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
-                    selectCommand.Parameters.Add("@appointmentID", SqlDbType.Int);
-                    selectCommand.Parameters["@appointmentID"].Value = visit.AppointmentID;
+                    selectCommand.Parameters.Add("@visitID", SqlDbType.Int);
+                    selectCommand.Parameters["@visitID"].Value = visit.ID;
 
                     selectCommand.Parameters.Add("@initialDiagnosis", SqlDbType.VarChar);
                     selectCommand.Parameters["@initialDiagnosis"].Value = visit.InitialDiagnosis;
@@ -154,7 +154,6 @@ namespace westga_emr.DAL
 
                     selectCommand.Parameters.Add("@finalDiagnosis", SqlDbType.VarChar);
                     selectCommand.Parameters["@finalDiagnosis"].Value = visit.FinalDiagnosis;
-                    
 
                     int rowsAffected = selectCommand.ExecuteNonQuery();
 
@@ -344,5 +343,6 @@ namespace westga_emr.DAL
             }
             return visits;
         }
+
     }
 }
