@@ -18,6 +18,9 @@ namespace westga_emr.User_Controls
         private Dictionary<string, string> errors;
         List<VisitDTO> visitDTO;
         private bool finalDiagnosticConfirmationClicked;
+        private Lab_Orders_have_Lab_TestsController labOrdersTestController;
+        private List<LabOrderTestDTO> visitTests;
+
         #endregion
 
         #region Constructors
@@ -31,8 +34,11 @@ namespace westga_emr.User_Controls
             personController = new PersonController();
             appointment = new AppointmentDTO();
             errors = new Dictionary<string, string>();
+            labOrdersTestController = new Lab_Orders_have_Lab_TestsController();
+            visitTests = new List<LabOrderTestDTO>();
         }
         #endregion
+
         #region Methods
         /// <summary>
         /// The method to populate TextBoxes
@@ -66,7 +72,6 @@ namespace westga_emr.User_Controls
                         EnableFormFields();
                         this.finalDiagnosticTextBox.ReadOnly = true;
                         this.editButton.Visible = true;
-                        this.orderLabTestButton.Visible = true;
                         this.editFinalDiagnosticButton.Visible = true;
                         this.finalDiagnosticTextBox.ReadOnly = true;
                     }
@@ -76,10 +81,11 @@ namespace westga_emr.User_Controls
                         DisableFormFields();
                         this.finalDiagnosticTextBox.ReadOnly = true;
                         this.editFinalDiagnosticButton.Visible = false;
-                        this.orderLabTestButton.Visible = false;
                         this.messageLabel.Text = "Note: The final diagnostic has already been submitted."+Environment.NewLine+"No modification is now allowed!!";
                         this.messageLabel.Visible = true;
                     }
+                    this.orderLabTestButton.Visible = true;
+                    this.viewLabTestButton.Visible = true;
                     
                 }
             }
@@ -607,7 +613,7 @@ namespace westga_emr.User_Controls
                 this.createButton.Visible = false;
                 this.editButton.Visible = true;
                 this.editButton.Text = "Enter Final Diagnostic";
-                this.orderLabTestButton.Visible = false;
+                this.orderLabTestButton.Visible = true;
                 this.finalDiagnosticTextBox.ReadOnly = false;
                 this.messageLabel.Text = "";
                 this.messageLabel.Visible = false;
@@ -615,8 +621,22 @@ namespace westga_emr.User_Controls
             }
 
         }
+
+        private void ViewLabTestButton_Click(object sender, EventArgs e)
+        {
+            visitTests = labOrdersTestController.GetVisitTests(Convert.ToInt32(visitDTO[0].ID));
+            if (visitTests.Count <= 0)
+            {
+                MessageBox.Show($"No test found in the system for visit {visitDTO[0].ID}.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Form viewLabOrderDialog = new ViewLabOrderDialog(this.visitDTO[0]);
+                DialogResult result = viewLabOrderDialog.ShowDialog();
+            }
+           
+        }
+
         #endregion
-
-
     }
 }

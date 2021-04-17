@@ -1,7 +1,7 @@
 ﻿
 namespace westga_emr.View
 {
-    partial class OrderTestDialog
+    partial class EditLabOrderTestDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -29,33 +29,35 @@ namespace westga_emr.View
         /// </summary>
         private void InitializeComponent()
         {
-            this.labTestUserControl = new westga_emr.User_Controls.LabTestUserControl();
+            this.editLabOrderTestUserControl = new westga_emr.User_Controls.EditLabOrderTestUserControl();
             this.SuspendLayout();
             // 
-            // labTestUserControl
+            // editLabOrderTestUserControl
             // 
-            this.labTestUserControl.BackColor = System.Drawing.Color.SkyBlue;
-            this.labTestUserControl.Location = new System.Drawing.Point(-2, 0);
-            this.labTestUserControl.Name = "labTestUserControl";
-            this.labTestUserControl.Size = new System.Drawing.Size(800, 383);
-            this.labTestUserControl.TabIndex = 0;
+            this.editLabOrderTestUserControl.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.editLabOrderTestUserControl.Location = new System.Drawing.Point(-2, 0);
+            this.editLabOrderTestUserControl.Name = "editLabOrderTestUserControl";
+            this.editLabOrderTestUserControl.Size = new System.Drawing.Size(825, 286);
+            this.editLabOrderTestUserControl.TabIndex = 0;
             // 
-            // OrderTestDialog
+            // EditLabOrderTestDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(801, 384);
-            this.Controls.Add(this.labTestUserControl);
-            this.Name = "OrderTestDialog";
+            this.ClientSize = new System.Drawing.Size(818, 284);
+            this.Controls.Add(this.editLabOrderTestUserControl);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "EditLabOrderTestDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Order Test";
+            this.Text = "Edit Lab Order Test";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private User_Controls.LabTestUserControl labTestUserControl;
+        private User_Controls.EditLabOrderTestUserControl editLabOrderTestUserControl;
     }
 }
