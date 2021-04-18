@@ -97,10 +97,10 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
-        /// Inserts a new Patient into the db
+        /// Inserts a new Nurse into the db
         /// </summary>
-        /// <param name="patient">Patient to insert</param>
-        /// <returns>ID of the newly inserted Patient, or null if the insertion failed</returns>
+        /// <param name="nurse">Nurse to insert</param>
+        /// <returns>ID of the newly inserted Nurse, or null if the insertion failed</returns>
         public static int? InsertNurse(Nurse nurse)
         {
             int? id = null;
@@ -122,9 +122,9 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
-        /// Updates a patient in the db
+        /// Updates a Nurse in the db
         /// </summary>
-        /// <param name="patient">Patient to update</param>
+        /// <param name="nurse">Nurse to update</param>
         /// <returns>Whether or not the update succeeded</returns>
         public static bool UpdateNurse(Nurse nurse)
         {

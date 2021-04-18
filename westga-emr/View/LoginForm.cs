@@ -29,9 +29,8 @@ namespace westga_emr.View
         {
             try
             {
-                int rows = personController.PasswordsHashed();
-                MessageBox.Show($"{rows} passwords hash updated", "Security Updates");
                 ShowMainForm(personController.SignIn(this.usernameTextBox.Text, this.passwordTextBox.Text));
+                
        
             }catch(Exception)
             {

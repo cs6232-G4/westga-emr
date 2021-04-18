@@ -25,7 +25,7 @@ namespace westga_emr.Controller
 
 
         /// <see cref="Lab_Orders_have_Lab_TestsDAL.UpdateLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests)"/>
-        public bool UpdateLabTestsForVisit(Lab_Orders_have_Lab_Tests[] relations)
+        public bool EnterTestResults(Lab_Orders_have_Lab_Tests[] relations)
         {
             if (relations == null)
             {
@@ -36,6 +36,10 @@ namespace westga_emr.Controller
                 if (relation == null)
                 {
                     throw new ArgumentNullException("relation inside relations cannot be null");
+                }
+                if (!string.IsNullOrWhiteSpace(relation.Results) || relation.TestPerformed != null) 
+                {
+                    throw new ArgumentException("some tests have all ready been completed");
                 }
             }
 

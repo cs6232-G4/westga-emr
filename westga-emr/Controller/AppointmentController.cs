@@ -30,9 +30,17 @@ namespace westga_emr.Controller
         /// <see cref="AppointmentDAL.CreateAppointment(Appointment)"
         public bool CreateAppointment(Appointment appointment)
         {
-            if (appointment == null)
+            if (appointment == null || appointment.PatientID == null || appointment.DoctorID == null)
             {
-                throw new ArgumentNullException("appointment cannot be null");
+                throw new ArgumentNullException("appointment, patientID, and doctorID cannot be null");
+            }
+            if (appointment.AppointmentDateTime == null)
+            {
+                throw new ArgumentNullException("please specify a time for the visit");
+            }
+            if (String.IsNullOrWhiteSpace(appointment.ReasonForVisit))
+            {
+                throw new ArgumentNullException("please give a reason for the visit");
             }
             return AppointmentDAL.CreateAppointment(appointment);
         }
@@ -40,13 +48,17 @@ namespace westga_emr.Controller
         /// <see cref="AppointmentDAL.UpdateAppointment(Appointment)"
         public bool UpdateAppointment(Appointment appointment)
         {
-            if (appointment == null)
+            if (appointment == null || appointment.PatientID == null || appointment.DoctorID == null)
             {
-                throw new ArgumentNullException("appointment cannot be null");
+                throw new ArgumentNullException("appointment, patientID, and doctorID cannot be null");
             }
-            if (appointment.PatientID == null || appointment.DoctorID == null)
+            if (appointment.AppointmentDateTime == null)
             {
-                throw new ArgumentNullException("patientID and doctorID cannot be null");
+                throw new ArgumentNullException("please specify a time for the visit");
+            }
+            if (String.IsNullOrWhiteSpace(appointment.ReasonForVisit))
+            {
+                throw new ArgumentNullException("please give a reason for the visit");
             }
             return AppointmentDAL.UpdateAppointment(appointment);
         }

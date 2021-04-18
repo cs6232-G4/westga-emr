@@ -230,7 +230,7 @@ namespace westga_emr.User_Controls
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
-                nursePerson = new Person(null, usernameTextBox.Text, AuthenticationHelper.HashPassword(passwordTextBox.Text),
+                nursePerson = new Person(null, usernameTextBox.Text, passwordTextBox.Text,
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
@@ -239,7 +239,7 @@ namespace westga_emr.User_Controls
                        null,
                        contactPhoneTextBox.Text);
                 nurseAddress = new Address(null, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
-                result = personController.RegisterNurse(nursePerson, nurseAddress);
+                result = nurseController.RegisterNurse(nursePerson, nurseAddress);
                 ClearInputs();
                 MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

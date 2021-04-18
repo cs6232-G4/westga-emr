@@ -259,8 +259,7 @@ namespace westga_emr.View
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
                 var state = (AppointmentHelper)stateComboBox.SelectedItem;
-                hashedPassword = passwordTextBox.Text != nurse.Password ? AuthenticationHelper.HashPassword(passwordTextBox.Text) : passwordTextBox.Text;
-                nursePerson = new Person(nurse.Id, usernameTextBox.Text, hashedPassword,
+                nursePerson = new Person(nurse.Id, usernameTextBox.Text, passwordTextBox.Text,
                        firstNameTextBox.Text,
                        lastNameTextBox.Text,
                        dateOfBirthDateTimePicker.Value,
@@ -270,7 +269,7 @@ namespace westga_emr.View
                        contactPhoneTextBox.Text);
                 nurseAddress = new Address(nurse.AddressId, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
                 theNurse = new Nurse(nurse.NurseId, nurse.Id, isActiveCheckbox.Checked);
-                result = personController.UpdateNurse(nursePerson, nurseAddress, theNurse);
+                result = nurseController.UpdateNurse(nursePerson, nurseAddress, theNurse);
                 ClearInputs();
                 MessageBox.Show("Nurse updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;

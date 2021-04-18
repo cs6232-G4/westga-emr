@@ -235,7 +235,7 @@ namespace westga_emr.DAL
         /// <returns>The current user</returns>
         public UserDTO SignIn( string username, string password)
         {
-            //VerifyLogin(username, password);
+            string hash = Helpers.PasswordHashSHA512.GenerateSHA512String(password);
             UserDTO currentUser = new UserDTO();
             string selectUserStatement = @"
                 SELECT P.id as personId, username,firstName, 
@@ -254,7 +254,7 @@ namespace westga_emr.DAL
                 using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
                 {
                     selectCommand.Parameters.AddWithValue("@Username", username);
-                    selectCommand.Parameters.AddWithValue("@Password", password);
+                    selectCommand.Parameters.AddWithValue("@Password", hash);
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
                         if (reader.Read())
@@ -286,37 +286,6 @@ namespace westga_emr.DAL
                 }
             }
             return currentUser;
-        }
-
-        private static void VerifyLogin(string username, string password)
-        {
-            string selectUserStatement = @"
-                SELECT password
-                FROM Person 
-                WHERE username = @Username";
-            using (SqlConnection connection = GetSQLConnection.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand selectCommand = new SqlCommand(selectUserStatement, connection))
-                {
-                    selectCommand.Parameters.AddWithValue("@Username", username);
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            byte[] hash = (byte[]) reader.GetValue(reader.GetOrdinal("password"));
-                            if (!PasswordHashUse.VerifyPassword(hash, password))
-                            {
-                                throw new Exception("Incorrect username or password");
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception("Incorrect username or password");
-                        }
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -434,6 +403,7 @@ namespace westga_emr.DAL
         /// <returns>The id of the newly inserted Person, or null if the insert failed</returns>
         public static int? InsertPerson(Person person)
         {
+            string hash = PasswordHashSHA512.GenerateSHA512String(person.Password);
             int? id = null;
             String insertStatement = @"INSERT INTO Person(username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone)
                                         OUTPUT inserted.id
@@ -455,14 +425,10 @@ namespace westga_emr.DAL
                     if (string.IsNullOrWhiteSpace(person.Password))
                     {
                         command.Parameters.AddWithValue("@password", DBNull.Value);
-
-                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
                     } 
                     else
                     {
-                        command.Parameters.AddWithValue("@password", person.Password);
-                        //byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
+                        command.Parameters.AddWithValue("@password", hash);
                     }
 
                     if (string.IsNullOrWhiteSpace(person.SSN))
@@ -517,13 +483,10 @@ namespace westga_emr.DAL
                     if (string.IsNullOrWhiteSpace(person.Password))
                     {
                         command.Parameters.AddWithValue("@password", DBNull.Value);
-                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = DBNull.Value;
                     }
                     else
                     {
-                        command.Parameters.AddWithValue("@password", person.Password);
-                        //byte[] hash = PasswordHashUse.HashPassword(person.Password);
-                        //command.Parameters.Add("@password", System.Data.SqlDbType.VarBinary, -1).Value = hash;
+                        command.Parameters.AddWithValue("@password", Helpers.PasswordHashSHA512.GenerateSHA512String(person.Password));
                     }
                     if (string.IsNullOrWhiteSpace(person.SSN))
                     {
