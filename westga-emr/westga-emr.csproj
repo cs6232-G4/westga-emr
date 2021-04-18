@@ -115,6 +115,12 @@
     <Compile Include="User Controls\AppointmentVisitUserControl.Designer.cs">
       <DependentUpon>AppointmentVisitUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Controls\EditLabOrderTestUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\EditLabOrderTestUserControl.Designer.cs">
+      <DependentUpon>EditLabOrderTestUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Controls\LabTestUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -163,6 +169,12 @@
     <Compile Include="User Controls\UpcomingAppointments.Designer.cs">
       <DependentUpon>UpcomingAppointments.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Controls\ViewLabOrderUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\ViewLabOrderUserControl.Designer.cs">
+      <DependentUpon>ViewLabOrderUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AppointmentVisitDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +192,18 @@
     </Compile>
     <Compile Include="View\EditNurseDialog.Designer.cs">
       <DependentUpon>EditNurseDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FinalDiagnosticConfirmationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FinalDiagnosticConfirmationForm.Designer.cs">
+      <DependentUpon>FinalDiagnosticConfirmationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditLabOrderTestDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditLabOrderTestDialog.Designer.cs">
+      <DependentUpon>EditLabOrderTestDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
@@ -205,6 +229,12 @@
     <Compile Include="View\PatientInformationDialog.Designer.cs">
       <DependentUpon>PatientInformationDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewLabOrderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ViewLabOrderDialog.Designer.cs">
+      <DependentUpon>ViewLabOrderDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -215,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\AppointmentVisitUserControl.resx">
       <DependentUpon>AppointmentVisitUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\EditLabOrderTestUserControl.resx">
+      <DependentUpon>EditLabOrderTestUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\LabTestUserControl.resx">
       <DependentUpon>LabTestUserControl.cs</DependentUpon>
@@ -242,6 +275,9 @@
     <EmbeddedResource Include="User Controls\UpcomingAppointments.resx">
       <DependentUpon>UpcomingAppointments.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\ViewLabOrderUserControl.resx">
+      <DependentUpon>ViewLabOrderUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AppointmentVisitDialog.resx">
       <DependentUpon>AppointmentVisitDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +286,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\EditNurseDialog.resx">
       <DependentUpon>EditNurseDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FinalDiagnosticConfirmationForm.resx">
+      <DependentUpon>FinalDiagnosticConfirmationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditLabOrderTestDialog.resx">
+      <DependentUpon>EditLabOrderTestDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -262,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\PatientInformationDialog.resx">
       <DependentUpon>PatientInformationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ViewLabOrderDialog.resx">
+      <DependentUpon>ViewLabOrderDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\westga_emr.Helpers.AppointmentHelper.datasource" />
     <None Include="Properties\DataSources\westga_emr.Model.DTO.AppointmentDTO.datasource" />

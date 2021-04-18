@@ -59,7 +59,7 @@ namespace westga_emr.User_Controls
                 this.labOrderController.OrderLabs(labOrder, selectedLabTestList.ToArray());
                 this.selectedTestNameListBox.Items.Clear();
                 this.messageLabel.Visible = true;
-                this.messageLabel.Text = "Test Order placed Successfully!!";
+                this.messageLabel.Text = "Lab Order placed Successfully!!";
             }
             else
             {
