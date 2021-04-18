@@ -65,6 +65,17 @@ namespace westga_emr.User_Controls
             orderNameLabel.TabIndex = 5;
             orderNameLabel.Text = "Order Name*";
             // 
+            // selectedTestLabel
+            // 
+            selectedTestLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            selectedTestLabel.AutoSize = true;
+            selectedTestLabel.Location = new System.Drawing.Point(352, 12);
+            selectedTestLabel.Name = "selectedTestLabel";
+            selectedTestLabel.Size = new System.Drawing.Size(225, 13);
+            selectedTestLabel.TabIndex = 25;
+            selectedTestLabel.Text = "Selected Order Name*";
+            // 
             // labTestHeaderLabel
             // 
             this.labTestHeaderLabel.AutoSize = true;
@@ -212,10 +223,11 @@ namespace westga_emr.User_Controls
             // messageLabel
             // 
             this.messageLabel.AutoSize = true;
+            this.messageLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.messageLabel.ForeColor = System.Drawing.Color.Red;
             this.messageLabel.Location = new System.Drawing.Point(3, 0);
             this.messageLabel.Name = "messageLabel";
-            this.messageLabel.Size = new System.Drawing.Size(64, 13);
+            this.messageLabel.Size = new System.Drawing.Size(84, 17);
             this.messageLabel.TabIndex = 0;
             this.messageLabel.Text = "                   ";
             this.messageLabel.Visible = false;
@@ -223,17 +235,6 @@ namespace westga_emr.User_Controls
             // labTestBindingSource
             // 
             this.labTestBindingSource.DataSource = typeof(westga_emr.Model.Lab_Test);
-            // 
-            // selectedTestLabel
-            // 
-            selectedTestLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            selectedTestLabel.AutoSize = true;
-            selectedTestLabel.Location = new System.Drawing.Point(352, 12);
-            selectedTestLabel.Name = "selectedTestLabel";
-            selectedTestLabel.Size = new System.Drawing.Size(225, 13);
-            selectedTestLabel.TabIndex = 25;
-            selectedTestLabel.Text = "Selected Order Name*";
             // 
             // LabTestUserControl
             // 
