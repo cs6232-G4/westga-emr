@@ -37,10 +37,6 @@ namespace westga_emr.Controller
                 {
                     throw new ArgumentNullException("relation inside relations cannot be null");
                 }
-                if (!string.IsNullOrWhiteSpace(relation.Results) || relation.TestPerformed != null) 
-                {
-                    throw new ArgumentException("some tests have all ready been completed");
-                }
             }
 
             using (TransactionScope scope = new TransactionScope())

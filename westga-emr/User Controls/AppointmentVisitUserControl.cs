@@ -74,6 +74,8 @@ namespace westga_emr.User_Controls
                         this.editButton.Visible = true;
                         this.editFinalDiagnosticButton.Visible = true;
                         this.finalDiagnosticTextBox.ReadOnly = true;
+                        this.orderLabTestButton.Visible = true;
+                        this.viewLabTestButton.Visible = true;
                     }
                     else
                     {
@@ -81,11 +83,12 @@ namespace westga_emr.User_Controls
                         DisableFormFields();
                         this.finalDiagnosticTextBox.ReadOnly = true;
                         this.editFinalDiagnosticButton.Visible = false;
+                        this.orderLabTestButton.Visible = false;
+                        this.viewLabTestButton.Visible = false;
                         this.messageLabel.Text = "Note: The final diagnostic has already been submitted."+Environment.NewLine+"No modification is now allowed!!";
                         this.messageLabel.Visible = true;
                     }
-                    this.orderLabTestButton.Visible = true;
-                    this.viewLabTestButton.Visible = true;
+                   
                     
                 }
             }
@@ -164,6 +167,7 @@ namespace westga_emr.User_Controls
         {
             try
             {
+                ResetMessageFields();
                 bool isInValidInitialDiagnostic = ValidateInitialDiagnostic();
                 bool isInValidateWeight = ValidateWeight();
                 bool isInValidateSystolicPressure = ValidateSystolicPressure();
@@ -209,8 +213,12 @@ namespace westga_emr.User_Controls
             Visit visit = PopulateVisitFromFormFields();
             if (this.visitController.UpdateVisit(visit))
             {
-                this.messageLabel.Text = "Visit Update Successfully!!";
-                this.messageLabel.Visible = true;
+                Form successfullPersistDialog = new SuccessfullPersistDialog("Appointment Visit Updated Successfully!!.");
+                DialogResult result = successfullPersistDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    this.ParentForm.DialogResult = DialogResult.Cancel;
+                }
             }
             else
             {
@@ -249,6 +257,7 @@ namespace westga_emr.User_Controls
         {
             try
             {
+                ResetMessageFields();
                 bool isInValidInitialDiagnostic = ValidateInitialDiagnostic();
                 bool isInValidateWeight =   ValidateWeight();
                 bool isInValidateSystolicPressure = ValidateSystolicPressure();
@@ -280,8 +289,12 @@ namespace westga_emr.User_Controls
 
                     if (this.visitController.CreateVisit(visit))
                     {
-                        this.messageLabel.Text = "Visit Created Successfully!!";
-                        this.messageLabel.Visible = true;
+                        Form successfullPersistDialog = new SuccessfullPersistDialog("Appointment Visit Submitted Successfully!!");
+                        DialogResult result = successfullPersistDialog.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            this.ParentForm.DialogResult = DialogResult.Cancel;
+                        }
                     }
                     else
                     {
@@ -591,6 +604,7 @@ namespace westga_emr.User_Controls
         /// </summary>
         private void OrderLabTestButton_Click(object sender, EventArgs e)
         {
+            ResetMessageFields();
             Form orderTestDialog = new OrderTestDialog(this.visitDTO[0]);
             DialogResult result = orderTestDialog.ShowDialog();
         }
@@ -600,10 +614,7 @@ namespace westga_emr.User_Controls
         /// </summary>
         private void EditFinalDiagnosticButton_Click(object sender, EventArgs e)
         {
-            this.messageLabel.Visible = false;
-            this.finalDiagnosticErrorLabel.Visible = false;
-            this.messageLabel.Text = "";
-            this.finalDiagnosticErrorLabel.Text = "";
+            ResetMessageFields();
             Form finalDiagnosticConfirmationDialog = new FinalDiagnosticConfirmationForm();
             DialogResult result = finalDiagnosticConfirmationDialog.ShowDialog();
             if (result == DialogResult.OK)
@@ -613,7 +624,8 @@ namespace westga_emr.User_Controls
                 this.createButton.Visible = false;
                 this.editButton.Visible = true;
                 this.editButton.Text = "Enter Final Diagnostic";
-                this.orderLabTestButton.Visible = true;
+                this.orderLabTestButton.Visible = false;
+                this.viewLabTestButton.Visible = false;
                 this.finalDiagnosticTextBox.ReadOnly = false;
                 this.messageLabel.Text = "";
                 this.messageLabel.Visible = false;
@@ -622,8 +634,17 @@ namespace westga_emr.User_Controls
 
         }
 
+        private void ResetMessageFields()
+        {
+            this.messageLabel.Visible = false;
+            this.finalDiagnosticErrorLabel.Visible = false;
+            this.messageLabel.Text = "";
+            this.finalDiagnosticErrorLabel.Text = "";
+        }
+
         private void ViewLabTestButton_Click(object sender, EventArgs e)
         {
+            ResetMessageFields();
             visitTests = labOrdersTestController.GetVisitTests(Convert.ToInt32(visitDTO[0].ID));
             if (visitTests.Count <= 0)
             {

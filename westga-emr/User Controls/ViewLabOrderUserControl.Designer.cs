@@ -32,7 +32,6 @@ namespace westga_emr.User_Controls
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labOrderTestGrid = new System.Windows.Forms.DataGridView();
-            this.EditLabTest = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,6 +39,7 @@ namespace westga_emr.User_Controls
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditLabTest = new System.Windows.Forms.DataGridViewButtonColumn();
             this.labOrderTestDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.labOrderTestGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.labOrderTestDTOBindingSource)).BeginInit();
@@ -64,24 +64,9 @@ namespace westga_emr.User_Controls
             this.labOrderTestGrid.DataSource = this.labOrderTestDTOBindingSource;
             this.labOrderTestGrid.Location = new System.Drawing.Point(-3, 3);
             this.labOrderTestGrid.Name = "labOrderTestGrid";
-            this.labOrderTestGrid.Size = new System.Drawing.Size(906, 268);
+            this.labOrderTestGrid.Size = new System.Drawing.Size(906, 367);
             this.labOrderTestGrid.TabIndex = 1;
             this.labOrderTestGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LabOrderTestGrid_CellContentClick);
-            // 
-            // EditLabTest
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.EditLabTest.DefaultCellStyle = dataGridViewCellStyle1;
-            this.EditLabTest.HeaderText = "   ";
-            this.EditLabTest.Name = "EditLabTest";
-            this.EditLabTest.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.EditLabTest.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.EditLabTest.Text = "Edit Lab Test";
-            this.EditLabTest.UseColumnTextForButtonValue = true;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -128,6 +113,21 @@ namespace westga_emr.User_Controls
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.Visible = false;
             // 
+            // EditLabTest
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.EditLabTest.DefaultCellStyle = dataGridViewCellStyle1;
+            this.EditLabTest.HeaderText = "   ";
+            this.EditLabTest.Name = "EditLabTest";
+            this.EditLabTest.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.EditLabTest.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.EditLabTest.Text = "Edit Lab Test";
+            this.EditLabTest.UseColumnTextForButtonValue = true;
+            // 
             // labOrderTestDTOBindingSource
             // 
             this.labOrderTestDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.LabOrderTestDTO);
@@ -139,7 +139,7 @@ namespace westga_emr.User_Controls
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.Controls.Add(this.labOrderTestGrid);
             this.Name = "ViewLabOrderUserControl";
-            this.Size = new System.Drawing.Size(906, 273);
+            this.Size = new System.Drawing.Size(906, 373);
             ((System.ComponentModel.ISupportInitialize)(this.labOrderTestGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.labOrderTestDTOBindingSource)).EndInit();
             this.ResumeLayout(false);

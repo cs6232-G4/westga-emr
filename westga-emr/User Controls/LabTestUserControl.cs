@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using westga_emr.Controller;
 using westga_emr.Model;
 using westga_emr.Model.DTO;
+using westga_emr.View;
 
 namespace westga_emr.User_Controls
 {
@@ -58,8 +59,12 @@ namespace westga_emr.User_Controls
                 Lab_Order labOrder = new Lab_Order(this.visitDTO.ID, DateTime.Now);
                 this.labOrderController.OrderLabs(labOrder, selectedLabTestList.ToArray());
                 this.selectedTestNameListBox.Items.Clear();
-                this.messageLabel.Visible = true;
-                this.messageLabel.Text = "Lab Order placed Successfully!!";
+                Form successfullPersistDialog = new SuccessfullPersistDialog("Lab Order Submitted Successfully!!");
+                DialogResult result = successfullPersistDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    this.ParentForm.DialogResult = DialogResult.Cancel;
+                }
             }
             else
             {

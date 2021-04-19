@@ -83,7 +83,12 @@ namespace westga_emr.DAL
                             labTest.TestCode = (int)reader["labTestCode"];
                             labTest.TestName = reader["testName"].ToString();
                             labTest.TestResult = reader["results"].ToString();
-                            labTest.TestDate = (DateTime)reader["testPerformed"];
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("testPerformed")))
+                            {
+                                labTest.TestDate = (DateTime)reader["testPerformed"];
+                            }
+                            
                             labTest.VisitId = Convert.ToInt32(reader["visitID"].ToString());
                             labTests.Add(labTest);
                         }
