@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using westga_emr.Controller;
+using westga_emr.Helpers;
 using westga_emr.Model.DTO;
 using westga_emr.View;
 
@@ -53,8 +54,12 @@ namespace westga_emr.User_Controls
         private void RefreshDataGrid()
         {
             this.nurseListDataGrid.DataSource = null;
-            this.nurses = nurseController.GetAllNurse();
-            this.nurseListDataGrid.DataSource = this.nurses;
+            if(AuthenticationHelper.currentUser != null && AuthenticationHelper.currentUser.IsActiveAdmin)
+            {
+                this.nurses = nurseController.GetAllNurse();
+                this.nurseListDataGrid.DataSource = this.nurses;
+            }
+           
         }
     }
 }

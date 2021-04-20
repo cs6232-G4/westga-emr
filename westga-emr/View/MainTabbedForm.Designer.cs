@@ -254,10 +254,9 @@ namespace westga_emr.View
             // nurses1
             // 
             this.nurses1.BackColor = System.Drawing.Color.SkyBlue;
-            this.nurses1.Location = new System.Drawing.Point(17, 6);
-            this.nurses1.Margin = new System.Windows.Forms.Padding(4);
+            this.nurses1.Location = new System.Drawing.Point(19, 6);
             this.nurses1.Name = "nurses1";
-            this.nurses1.Size = new System.Drawing.Size(1133, 886);
+            this.nurses1.Size = new System.Drawing.Size(1100, 850);
             this.nurses1.TabIndex = 0;
             // 
             // addNurseTabPage
@@ -288,16 +287,16 @@ namespace westga_emr.View
             this.reportsTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.reportsTabPage.Size = new System.Drawing.Size(1176, 901);
             this.reportsTabPage.TabIndex = 5;
-            this.reportsTabPage.Text = "Report";
-            this.reportsTabPage.UseVisualStyleBackColor = true;
+            this.reportsTabPage.UseWaitCursor = true;
             // 
             // report1
             // 
-            this.report1.Location = new System.Drawing.Point(18, 16);
+            this.report1.Location = new System.Drawing.Point(26, 16);
             this.report1.Margin = new System.Windows.Forms.Padding(4);
             this.report1.Name = "report1";
             this.report1.Size = new System.Drawing.Size(521, 299);
             this.report1.TabIndex = 0;
+            this.report1.UseWaitCursor = true;
             // 
             // MainTabbedForm
             // 
@@ -342,16 +341,16 @@ namespace westga_emr.View
         private System.Windows.Forms.TabPage saerchPatientTabPage;
         private System.Windows.Forms.Label userGreeting;
         private System.Windows.Forms.TabPage upcomingAppointmentsTabPage;
-        private System.Windows.Forms.TabPage nurseListTabPage;
         private System.Windows.Forms.TabPage addNurseTabPage;
         private System.Windows.Forms.TabPage reportsTabPage;
         private User_Controls.SearchPatient searchPatient1;
         private User_Controls.UpcomingAppointments upcomingAppointments1;
-        private User_Controls.Nurses nurses1;
         private User_Controls.AddNurse addNurse1;
         private User_Controls.Report report1;
         private User_Controls.NewAppointment newAppointment1;
         private System.Windows.Forms.TabPage testsTabPage;
         private User_Controls.TestsUserControl testsUserControl1;
+        private System.Windows.Forms.TabPage nurseListTabPage;
+        private User_Controls.Nurses nurses1;
     }
 }

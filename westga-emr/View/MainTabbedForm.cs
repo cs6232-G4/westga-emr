@@ -126,6 +126,7 @@ namespace westga_emr.View
             } else if (this.mainTabControl.SelectedIndex == 4)
             {
                 this.nurses1.Nurses_Load("MAIN FORM", EventArgs.Empty);
+
             }
 
         }

@@ -46,6 +46,7 @@ namespace westga_emr.View
             this.appointmentDate = new System.Windows.Forms.DateTimePicker();
             this.appointmentTime = new System.Windows.Forms.ComboBox();
             this.appointmentVisitReason = new System.Windows.Forms.RichTextBox();
+            this.reasonForVisitError = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@ namespace westga_emr.View
             this.genderText = new System.Windows.Forms.Label();
             this.dobText = new System.Windows.Forms.Label();
             this.appointmentLabel = new System.Windows.Forms.Label();
-            this.reasonForVisitError = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             this.appointmentInformationSection.SuspendLayout();
@@ -101,7 +101,7 @@ namespace westga_emr.View
             this.appointmentInformationSection.Controls.Add(this.appointmentLabel);
             this.appointmentInformationSection.Dock = System.Windows.Forms.DockStyle.Top;
             this.appointmentInformationSection.Location = new System.Drawing.Point(0, 0);
-            this.appointmentInformationSection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.appointmentInformationSection.Margin = new System.Windows.Forms.Padding(2);
             this.appointmentInformationSection.Name = "appointmentInformationSection";
             this.appointmentInformationSection.Size = new System.Drawing.Size(886, 329);
             this.appointmentInformationSection.TabIndex = 0;
@@ -206,7 +206,7 @@ namespace westga_emr.View
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
             this.tableLayoutPanel12.RowCount = 1;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel12.Size = new System.Drawing.Size(878, 44);
             this.tableLayoutPanel12.TabIndex = 0;
             // 
@@ -339,6 +339,16 @@ namespace westga_emr.View
             this.appointmentVisitReason.Text = "";
             this.appointmentVisitReason.TextChanged += new System.EventHandler(this.appointmentVisitReason_TextChanged);
             // 
+            // reasonForVisitError
+            // 
+            this.reasonForVisitError.AutoSize = true;
+            this.reasonForVisitError.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.reasonForVisitError.ForeColor = System.Drawing.Color.Red;
+            this.reasonForVisitError.Location = new System.Drawing.Point(268, 100);
+            this.reasonForVisitError.Name = "reasonForVisitError";
+            this.reasonForVisitError.Size = new System.Drawing.Size(613, 13);
+            this.reasonForVisitError.TabIndex = 17;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
@@ -355,7 +365,7 @@ namespace westga_emr.View
             this.tableLayoutPanel1.Controls.Add(this.genderText, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.dobText, 3, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 26);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
@@ -459,16 +469,6 @@ namespace westga_emr.View
             this.appointmentLabel.TabIndex = 0;
             this.appointmentLabel.Text = "Appointment Information";
             // 
-            // reasonForVisitError
-            // 
-            this.reasonForVisitError.AutoSize = true;
-            this.reasonForVisitError.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.reasonForVisitError.ForeColor = System.Drawing.Color.Red;
-            this.reasonForVisitError.Location = new System.Drawing.Point(268, 100);
-            this.reasonForVisitError.Name = "reasonForVisitError";
-            this.reasonForVisitError.Size = new System.Drawing.Size(613, 13);
-            this.reasonForVisitError.TabIndex = 17;
-            // 
             // AppointmentInformationDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -476,7 +476,7 @@ namespace westga_emr.View
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(886, 327);
             this.Controls.Add(this.appointmentInformationSection);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AppointmentInformationDialog";
