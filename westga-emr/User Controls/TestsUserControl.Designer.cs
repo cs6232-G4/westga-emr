@@ -545,6 +545,7 @@ namespace westga_emr.User_Controls
             this.testsDataGrid.Size = new System.Drawing.Size(1114, 450);
             this.testsDataGrid.TabIndex = 0;
             this.testsDataGrid.Visible = false;
+            this.testsDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TestsDatatGrid_CellContentClick);
             // 
             // orderIdDataGridViewTextBoxColumn
             // 

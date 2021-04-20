@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using westga_emr.Controller;
 using westga_emr.Model.DTO;
+using westga_emr.View;
 
 namespace westga_emr.User_Controls
 {
@@ -214,7 +215,15 @@ namespace westga_emr.User_Controls
             {
                 this.testsDataGrid.Visible = false;
                 this.testsDataGrid.DataSource = null;
-
+                using (Form orderTestDialog = new OrderTestDialog(visit))
+                {
+                    DialogResult result = orderTestDialog.ShowDialog();
+                    if (result == DialogResult.OK || result == DialogResult.Cancel)
+                    {
+                        visits = visitController.GetVisitsByPatientId(patient.PatientId);
+                        this.visitsDataGridView.DataSource = visits;
+                    }
+                }
             }
 
         }
@@ -224,7 +233,28 @@ namespace westga_emr.User_Controls
         /// </summary>
         private void TestsDatatGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+           var test = (LabOrderTestDTO)testsDataGrid.Rows[e.RowIndex].DataBoundItem;
+            if (testsDataGrid.Columns[e.ColumnIndex].Name == "EnterTestResults")
+            {
+                if (String.IsNullOrWhiteSpace(test.TestResult))
+                {
+                    using (Form editTestDialog = new EditLabOrderTestDialog(test))
+                    {
+                        DialogResult result = editTestDialog.ShowDialog();
+                        if(result == DialogResult.OK || result == DialogResult.Cancel)
+                        {
+                            visitTests = labOrdersTestController.GetVisitTests(Convert.ToInt32(visit.ID));
+                            this.testsDataGrid.DataSource = visitTests;
+                        }
+                    }
+                } else
+                {
+                    MessageBox.Show("This test has a test result and cannot be edited");
+                }
+                
+
+            }
+            
 
         }
     }

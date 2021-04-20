@@ -29,6 +29,7 @@ namespace westga_emr.User_Controls
 
         public void PopulateDataGrid(LabOrderTestDTO selectedLabOrderTestDTO)
         {
+            this.testPerformedDateTimePicker.MinDate = selectedLabOrderTestDTO.OrderedDate;
             this.selectedLabOrderTestDTO = selectedLabOrderTestDTO;
             this.labOrderIDTextBox.Text = selectedLabOrderTestDTO.OrderId.ToString();
             this.visitIDTextBox.Text = selectedLabOrderTestDTO.VisitId.ToString();
