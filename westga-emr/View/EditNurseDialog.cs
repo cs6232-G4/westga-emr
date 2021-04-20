@@ -28,7 +28,7 @@ namespace westga_emr.View
         private Dictionary<string, string> errors;
         private Bitmap showPasswordImage;
         private Bitmap hidePasswordImage;
-        private string hashedPassword;
+
         public EditNurseDialog(UserDTO _nurse)
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace westga_emr.View
             nurseController = new NurseController();
             personController = new PersonController();
             validSSN = new Regex("[0-9]{9}");
-            validPassword = new Regex(@"^(?=.{8,16}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*$");
+            validPassword = new Regex(@"^(?=.{8,16}$)(?=.*?[a-z])(?=.*?[0-9]).*$");
             errors = new Dictionary<string, string>();
             showPasswordImage = global::westga_emr.Properties.Resources.viewPassword1;
             hidePasswordImage = global::westga_emr.Properties.Resources.unshowPassword1;
@@ -236,7 +236,7 @@ namespace westga_emr.View
 
             if (!validPassword.IsMatch(passwordTextBox.Text))
             {
-                passwordError.Text = "Password must be between 8 - 16 characters" + Environment.NewLine + "At least one digit, lower case and one uppercase";
+                passwordError.Text = "Password must be between 8 - 16 characters" + Environment.NewLine + "Should contain at least one digit.";
                 AddError("passwordError", passwordError.Text);
             }
             else

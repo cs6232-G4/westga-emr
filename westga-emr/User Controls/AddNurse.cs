@@ -31,7 +31,7 @@ namespace westga_emr.User_Controls
             nurseController = new NurseController();
             personController = new PersonController();
             validSSN = new Regex("[0-9]{9}");
-            validPassword = new Regex(@"^(?=.{8,16}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*$");
+            validPassword = new Regex(@"^(?=.{8,16}$)(?=.*?[a-z])(?=.*?[0-9]).*$");
             errors = new Dictionary<string, string>();
             showPasswordImage = global::westga_emr.Properties.Resources.viewPassword1;
             hidePasswordImage = global::westga_emr.Properties.Resources.unshowPassword1;
@@ -209,7 +209,7 @@ namespace westga_emr.User_Controls
         {
             if (!validPassword.IsMatch(passwordTextBox.Text))
             {
-                passwordError.Text = "Password must be between 8 - 16 characters" + Environment.NewLine + "At least one digit, lower case and one uppercase";
+                passwordError.Text = "Password must be between 8 - 16 characters" + Environment.NewLine + "Should contain at least one digit.";
             }
             else
             {
@@ -241,7 +241,7 @@ namespace westga_emr.User_Controls
                 nurseAddress = new Address(null, streetTextBox.Text, cityTextBox.Text, state.Value, zipTextBox.Text);
                 result = nurseController.RegisterNurse(nursePerson, nurseAddress);
                 ClearInputs();
-                MessageBox.Show("Patient saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Nurse saved successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
