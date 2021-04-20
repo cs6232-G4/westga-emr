@@ -228,6 +228,12 @@
     <Compile Include="View\PatientInformationDialog.Designer.cs">
       <DependentUpon>PatientInformationDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SuccessfullPersistDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SuccessfullPersistDialog.Designer.cs">
+      <DependentUpon>SuccessfullPersistDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ViewLabOrderDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\PatientInformationDialog.resx">
       <DependentUpon>PatientInformationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SuccessfullPersistDialog.resx">
+      <DependentUpon>SuccessfullPersistDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ViewLabOrderDialog.resx">
       <DependentUpon>ViewLabOrderDialog.cs</DependentUpon>

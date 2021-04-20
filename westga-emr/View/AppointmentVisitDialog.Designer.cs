@@ -35,9 +35,9 @@ namespace westga_emr.View
             // appointmentVisitUserControl
             // 
             this.appointmentVisitUserControl.BackColor = System.Drawing.Color.SkyBlue;
-            this.appointmentVisitUserControl.Location = new System.Drawing.Point(0, 0);
+            this.appointmentVisitUserControl.Location = new System.Drawing.Point(-2, 0);
             this.appointmentVisitUserControl.Name = "appointmentVisitUserControl";
-            this.appointmentVisitUserControl.Size = new System.Drawing.Size(817, 423);
+            this.appointmentVisitUserControl.Size = new System.Drawing.Size(819, 423);
             this.appointmentVisitUserControl.TabIndex = 0;
             // 
             // AppointmentVisitDialog
