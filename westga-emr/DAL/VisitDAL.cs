@@ -326,12 +326,23 @@ namespace westga_emr.DAL
                             visitDTO.AppointmentDateTime = (DateTime)reader["appointmentDateTime"];
                             visitDTO.BodyTemperature = (decimal)reader["bodyTemperature"];
                             visitDTO.DiastolicPressure = (int)reader["diastolicPressure"];
-                            visitDTO.FinalDiagnosis = (String)reader["finalDiagnosis"];
+                            string final = null;
+                            if (!reader.IsDBNull(reader.GetOrdinal("finalDiagnosis")))
+                            {
+                                final = reader.GetString(reader.GetOrdinal("finalDiagnosis"));
+                            }
+                            visitDTO.FinalDiagnosis = final;
                             visitDTO.ID = (long)reader["visitID"];
                             visitDTO.InitialDiagnosis = reader["initialDiagnosis"].ToString();
                             visitDTO.Nurse = reader["nurse"].ToString();
                             visitDTO.Pulse = (int)reader["pulse"];
-                            visitDTO.Symptoms = reader["symptoms"].ToString();
+                            String symptoms = null;
+                            if (!reader.IsDBNull(reader.GetOrdinal("symptoms")))
+                            {
+                                symptoms = reader.GetString(reader.GetOrdinal("symptoms"));
+                            }
+                            visitDTO.Symptoms = symptoms;
+
                             visitDTO.SystolicPressure = (int)reader["systolicPressure"];
                             visitDTO.VisitDateTime = (DateTime)reader["visitDateTime"];
                             visitDTO.VisitReason = reader["reasonForVisit"].ToString();
