@@ -58,6 +58,7 @@
     <Compile Include="Controller\NurseController.cs" />
     <Compile Include="Controller\PatientController.cs" />
     <Compile Include="Controller\PersonController.cs" />
+    <Compile Include="Controller\ReportController.cs" />
     <Compile Include="Controller\SpecialtyController.cs" />
     <Compile Include="Controller\VisitController.cs" />
     <Compile Include="DAL\AddressDAL.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="DAL\NurseDAL.cs" />
     <Compile Include="DAL\PatientDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
+    <Compile Include="DAL\ReportDAL.cs" />
     <Compile Include="DAL\SpecialtyDAL.cs" />
     <Compile Include="DAL\VisitDAL.cs" />
     <Compile Include="Helpers\AppointmerntHelper.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Model\Nurse.cs" />
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Report.cs" />
     <Compile Include="Model\Specialty.cs" />
     <Compile Include="Model\Visit.cs" />
     <Compile Include="Program.cs" />
@@ -342,6 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DB\cs6232-g4-sql-server-schema.sql" />
+    <Content Include="DB\getMostPerformedTestsDuringDates.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
