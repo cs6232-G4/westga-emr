@@ -124,5 +124,22 @@ namespace westga_emr.Controller
         {
             return PatientDAL.GetPatientById(patientId);
         }
+
+        /// <summary>
+        /// Deletes the given Patient and their Person from the db
+        /// </summary>
+        /// <param name="patient">Patient to delete</param>
+        /// <returns>Whether or not the Patient was deleted</returns>
+        public bool DeletePatient(Patient patient)
+        {
+            Person person = PersonDAL.GetPersonByPatientID(patient);
+            using (TransactionScope scope = new TransactionScope())
+            {
+                PatientDAL.DeletePatient(patient);
+                PersonDAL.DeletePerson(person);
+                scope.Complete();
+            }
+            return true;
+        }
     }
 }

@@ -225,6 +225,11 @@ namespace westga_emr.DAL
             return appointments;
         }
 
+        /// <summary>
+        /// Deletes the given Appointment from the db.
+        /// </summary>
+        /// <param name="appt">Appointment to delete from the db</param>
+        /// <returns>Whether or not the appointment was deleted</returns>
         public static bool DeleteAppointment(Appointment appt)
         {
             bool wasDeleted = false;

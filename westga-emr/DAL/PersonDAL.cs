@@ -595,5 +595,27 @@ namespace westga_emr.DAL
             }
             return rowsUpdated;
         }
+
+        /// <summary>
+        /// Deletes the given Person from the db
+        /// </summary>
+        /// <param name="person">Person to delete</param>
+        /// <returns>Whether or not the Person was deleted</returns>
+        public static bool DeletePerson(Person person)
+        {
+            bool wasDeleted = false;
+            String deleteStatement = @"DELETE FROM Person WHERE Person.id = @personID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(deleteStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@personID", person.ID);
+
+                    wasDeleted = command.ExecuteNonQuery() > 0 ? true : false;
+                }
+            }
+            return wasDeleted;
+        }
     }
 }
