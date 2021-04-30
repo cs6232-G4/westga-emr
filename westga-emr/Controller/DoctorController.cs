@@ -60,5 +60,15 @@ namespace westga_emr.Controller
             return doctorDBSource.GetDoctorById(doctorId);
         }
 
+        /// <see cref="DoctorDAL.GetDoctorsSpecialties(Doctor)"/>
+        public List<Specialty> GetDoctorsSpecialties(Doctor doctor)
+        {
+            if (doctor == null || doctor.ID == null)
+            {
+                throw new ArgumentNullException("doctor and its id cannot be null");
+            }
+            return DoctorDAL.GetDoctorsSpecialties(doctor);
+        }
+
     }
 }
