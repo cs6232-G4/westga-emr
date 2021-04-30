@@ -18,7 +18,7 @@ namespace westga_emr.DAL
         public static List<Lab_Orders_have_Lab_Tests> GetLab_Orders_have_Lab_Tests()
         {
             List<Lab_Orders_have_Lab_Tests> relations = new List<Lab_Orders_have_Lab_Tests>();
-            String selectStatement = @"SELECT labOrderID, labTestCode, testPerformed, results
+            String selectStatement = @"SELECT labOrderID, labTestCode, testPerformed, results, isNormal
                                         FROM Lab_Orders_have_Lab_Tests";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -31,6 +31,7 @@ namespace westga_emr.DAL
                         int ordCode = reader.GetOrdinal("labTestCode");
                         int ordPerformed = reader.GetOrdinal("testPerformed");
                         int ordResults = reader.GetOrdinal("results");
+                        int ordIsNormal = reader.GetOrdinal("isNormal");
                         while (reader.Read())
                         {
                             DateTime? testPerformed = null;
@@ -43,8 +44,13 @@ namespace westga_emr.DAL
                             {
                                 results = reader.GetString(ordResults);
                             }
+                            bool ? isNormal = null;
+                            if (!reader.IsDBNull(ordResults))
+                            {
+                                isNormal = reader.GetBoolean(ordResults);
+                            }
                             relations.Add(new Lab_Orders_have_Lab_Tests(reader.GetInt64(ordID),
-                                reader.GetInt32(ordCode), testPerformed, results));
+                                reader.GetInt32(ordCode), testPerformed, results, isNormal));
                         }
                     }
                 }

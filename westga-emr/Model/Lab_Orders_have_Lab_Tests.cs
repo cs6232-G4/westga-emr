@@ -11,6 +11,7 @@ namespace westga_emr.Model
 		public int? LabTestCode { get; }
 		public DateTime? TestPerformed { get; }
 		public string Results { get; }
+		public bool? IsNormal { get; }
 
 		/// <summary>
 		/// Constructs an instance of this relation according to the given parameters
@@ -19,7 +20,8 @@ namespace westga_emr.Model
 		/// <param name="labTestCode_">The code of the lab test in this relation</param>
 		/// <param name="testPerformed_">The date the test was performed</param>
 		/// <param name="results_">The results of the lab tests</param>
-		public Lab_Orders_have_Lab_Tests(long? labOrderID_, int? labTestCode_, DateTime? testPerformed_, string results_)
+		/// <param name="isNormal_">Whether or not the results are normal</param>
+		public Lab_Orders_have_Lab_Tests(long? labOrderID_, int? labTestCode_, DateTime? testPerformed_, string results_, bool? isNormal_)
 		{
 			if (labOrderID_ < 1 || labTestCode_ < 1)
             {
@@ -29,6 +31,7 @@ namespace westga_emr.Model
 			this.LabTestCode = labTestCode_;
 			this.TestPerformed = testPerformed_;
 			this.Results = results_;
+			this.IsNormal = isNormal_;
 		}
 	}
 }

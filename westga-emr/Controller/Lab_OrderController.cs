@@ -61,7 +61,7 @@ namespace westga_emr.Controller
                 }
                 foreach (Lab_Test test in tests)
                 {
-                    Lab_Orders_have_Lab_TestsDAL.InsertLab_Orders_have_Lab_Tests(new Lab_Orders_have_Lab_Tests(labOrderID, test.Code, null, null));
+                    Lab_Orders_have_Lab_TestsDAL.InsertLab_Orders_have_Lab_Tests(new Lab_Orders_have_Lab_Tests(labOrderID, test.Code, null, null, null));
                 }
                 scope.Complete();
             }
