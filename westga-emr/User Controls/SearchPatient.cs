@@ -92,6 +92,17 @@ namespace westga_emr.User_Controls
                 PatientSearch();
             }
         }
+        private void AddPatientButton_Click(object sender, EventArgs e)
+        {
+            using (Form patientFormDialog = new PatientInformationDialog(new UserDTO()))
+            {
+                DialogResult result = patientFormDialog.ShowDialog();
+                if (result == DialogResult.OK || result == DialogResult.Cancel)
+                {
+                    this.RefreshDataGrid();
+                }
+            }
+        }
 
         /// <summary>
         /// The helper method for Patient Search
@@ -198,9 +209,31 @@ namespace westga_emr.User_Controls
 
                 }
 
-                this.appointmentsDataGridView.DataSource = appointmentDTO;
+                this.appointmentsDataGridView.DataSource = appointmentDTO; 
             }
-          
+            else if (patientsDatatGrid.Columns[e.ColumnIndex].Name == "EditPatient")
+            {
+                using (Form patientFormDialog = new PatientInformationDialog(patient))
+                {
+                    DialogResult result = patientFormDialog.ShowDialog();
+                    if (result == DialogResult.OK || result == DialogResult.Cancel)
+                    {
+                        this.RefreshDataGrid();
+                    }
+                }
+            }
+            else if (patientsDatatGrid.Columns[e.ColumnIndex].Name == "CreateAppointment")
+            {
+                using (Form newAppointmentDialog = new NewAppointmentDialog(patient))
+                {
+                    DialogResult result = newAppointmentDialog.ShowDialog();
+                    if (result == DialogResult.OK || result == DialogResult.Cancel)
+                    {
+                        this.RefreshDataGrid();
+                    }
+                }
+            }
+
         }
 
         /// <summary>

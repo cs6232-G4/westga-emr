@@ -53,8 +53,7 @@ namespace westga_emr.View
             }
             if (this.currentUser.NurseId <= 0 || !this.currentUser.IsActiveNurse)
             {
-                
-                this.mainTabControl.TabPages.Remove(this.newAppointmentTabPage);
+               
                 this.mainTabControl.TabPages.Remove(this.saerchPatientTabPage);
                 this.mainTabControl.TabPages.Remove(this.upcomingAppointmentsTabPage);
                 this.mainTabControl.TabPages.Remove(this.testsTabPage);
@@ -92,10 +91,6 @@ namespace westga_emr.View
             {
                 this.mainTabControl.TabPages.Add(this.reportsTabPage);
             }
-            if (!this.mainTabControl.TabPages.Contains(this.newAppointmentTabPage))
-            {
-                this.mainTabControl.TabPages.Add(this.newAppointmentTabPage);
-            }
             if (!this.mainTabControl.TabPages.Contains(this.saerchPatientTabPage))
             {
                 this.mainTabControl.TabPages.Add(this.saerchPatientTabPage);
@@ -112,18 +107,16 @@ namespace westga_emr.View
 
         private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.mainTabControl.SelectedIndex == 0)
-            {
-                this.newAppointment1.NewAppointment_Load("MAIN FORM", EventArgs.Empty);
-            }
-            else if (this.mainTabControl.SelectedIndex == 1)
+
+            if (this.mainTabControl.SelectedTab == this.saerchPatientTabPage)
             {
                 this.searchPatient1.SearchPatient_Load("MAIN FORM", EventArgs.Empty);
             }
-            else if (this.mainTabControl.SelectedIndex == 2)
+            else if (this.mainTabControl.SelectedTab == this.upcomingAppointmentsTabPage)
             {
                 this.upcomingAppointments1.LoadDataGrid();
-            } else if (this.mainTabControl.SelectedIndex == 4)
+            }
+            else if (this.mainTabControl.SelectedTab == this.nurseListTabPage)
             {
                 this.nurses1.Nurses_Load("MAIN FORM", EventArgs.Empty);
 
