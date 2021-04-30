@@ -72,5 +72,15 @@ namespace westga_emr.Controller
             }
             return AppointmentDAL.GetAppointmentInDateRange(startDate, endDate.AddDays(1));
         }
+
+        /// <see cref="AppointmentDAL.DeleteAppointment(Appointment)"/>
+        public bool DeleteAppointment(Appointment appt)
+        {
+            if (appt == null)
+            {
+                throw new ArgumentNullException("Appointment cannot be null");
+            }
+            return AppointmentDAL.DeleteAppointment(appt);
+        }
     }
 }
