@@ -59,5 +59,6 @@ namespace westga_emr.Controller
         {
             return doctorDBSource.GetDoctorById(doctorId);
         }
+
     }
 }

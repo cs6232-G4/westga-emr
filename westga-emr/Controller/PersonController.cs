@@ -30,9 +30,9 @@ namespace westga_emr.Controller
         /// <see cref="PersonDAL.GetPersonByPatientID(Patient)"/>
         public Person GetPersonByPatientID(Patient patient)
         {
-            if (patient == null)
+            if (patient == null || patient.ID == null)
             {
-                throw new ArgumentNullException("patient cannot be null");
+                throw new ArgumentNullException("patient and its id cannot be null");
             }
             return PersonDAL.GetPersonByPatientID(patient);
         }
@@ -40,9 +40,9 @@ namespace westga_emr.Controller
         /// <see cref="PersonDAL.GetPersonByDoctorID(Doctor)"/>
         public Person GetPersonByDoctorID(Doctor doctor)
         {
-            if (doctor == null)
+            if (doctor == null || doctor.ID == null)
             {
-                throw new ArgumentNullException("doctor cannot be null");
+                throw new ArgumentNullException("doctor and its id cannot be null");
             }
             return PersonDAL.GetPersonByDoctorID(doctor);
         }
@@ -50,9 +50,9 @@ namespace westga_emr.Controller
         /// <see cref="PersonDAL.GetPersonByNurseID(Nurse)"/>
         public Person GetPersonByNurseID(Nurse nurse)
         {
-            if (nurse == null)
+            if (nurse == null || nurse.ID == null)
             {
-                throw new ArgumentNullException("nurse cannot be null");
+                throw new ArgumentNullException("nurse and its id cannot be null");
             }
             return PersonDAL.GetPersonByNurseID(nurse);
         }
@@ -60,11 +60,31 @@ namespace westga_emr.Controller
         /// <see cref="PersonDAL.GetPersonByClinicalAdministratorID(Clinical_Administrator)"/>
         public Person GetPersonByClinicalAdministratorID(Clinical_Administrator admin)
         {
-            if (admin == null)
+            if (admin == null || admin.ID == null)
             {
-                throw new ArgumentNullException("admin cannot be null");
+                throw new ArgumentNullException("admin and its id cannot be null");
             }
             return PersonDAL.GetPersonByClinicalAdministratorID(admin);
+        }
+
+        /// <see cref="PersonDAL.GetPersonOfDoctorByVisit(Visit)"/>
+        public Person GetDoctorByVisitID(Visit visit)
+        {
+            if (visit == null || visit.ID == null)
+            {
+                throw new ArgumentNullException("visit and its id cannot be null");
+            }
+            return PersonDAL.GetPersonOfDoctorByVisit(visit);
+        }
+
+        /// <see cref="PersonDAL.GetPersonOfNurseByVisit(Visit)"/>
+        public Person GetNurseByVisitID(Visit visit)
+        {
+            if (visit == null || visit.ID == null)
+            {
+                throw new ArgumentNullException("visit and its id cannot be null");
+            }
+            return PersonDAL.GetPersonOfNurseByVisit(visit);
         }
 
         /// <summary>
