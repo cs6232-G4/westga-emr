@@ -69,6 +69,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ssnError = new System.Windows.Forms.Label();
             this.addressId = new System.Windows.Forms.Label();
+            this.globalError = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
@@ -580,11 +581,23 @@ namespace westga_emr.User_Controls
             this.addressId.TabIndex = 20;
             this.addressId.Visible = false;
             // 
+            // globalError
+            // 
+            this.globalError.AutoSize = true;
+            this.globalError.BackColor = System.Drawing.Color.White;
+            this.globalError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.globalError.ForeColor = System.Drawing.Color.Red;
+            this.globalError.Location = new System.Drawing.Point(23, 40);
+            this.globalError.Name = "globalError";
+            this.globalError.Size = new System.Drawing.Size(0, 17);
+            this.globalError.TabIndex = 21;
+            // 
             // PatientInformationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
+            this.Controls.Add(this.globalError);
             this.Controls.Add(this.addressId);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.updatePatientLabel);
@@ -644,5 +657,6 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label ssnError;
         private System.Windows.Forms.Label addressId;
+        private System.Windows.Forms.Label globalError;
     }
 }

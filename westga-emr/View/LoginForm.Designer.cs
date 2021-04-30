@@ -217,8 +217,8 @@ namespace westga_emr.View
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.clearButton, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.loginButton, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.clearButton, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.loginButton, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(138, 173);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
@@ -232,7 +232,7 @@ namespace westga_emr.View
             this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(3, 3);
+            this.clearButton.Location = new System.Drawing.Point(159, 3);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(150, 40);
             this.clearButton.TabIndex = 3;
@@ -247,7 +247,7 @@ namespace westga_emr.View
             this.loginButton.BackColor = System.Drawing.Color.Green;
             this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.loginButton.Location = new System.Drawing.Point(159, 3);
+            this.loginButton.Location = new System.Drawing.Point(3, 3);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(150, 40);
             this.loginButton.TabIndex = 4;

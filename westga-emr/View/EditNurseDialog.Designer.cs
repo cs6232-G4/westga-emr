@@ -80,6 +80,7 @@ namespace westga_emr.View
             this.zipCodeError = new System.Windows.Forms.Label();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.isActiveCheckbox = new System.Windows.Forms.CheckBox();
+            this.globalError = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
@@ -708,12 +709,24 @@ namespace westga_emr.View
             this.isActiveCheckbox.Text = "Active";
             this.isActiveCheckbox.UseVisualStyleBackColor = true;
             // 
+            // globalError
+            // 
+            this.globalError.AutoSize = true;
+            this.globalError.BackColor = System.Drawing.Color.White;
+            this.globalError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.globalError.ForeColor = System.Drawing.Color.Red;
+            this.globalError.Location = new System.Drawing.Point(0, 35);
+            this.globalError.Name = "globalError";
+            this.globalError.Size = new System.Drawing.Size(0, 17);
+            this.globalError.TabIndex = 38;
+            // 
             // EditNurseDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(1123, 816);
+            this.Controls.Add(this.globalError);
             this.Controls.Add(this.isActiveCheckbox);
             this.Controls.Add(this.addressId);
             this.Controls.Add(this.tableLayoutPanel5);
@@ -791,5 +804,6 @@ namespace westga_emr.View
         private System.Windows.Forms.Label zipCodeError;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.CheckBox isActiveCheckbox;
+        private System.Windows.Forms.Label globalError;
     }
 }

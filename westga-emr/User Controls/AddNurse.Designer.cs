@@ -43,6 +43,7 @@ namespace westga_emr.User_Controls
             System.Windows.Forms.Label passwordLabel;
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.stateComboBox = new System.Windows.Forms.ComboBox();
+            this.appointmentHelperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.zipTextBox = new System.Windows.Forms.TextBox();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.cityError = new System.Windows.Forms.Label();
@@ -71,14 +72,14 @@ namespace westga_emr.User_Controls
             this.streetError = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
+            this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ssnError = new System.Windows.Forms.Label();
             this.usernameError = new System.Windows.Forms.Label();
             this.passwordError = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.passwordTextBox = new System.Windows.Forms.MaskedTextBox();
             this.passwordViewer = new System.Windows.Forms.PictureBox();
-            this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.appointmentHelperBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.globalError = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
             zipLabel = new System.Windows.Forms.Label();
             stateLabel = new System.Windows.Forms.Label();
@@ -91,17 +92,17 @@ namespace westga_emr.User_Controls
             usernameLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).BeginInit();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.passwordViewer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cityLabel
@@ -261,6 +262,10 @@ namespace westga_emr.User_Controls
             this.stateComboBox.Size = new System.Drawing.Size(367, 21);
             this.stateComboBox.TabIndex = 12;
             this.stateComboBox.ValueMember = "Value";
+            // 
+            // appointmentHelperBindingSource
+            // 
+            this.appointmentHelperBindingSource.DataSource = typeof(westga_emr.Helpers.AppointmentHelper);
             // 
             // zipTextBox
             // 
@@ -610,6 +615,10 @@ namespace westga_emr.User_Controls
             this.usernameTextBox.TabIndex = 31;
             this.usernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
             // 
+            // userDTOBindingSource
+            // 
+            this.userDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.UserDTO);
+            // 
             // ssnError
             // 
             this.ssnError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -689,19 +698,23 @@ namespace westga_emr.User_Controls
             this.passwordViewer.WaitOnLoad = true;
             this.passwordViewer.Click += new System.EventHandler(this.PasswordViewer_Click);
             // 
-            // userDTOBindingSource
+            // globalError
             // 
-            this.userDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.UserDTO);
-            // 
-            // appointmentHelperBindingSource
-            // 
-            this.appointmentHelperBindingSource.DataSource = typeof(westga_emr.Helpers.AppointmentHelper);
+            this.globalError.AutoSize = true;
+            this.globalError.BackColor = System.Drawing.Color.White;
+            this.globalError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.globalError.ForeColor = System.Drawing.Color.Red;
+            this.globalError.Location = new System.Drawing.Point(3, 44);
+            this.globalError.Name = "globalError";
+            this.globalError.Size = new System.Drawing.Size(0, 17);
+            this.globalError.TabIndex = 30;
             // 
             // AddNurse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
+            this.Controls.Add(this.globalError);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel9);
@@ -714,6 +727,7 @@ namespace westga_emr.User_Controls
             this.Load += new System.EventHandler(this.AddNurse_Load);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).EndInit();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -721,14 +735,13 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.passwordViewer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -774,5 +787,6 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.PictureBox passwordViewer;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.BindingSource appointmentHelperBindingSource;
+        private System.Windows.Forms.Label globalError;
     }
 }

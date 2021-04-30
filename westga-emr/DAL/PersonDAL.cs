@@ -403,7 +403,6 @@ namespace westga_emr.DAL
         /// <returns>The id of the newly inserted Person, or null if the insert failed</returns>
         public static int? InsertPerson(Person person)
         {
-            string hash = PasswordHashSHA512.GenerateSHA512String(person.Password);
             int? id = null;
             String insertStatement = @"INSERT INTO Person(username, password, firstName, lastName, dateOfBirth, ssn, gender, addressID, contactPhone)
                                         OUTPUT inserted.id
@@ -428,6 +427,7 @@ namespace westga_emr.DAL
                     } 
                     else
                     {
+                        string hash = PasswordHashSHA512.GenerateSHA512String(person.Password);
                         command.Parameters.AddWithValue("@password", hash);
                     }
 

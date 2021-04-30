@@ -36,8 +36,6 @@ namespace westga_emr.View
             this.userGreeting = new System.Windows.Forms.Label();
             this.signOutLink = new System.Windows.Forms.LinkLabel();
             this.mainTabControl = new System.Windows.Forms.TabControl();
-            this.newAppointmentTabPage = new System.Windows.Forms.TabPage();
-            this.newAppointment1 = new westga_emr.User_Controls.NewAppointment();
             this.saerchPatientTabPage = new System.Windows.Forms.TabPage();
             this.searchPatient1 = new westga_emr.User_Controls.SearchPatient();
             this.upcomingAppointmentsTabPage = new System.Windows.Forms.TabPage();
@@ -53,7 +51,6 @@ namespace westga_emr.View
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
-            this.newAppointmentTabPage.SuspendLayout();
             this.saerchPatientTabPage.SuspendLayout();
             this.upcomingAppointmentsTabPage.SuspendLayout();
             this.testsTabPage.SuspendLayout();
@@ -140,7 +137,6 @@ namespace westga_emr.View
             // mainTabControl
             // 
             this.mainTabControl.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.mainTabControl.Controls.Add(this.newAppointmentTabPage);
             this.mainTabControl.Controls.Add(this.saerchPatientTabPage);
             this.mainTabControl.Controls.Add(this.upcomingAppointmentsTabPage);
             this.mainTabControl.Controls.Add(this.testsTabPage);
@@ -154,29 +150,6 @@ namespace westga_emr.View
             this.mainTabControl.Size = new System.Drawing.Size(1184, 930);
             this.mainTabControl.TabIndex = 1;
             this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
-            // 
-            // newAppointmentTabPage
-            // 
-            this.newAppointmentTabPage.AutoScroll = true;
-            this.newAppointmentTabPage.BackColor = System.Drawing.Color.SkyBlue;
-            this.newAppointmentTabPage.Controls.Add(this.newAppointment1);
-            this.newAppointmentTabPage.Location = new System.Drawing.Point(4, 25);
-            this.newAppointmentTabPage.Name = "newAppointmentTabPage";
-            this.newAppointmentTabPage.Padding = new System.Windows.Forms.Padding(4);
-            this.newAppointmentTabPage.Size = new System.Drawing.Size(1176, 901);
-            this.newAppointmentTabPage.TabIndex = 0;
-            this.newAppointmentTabPage.Text = "New Appointment";
-            // 
-            // newAppointment1
-            // 
-            this.newAppointment1.AutoScroll = true;
-            this.newAppointment1.BackColor = System.Drawing.Color.SkyBlue;
-            this.newAppointment1.Location = new System.Drawing.Point(62, 4);
-            this.newAppointment1.Margin = new System.Windows.Forms.Padding(4);
-            this.newAppointment1.MaximumSize = new System.Drawing.Size(1100, 850);
-            this.newAppointment1.Name = "newAppointment1";
-            this.newAppointment1.Size = new System.Drawing.Size(1040, 823);
-            this.newAppointment1.TabIndex = 0;
             // 
             // saerchPatientTabPage
             // 
@@ -230,7 +203,7 @@ namespace westga_emr.View
             this.testsTabPage.Name = "testsTabPage";
             this.testsTabPage.Size = new System.Drawing.Size(1176, 901);
             this.testsTabPage.TabIndex = 6;
-            this.testsTabPage.Text = "Tests";
+            this.testsTabPage.Text = "Visits";
             // 
             // testsUserControl1
             // 
@@ -318,7 +291,6 @@ namespace westga_emr.View
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.mainTabControl.ResumeLayout(false);
-            this.newAppointmentTabPage.ResumeLayout(false);
             this.saerchPatientTabPage.ResumeLayout(false);
             this.upcomingAppointmentsTabPage.ResumeLayout(false);
             this.testsTabPage.ResumeLayout(false);
@@ -337,7 +309,6 @@ namespace westga_emr.View
         private System.Windows.Forms.Label currentUserName;
         private System.Windows.Forms.Label currentTimeLabel;
         private System.Windows.Forms.TabControl mainTabControl;
-        private System.Windows.Forms.TabPage newAppointmentTabPage;
         private System.Windows.Forms.TabPage saerchPatientTabPage;
         private System.Windows.Forms.Label userGreeting;
         private System.Windows.Forms.TabPage upcomingAppointmentsTabPage;
@@ -347,7 +318,6 @@ namespace westga_emr.View
         private User_Controls.UpcomingAppointments upcomingAppointments1;
         private User_Controls.AddNurse addNurse1;
         private User_Controls.Report report1;
-        private User_Controls.NewAppointment newAppointment1;
         private System.Windows.Forms.TabPage testsTabPage;
         private User_Controls.TestsUserControl testsUserControl1;
         private System.Windows.Forms.TabPage nurseListTabPage;

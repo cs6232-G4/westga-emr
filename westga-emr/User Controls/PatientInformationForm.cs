@@ -222,7 +222,7 @@ namespace westga_emr.User_Controls
                 ValidateInputs();
                 if(errors.Count > 0)
                 {
-                    throw new Exception("Enter all required values and fix errors before saving");
+                    globalError.Text = "Enter all required values and fix errors before saving";
                 }
                 bool result = false;
                 var gender = (AppointmentHelper)genderComboBox.SelectedItem;
@@ -259,7 +259,7 @@ namespace westga_emr.User_Controls
             {
                 MessageBox.Show("An error occured" + 
                     Environment.NewLine + 
-                    ex.Message, 
+                   "Unable to save patient. Please contact site administrator",
                     "Error", 
                     MessageBoxButtons.OK, 
                     MessageBoxIcon.Error);

@@ -30,8 +30,10 @@ namespace westga_emr.User_Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dobSearchLabel = new System.Windows.Forms.Label();
             this.lnameSearchLabel = new System.Windows.Forms.Label();
             this.fnameSearchLabel = new System.Windows.Forms.Label();
@@ -40,8 +42,10 @@ namespace westga_emr.User_Controls
             this.label1 = new System.Windows.Forms.Label();
             this.searchCriteria = new System.Windows.Forms.ComboBox();
             this.searchCriteriaError = new System.Windows.Forms.Label();
+            this.addPatientButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.firstNameTextBoxSearchInput = new System.Windows.Forms.TextBox();
+            this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lastNameTextBoxSearchInput = new System.Windows.Forms.TextBox();
             this.dateOfBirthDateTimePickerSearchInput = new System.Windows.Forms.DateTimePicker();
             this.searchButton = new System.Windows.Forms.Button();
@@ -49,28 +53,29 @@ namespace westga_emr.User_Controls
             this.searchErrorLabel = new System.Windows.Forms.Label();
             this.patientsDatatGrid = new System.Windows.Forms.DataGridView();
             this.appointmentsDataGridView = new System.Windows.Forms.DataGridView();
-            this.ViewVisit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.EditAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.PatientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ViewAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
             this.doctorNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.appointmentDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reasonForVisitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewVisit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.EditAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
             this.appointmentDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.appointmentHelperBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PatientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOfBirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.appointmentHelperBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contactPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ViewAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.EditPatient = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientsDatatGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDTOBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,8 +146,9 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel14.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel14.Controls.Add(this.searchCriteria, 1, 0);
             this.tableLayoutPanel14.Controls.Add(this.searchCriteriaError, 2, 0);
+            this.tableLayoutPanel14.Controls.Add(this.addPatientButton, 3, 0);
             this.tableLayoutPanel14.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -173,7 +179,7 @@ namespace westga_emr.User_Controls
             "Last name and first name",
             "Date of birth and last name"});
             this.searchCriteria.Location = new System.Drawing.Point(260, 2);
-            this.searchCriteria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.searchCriteria.Margin = new System.Windows.Forms.Padding(2);
             this.searchCriteria.Name = "searchCriteria";
             this.searchCriteria.Size = new System.Drawing.Size(207, 21);
             this.searchCriteria.TabIndex = 1;
@@ -192,6 +198,20 @@ namespace westga_emr.User_Controls
             this.searchCriteriaError.Name = "searchCriteriaError";
             this.searchCriteriaError.Size = new System.Drawing.Size(254, 25);
             this.searchCriteriaError.TabIndex = 2;
+            // 
+            // addPatientButton
+            // 
+            this.addPatientButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.addPatientButton.BackColor = System.Drawing.Color.SeaGreen;
+            this.addPatientButton.ForeColor = System.Drawing.Color.White;
+            this.addPatientButton.Location = new System.Drawing.Point(834, 2);
+            this.addPatientButton.Margin = new System.Windows.Forms.Padding(2);
+            this.addPatientButton.Name = "addPatientButton";
+            this.addPatientButton.Size = new System.Drawing.Size(140, 21);
+            this.addPatientButton.TabIndex = 4;
+            this.addPatientButton.Text = "Add New Patient";
+            this.addPatientButton.UseVisualStyleBackColor = false;
+            this.addPatientButton.Click += new System.EventHandler(this.AddPatientButton_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -228,6 +248,10 @@ namespace westga_emr.User_Controls
             this.firstNameTextBoxSearchInput.Name = "firstNameTextBoxSearchInput";
             this.firstNameTextBoxSearchInput.Size = new System.Drawing.Size(252, 20);
             this.firstNameTextBoxSearchInput.TabIndex = 1;
+            // 
+            // userDTOBindingSource
+            // 
+            this.userDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.UserDTO);
             // 
             // lastNameTextBoxSearchInput
             // 
@@ -305,10 +329,12 @@ namespace westga_emr.User_Controls
             this.genderDataGridViewTextBoxColumn,
             this.dateOfBirthDataGridViewTextBoxColumn,
             this.contactPhoneDataGridViewTextBoxColumn,
-            this.ViewAppointment});
+            this.CreateAppointment,
+            this.ViewAppointment,
+            this.EditPatient});
             this.patientsDatatGrid.DataSource = this.userDTOBindingSource;
             this.patientsDatatGrid.Location = new System.Drawing.Point(0, 106);
-            this.patientsDatatGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.patientsDatatGrid.Margin = new System.Windows.Forms.Padding(2);
             this.patientsDatatGrid.MultiSelect = false;
             this.patientsDatatGrid.Name = "patientsDatatGrid";
             this.patientsDatatGrid.ReadOnly = true;
@@ -334,7 +360,7 @@ namespace westga_emr.User_Controls
             this.appointmentsDataGridView.DataSource = this.appointmentDTOBindingSource;
             this.appointmentsDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.appointmentsDataGridView.Location = new System.Drawing.Point(0, 389);
-            this.appointmentsDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.appointmentsDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.appointmentsDataGridView.MultiSelect = false;
             this.appointmentsDataGridView.Name = "appointmentsDataGridView";
             this.appointmentsDataGridView.ReadOnly = true;
@@ -344,68 +370,6 @@ namespace westga_emr.User_Controls
             this.appointmentsDataGridView.TabIndex = 11;
             this.appointmentsDataGridView.Visible = false;
             this.appointmentsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AppointmentDatatGrid_CellContentClick);
-            // 
-            // ViewVisit
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Blue;
-            this.ViewVisit.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ViewVisit.HeaderText = "";
-            this.ViewVisit.MinimumWidth = 6;
-            this.ViewVisit.Name = "ViewVisit";
-            this.ViewVisit.ReadOnly = true;
-            this.ViewVisit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ViewVisit.Text = "View Visit";
-            this.ViewVisit.UseColumnTextForButtonValue = true;
-            this.ViewVisit.Width = 125;
-            // 
-            // EditAppointment
-            // 
-            this.EditAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.EditAppointment.HeaderText = "";
-            this.EditAppointment.MinimumWidth = 6;
-            this.EditAppointment.Name = "EditAppointment";
-            this.EditAppointment.ReadOnly = true;
-            this.EditAppointment.Text = "Edit Appointment";
-            this.EditAppointment.UseColumnTextForButtonValue = true;
-            this.EditAppointment.Width = 125;
-            // 
-            // PatientId
-            // 
-            this.PatientId.DataPropertyName = "PatientId";
-            this.PatientId.HeaderText = "Id";
-            this.PatientId.MinimumWidth = 6;
-            this.PatientId.Name = "PatientId";
-            this.PatientId.ReadOnly = true;
-            this.PatientId.Width = 125;
-            // 
-            // contactPhoneDataGridViewTextBoxColumn
-            // 
-            this.contactPhoneDataGridViewTextBoxColumn.DataPropertyName = "ContactPhone";
-            this.contactPhoneDataGridViewTextBoxColumn.HeaderText = "Contact Phone";
-            this.contactPhoneDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.contactPhoneDataGridViewTextBoxColumn.Name = "contactPhoneDataGridViewTextBoxColumn";
-            this.contactPhoneDataGridViewTextBoxColumn.ReadOnly = true;
-            this.contactPhoneDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // ViewAppointment
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Blue;
-            this.ViewAppointment.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ViewAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ViewAppointment.HeaderText = "";
-            this.ViewAppointment.MinimumWidth = 6;
-            this.ViewAppointment.Name = "ViewAppointment";
-            this.ViewAppointment.ReadOnly = true;
-            this.ViewAppointment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ViewAppointment.Text = "View Appointments";
-            this.ViewAppointment.UseColumnTextForButtonValue = true;
-            this.ViewAppointment.Width = 125;
             // 
             // doctorNameDataGridViewTextBoxColumn
             // 
@@ -434,9 +398,49 @@ namespace westga_emr.User_Controls
             this.reasonForVisitDataGridViewTextBoxColumn.ReadOnly = true;
             this.reasonForVisitDataGridViewTextBoxColumn.Width = 300;
             // 
+            // ViewVisit
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Blue;
+            this.ViewVisit.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ViewVisit.HeaderText = "";
+            this.ViewVisit.MinimumWidth = 6;
+            this.ViewVisit.Name = "ViewVisit";
+            this.ViewVisit.ReadOnly = true;
+            this.ViewVisit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ViewVisit.Text = "View Visit";
+            this.ViewVisit.UseColumnTextForButtonValue = true;
+            this.ViewVisit.Width = 125;
+            // 
+            // EditAppointment
+            // 
+            this.EditAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.EditAppointment.HeaderText = "";
+            this.EditAppointment.MinimumWidth = 6;
+            this.EditAppointment.Name = "EditAppointment";
+            this.EditAppointment.ReadOnly = true;
+            this.EditAppointment.Text = "Edit Appointment";
+            this.EditAppointment.UseColumnTextForButtonValue = true;
+            this.EditAppointment.Width = 125;
+            // 
             // appointmentDTOBindingSource
             // 
             this.appointmentDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.AppointmentDTO);
+            // 
+            // appointmentHelperBindingSource
+            // 
+            this.appointmentHelperBindingSource.DataSource = typeof(westga_emr.Helpers.AppointmentHelper);
+            // 
+            // PatientId
+            // 
+            this.PatientId.DataPropertyName = "PatientId";
+            this.PatientId.HeaderText = "Id";
+            this.PatientId.MinimumWidth = 6;
+            this.PatientId.Name = "PatientId";
+            this.PatientId.ReadOnly = true;
+            this.PatientId.Width = 30;
             // 
             // firstNameDataGridViewTextBoxColumn
             // 
@@ -474,13 +478,58 @@ namespace westga_emr.User_Controls
             this.dateOfBirthDataGridViewTextBoxColumn.ReadOnly = true;
             this.dateOfBirthDataGridViewTextBoxColumn.Width = 125;
             // 
-            // userDTOBindingSource
+            // contactPhoneDataGridViewTextBoxColumn
             // 
-            this.userDTOBindingSource.DataSource = typeof(westga_emr.Model.DTO.UserDTO);
+            this.contactPhoneDataGridViewTextBoxColumn.DataPropertyName = "ContactPhone";
+            this.contactPhoneDataGridViewTextBoxColumn.HeaderText = "Contact Phone";
+            this.contactPhoneDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.contactPhoneDataGridViewTextBoxColumn.Name = "contactPhoneDataGridViewTextBoxColumn";
+            this.contactPhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contactPhoneDataGridViewTextBoxColumn.Width = 125;
             // 
-            // appointmentHelperBindingSource
+            // CreateAppointment
             // 
-            this.appointmentHelperBindingSource.DataSource = typeof(westga_emr.Helpers.AppointmentHelper);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.CreateAppointment.DefaultCellStyle = dataGridViewCellStyle1;
+            this.CreateAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CreateAppointment.HeaderText = "";
+            this.CreateAppointment.Name = "CreateAppointment";
+            this.CreateAppointment.ReadOnly = true;
+            this.CreateAppointment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CreateAppointment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.CreateAppointment.Text = "New Appointment";
+            this.CreateAppointment.UseColumnTextForButtonValue = true;
+            // 
+            // ViewAppointment
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Blue;
+            this.ViewAppointment.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ViewAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ViewAppointment.HeaderText = "";
+            this.ViewAppointment.MinimumWidth = 6;
+            this.ViewAppointment.Name = "ViewAppointment";
+            this.ViewAppointment.ReadOnly = true;
+            this.ViewAppointment.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ViewAppointment.Text = "View Appointments";
+            this.ViewAppointment.UseColumnTextForButtonValue = true;
+            this.ViewAppointment.Width = 125;
+            // 
+            // EditPatient
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DarkGreen;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            this.EditPatient.DefaultCellStyle = dataGridViewCellStyle3;
+            this.EditPatient.HeaderText = "";
+            this.EditPatient.Name = "EditPatient";
+            this.EditPatient.ReadOnly = true;
+            this.EditPatient.Text = "Edit Patient";
+            this.EditPatient.UseColumnTextForButtonValue = true;
             // 
             // SearchPatient
             // 
@@ -501,10 +550,10 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel14.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientsDatatGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentDTOBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDTOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentHelperBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -537,12 +586,15 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.DataGridViewTextBoxColumn reasonForVisitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn ViewVisit;
         private System.Windows.Forms.DataGridViewButtonColumn EditAppointment;
+        private System.Windows.Forms.Button addPatientButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn PatientId;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOfBirthDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contactPhoneDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn CreateAppointment;
         private System.Windows.Forms.DataGridViewButtonColumn ViewAppointment;
+        private System.Windows.Forms.DataGridViewButtonColumn EditPatient;
     }
 }
