@@ -154,5 +154,32 @@ namespace westga_emr.DAL
             }
         }
 
+        /// <summary>
+        /// Returns whether or not the Nurse is the nurse of this Visit.
+        /// 
+        /// Intended for use to check if the currentUser is the Nurse of the Visit
+        /// </summary>
+        /// <param name="currentUser">Nurse in question</param>
+        /// <param name="visit">Visit in question</param>
+        /// <returns>Whether or not this is the Nurse of the Visit</returns>
+        public static bool IsThisNurseTheNurseOfTheVisit(UserDTO currentUser, Visit visit)
+        {
+            bool isThisTheNurse = false;
+            String selectStatement = @"SELECT Visit.nurseID FROM Visit WHERE Visit.id = @visitID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@visitID", visit.ID);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        isThisTheNurse = currentUser.NurseId == (int)command.ExecuteScalar();
+                    }
+                }
+            }
+            return isThisTheNurse;
+        }
+
     }
 }

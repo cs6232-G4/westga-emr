@@ -350,5 +350,27 @@ namespace westga_emr.DAL
             }
             return patient;
         }
+
+        /// <summary>
+        /// Deletes the given Patient from the db
+        /// </summary>
+        /// <param name="patient">Patient to delete from the db</param>
+        /// <returns>Whether or not the Patient was deleted</returns>
+        public static bool DeletePatient(Patient patient)
+        {
+            bool wasDeleted = false;
+            String deleteStatement = @"DELETE FROM Patient WHERE Patient.id = @patientID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(deleteStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@patientID", patient.ID);
+
+                    wasDeleted = command.ExecuteNonQuery() > 0 ? true : false;
+                }
+            }
+            return wasDeleted;
+        }
     }
 }

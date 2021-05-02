@@ -70,5 +70,15 @@ namespace westga_emr.Controller
             }
             return true;
         }
+
+        /// <see cref="NurseDAL.IsThisNurseTheNurseOfTheVisit(UserDTO, Visit)"/>
+        public bool IsThisNurseTheNurseOfTheVisit(UserDTO currentUser, Visit visit)
+        {
+            if (currentUser == null || visit == null || visit.ID == null)
+            {
+                throw new ArgumentNullException("currentUser, visit, and visitID cannot be null");
+            }
+            return NurseDAL.IsThisNurseTheNurseOfTheVisit(currentUser, visit);
+        }
     }
 }

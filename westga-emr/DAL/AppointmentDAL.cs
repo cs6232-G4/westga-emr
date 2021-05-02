@@ -225,6 +225,28 @@ namespace westga_emr.DAL
             return appointments;
         }
 
+        /// <summary>
+        /// Deletes the given Appointment from the db.
+        /// </summary>
+        /// <param name="appt">Appointment to delete from the db</param>
+        /// <returns>Whether or not the appointment was deleted</returns>
+        public static bool DeleteAppointment(Appointment appt)
+        {
+            bool wasDeleted = false;
+            String deleteStatement = @"DELETE FROM Appointment WHERE Appointment.id = @appointmentID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(deleteStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@appointmentID", appt.ID);
+
+                    wasDeleted = command.ExecuteNonQuery() > 0 ? true : false;
+                }
+            }
+            return wasDeleted;
+        }
+
        
     }
 }

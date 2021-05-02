@@ -1,4 +1,11 @@
-﻿using System.Security.Cryptography;
+﻿/**
+ * Source: https://stackoverflow.com/questions/57110603/verify-sha512-hashed-password-in-c-sharp
+ * Author: Prochu1991
+ * Date: 07/19/2019
+ * Accessed: 04/30/2021
+ */
+
+using System.Security.Cryptography;
 using System.Text;
 
 namespace westga_emr.Helpers

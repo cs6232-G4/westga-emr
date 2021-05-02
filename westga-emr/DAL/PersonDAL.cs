@@ -139,6 +139,63 @@ namespace westga_emr.DAL
         }
 
         /// <summary>
+        /// Gets the Person of the Doctor associated with a Visit
+        /// 
+        /// Returns password as null.
+        /// </summary>
+        /// <param name="visit">The patient's Visit</param>
+        /// <returns>Person of the Doctor of said Visit</returns>
+        public static Person GetPersonOfDoctorByVisit(Visit visit)
+        {
+            Person person = null;
+            String selectStatement = @"SELECT DISTINCT Person.id, Person.username, Person.firstName, Person.lastName, 
+	                                    Person.dateOfBirth, Person.ssn, Person.gender, Person.addressID, Person.contactPhone
+                                    FROM Visit
+	                                    JOIN Appointment ON Visit.appointmentID = Appointment.id
+	                                    JOIN Doctor ON Appointment.doctorID = Doctor.id
+	                                    JOIN Person ON Doctor.personID = Person.id
+                                    WHERE Visit.id = @visitID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@visitID", visit.ID);
+                    connection.Open();
+                    person = GetPerson(command);
+                }
+            }
+            return person;
+        }
+
+        /// <summary>
+        /// Gets the Person of the Nurse associated with a Visit
+        /// 
+        /// Returns password as null.
+        /// </summary>
+        /// <param name="visit">The patient's Visit</param>
+        /// <returns>Person of the Nurse of said Visit</returns>
+        public static Person GetPersonOfNurseByVisit(Visit visit)
+        {
+            Person person = null;
+            String selectStatement = @"SELECT DISTINCT Person.id, Person.username, Person.firstName, Person.lastName, 
+	                                    Person.dateOfBirth, Person.ssn, Person.gender, Person.addressID, Person.contactPhone
+                                    FROM Visit
+	                                    JOIN Nurse ON Visit.nurseID = Nurse.id
+	                                    JOIN Person ON Nurse.personID = Person.id
+                                    WHERE Visit.id = @visitID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@visitID", visit.ID);
+                    connection.Open();
+                    person = GetPerson(command);
+                }
+            }
+            return person;
+        }
+
+        /// <summary>
         /// Gets the Person of the Clinical_Administor by their adminID.
         /// 
         /// Returns password as null.
@@ -537,6 +594,28 @@ namespace westga_emr.DAL
                 }
             }
             return rowsUpdated;
+        }
+
+        /// <summary>
+        /// Deletes the given Person from the db
+        /// </summary>
+        /// <param name="person">Person to delete</param>
+        /// <returns>Whether or not the Person was deleted</returns>
+        public static bool DeletePerson(Person person)
+        {
+            bool wasDeleted = false;
+            String deleteStatement = @"DELETE FROM Person WHERE Person.id = @personID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(deleteStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@personID", person.ID);
+
+                    wasDeleted = command.ExecuteNonQuery() > 0 ? true : false;
+                }
+            }
+            return wasDeleted;
         }
     }
 }

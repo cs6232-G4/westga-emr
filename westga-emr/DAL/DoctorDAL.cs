@@ -139,5 +139,33 @@ namespace westga_emr.DAL
 
             return doctor;
         }
+
+        /// <summary>
+        /// Gets a list of all of a doctor's specialties
+        /// </summary>
+        /// <param name="doctor">Doctor in question</param>
+        /// <returns>The doctor's specialties</returns>
+        public static List<Specialty> GetDoctorsSpecialties(Doctor doctor)
+        {
+            List<Specialty> specialties = new List<Specialty>();
+            String selectStatement = @"SELECT specialtyName FROM Doctor_has_Specialties WHERE doctorID = @doctorID";
+            using (SqlConnection connection = GetSQLConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("@doctorID", doctor.ID);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        int ordSpecialtyName = reader.GetOrdinal("specialtyName");
+                        while (reader.Read())
+                        {
+                            specialties.Add(new Specialty(reader.GetString(ordSpecialtyName)));
+                        }
+                    }
+                }
+            }
+            return specialties;
+        }
     }
 }

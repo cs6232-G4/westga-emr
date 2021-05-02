@@ -93,7 +93,8 @@ namespace westga_emr.User_Controls
                     labOrderHaveLabTestLst.Add(new Lab_Orders_have_Lab_Tests(selectedLabOrderTestDTO.OrderId,
                                                                         this.selectedLabOrderTestDTO.TestCode,
                                                                         this.testPerformedDateTimePicker.Value,
-                                                                        this.testResultTextBox.Text));
+                                                                        this.testResultTextBox.Text,
+                                                                        null));
                     if (this.labOrdersTestController.EnterTestResults(labOrderHaveLabTestLst.ToArray()))
                     {
                         Form successfullPersistDialog = new SuccessfullPersistDialog("Lab Test Updated Successfully!!.");
