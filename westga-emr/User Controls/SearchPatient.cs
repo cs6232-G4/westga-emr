@@ -21,6 +21,7 @@ namespace westga_emr.User_Controls
         private UserDTO patient;
         private AppointmentDTO appointmentDTO;
         private List<UserDTO> patients;
+        private readonly PatientController patientController;
 
         #endregion
 
@@ -36,6 +37,7 @@ namespace westga_emr.User_Controls
             visitController = new VisitController();
             patient = new UserDTO();
             appointmentDTO = new AppointmentDTO();
+            this.patientController = new PatientController();
         }
 
         #endregion
@@ -233,6 +235,29 @@ namespace westga_emr.User_Controls
                     }
                 }
             }
+            else if (patientsDatatGrid.Columns[e.ColumnIndex].Name == "DeletePatient")
+            {
+                var hasUpcomingAppointment = this.appointmentController.GetPatientsAppointments(new Patient(patient.PatientId, patient.Id, true)).Exists(x=>x.AppointmentDateTime >= DateTime.Now);
+                if (!hasUpcomingAppointment)
+                {
+                    const string message = "Are you sure you want to delete this patient?";
+                    string caption = $"Delete {patient.FirstName}  {patient.LastName}";
+                    var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        if(patientController.DeletePatient(new Patient(patient.PatientId, patient.Id, true)))
+                        {
+                            MessageBox.Show("Patient deleted successfully");
+                            PatientSearch();
+                        }
+                       
+                    }
+                } else
+                {
+                    MessageBox.Show("Patient has upcoming appointment and can't be deleted.");
+                }
+
+            }
 
         }
 
@@ -264,9 +289,9 @@ namespace westga_emr.User_Controls
                 else
                 {
                     MessageBox.Show("Appointments less than 24 hours cannot be edited.", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
+                    
                 }
-            }
+            } 
         }
 
         private void RefreshDataGrid()
