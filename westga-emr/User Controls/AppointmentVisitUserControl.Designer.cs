@@ -41,10 +41,12 @@ namespace westga_emr.User_Controls
             System.Windows.Forms.Label bodyTemperatureLabel;
             this.bodyTemperatureTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.pulseError = new System.Windows.Forms.Label();
+            this.initialDiagnosticTextBox = new System.Windows.Forms.TextBox();
             this.finalDiagnosticTextBox = new System.Windows.Forms.TextBox();
             this.finalDiagnosticErrorLabel = new System.Windows.Forms.Label();
+            this.initialDiagnosticError = new System.Windows.Forms.Label();
             this.symptomsTextBox = new System.Windows.Forms.TextBox();
+            this.pulseError = new System.Windows.Forms.Label();
             this.pulseTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.closeButton = new System.Windows.Forms.Button();
@@ -56,18 +58,16 @@ namespace westga_emr.User_Controls
             this.addressId = new System.Windows.Forms.Label();
             this.visitLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.systolicPressureError = new System.Windows.Forms.Label();
-            this.weightError = new System.Windows.Forms.Label();
-            this.bodyTemperatureError = new System.Windows.Forms.Label();
-            this.dialosticPressureError = new System.Windows.Forms.Label();
             this.systolicPressureTextBox = new System.Windows.Forms.TextBox();
-            this.weightTextBox = new System.Windows.Forms.TextBox();
             this.dialosticPressureTextBox = new System.Windows.Forms.TextBox();
+            this.bodyTemperatureError = new System.Windows.Forms.Label();
+            this.systolicPressureError = new System.Windows.Forms.Label();
+            this.dialosticPressureError = new System.Windows.Forms.Label();
+            this.weightError = new System.Windows.Forms.Label();
+            this.weightTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.initialDiagnosticTextBox = new System.Windows.Forms.TextBox();
             this.visitDateTextBox = new System.Windows.Forms.TextBox();
             this.nurseTextBox = new System.Windows.Forms.TextBox();
-            this.initialDiagnosticError = new System.Windows.Forms.Label();
             this.messageLabel = new System.Windows.Forms.Label();
             pulseLabel = new System.Windows.Forms.Label();
             finalDiagnosticLabel = new System.Windows.Forms.Label();
@@ -90,9 +90,9 @@ namespace westga_emr.User_Controls
             pulseLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             pulseLabel.AutoSize = true;
-            pulseLabel.Location = new System.Drawing.Point(561, 0);
+            pulseLabel.Location = new System.Drawing.Point(560, 0);
             pulseLabel.Name = "pulseLabel";
-            pulseLabel.Size = new System.Drawing.Size(226, 13);
+            pulseLabel.Size = new System.Drawing.Size(227, 13);
             pulseLabel.TabIndex = 15;
             pulseLabel.Text = "Pulse";
             // 
@@ -123,7 +123,7 @@ namespace westga_emr.User_Controls
             dialosticPressureLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             dialosticPressureLabel.AutoSize = true;
-            dialosticPressureLabel.Location = new System.Drawing.Point(189, 0);
+            dialosticPressureLabel.Location = new System.Drawing.Point(188, 0);
             dialosticPressureLabel.Name = "dialosticPressureLabel";
             dialosticPressureLabel.Size = new System.Drawing.Size(180, 13);
             dialosticPressureLabel.TabIndex = 9;
@@ -169,7 +169,7 @@ namespace westga_emr.User_Controls
             systolicPressureLabel.AutoSize = true;
             systolicPressureLabel.Location = new System.Drawing.Point(3, 0);
             systolicPressureLabel.Name = "systolicPressureLabel";
-            systolicPressureLabel.Size = new System.Drawing.Size(180, 13);
+            systolicPressureLabel.Size = new System.Drawing.Size(179, 13);
             systolicPressureLabel.TabIndex = 8;
             systolicPressureLabel.Text = "Systolic Pressure";
             // 
@@ -189,7 +189,7 @@ namespace westga_emr.User_Controls
             bodyTemperatureLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             bodyTemperatureLabel.AutoSize = true;
-            bodyTemperatureLabel.Location = new System.Drawing.Point(375, 0);
+            bodyTemperatureLabel.Location = new System.Drawing.Point(374, 0);
             bodyTemperatureLabel.Name = "bodyTemperatureLabel";
             bodyTemperatureLabel.Size = new System.Drawing.Size(180, 13);
             bodyTemperatureLabel.TabIndex = 10;
@@ -198,11 +198,11 @@ namespace westga_emr.User_Controls
             // bodyTemperatureTextBox
             // 
             this.bodyTemperatureTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.bodyTemperatureTextBox.Location = new System.Drawing.Point(375, 22);
+            this.bodyTemperatureTextBox.Location = new System.Drawing.Point(374, 22);
             this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
             this.bodyTemperatureTextBox.ReadOnly = true;
             this.bodyTemperatureTextBox.Size = new System.Drawing.Size(180, 20);
-            this.bodyTemperatureTextBox.TabIndex = 7;
+            this.bodyTemperatureTextBox.TabIndex = 6;
             // 
             // tableLayoutPanel4
             // 
@@ -230,17 +230,14 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel4.Size = new System.Drawing.Size(790, 62);
             this.tableLayoutPanel4.TabIndex = 23;
             // 
-            // pulseError
+            // initialDiagnosticTextBox
             // 
-            this.pulseError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pulseError.AutoSize = true;
-            this.pulseError.ForeColor = System.Drawing.Color.Red;
-            this.pulseError.Location = new System.Drawing.Point(561, 52);
-            this.pulseError.Name = "pulseError";
-            this.pulseError.Size = new System.Drawing.Size(226, 21);
-            this.pulseError.TabIndex = 23;
+            this.initialDiagnosticTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.initialDiagnosticTextBox.Location = new System.Drawing.Point(266, 20);
+            this.initialDiagnosticTextBox.Name = "initialDiagnosticTextBox";
+            this.initialDiagnosticTextBox.ReadOnly = true;
+            this.initialDiagnosticTextBox.Size = new System.Drawing.Size(257, 20);
+            this.initialDiagnosticTextBox.TabIndex = 9;
             // 
             // finalDiagnosticTextBox
             // 
@@ -263,6 +260,18 @@ namespace westga_emr.User_Controls
             this.finalDiagnosticErrorLabel.Text = "                                                  ";
             this.finalDiagnosticErrorLabel.Visible = false;
             // 
+            // initialDiagnosticError
+            // 
+            this.initialDiagnosticError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.initialDiagnosticError.AutoSize = true;
+            this.initialDiagnosticError.ForeColor = System.Drawing.Color.Red;
+            this.initialDiagnosticError.Location = new System.Drawing.Point(266, 44);
+            this.initialDiagnosticError.Name = "initialDiagnosticError";
+            this.initialDiagnosticError.Size = new System.Drawing.Size(257, 18);
+            this.initialDiagnosticError.TabIndex = 8;
+            // 
             // symptomsTextBox
             // 
             this.symptomsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -270,16 +279,28 @@ namespace westga_emr.User_Controls
             this.symptomsTextBox.Name = "symptomsTextBox";
             this.symptomsTextBox.ReadOnly = true;
             this.symptomsTextBox.Size = new System.Drawing.Size(257, 20);
-            this.symptomsTextBox.TabIndex = 9;
+            this.symptomsTextBox.TabIndex = 8;
+            // 
+            // pulseError
+            // 
+            this.pulseError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pulseError.AutoSize = true;
+            this.pulseError.ForeColor = System.Drawing.Color.Red;
+            this.pulseError.Location = new System.Drawing.Point(560, 52);
+            this.pulseError.Name = "pulseError";
+            this.pulseError.Size = new System.Drawing.Size(227, 21);
+            this.pulseError.TabIndex = 23;
             // 
             // pulseTextBox
             // 
             this.pulseTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pulseTextBox.Location = new System.Drawing.Point(561, 22);
+            this.pulseTextBox.Location = new System.Drawing.Point(560, 22);
             this.pulseTextBox.Name = "pulseTextBox";
             this.pulseTextBox.ReadOnly = true;
-            this.pulseTextBox.Size = new System.Drawing.Size(226, 20);
-            this.pulseTextBox.TabIndex = 8;
+            this.pulseTextBox.Size = new System.Drawing.Size(227, 20);
+            this.pulseTextBox.TabIndex = 7;
             // 
             // tableLayoutPanel9
             // 
@@ -352,7 +373,7 @@ namespace westga_emr.User_Controls
             this.editFinalDiagnosticButton.Location = new System.Drawing.Point(760, 4);
             this.editFinalDiagnosticButton.Name = "editFinalDiagnosticButton";
             this.editFinalDiagnosticButton.Size = new System.Drawing.Size(124, 25);
-            this.editFinalDiagnosticButton.TabIndex = 15;
+            this.editFinalDiagnosticButton.TabIndex = 16;
             this.editFinalDiagnosticButton.Text = "Enter Final Diagnostic";
             this.editFinalDiagnosticButton.UseVisualStyleBackColor = false;
             this.editFinalDiagnosticButton.Visible = false;
@@ -366,7 +387,7 @@ namespace westga_emr.User_Controls
             this.viewLabTestButton.Location = new System.Drawing.Point(624, 4);
             this.viewLabTestButton.Name = "viewLabTestButton";
             this.viewLabTestButton.Size = new System.Drawing.Size(116, 25);
-            this.viewLabTestButton.TabIndex = 16;
+            this.viewLabTestButton.TabIndex = 15;
             this.viewLabTestButton.Text = "View Lab Orders";
             this.viewLabTestButton.UseVisualStyleBackColor = false;
             this.viewLabTestButton.Visible = false;
@@ -413,7 +434,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 230F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
             this.tableLayoutPanel3.Controls.Add(this.pulseError, 3, 2);
             this.tableLayoutPanel3.Controls.Add(this.systolicPressureTextBox, 0, 1);
             this.tableLayoutPanel3.Controls.Add(pulseLabel, 3, 0);
@@ -435,6 +456,36 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel3.Size = new System.Drawing.Size(790, 73);
             this.tableLayoutPanel3.TabIndex = 22;
             // 
+            // systolicPressureTextBox
+            // 
+            this.systolicPressureTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.systolicPressureTextBox.Location = new System.Drawing.Point(3, 22);
+            this.systolicPressureTextBox.Name = "systolicPressureTextBox";
+            this.systolicPressureTextBox.ReadOnly = true;
+            this.systolicPressureTextBox.Size = new System.Drawing.Size(179, 20);
+            this.systolicPressureTextBox.TabIndex = 4;
+            // 
+            // dialosticPressureTextBox
+            // 
+            this.dialosticPressureTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dialosticPressureTextBox.Location = new System.Drawing.Point(188, 22);
+            this.dialosticPressureTextBox.Name = "dialosticPressureTextBox";
+            this.dialosticPressureTextBox.ReadOnly = true;
+            this.dialosticPressureTextBox.Size = new System.Drawing.Size(180, 20);
+            this.dialosticPressureTextBox.TabIndex = 5;
+            // 
+            // bodyTemperatureError
+            // 
+            this.bodyTemperatureError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bodyTemperatureError.AutoSize = true;
+            this.bodyTemperatureError.ForeColor = System.Drawing.Color.Red;
+            this.bodyTemperatureError.Location = new System.Drawing.Point(374, 52);
+            this.bodyTemperatureError.Name = "bodyTemperatureError";
+            this.bodyTemperatureError.Size = new System.Drawing.Size(180, 21);
+            this.bodyTemperatureError.TabIndex = 16;
+            // 
             // systolicPressureError
             // 
             this.systolicPressureError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -444,8 +495,20 @@ namespace westga_emr.User_Controls
             this.systolicPressureError.ForeColor = System.Drawing.Color.Red;
             this.systolicPressureError.Location = new System.Drawing.Point(3, 52);
             this.systolicPressureError.Name = "systolicPressureError";
-            this.systolicPressureError.Size = new System.Drawing.Size(180, 21);
+            this.systolicPressureError.Size = new System.Drawing.Size(179, 21);
             this.systolicPressureError.TabIndex = 18;
+            // 
+            // dialosticPressureError
+            // 
+            this.dialosticPressureError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dialosticPressureError.AutoSize = true;
+            this.dialosticPressureError.ForeColor = System.Drawing.Color.Red;
+            this.dialosticPressureError.Location = new System.Drawing.Point(188, 52);
+            this.dialosticPressureError.Name = "dialosticPressureError";
+            this.dialosticPressureError.Size = new System.Drawing.Size(180, 21);
+            this.dialosticPressureError.TabIndex = 15;
             // 
             // weightError
             // 
@@ -459,39 +522,6 @@ namespace westga_emr.User_Controls
             this.weightError.Size = new System.Drawing.Size(258, 21);
             this.weightError.TabIndex = 17;
             // 
-            // bodyTemperatureError
-            // 
-            this.bodyTemperatureError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bodyTemperatureError.AutoSize = true;
-            this.bodyTemperatureError.ForeColor = System.Drawing.Color.Red;
-            this.bodyTemperatureError.Location = new System.Drawing.Point(375, 52);
-            this.bodyTemperatureError.Name = "bodyTemperatureError";
-            this.bodyTemperatureError.Size = new System.Drawing.Size(180, 21);
-            this.bodyTemperatureError.TabIndex = 16;
-            // 
-            // dialosticPressureError
-            // 
-            this.dialosticPressureError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dialosticPressureError.AutoSize = true;
-            this.dialosticPressureError.ForeColor = System.Drawing.Color.Red;
-            this.dialosticPressureError.Location = new System.Drawing.Point(189, 52);
-            this.dialosticPressureError.Name = "dialosticPressureError";
-            this.dialosticPressureError.Size = new System.Drawing.Size(180, 21);
-            this.dialosticPressureError.TabIndex = 15;
-            // 
-            // systolicPressureTextBox
-            // 
-            this.systolicPressureTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.systolicPressureTextBox.Location = new System.Drawing.Point(3, 22);
-            this.systolicPressureTextBox.Name = "systolicPressureTextBox";
-            this.systolicPressureTextBox.ReadOnly = true;
-            this.systolicPressureTextBox.Size = new System.Drawing.Size(180, 20);
-            this.systolicPressureTextBox.TabIndex = 5;
-            // 
             // weightTextBox
             // 
             this.weightTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -499,16 +529,7 @@ namespace westga_emr.User_Controls
             this.weightTextBox.Name = "weightTextBox";
             this.weightTextBox.ReadOnly = true;
             this.weightTextBox.Size = new System.Drawing.Size(258, 20);
-            this.weightTextBox.TabIndex = 4;
-            // 
-            // dialosticPressureTextBox
-            // 
-            this.dialosticPressureTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dialosticPressureTextBox.Location = new System.Drawing.Point(189, 22);
-            this.dialosticPressureTextBox.Name = "dialosticPressureTextBox";
-            this.dialosticPressureTextBox.ReadOnly = true;
-            this.dialosticPressureTextBox.Size = new System.Drawing.Size(180, 20);
-            this.dialosticPressureTextBox.TabIndex = 6;
+            this.weightTextBox.TabIndex = 3;
             // 
             // tableLayoutPanel5
             // 
@@ -532,15 +553,6 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel5.Size = new System.Drawing.Size(790, 79);
             this.tableLayoutPanel5.TabIndex = 21;
             // 
-            // initialDiagnosticTextBox
-            // 
-            this.initialDiagnosticTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.initialDiagnosticTextBox.Location = new System.Drawing.Point(266, 20);
-            this.initialDiagnosticTextBox.Name = "initialDiagnosticTextBox";
-            this.initialDiagnosticTextBox.ReadOnly = true;
-            this.initialDiagnosticTextBox.Size = new System.Drawing.Size(257, 20);
-            this.initialDiagnosticTextBox.TabIndex = 2;
-            // 
             // visitDateTextBox
             // 
             this.visitDateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -549,7 +561,7 @@ namespace westga_emr.User_Controls
             this.visitDateTextBox.Name = "visitDateTextBox";
             this.visitDateTextBox.ReadOnly = true;
             this.visitDateTextBox.Size = new System.Drawing.Size(257, 20);
-            this.visitDateTextBox.TabIndex = 3;
+            this.visitDateTextBox.TabIndex = 2;
             // 
             // nurseTextBox
             // 
@@ -560,18 +572,6 @@ namespace westga_emr.User_Controls
             this.nurseTextBox.ReadOnly = true;
             this.nurseTextBox.Size = new System.Drawing.Size(257, 20);
             this.nurseTextBox.TabIndex = 1;
-            // 
-            // initialDiagnosticError
-            // 
-            this.initialDiagnosticError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.initialDiagnosticError.AutoSize = true;
-            this.initialDiagnosticError.ForeColor = System.Drawing.Color.Red;
-            this.initialDiagnosticError.Location = new System.Drawing.Point(266, 44);
-            this.initialDiagnosticError.Name = "initialDiagnosticError";
-            this.initialDiagnosticError.Size = new System.Drawing.Size(257, 18);
-            this.initialDiagnosticError.TabIndex = 8;
             // 
             // messageLabel
             // 

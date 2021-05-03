@@ -11,5 +11,7 @@ namespace westga_emr.Model.DTO
         public DateTime OrderedDate { get; set; }
         public DateTime TestDate { get; set; }
         public int TestCode { get; set; }
+
+        public bool? IsNormal { get; set; }
     }
 }
