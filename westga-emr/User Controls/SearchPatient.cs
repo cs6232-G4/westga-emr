@@ -240,7 +240,8 @@ namespace westga_emr.User_Controls
                 var hasUpcomingAppointment = this.appointmentController.GetPatientsAppointments(new Patient(patient.PatientId, patient.Id, true)).Exists(x=>x.AppointmentDateTime >= DateTime.Now);
                 if (!hasUpcomingAppointment)
                 {
-                    const string message = "Are you sure you want to delete this patient?";
+                    string message = "Are you sure you want to delete this patient?"
+                        + Environment.NewLine + $"Patient: {patient.FullName}";
                     string caption = $"Delete {patient.FirstName}  {patient.LastName}";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
@@ -266,6 +267,7 @@ namespace westga_emr.User_Controls
         /// </summary>
         private void AppointmentDatatGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             appointmentDTO = (AppointmentDTO)appointmentsDataGridView.Rows[e.RowIndex].DataBoundItem;
             if (appointmentsDataGridView.Columns[e.ColumnIndex].Name == "ViewVisit")
             {
@@ -291,7 +293,36 @@ namespace westga_emr.User_Controls
                     MessageBox.Show("Appointments less than 24 hours cannot be edited.", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     
                 }
-            } 
+            } else if (appointmentsDataGridView.Columns[e.ColumnIndex].Name == "DeleteAppointment")
+            {
+                var currentAppointment = new Appointment(appointmentDTO.AppointmentID,
+                    appointmentDTO.PatientID,
+                    appointmentDTO.DoctorID,
+                    appointmentDTO.AppointmentDateTime,
+                    appointmentDTO.ReasonForVisit);
+                var visits = this.visitController.GetVisitByAppointment(currentAppointment).Count;
+                if (visits < 1)
+                 {
+                    string message = "Are you sure you want to delete this appointment?" 
+                        + Environment.NewLine + $"Doctor: {appointmentDTO.DoctorName}"
+                        + Environment.NewLine + $"Appointement Time: {appointmentDTO.AppointmentDateTime.ToShortTimeString()}";
+                    string caption = $"Delete appointment {appointmentDTO.AppointmentID}";
+                    var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        if (appointmentController.DeleteAppointment(currentAppointment))
+                        {
+                            MessageBox.Show("Appointment deleted successfully");
+                            RefreshDataGrid();
+                        }
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Appointment has a visit information and can't be deleted.");
+                }
+            }
         }
 
         private void RefreshDataGrid()
