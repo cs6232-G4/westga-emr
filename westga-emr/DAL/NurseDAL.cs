@@ -162,10 +162,10 @@ namespace westga_emr.DAL
         /// <param name="currentUser">Nurse in question</param>
         /// <param name="visit">Visit in question</param>
         /// <returns>Whether or not this is the Nurse of the Visit</returns>
-        public static bool IsThisNurseTheNurseOfTheVisit(UserDTO currentUser, Visit visit)
+        public static bool IsThisNurseTheNurseOfTheVisit(UserDTO currentUser, VisitDTO visit)
         {
             bool isThisTheNurse = false;
-            String selectStatement = @"SELECT Visit.nurseID FROM Visit WHERE Visit.id = @visitID";
+            String selectStatement = @"SELECT Visit.nurseID as nurseID FROM Visit WHERE Visit.id = @visitID";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 using (SqlCommand command = new SqlCommand(selectStatement, connection))
@@ -174,7 +174,12 @@ namespace westga_emr.DAL
                     command.Parameters.AddWithValue("@visitID", visit.ID);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        isThisTheNurse = currentUser.NurseId == (int)command.ExecuteScalar();
+                        int nurseID = reader.GetOrdinal("nurseID");
+                        while (reader.Read())
+                        {
+                            int vsitNurseID = reader.GetInt32(nurseID);
+                            isThisTheNurse = currentUser.NurseId == vsitNurseID;
+                        }
                     }
                 }
             }
