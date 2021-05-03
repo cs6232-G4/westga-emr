@@ -45,9 +45,9 @@ namespace westga_emr.DAL
                                 results = reader.GetString(ordResults);
                             }
                             bool ? isNormal = null;
-                            if (!reader.IsDBNull(ordResults))
+                            if (!reader.IsDBNull(ordIsNormal))
                             {
-                                isNormal = reader.GetBoolean(ordResults);
+                                isNormal = reader.GetBoolean(ordIsNormal);
                             }
                             relations.Add(new Lab_Orders_have_Lab_Tests(reader.GetInt64(ordID),
                                 reader.GetInt32(ordCode), testPerformed, results, isNormal));
@@ -67,7 +67,8 @@ namespace westga_emr.DAL
             List<LabOrderTestDTO> labTests = new List<LabOrderTestDTO>();
             string selectStatement = @"select l.labOrderID, l.labTestCode, l.testPerformed, l.results,
 		                                o.visitID, o.dateOrdered,
-		                                t.name as testName
+		                                t.name as testName ,
+                                        l.isNormal as isNormal
                                         from Lab_Orders_have_Lab_Tests l
                                         inner join Lab_Order o on l.labOrderID = o.id
                                         inner join Lab_Test t on l.labTestCode = t.code
@@ -89,6 +90,10 @@ namespace westga_emr.DAL
                             labTest.TestCode = (int)reader["labTestCode"];
                             labTest.TestName = reader["testName"].ToString();
                             labTest.TestResult = reader["results"].ToString();
+                            if (!reader.IsDBNull(reader.GetOrdinal("isNormal")))
+                            {
+                                labTest.IsNormal = (bool)reader["isNormal"];
+                            }
 
                             if (!reader.IsDBNull(reader.GetOrdinal("testPerformed")))
                             {
@@ -113,8 +118,8 @@ namespace westga_emr.DAL
         public static bool InsertLab_Orders_have_Lab_Tests(Lab_Orders_have_Lab_Tests relation)
         {
             Object obj = null;
-            String insertStatement = @"INSERT INTO Lab_Orders_have_Lab_Tests (labOrderID, labTestCode, testPerformed, results)
-			                            VALUES (@labOrderID, @labTestCode, @testPerformed, @results)";
+            String insertStatement = @"INSERT INTO Lab_Orders_have_Lab_Tests (labOrderID, labTestCode, testPerformed, results , isNormal)
+			                            VALUES (@labOrderID, @labTestCode, @testPerformed, @results ,@isNormal)";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 connection.Open();
@@ -157,6 +162,15 @@ namespace westga_emr.DAL
                         command.Parameters.AddWithValue("@results", relation.Results);
                     }
 
+                    if (relation.IsNormal == null)
+                    {
+                        command.Parameters.AddWithValue("@IsNormal", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@IsNormal", relation.IsNormal);
+                    }
+
                     obj = command.ExecuteScalar();
                 }
             }
@@ -179,7 +193,7 @@ namespace westga_emr.DAL
         {
             int rowsUpdated;
             String updateStatement = @"UPDATE Lab_Orders_have_Lab_Tests
-			                            SET testPerformed = @testPerformed, results = @results
+			                            SET testPerformed = @testPerformed, results = @results , IsNormal = @IsNormal
 			                            WHERE labOrderID = @labOrderID AND labTestCode = @labTestCode";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -206,6 +220,7 @@ namespace westga_emr.DAL
 
                     command.Parameters.AddWithValue("@testPerformed", relation.TestPerformed);
                     command.Parameters.AddWithValue("@results", relation.Results);
+                    command.Parameters.AddWithValue("@IsNormal", relation.IsNormal);
 
                     rowsUpdated = command.ExecuteNonQuery();
                 }

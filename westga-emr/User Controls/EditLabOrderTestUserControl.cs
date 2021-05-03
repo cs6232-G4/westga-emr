@@ -36,6 +36,7 @@ namespace westga_emr.User_Controls
             this.testNameTextBox.Text = selectedLabOrderTestDTO.TestName;
             this.orderDateTimePicker.Value = selectedLabOrderTestDTO.OrderedDate;
             this.testResultTextBox.Text = selectedLabOrderTestDTO.TestResult;
+            this.normalRadioButton.Checked = selectedLabOrderTestDTO.IsNormal;
             this.messageLabel.Text = "";
             this.messageLabel.Visible = false;
             if (!String.IsNullOrWhiteSpace(selectedLabOrderTestDTO.TestResult))
@@ -45,6 +46,8 @@ namespace westga_emr.User_Controls
                 this.orderDateTimePicker.Enabled = false;
                 this.testResultTextBox.ReadOnly = true;
                 this.updateLabTestButton.Visible = false;
+                this.normalRadioButton.Enabled = false;
+                this.abNormalRadioButton.Enabled = false;
                 this.editLabOrderTestLabel.Text = "View Lab Test";
                 this.testPerformedDateTimePicker.Value = selectedLabOrderTestDTO.TestDate;
                 this.messageLabel.Text = "Lab Test Cannot be modified as test results are already submitted!!";
@@ -69,9 +72,12 @@ namespace westga_emr.User_Controls
                 this.testDateError.Text = "";
                 this.messageLabel.Visible = false;
                 this.testDateError.Text = "";
+                this.testResultStatusErrorlabel.Visible = false;
+                this.testResultStatusErrorlabel.Text = "";
                 bool isTestResultsEmptyOrNull = String.IsNullOrWhiteSpace(this.testResultTextBox.Text);
                 bool isTestDateInvalid = this.testPerformedDateTimePicker.Value < selectedLabOrderTestDTO.OrderedDate;
-                if (isTestResultsEmptyOrNull || isTestDateInvalid)
+                bool isTestResultRadioBtnSelected = this.CheckIfTestResultRadioButtonSelected();
+                if (isTestResultsEmptyOrNull || isTestDateInvalid || !isTestResultRadioBtnSelected)
                 {
                     if (isTestResultsEmptyOrNull)
                     {
@@ -84,7 +90,13 @@ namespace westga_emr.User_Controls
                         this.testDateError.Visible = true;
                         this.testDateError.Text = "The Test Date cannot be before test order date!!";
                     }
-                    
+
+                    if (!isTestResultRadioBtnSelected)
+                    {
+                        this.testResultStatusErrorlabel.Visible = true;
+                        this.testResultStatusErrorlabel.Text = "The Test Result Status Must be seleced!!";
+                    }
+
                 }
                 else
                 {
@@ -94,7 +106,7 @@ namespace westga_emr.User_Controls
                                                                         this.selectedLabOrderTestDTO.TestCode,
                                                                         this.testPerformedDateTimePicker.Value,
                                                                         this.testResultTextBox.Text,
-                                                                        null));
+                                                                        this.normalRadioButton.Checked?true:false));
                     if (this.labOrdersTestController.EnterTestResults(labOrderHaveLabTestLst.ToArray()))
                     {
                         Form successfullPersistDialog = new SuccessfullPersistDialog("Lab Test Updated Successfully!!.");
@@ -120,6 +132,11 @@ namespace westga_emr.User_Controls
                 this.messageLabel.Visible = true;
             }
            
+        }
+
+        private bool CheckIfTestResultRadioButtonSelected()
+        {
+            return this.normalRadioButton.Checked || this.abNormalRadioButton.Checked;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

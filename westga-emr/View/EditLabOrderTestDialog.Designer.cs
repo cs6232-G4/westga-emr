@@ -37,7 +37,7 @@ namespace westga_emr.View
             this.editLabOrderTestUserControl.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.editLabOrderTestUserControl.Location = new System.Drawing.Point(-2, 0);
             this.editLabOrderTestUserControl.Name = "editLabOrderTestUserControl";
-            this.editLabOrderTestUserControl.Size = new System.Drawing.Size(825, 325);
+            this.editLabOrderTestUserControl.Size = new System.Drawing.Size(833, 484);
             this.editLabOrderTestUserControl.TabIndex = 0;
             // 
             // EditLabOrderTestDialog
@@ -45,7 +45,7 @@ namespace westga_emr.View
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(827, 324);
+            this.ClientSize = new System.Drawing.Size(834, 484);
             this.Controls.Add(this.editLabOrderTestUserControl);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
