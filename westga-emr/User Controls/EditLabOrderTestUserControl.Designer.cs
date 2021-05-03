@@ -77,9 +77,9 @@ namespace westga_emr.User_Controls
             testDateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             testDateLabel.AutoSize = true;
-            testDateLabel.Location = new System.Drawing.Point(526, 15);
+            testDateLabel.Location = new System.Drawing.Point(524, 15);
             testDateLabel.Name = "testDateLabel";
-            testDateLabel.Size = new System.Drawing.Size(258, 13);
+            testDateLabel.Size = new System.Drawing.Size(260, 13);
             testDateLabel.TabIndex = 9;
             testDateLabel.Text = "Test Date";
             // 
@@ -88,9 +88,9 @@ namespace westga_emr.User_Controls
             orderDateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             orderDateLabel.AutoSize = true;
-            orderDateLabel.Location = new System.Drawing.Point(254, 15);
+            orderDateLabel.Location = new System.Drawing.Point(253, 15);
             orderDateLabel.Name = "orderDateLabel";
-            orderDateLabel.Size = new System.Drawing.Size(266, 13);
+            orderDateLabel.Size = new System.Drawing.Size(265, 13);
             orderDateLabel.TabIndex = 8;
             orderDateLabel.Text = "Order Date";
             // 
@@ -101,7 +101,7 @@ namespace westga_emr.User_Controls
             testResultLabel.AutoSize = true;
             testResultLabel.Location = new System.Drawing.Point(3, 15);
             testResultLabel.Name = "testResultLabel";
-            testResultLabel.Size = new System.Drawing.Size(245, 13);
+            testResultLabel.Size = new System.Drawing.Size(244, 13);
             testResultLabel.TabIndex = 7;
             testResultLabel.Text = "Test Result *";
             // 
@@ -137,6 +137,17 @@ namespace westga_emr.User_Controls
             labOrderIDLabel.Size = new System.Drawing.Size(257, 13);
             labOrderIDLabel.TabIndex = 1;
             labOrderIDLabel.Text = "Lab Order ID";
+            // 
+            // testResultStatusLabel
+            // 
+            testResultStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            testResultStatusLabel.AutoSize = true;
+            testResultStatusLabel.Location = new System.Drawing.Point(3, 11);
+            testResultStatusLabel.Name = "testResultStatusLabel";
+            testResultStatusLabel.Size = new System.Drawing.Size(108, 13);
+            testResultStatusLabel.TabIndex = 16;
+            testResultStatusLabel.Text = "Test Result Status *";
             // 
             // closeButton
             // 
@@ -175,7 +186,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.93537F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.06463F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 263F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 265F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Controls.Add(orderDateLabel, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.testResultTextBox, 0, 1);
@@ -200,7 +211,7 @@ namespace westga_emr.User_Controls
             this.testResultTextBox.Location = new System.Drawing.Point(3, 60);
             this.testResultTextBox.Name = "testResultTextBox";
             this.testResultTextBox.ReadOnly = true;
-            this.testResultTextBox.Size = new System.Drawing.Size(245, 20);
+            this.testResultTextBox.Size = new System.Drawing.Size(244, 20);
             this.testResultTextBox.TabIndex = 4;
             // 
             // testResultError
@@ -212,16 +223,16 @@ namespace westga_emr.User_Controls
             this.testResultError.ForeColor = System.Drawing.Color.Red;
             this.testResultError.Location = new System.Drawing.Point(3, 112);
             this.testResultError.Name = "testResultError";
-            this.testResultError.Size = new System.Drawing.Size(245, 20);
+            this.testResultError.Size = new System.Drawing.Size(244, 20);
             this.testResultError.TabIndex = 10;
             // 
             // orderDateTimePicker
             // 
             this.orderDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.orderDateTimePicker.Location = new System.Drawing.Point(254, 60);
+            this.orderDateTimePicker.Location = new System.Drawing.Point(253, 60);
             this.orderDateTimePicker.MaxDate = new System.DateTime(2021, 5, 19, 7, 5, 0, 0);
             this.orderDateTimePicker.Name = "orderDateTimePicker";
-            this.orderDateTimePicker.Size = new System.Drawing.Size(266, 20);
+            this.orderDateTimePicker.Size = new System.Drawing.Size(265, 20);
             this.orderDateTimePicker.TabIndex = 13;
             this.orderDateTimePicker.Value = new System.DateTime(2021, 4, 19, 0, 0, 0, 0);
             // 
@@ -232,7 +243,7 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel10.Controls.Add(this.testTime, 0, 1);
             this.tableLayoutPanel10.Controls.Add(this.testPerformedDateTimePicker, 0, 0);
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(526, 31);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(524, 31);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 2;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -254,6 +265,7 @@ namespace westga_emr.User_Controls
             this.testTime.Size = new System.Drawing.Size(251, 21);
             this.testTime.TabIndex = 15;
             this.testTime.ValueMember = "Value";
+            this.testTime.SelectedIndexChanged += new System.EventHandler(this.TestTime_SelectedIndexChanged);
             // 
             // testPerformedDateTimePicker
             // 
@@ -264,6 +276,7 @@ namespace westga_emr.User_Controls
             this.testPerformedDateTimePicker.Size = new System.Drawing.Size(251, 20);
             this.testPerformedDateTimePicker.TabIndex = 11;
             this.testPerformedDateTimePicker.Value = new System.DateTime(2021, 4, 19, 0, 0, 0, 0);
+            this.testPerformedDateTimePicker.ValueChanged += new System.EventHandler(this.TestPerformedDateTimePicker_ValueChanged);
             // 
             // testDateError
             // 
@@ -272,9 +285,9 @@ namespace westga_emr.User_Controls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.testDateError.AutoSize = true;
             this.testDateError.ForeColor = System.Drawing.Color.Red;
-            this.testDateError.Location = new System.Drawing.Point(526, 112);
+            this.testDateError.Location = new System.Drawing.Point(524, 112);
             this.testDateError.Name = "testDateError";
-            this.testDateError.Size = new System.Drawing.Size(258, 20);
+            this.testDateError.Size = new System.Drawing.Size(260, 20);
             this.testDateError.TabIndex = 12;
             // 
             // tableLayoutPanel5
@@ -408,17 +421,6 @@ namespace westga_emr.User_Controls
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(191, 53);
             this.tableLayoutPanel4.TabIndex = 38;
-            // 
-            // testResultStatusLabel
-            // 
-            testResultStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            testResultStatusLabel.AutoSize = true;
-            testResultStatusLabel.Location = new System.Drawing.Point(3, 11);
-            testResultStatusLabel.Name = "testResultStatusLabel";
-            testResultStatusLabel.Size = new System.Drawing.Size(108, 13);
-            testResultStatusLabel.TabIndex = 16;
-            testResultStatusLabel.Text = "Test Result Status *";
             // 
             // testResultStatusErrorlabel
             // 
