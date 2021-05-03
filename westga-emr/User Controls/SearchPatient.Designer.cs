@@ -36,13 +36,13 @@ namespace westga_emr.User_Controls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dobSearchLabel = new System.Windows.Forms.Label();
             this.lnameSearchLabel = new System.Windows.Forms.Label();
             this.fnameSearchLabel = new System.Windows.Forms.Label();
@@ -64,6 +64,12 @@ namespace westga_emr.User_Controls
             this.appointmentDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.appointmentHelperBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.doctorNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.appointmentDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reasonForVisitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewVisit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.EditAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DeleteAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
             this.PatientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,12 +80,6 @@ namespace westga_emr.User_Controls
             this.ViewAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
             this.EditPatient = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeletePatient = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.doctorNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.appointmentDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.reasonForVisitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ViewVisit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.EditAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DeleteAppointment = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -440,6 +440,78 @@ namespace westga_emr.User_Controls
             // 
             this.appointmentHelperBindingSource.DataSource = typeof(westga_emr.Helpers.AppointmentHelper);
             // 
+            // doctorNameDataGridViewTextBoxColumn
+            // 
+            this.doctorNameDataGridViewTextBoxColumn.DataPropertyName = "DoctorName";
+            this.doctorNameDataGridViewTextBoxColumn.HeaderText = "Doctor Name";
+            this.doctorNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.doctorNameDataGridViewTextBoxColumn.Name = "doctorNameDataGridViewTextBoxColumn";
+            this.doctorNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.doctorNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // appointmentDateTimeDataGridViewTextBoxColumn
+            // 
+            this.appointmentDateTimeDataGridViewTextBoxColumn.DataPropertyName = "AppointmentDateTime";
+            this.appointmentDateTimeDataGridViewTextBoxColumn.HeaderText = "Appointment Date";
+            this.appointmentDateTimeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.appointmentDateTimeDataGridViewTextBoxColumn.Name = "appointmentDateTimeDataGridViewTextBoxColumn";
+            this.appointmentDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.appointmentDateTimeDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // reasonForVisitDataGridViewTextBoxColumn
+            // 
+            this.reasonForVisitDataGridViewTextBoxColumn.DataPropertyName = "ReasonForVisit";
+            this.reasonForVisitDataGridViewTextBoxColumn.HeaderText = "Reason For Visit";
+            this.reasonForVisitDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.reasonForVisitDataGridViewTextBoxColumn.Name = "reasonForVisitDataGridViewTextBoxColumn";
+            this.reasonForVisitDataGridViewTextBoxColumn.ReadOnly = true;
+            this.reasonForVisitDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // ViewVisit
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Blue;
+            this.ViewVisit.DefaultCellStyle = dataGridViewCellStyle9;
+            this.ViewVisit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ViewVisit.HeaderText = "";
+            this.ViewVisit.MinimumWidth = 6;
+            this.ViewVisit.Name = "ViewVisit";
+            this.ViewVisit.ReadOnly = true;
+            this.ViewVisit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ViewVisit.Text = "View Visit";
+            this.ViewVisit.UseColumnTextForButtonValue = true;
+            this.ViewVisit.Width = 125;
+            // 
+            // EditAppointment
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            this.EditAppointment.DefaultCellStyle = dataGridViewCellStyle10;
+            this.EditAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.EditAppointment.HeaderText = "";
+            this.EditAppointment.MinimumWidth = 6;
+            this.EditAppointment.Name = "EditAppointment";
+            this.EditAppointment.ReadOnly = true;
+            this.EditAppointment.Text = "Edit Appointment";
+            this.EditAppointment.UseColumnTextForButtonValue = true;
+            this.EditAppointment.Width = 125;
+            // 
+            // DeleteAppointment
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            this.DeleteAppointment.DefaultCellStyle = dataGridViewCellStyle11;
+            this.DeleteAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DeleteAppointment.HeaderText = "";
+            this.DeleteAppointment.Name = "DeleteAppointment";
+            this.DeleteAppointment.ReadOnly = true;
+            this.DeleteAppointment.Text = "Delete";
+            this.DeleteAppointment.UseColumnTextForButtonValue = true;
+            // 
             // PatientId
             // 
             this.PatientId.DataPropertyName = "PatientId";
@@ -530,6 +602,7 @@ namespace westga_emr.User_Controls
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.DarkGreen;
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
             this.EditPatient.DefaultCellStyle = dataGridViewCellStyle4;
+            this.EditPatient.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.EditPatient.HeaderText = "";
             this.EditPatient.MinimumWidth = 6;
             this.EditPatient.Name = "EditPatient";
@@ -544,83 +617,13 @@ namespace westga_emr.User_Controls
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
             this.DeletePatient.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DeletePatient.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.DeletePatient.HeaderText = "";
             this.DeletePatient.MinimumWidth = 6;
             this.DeletePatient.Name = "DeletePatient";
             this.DeletePatient.ReadOnly = true;
             this.DeletePatient.Text = "Delete";
             this.DeletePatient.UseColumnTextForButtonValue = true;
-            // 
-            // doctorNameDataGridViewTextBoxColumn
-            // 
-            this.doctorNameDataGridViewTextBoxColumn.DataPropertyName = "DoctorName";
-            this.doctorNameDataGridViewTextBoxColumn.HeaderText = "Doctor Name";
-            this.doctorNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.doctorNameDataGridViewTextBoxColumn.Name = "doctorNameDataGridViewTextBoxColumn";
-            this.doctorNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.doctorNameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // appointmentDateTimeDataGridViewTextBoxColumn
-            // 
-            this.appointmentDateTimeDataGridViewTextBoxColumn.DataPropertyName = "AppointmentDateTime";
-            this.appointmentDateTimeDataGridViewTextBoxColumn.HeaderText = "Appointment Date";
-            this.appointmentDateTimeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.appointmentDateTimeDataGridViewTextBoxColumn.Name = "appointmentDateTimeDataGridViewTextBoxColumn";
-            this.appointmentDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.appointmentDateTimeDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // reasonForVisitDataGridViewTextBoxColumn
-            // 
-            this.reasonForVisitDataGridViewTextBoxColumn.DataPropertyName = "ReasonForVisit";
-            this.reasonForVisitDataGridViewTextBoxColumn.HeaderText = "Reason For Visit";
-            this.reasonForVisitDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.reasonForVisitDataGridViewTextBoxColumn.Name = "reasonForVisitDataGridViewTextBoxColumn";
-            this.reasonForVisitDataGridViewTextBoxColumn.ReadOnly = true;
-            this.reasonForVisitDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // ViewVisit
-            // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Blue;
-            this.ViewVisit.DefaultCellStyle = dataGridViewCellStyle9;
-            this.ViewVisit.HeaderText = "";
-            this.ViewVisit.MinimumWidth = 6;
-            this.ViewVisit.Name = "ViewVisit";
-            this.ViewVisit.ReadOnly = true;
-            this.ViewVisit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ViewVisit.Text = "View Visit";
-            this.ViewVisit.UseColumnTextForButtonValue = true;
-            this.ViewVisit.Width = 125;
-            // 
-            // EditAppointment
-            // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            this.EditAppointment.DefaultCellStyle = dataGridViewCellStyle10;
-            this.EditAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.EditAppointment.HeaderText = "";
-            this.EditAppointment.MinimumWidth = 6;
-            this.EditAppointment.Name = "EditAppointment";
-            this.EditAppointment.ReadOnly = true;
-            this.EditAppointment.Text = "Edit Appointment";
-            this.EditAppointment.UseColumnTextForButtonValue = true;
-            this.EditAppointment.Width = 125;
-            // 
-            // DeleteAppointment
-            // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            this.DeleteAppointment.DefaultCellStyle = dataGridViewCellStyle11;
-            this.DeleteAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.DeleteAppointment.HeaderText = "";
-            this.DeleteAppointment.Name = "DeleteAppointment";
-            this.DeleteAppointment.ReadOnly = true;
-            this.DeleteAppointment.Text = "Delete";
-            this.DeleteAppointment.UseColumnTextForButtonValue = true;
             // 
             // SearchPatient
             // 

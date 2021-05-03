@@ -305,7 +305,7 @@ namespace westga_emr.User_Controls
                  {
                     string message = "Are you sure you want to delete this appointment?" 
                         + Environment.NewLine + $"Doctor: {appointmentDTO.DoctorName}"
-                        + Environment.NewLine + $"Appointement Time: {appointmentDTO.AppointmentDateTime.ToShortTimeString()}";
+                        + Environment.NewLine + $"Appointement Time: {appointmentDTO.AppointmentDateTime.ToLongTimeString()}";
                     string caption = $"Delete appointment {appointmentDTO.AppointmentID}";
                     var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
