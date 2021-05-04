@@ -202,14 +202,21 @@ namespace westga_emr.User_Controls
             visit = (VisitDTO)visitsDataGridView.Rows[e.RowIndex].DataBoundItem;
             if (visitsDataGridView.Columns[e.ColumnIndex].Name == "ViewTests")
             {
-                this.testsDataGrid.Visible = true;
+               
                 this.testsDataGrid.DataSource = null;
                 visitTests = labOrdersTestController.GetVisitTests(Convert.ToInt32(visit.ID));
                 if (visitTests.Count <= 0)
                 {
                     MessageBox.Show($"No test found in the system for visit {visit.ID}.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.testsDataGrid.Visible = false;
+                    this.testsDataGrid.DataSource = null;
                 }
-                this.testsDataGrid.DataSource = visitTests;
+                else
+                {
+                    this.testsDataGrid.Visible = true;
+                    this.testsDataGrid.DataSource = visitTests;
+                }
+                
             }
             else if (visitsDataGridView.Columns[e.ColumnIndex].Name == "OrderTest")
             {

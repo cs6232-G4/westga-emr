@@ -175,12 +175,17 @@ namespace westga_emr.DAL
         public static List<VisitDTO> GetVisitByAppointment(Appointment appointment)
         {
             List<VisitDTO> visits = new List<VisitDTO>();
-            String selectStatement = @"SELECT CAST( Visit.id as INT)  as visitID,   CAST(appointmentID AS INT) appointmentID,  PERSON.firstName +' ' + PERSON.lastName AS nurse , visitDateTime, 
-	                                    initialDiagnosis, weight, systolicPressure, diastolicPressure, 
+            String selectStatement = @"SELECT CAST( Visit.id as INT)  as visitID,   CAST(appointmentID AS INT) appointmentID, 
+										d.firstName +' ' + d.lastName AS doctor,
+										n.firstName +' ' + n.lastName AS nurse , 
+										visitDateTime, initialDiagnosis, weight, systolicPressure, diastolicPressure, 
 	                                    bodyTemperature, pulse, symptoms, finalDiagnosis
                                     FROM Visit
+									join Appointment on VISIT.appointmentID = Appointment.id
+									join Doctor on Appointment.doctorID = Doctor.id
+									JOIN PERSON d ON Doctor.personID = d.ID
                                     JOIN NURSE ON VISIT.nurseID = NURSE.id
-								    JOIN PERSON ON NURSE.personID = PERSON.ID
+								    JOIN PERSON n ON NURSE.personID = n.ID
                                     WHERE appointmentID = @appointmentID";
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
@@ -192,6 +197,7 @@ namespace westga_emr.DAL
                     {
                         int ordVisitID = reader.GetOrdinal("visitID");
                         int ordApptID = reader.GetOrdinal("appointmentID");
+                        int ordDoctor = reader.GetOrdinal("doctor");
                         int ordNurse = reader.GetOrdinal("nurse");
                         int ordVisitDateTime = reader.GetOrdinal("visitDateTime");
                         int ordInitialDiagnosis = reader.GetOrdinal("initialDiagnosis");
@@ -218,6 +224,7 @@ namespace westga_emr.DAL
                             {
                                 ID = reader.GetInt32(ordVisitID),
                                 AppointmentID = reader.GetInt32(ordApptID),
+                                Doctor = reader.GetString(ordDoctor),
                                 Nurse = reader.GetString(ordNurse),
                                 VisitDateTime = reader.GetDateTime(ordVisitDateTime),
                                 InitialDiagnosis = reader.GetString(ordInitialDiagnosis),
@@ -302,12 +309,15 @@ namespace westga_emr.DAL
         {
             List<VisitDTO> visits = new List<VisitDTO>();
             string selectStatement = @"SELECT a.reasonForVisit, a.appointmentDateTime, a.id as appointmentID,
+										CONCAT(d.firstName, ' ', d.lastName) as doctor,
                                         CONCAT(p.firstName, ' ', p.lastName) as nurse,
                                         v.bodyTemperature, v.diastolicPressure, v.id as visitID,
                                         v.initialDiagnosis, v.pulse, v.symptoms, 
                                         v.systolicPressure, v.visitDateTime, v.weight, v.finalDiagnosis
                                         FROM Appointment a
                                         inner JOIN Visit v on a.id = v.appointmentID
+										join Doctor on a.doctorID = Doctor.id
+										JOIN PERSON d ON Doctor.personID = d.ID
                                         INNER JOIN NURSE n ON v.nurseID = n.id
                                         INNER JOIN PERSON p ON n.personID = p.ID
                                         where a.patientID = @PatientId";
@@ -334,6 +344,7 @@ namespace westga_emr.DAL
                             visitDTO.FinalDiagnosis = final;
                             visitDTO.ID = (long)reader["visitID"];
                             visitDTO.InitialDiagnosis = reader["initialDiagnosis"].ToString();
+                            visitDTO.Doctor = reader["doctor"].ToString();
                             visitDTO.Nurse = reader["nurse"].ToString();
                             visitDTO.Pulse = (int)reader["pulse"];
                             String symptoms = null;

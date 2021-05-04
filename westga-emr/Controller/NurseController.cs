@@ -71,8 +71,8 @@ namespace westga_emr.Controller
             return true;
         }
 
-        /// <see cref="NurseDAL.IsThisNurseTheNurseOfTheVisit(UserDTO, Visit)"/>
-        public bool IsThisNurseTheNurseOfTheVisit(UserDTO currentUser, Visit visit)
+        /// <see cref="NurseDAL.IsThisNurseTheNurseOfTheVisit(UserDTO, VisitDTO)"/>
+        public bool IsThisNurseTheNurseOfTheVisit(UserDTO currentUser, VisitDTO visit)
         {
             if (currentUser == null || visit == null || visit.ID == null)
             {
