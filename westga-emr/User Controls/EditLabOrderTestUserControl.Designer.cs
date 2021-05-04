@@ -81,7 +81,7 @@ namespace westga_emr.User_Controls
             testDateLabel.Name = "testDateLabel";
             testDateLabel.Size = new System.Drawing.Size(260, 13);
             testDateLabel.TabIndex = 9;
-            testDateLabel.Text = "Test Date";
+            testDateLabel.Text = "Test Date & Time *";
             // 
             // orderDateLabel
             // 

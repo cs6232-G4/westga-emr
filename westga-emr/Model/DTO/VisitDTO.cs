@@ -10,6 +10,7 @@ namespace westga_emr.Model.DTO
 	{
 		public long? ID { get; set; }
 		public long? AppointmentID { get; set; }
+		public string Doctor { get; set; }
 		public string Nurse { get; set; }
 		public DateTime VisitDateTime { get; set; }
 		public string InitialDiagnosis { get; set; }

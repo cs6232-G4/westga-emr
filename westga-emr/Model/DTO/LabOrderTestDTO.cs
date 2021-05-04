@@ -13,5 +13,7 @@ namespace westga_emr.Model.DTO
         public int TestCode { get; set; }
 
         public bool? IsNormal { get; set; }
+
+        public string TestResultStatus { get; set; }
     }
 }
