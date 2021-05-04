@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using westga_emr.Model;
 
@@ -15,9 +16,9 @@ namespace westga_emr.DAL
         /// <param name="startDate">Starting date for report</param>
         /// <param name="endDate">Ending date for report</param>
         /// <returns>Report of 'getMostPerformedTestsDuringDates'</returns>
-        public static Report GetMostPerformedTestsDuringDates(DateTime startDate, DateTime endDate)
+        public static List<Report> GetMostPerformedTestsDuringDates(DateTime startDate, DateTime endDate)
         {
-            Report report = null;
+            List<Report> reports = new List<Report>();
             using (SqlConnection connection = GetSQLConnection.GetConnection())
             {
                 using (SqlCommand command = new SqlCommand("getMostPerformedTestsDuringDates", connection))
@@ -43,16 +44,16 @@ namespace westga_emr.DAL
                         int ordPercentageThirty = reader.GetOrdinal("percentageDoneOnThirtyYearOldsDuringThisTime");
                         int ordPercentageOtherAge = reader.GetOrdinal("percentageDoneOnOtherAgesDuringThisTime");
 
-                        report = new Report(reader.GetInt32(ordLabCode), reader.GetString(ordLabName),
+                        reports.Add(new Report(reader.GetInt32(ordLabCode), reader.GetString(ordLabName),
                             reader.GetInt32(ordNumberOfTests), reader.GetInt32(ordTotalTests),
                             reader.GetDecimal(ordPercentageOfTotal),
                             reader.GetInt32(ordNormalResults), reader.GetInt32(ordAbnormalResults),
                             reader.GetDecimal(ordPercentageTwenty), reader.GetDecimal(ordPercentageThirty),
-                            reader.GetDecimal(ordPercentageOtherAge));
+                            reader.GetDecimal(ordPercentageOtherAge)));
                     }
                 }
             }
-            return report;
+            return reports;
         }
     }
 }
