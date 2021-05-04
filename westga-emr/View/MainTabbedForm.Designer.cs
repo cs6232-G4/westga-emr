@@ -260,6 +260,7 @@ namespace westga_emr.View
             this.reportsTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.reportsTabPage.Size = new System.Drawing.Size(1176, 901);
             this.reportsTabPage.TabIndex = 5;
+            this.reportsTabPage.Text = "Report";
             this.reportsTabPage.UseWaitCursor = true;
             // 
             // report1
@@ -267,7 +268,7 @@ namespace westga_emr.View
             this.report1.Location = new System.Drawing.Point(26, 16);
             this.report1.Margin = new System.Windows.Forms.Padding(4);
             this.report1.Name = "report1";
-            this.report1.Size = new System.Drawing.Size(521, 299);
+            this.report1.Size = new System.Drawing.Size(1161, 888);
             this.report1.TabIndex = 0;
             this.report1.UseWaitCursor = true;
             // 
