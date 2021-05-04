@@ -40,23 +40,23 @@ namespace westga_emr.View
             this.searchPatient1 = new westga_emr.User_Controls.SearchPatient();
             this.upcomingAppointmentsTabPage = new System.Windows.Forms.TabPage();
             this.upcomingAppointments1 = new westga_emr.User_Controls.UpcomingAppointments();
-            this.testsTabPage = new System.Windows.Forms.TabPage();
-            this.testsUserControl1 = new westga_emr.User_Controls.TestsUserControl();
             this.nurseListTabPage = new System.Windows.Forms.TabPage();
             this.nurses1 = new westga_emr.User_Controls.Nurses();
             this.addNurseTabPage = new System.Windows.Forms.TabPage();
             this.addNurse1 = new westga_emr.User_Controls.AddNurse();
             this.reportsTabPage = new System.Windows.Forms.TabPage();
             this.report1 = new westga_emr.User_Controls.Report();
+            this.testsUserControl1 = new westga_emr.User_Controls.TestsUserControl();
+            this.testsTabPage = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.saerchPatientTabPage.SuspendLayout();
             this.upcomingAppointmentsTabPage.SuspendLayout();
-            this.testsTabPage.SuspendLayout();
             this.nurseListTabPage.SuspendLayout();
             this.addNurseTabPage.SuspendLayout();
             this.reportsTabPage.SuspendLayout();
+            this.testsTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -144,7 +144,7 @@ namespace westga_emr.View
             this.mainTabControl.Controls.Add(this.addNurseTabPage);
             this.mainTabControl.Controls.Add(this.reportsTabPage);
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.mainTabControl.Location = new System.Drawing.Point(0, 81);
+            this.mainTabControl.Location = new System.Drawing.Point(0, 50);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(1184, 930);
@@ -194,24 +194,6 @@ namespace westga_emr.View
             this.upcomingAppointments1.Name = "upcomingAppointments1";
             this.upcomingAppointments1.Size = new System.Drawing.Size(1040, 823);
             this.upcomingAppointments1.TabIndex = 0;
-            // 
-            // testsTabPage
-            // 
-            this.testsTabPage.BackColor = System.Drawing.Color.SkyBlue;
-            this.testsTabPage.Controls.Add(this.testsUserControl1);
-            this.testsTabPage.Location = new System.Drawing.Point(4, 25);
-            this.testsTabPage.Name = "testsTabPage";
-            this.testsTabPage.Size = new System.Drawing.Size(1176, 901);
-            this.testsTabPage.TabIndex = 6;
-            this.testsTabPage.Text = "Visits";
-            // 
-            // testsUserControl1
-            // 
-            this.testsUserControl1.BackColor = System.Drawing.Color.SkyBlue;
-            this.testsUserControl1.Location = new System.Drawing.Point(38, 3);
-            this.testsUserControl1.Name = "testsUserControl1";
-            this.testsUserControl1.Size = new System.Drawing.Size(1100, 850);
-            this.testsUserControl1.TabIndex = 0;
             // 
             // nurseListTabPage
             // 
@@ -271,12 +253,30 @@ namespace westga_emr.View
             this.report1.TabIndex = 0;
             this.report1.UseWaitCursor = true;
             // 
+            // testsUserControl1
+            // 
+            this.testsUserControl1.BackColor = System.Drawing.Color.SkyBlue;
+            this.testsUserControl1.Location = new System.Drawing.Point(30, 0);
+            this.testsUserControl1.Name = "testsUserControl1";
+            this.testsUserControl1.Size = new System.Drawing.Size(1114, 759);
+            this.testsUserControl1.TabIndex = 0;
+            // 
+            // testsTabPage
+            // 
+            this.testsTabPage.BackColor = System.Drawing.Color.SkyBlue;
+            this.testsTabPage.Controls.Add(this.testsUserControl1);
+            this.testsTabPage.Location = new System.Drawing.Point(4, 25);
+            this.testsTabPage.Name = "testsTabPage";
+            this.testsTabPage.Size = new System.Drawing.Size(1176, 901);
+            this.testsTabPage.TabIndex = 6;
+            this.testsTabPage.Text = "Visits";
+            // 
             // MainTabbedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1184, 1011);
+            this.ClientSize = new System.Drawing.Size(1201, 749);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.flowLayoutPanel1);
             this.MaximizeBox = false;
@@ -293,10 +293,10 @@ namespace westga_emr.View
             this.mainTabControl.ResumeLayout(false);
             this.saerchPatientTabPage.ResumeLayout(false);
             this.upcomingAppointmentsTabPage.ResumeLayout(false);
-            this.testsTabPage.ResumeLayout(false);
             this.nurseListTabPage.ResumeLayout(false);
             this.addNurseTabPage.ResumeLayout(false);
             this.reportsTabPage.ResumeLayout(false);
+            this.testsTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -318,9 +318,9 @@ namespace westga_emr.View
         private User_Controls.UpcomingAppointments upcomingAppointments1;
         private User_Controls.AddNurse addNurse1;
         private User_Controls.Report report1;
-        private System.Windows.Forms.TabPage testsTabPage;
-        private User_Controls.TestsUserControl testsUserControl1;
         private System.Windows.Forms.TabPage nurseListTabPage;
         private User_Controls.Nurses nurses1;
+        private System.Windows.Forms.TabPage testsTabPage;
+        private User_Controls.TestsUserControl testsUserControl1;
     }
 }

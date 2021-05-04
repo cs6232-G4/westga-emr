@@ -122,7 +122,7 @@ namespace westga_emr.User_Controls
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "TestDate";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Test Date";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Test Date & Time";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Width = 110;
