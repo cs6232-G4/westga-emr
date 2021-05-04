@@ -38,7 +38,7 @@ namespace westga_emr.User_Controls
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsNormal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.TestResultStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditLabTest = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -59,7 +59,7 @@ namespace westga_emr.User_Controls
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.IsNormal,
+            this.TestResultStatus,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.EditLabTest});
@@ -109,20 +109,23 @@ namespace westga_emr.User_Controls
             this.dataGridViewTextBoxColumn4.HeaderText = "Test Result";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 160;
+            this.dataGridViewTextBoxColumn4.Width = 155;
             // 
-            // IsNormal
+            // TestResultStatus
             // 
-            this.IsNormal.DataPropertyName = "IsNormal";
-            this.IsNormal.HeaderText = "Is Normal Result";
-            this.IsNormal.Name = "IsNormal";
+            this.TestResultStatus.DataPropertyName = "TestResultStatus";
+            this.TestResultStatus.HeaderText = "Result Status";
+            this.TestResultStatus.Name = "TestResultStatus";
+            this.TestResultStatus.ReadOnly = true;
+            this.TestResultStatus.Width = 95;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "TestDate";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Test Date";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Test Date & Time";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 110;
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -169,7 +172,7 @@ namespace westga_emr.User_Controls
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsNormal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TestResultStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewButtonColumn EditLabTest;

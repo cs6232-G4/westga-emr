@@ -94,6 +94,18 @@ namespace westga_emr.DAL
                             {
                                 labTest.IsNormal = (bool)reader["isNormal"];
                             }
+                            if (labTest.IsNormal.HasValue )
+                            {
+                                if (labTest.IsNormal.Value)
+                                {
+                                    labTest.TestResultStatus = "Normal";
+                                }
+                                else
+                                {
+                                    labTest.TestResultStatus = "Abnormal";
+                                }
+                                
+                            }
 
                             if (!reader.IsDBNull(reader.GetOrdinal("testPerformed")))
                             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using westga_emr.DAL;
 using westga_emr.Model;
 
@@ -10,7 +11,7 @@ namespace westga_emr.Controller
     public class ReportController
     {
         /// <see cref="ReportDAL.GetMostPerformedTestsDuringDates(DateTime, DateTime)"/>
-        public static Report GetMostPerformedTestsDuringDates(DateTime startDate, DateTime endDate)
+        public List<Report> GetMostPerformedTestsDuringDates(DateTime startDate, DateTime endDate)
         {
             if (startDate == null || endDate == null)
             {

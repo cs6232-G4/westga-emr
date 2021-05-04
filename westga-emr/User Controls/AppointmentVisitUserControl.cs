@@ -14,6 +14,7 @@ namespace westga_emr.User_Controls
         #region Data members
         private VisitController visitController;
         private PersonController personController;
+        private NurseController nurseController;
         private AppointmentDTO appointment;
         private Dictionary<string, string> errors;
         List<VisitDTO> visitDTO;
@@ -33,6 +34,7 @@ namespace westga_emr.User_Controls
             visitController = new VisitController();
             personController = new PersonController();
             appointment = new AppointmentDTO();
+            nurseController = new NurseController();
             errors = new Dictionary<string, string>();
             labOrdersTestController = new Lab_Orders_have_Lab_TestsController();
             visitTests = new List<LabOrderTestDTO>();
@@ -52,30 +54,48 @@ namespace westga_emr.User_Controls
                 visitDTO = this.visitController.GetVisitByAppointment(
                                     new Appointment(appointmentDTO.AppointmentID, appointmentDTO.PatientID, appointmentDTO.DoctorID,
                                     appointmentDTO.AppointmentDateTime, appointmentDTO.ReasonForVisit));
-
+                string loggedInNurse = AuthenticationHelper.currentUser.FirstName + " " + AuthenticationHelper.currentUser.LastName;
                 if (visitDTO is null || visitDTO.Count <= 0 )
                 {
                     this.visitLabel.Text = "Create " + this.visitLabel.Text;
-                    this.nurseTextBox.Text = AuthenticationHelper.currentUser.FirstName + " " +
-                        AuthenticationHelper.currentUser.LastName;
+                    this.doctorTextBox.Text = appointmentDTO.DoctorName;
+                    this.nurseTextBox.Text = loggedInNurse;
                     this.visitDateTextBox.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                     this.createButton.Visible = true;
                     EnableFormFields();
                 }
-                else if (visitDTO.Count > 0)
+                else if (visitDTO.Count > 0 )
                 {
-                   
+                    bool IsThisNurseTheNurseOfTheVisit = nurseController.
+                        IsThisNurseTheNurseOfTheVisit(AuthenticationHelper.currentUser, visitDTO[0]);
+
                     this.PopulateTextBoxesForVisit(visitDTO);
                     if (String.IsNullOrWhiteSpace(visitDTO[0].FinalDiagnosis))
                     {
-                        this.visitLabel.Text = "Edit " + this.visitLabel.Text;
-                        EnableFormFields();
-                        this.finalDiagnosticTextBox.ReadOnly = true;
-                        this.editButton.Visible = true;
-                        this.editFinalDiagnosticButton.Visible = true;
-                        this.finalDiagnosticTextBox.ReadOnly = true;
-                        this.orderLabTestButton.Visible = true;
-                        this.viewLabTestButton.Visible = true;
+                        if (IsThisNurseTheNurseOfTheVisit)
+                        {
+                            this.visitLabel.Text = "Edit " + this.visitLabel.Text;
+                            EnableFormFields();
+                            this.finalDiagnosticTextBox.ReadOnly = true;
+                            this.editButton.Visible = true;
+                            this.editFinalDiagnosticButton.Visible = true;
+                            this.finalDiagnosticTextBox.ReadOnly = true;
+                            this.orderLabTestButton.Visible = true;
+                            this.viewLabTestButton.Visible = true;
+                        }
+                        else
+                        {
+                            this.visitLabel.Text = "View " + this.visitLabel.Text;
+                            DisableFormFields();
+                            this.finalDiagnosticTextBox.ReadOnly = true;
+                            this.editFinalDiagnosticButton.Visible = false;
+                            this.orderLabTestButton.Visible = false;
+                            this.viewLabTestButton.Visible = false;
+                            this.messageLabel.Text = "Error: The Nurse : "+ loggedInNurse  + " is not the one associated with the visit." + Environment.NewLine + "No modification is allowed!!";
+                            this.messageLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Regular))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                            this.messageLabel.Visible = true;
+                        }
+                       
                     }
                     else
                     {
@@ -134,6 +154,7 @@ namespace westga_emr.User_Controls
         /// </summary>
         private void PopulateTextBoxesForVisit(List<VisitDTO> visitDTO)
         {
+            this.doctorTextBox.Text = visitDTO[0].Doctor;
             this.nurseTextBox.Text = visitDTO[0].Nurse;
             this.initialDiagnosticTextBox.Text = visitDTO[0].InitialDiagnosis;
             this.visitDateTextBox.Text = visitDTO[0].VisitDateTime.ToString();
